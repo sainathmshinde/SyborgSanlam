@@ -8,7 +8,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useNavigate } from "react-router";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CalendarIcon, SearchIcon } from "lucide-react";
@@ -26,13 +33,15 @@ const Compliance = () => {
   const navigate = useNavigate();
 
   const [date, setDate] = useState();
+  const [filter, setFilter] = useState("");
 
-  const handleEdit = () => {
-    navigate("/complianceChecklist");
+  const handleEdit = (id) => {
+    navigate(`/complianceChecklist/${id}`);
   };
 
   const leadsWithComplianceTeam = [
     {
+      id: 1,
       Customer: "Teslack Organization",
       Name: "Sarah Johnson",
       ClientType: "Company",
@@ -43,9 +52,10 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
-      Customer: "Crios Trust",
+      id: 2,
+      Customer: "Crios Organization",
       Name: "Mila Powell",
-      ClientType: "Trust",
+      ClientType: "Company",
       Stage: "Approved",
       MobileNumber: "0856789012",
       Email: "milapowell@example.com",
@@ -53,16 +63,18 @@ const Compliance = () => {
       AssignedTo: "David Thompson",
     },
     {
+      id: 3,
       Customer: "Sebastian Price",
       Name: "Sebastian Price",
       ClientType: "Indivisual",
-      Stage: "Approved",
+      Stage: "Rejected",
       MobileNumber: "0857890123",
       Email: "sebastianprice@example.com",
       Country: "Canada",
       AssignedTo: "Samantha Green",
     },
     {
+      id: 4,
       Customer: "Aria Bell",
       Name: "Aria Bell",
       ClientType: "Partnership",
@@ -73,6 +85,7 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Harper Ward",
       ClientType: "Individual",
@@ -83,6 +96,7 @@ const Compliance = () => {
       AssignedTo: "David Thompson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Jackson Perez",
       ClientType: "Trust",
@@ -93,6 +107,7 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Ella Gray",
       ClientType: "Company",
@@ -103,6 +118,7 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Liam Murphy",
       ClientType: "Partnership",
@@ -113,6 +129,7 @@ const Compliance = () => {
       AssignedTo: "David Thompson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Charlotte Barnes",
       ClientType: "Individual",
@@ -123,6 +140,7 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Amelia Shaw",
       ClientType: "Trust",
@@ -133,6 +151,7 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Henry Patterson",
       ClientType: "Company",
@@ -143,6 +162,7 @@ const Compliance = () => {
       AssignedTo: "David Thompson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Lucas Wallace",
       ClientType: "Partnership",
@@ -153,6 +173,7 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Isla Mitchell",
       ClientType: "Individual",
@@ -163,6 +184,7 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Oscar Knight",
       ClientType: "Trust",
@@ -173,6 +195,7 @@ const Compliance = () => {
       AssignedTo: "David Thompson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Grace Cooper",
       ClientType: "Company",
@@ -183,6 +206,7 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "Emily Turner",
       ClientType: "Partnership",
@@ -193,6 +217,7 @@ const Compliance = () => {
       AssignedTo: "Lisa Anderson",
     },
     {
+      id: 4,
       Customer: "Harper Ward",
       Name: "James Simmons",
       ClientType: "Individual",
@@ -202,37 +227,14 @@ const Compliance = () => {
       Country: "India",
       AssignedTo: "David Thompson",
     },
-    {
-      Customer: "Harper Ward",
-      Name: "Olivia Brooks",
-      ClientType: "Trust",
-      Stage: "Approved",
-      MobileNumber: "0872345678",
-      Email: "oliviabrooks@example.com",
-      Country: "South Africa",
-      AssignedTo: "Samantha Green",
-    },
-    {
-      Customer: "Harper Ward",
-      Name: "Aiden Diaz",
-      ClientType: "Company",
-      Stage: "Pending",
-      MobileNumber: "0873456789",
-      Email: "aidendiaz@example.com",
-      Country: "New Zealand",
-      AssignedTo: "Lisa Anderson",
-    },
-    {
-      Customer: "Harper Ward",
-      Name: "Evelyn Hayes",
-      ClientType: "Partnership",
-      Stage: "Approved",
-      MobileNumber: "0874567890",
-      Email: "evelynhayes@example.com",
-      Country: "Australia",
-      AssignedTo: "David Thompson",
-    },
   ];
+
+  const stages = Array.from(
+    new Set(leadsWithComplianceTeam.map((item) => item.Stage))
+  );
+  const filteredData = filter
+    ? leadsWithComplianceTeam.filter((item) => item.Stage === filter)
+    : leadsWithComplianceTeam;
 
   return (
     <div className="">
@@ -255,22 +257,6 @@ const Compliance = () => {
                 className="pl-10 w-1/2"
               />
             </div>
-            <div className="flex space-x-2">
-              <Button
-                variant={status === "pending" ? "default" : "outline"}
-                // onClick={() => handleStatusFilter("pending")}
-                className="flex-1 md:flex-none"
-              >
-                Pending
-              </Button>
-              <Button
-                variant={status === "approved" ? "default" : "outline"}
-                // onClick={() => handleStatusFilter("approved")}
-                className="flex-1 md:flex-none"
-              >
-                Onboarded
-              </Button>
-            </div>
           </div>
         </div>
         <div>
@@ -281,7 +267,49 @@ const Compliance = () => {
                   <TableHead className="text-white">Customer Name</TableHead>
                   <TableHead className="text-white">Client Type</TableHead>
                   <TableHead className="text-white">Contact Name</TableHead>
-                  <TableHead className="text-white">Stage</TableHead>
+                  <TableHead className="text-white">
+                    {" "}
+                    <div className="flex items-center space-x-2 text-black">
+                      <span className="text-white">Stage</span>
+                      <Select
+                        value={filter}
+                        onValueChange={(value) => setFilter(value)}
+                        className="text-black"
+                      >
+                        <SelectTrigger className="w-[40px] text-white">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2.5}
+                            stroke="currentColor"
+                            className="h-20 w-20 text-black"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3.75 9l7.5 7.5 7.5-7.5"
+                            />
+                          </svg>
+                        </SelectTrigger>
+                        <SelectContent className="text-black">
+                          <SelectItem value="all" className="text-black">
+                            All
+                          </SelectItem>
+                          {stages.map((stage) => (
+                            <SelectItem
+                              className="text-black"
+                              key={stage}
+                              value={stage}
+                            >
+                              {stage}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </TableHead>
+
                   <TableHead className="text-white">Mobile Number</TableHead>
                   <TableHead className="text-white">Email</TableHead>
                   <TableHead className="text-white">Country</TableHead>
@@ -289,11 +317,11 @@ const Compliance = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {leadsWithComplianceTeam.map((lead, index) => (
+                {filteredData.map((lead, index) => (
                   <TableRow
                     key={index}
                     className="cursor-pointer hover:text-blue-500"
-                    onClick={handleEdit}
+                    onClick={() => handleEdit(lead?.id)}
                   >
                     <TableCell>{lead.Customer}</TableCell>
                     <TableCell>{lead.ClientType}</TableCell>

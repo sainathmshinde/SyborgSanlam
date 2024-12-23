@@ -40,6 +40,8 @@ import { Separator } from "@radix-ui/react-select";
 import {
   Building,
   CheckCircle2,
+  ChevronDown,
+  ChevronRight,
   Dot,
   FileIcon,
   FileText,
@@ -81,11 +83,24 @@ const TreeNode = ({ node, level }) => {
 };
 // To do document categories based on selected client type
 const documentCategories = {
-  Company: ["Certificate of Incorporation", "Bank Statement", "Address Proof"],
-  "Director 1": ["ID Proof"],
-  "Director 2": ["ID Proof"],
-};
+  "Company Documents": {
+    main: "Incorporation Document",
+    subOptions: ["Registartion Certificate", "Incorportation Letter"],
+  },
+  "Address Proof": {
+    main: "Address Document",
+    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  },
 
+  "ID Proof Director 1": {
+    main: "ID Document",
+    subOptions: ["National ID", "PAN Card", "Passport"],
+  },
+  "ID Proof Director 2": {
+    main: "ID Document",
+    subOptions: ["National ID", "PAN Card", "Passport"],
+  },
+};
 const CreateLead = () => {
   const navigate = useNavigate();
 
@@ -96,6 +111,7 @@ const CreateLead = () => {
     params.get("clientType") || "company"
   );
 
+  console.log(clientType);
   const [selectedEntity, setSelectedEntity] = useState(null);
 
   const handleSearch = (event) => {
@@ -181,12 +197,13 @@ const CreateLead = () => {
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
   const [isBeneficiaryDialogOpen, setIsBeneficiaryDialogOpen] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState("Individual");
-  const [selectedDocument, setSelectedDocument] = useState(
-    documentCategories.Company[0]
-  );
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubOption, setSelectedSubOption] = useState(null);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [expandedCategories, setExpandedCategories] = useState({});
+
+  const [selectedDocumentType, setSelectedDocumentType] = useState("");
   const [uploadedDocuments, setUploadedDocuments] = useState({
     Company: [],
     "Director 1": [],
@@ -228,6 +245,11 @@ const CreateLead = () => {
     setCheckedItems({ ...checkedItems, [item]: checked });
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setSelectedDocumentType(""); // Reset document type when category changes
+  };
+
   const convertToLabel = (item) => {
     return item.replace(/([A-Z])/g, " $1").replace(/^./, item[0].toUpperCase());
   };
@@ -242,39 +264,57 @@ const CreateLead = () => {
     setIsBeneficiaryDialogOpen(false);
   };
 
-  const handleDocumentSelect = (category, document) => {
-    setSelectedCategory(category);
-    setSelectedDocument(document);
-    setFile(null);
-    setPreview(null);
+  const toggleCategory = (category) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
   };
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
+  // Handle document selection
+  const handleDocumentSelect = (category, subOption) => {
+    setSelectedCategory(category);
+    setSelectedSubOption(subOption);
+  };
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+
     if (selectedFile) {
-      setFile(selectedFile);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
+      if (selectedFile.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreview(reader.result);
+        };
+        reader.readAsDataURL(selectedFile);
+      } else {
+        setPreview(null);
+      }
     }
   };
 
+  // Upload handler
   const handleUpload = () => {
-    if (file) {
-      console.log(
-        `Uploading ${file.name} as ${selectedDocument} for ${selectedCategory}`
-      );
-      setUploadedDocuments((prev) => ({
-        ...prev,
-        [selectedCategory]: [...prev[selectedCategory], selectedDocument],
-      }));
-      setFile(null);
-      setPreview(null);
+    if (file && selectedSubOption) {
+      toast({
+        title: "Upload Successful",
+        description: `${selectedSubOption} has been uploaded.`,
+        variant: "success",
+      });
+
+      // Reset file input
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+      setFile(null);
+      setPreview(null);
+    } else {
+      toast({
+        title: "Upload Failed",
+        description: "Please select a document type and file.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -358,7 +398,7 @@ const CreateLead = () => {
         </div>
       </div>
 
-      {clientType !== "individual" ? (
+      {clientType === "individual" ? (
         <Tabs defaultValue="basic">
           <TabsList className=" flex justify-start mb-4 ">
             <TabsTrigger
@@ -590,7 +630,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type">Type</Label>
                           <Select name="type" required>
                             <SelectTrigger>
@@ -607,7 +647,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation
@@ -718,62 +758,85 @@ const CreateLead = () => {
           </TabsContent>
           <TabsContent value="documents">
             <div className="flex h-screen bg-gray-100">
+              {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
-                    ([category, documents]) => (
+                    ([category, categoryData]) => (
                       <li key={category}>
-                        <div className="flex items-center mb-2">
-                          {getCategoryIcon(category)}
-                          <span className="ml-2 font-semibold">{category}</span>
-                        </div>
-                        <ul className="pl-6 space-y-2">
-                          {documents.map((document) => (
-                            <li key={document} className="flex items-center">
-                              <Button
-                                variant={
-                                  document === selectedDocument &&
-                                  category === selectedCategory
-                                    ? "default"
-                                    : "ghost"
-                                }
-                                className="w-full justify-start text-sm"
-                                onClick={() =>
-                                  handleDocumentSelect(category, document)
-                                }
-                              >
-                                <FileText className="mr-2 h-4 w-4" />
-                                {document}
-                              </Button>
-                              {uploadedDocuments[category].includes(
-                                document
-                              ) && (
-                                <CheckCircle2
-                                  className="h-5 w-5 text-green-500 ml-2"
-                                  aria-label={`${document} uploaded`}
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category} Document`}
                                 />
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {category !== "Director 2" && (
-                          <Separator className="my-2" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
                         )}
+
+                        <Separator className="my-2" />
                       </li>
                     )
                   )}
                 </ul>
               </div>
+
+              {/* Document Upload Section */}
               <div className="flex-1 p-4 overflow-auto">
                 <Card className="mb-6">
                   <CardContent className="p-4">
                     <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </h1>
 
                     <div className="mb-4">
-                      <Label htmlFor="file-upload">Select file</Label>
+                      <Label htmlFor="file-upload" className="required">
+                        Select file
+                      </Label>
                       <Input
                         id="file-upload"
                         type="file"
@@ -782,8 +845,9 @@ const CreateLead = () => {
                         accept=".pdf,.jpg,.jpeg,.png"
                       />
                     </div>
+
                     <div
-                      className=" my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
                       style={{ minHeight: "400px" }}
                     >
                       {preview ? (
@@ -807,12 +871,31 @@ const CreateLead = () => {
                         </p>
                       )}
                     </div>
-                    <Button onClick={handleUpload} disabled={!file}>
+
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                    >
                       <Upload className="mr-2 h-4 w-4" />
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </Button>
                   </CardContent>
                 </Card>
+
+                {/* <div className="my-10 flex justify-end">
+                  <Button
+                    className="mx-5"
+                    onClick={() =>
+                      toast({
+                        title: "Success",
+                        description: "Onboarding initiated successfully.",
+                        variant: "success",
+                      })
+                    }
+                  >
+                    Submit
+                  </Button>
+                </div> */}
               </div>
             </div>
           </TabsContent>
@@ -853,7 +936,7 @@ const CreateLead = () => {
           <TabsContent value="basic">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="source"> Parent</Label>
                   <div className="relative ">
                     <div className="flex items-center">
@@ -913,11 +996,11 @@ const CreateLead = () => {
                       </DialogContent>
                     </Dialog>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="space-y-2">
                   <Label htmlFor="firstName" className="required">
-                    Entity Name
+                    Customer Name
                   </Label>
                   <Input
                     id="firstName"
@@ -925,7 +1008,7 @@ const CreateLead = () => {
                     onChange={(e) =>
                       setNewLead({ ...newLead, firstName: e.target.value })
                     }
-                    placeholder="Enter Entity Name"
+                    placeholder="Enter Customer Name"
                   />
                 </div>
 
@@ -989,7 +1072,7 @@ const CreateLead = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="industry" className="required">
-                    Base Currency/Billing Currency
+                    Currency
                   </Label>
                   <Select
                     id="industry"
@@ -1058,7 +1141,7 @@ const CreateLead = () => {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="industry">Regulatory Authority</Label>
                   <Select
                     id="industry"
@@ -1076,7 +1159,7 @@ const CreateLead = () => {
                       <SelectItem value="Retail">Auth 2</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
+                </div> */}
 
                 <div className="space-y-2">
                   <Label htmlFor="finance" className="required">
@@ -1290,7 +1373,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -1309,7 +1392,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation
@@ -1433,58 +1516,79 @@ const CreateLead = () => {
           </TabsContent>
           <TabsContent value="documents">
             <div className="flex h-screen bg-gray-100">
+              {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
-                    ([category, documents]) => (
+                    ([category, categoryData]) => (
                       <li key={category}>
-                        <div className="flex items-center mb-2">
-                          {getCategoryIcon(category)}
-                          <span className="ml-2 font-semibold">{category}</span>
-                        </div>
-                        <ul className="pl-6 space-y-2">
-                          {documents.map((document) => (
-                            <li key={document} className="flex items-center">
-                              <Button
-                                variant={
-                                  document === selectedDocument &&
-                                  category === selectedCategory
-                                    ? "default"
-                                    : "ghost"
-                                }
-                                className="w-full justify-start text-sm"
-                                onClick={() =>
-                                  handleDocumentSelect(category, document)
-                                }
-                              >
-                                <FileText className="mr-2 h-4 w-4" />
-                                {document}
-                              </Button>
-                              {uploadedDocuments[category].includes(
-                                document
-                              ) && (
-                                <CheckCircle2
-                                  className="h-5 w-5 text-green-500 ml-2"
-                                  aria-label={`${document} uploaded`}
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category} Document`}
                                 />
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {category !== "Director 2" && (
-                          <Separator className="my-2" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
                         )}
+
+                        <Separator className="my-2" />
                       </li>
                     )
                   )}
                 </ul>
               </div>
+
+              {/* Document Upload Section */}
               <div className="flex-1 p-4 overflow-auto">
                 <Card className="mb-6">
                   <CardContent className="p-4">
                     <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </h1>
 
                     <div className="mb-4">
@@ -1499,8 +1603,9 @@ const CreateLead = () => {
                         accept=".pdf,.jpg,.jpeg,.png"
                       />
                     </div>
+
                     <div
-                      className=" my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
                       style={{ minHeight: "400px" }}
                     >
                       {preview ? (
@@ -1524,13 +1629,18 @@ const CreateLead = () => {
                         </p>
                       )}
                     </div>
-                    <Button onClick={handleUpload} disabled={!file}>
+
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                    >
                       <Upload className="mr-2 h-4 w-4" />
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </Button>
                   </CardContent>
                 </Card>
-                <div className="my-10 flex justify-end">
+
+                {/* <div className="my-10 flex justify-end">
                   <Button
                     className="mx-5"
                     onClick={() =>
@@ -1543,7 +1653,7 @@ const CreateLead = () => {
                   >
                     Submit
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
           </TabsContent>

@@ -18,7 +18,7 @@ function SalesDashboard() {
       <div className="flex  ">
         <main className="flex-1 grid py-4 ">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mb-5">
-            <Card>
+            {/* <Card>
               <CardHeader className="h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
                   Total Leads
@@ -26,11 +26,11 @@ function SalesDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">150</div>
-                {/* <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   +180.1% from last month
-                </p> */}
+                </p>
               </CardContent>
-            </Card>
+            </Card> */}
             <Card>
               <CardHeader className=" h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
@@ -67,7 +67,7 @@ function SalesDashboard() {
             <Card>
               <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
                 <CardTitle className=" mb-5">Month wise onboarding</CardTitle>
-                <DateRangePicker />
+                <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
               </CardHeader>
               <CardContent>
                 <LineChart className="w-full aspect-[4/3]" />
@@ -92,7 +92,7 @@ function SalesDashboard() {
                       <TableHead className="text-white ">
                         Leads with onboarding
                       </TableHead>
-                      <TableHead className="text-white ">Total Leads</TableHead>
+                      {/* <TableHead className="text-white ">Total Leads</TableHead> */}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -104,7 +104,7 @@ function SalesDashboard() {
 
                       <TableCell className="text-end">7</TableCell>
                       <TableCell className="text-end">10</TableCell>
-                      <TableCell className="text-end">37</TableCell>
+                      {/* <TableCell className="text-end">37</TableCell> */}
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">
@@ -114,7 +114,7 @@ function SalesDashboard() {
 
                       <TableCell className="text-end">15</TableCell>
                       <TableCell className="text-end">8</TableCell>
-                      <TableCell className="text-end">68</TableCell>
+                      {/* <TableCell className="text-end">68</TableCell> */}
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">Alex Doe</TableCell>
@@ -122,7 +122,7 @@ function SalesDashboard() {
 
                       <TableCell className="text-end">3</TableCell>
                       <TableCell className="text-end">7</TableCell>
-                      <TableCell className="text-end">45</TableCell>
+                      {/* <TableCell className="text-end">45</TableCell> */}
                     </TableRow>
                     <TableRow>
                       <TableCell className=" text-black font-bold">
@@ -139,9 +139,9 @@ function SalesDashboard() {
                       <TableCell className="text-end text-black font-bold">
                         25
                       </TableCell>
-                      <TableCell className="text-end text-black font-bold">
+                      {/* <TableCell className="text-end text-black font-bold">
                         150
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   </TableBody>
                 </Table>

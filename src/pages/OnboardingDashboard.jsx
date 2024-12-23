@@ -76,7 +76,7 @@ function OnboardingDashboard() {
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Card>
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">Total Clients</CardTitle>
             <Users className="h-4 w-4 text-white" />
@@ -86,7 +86,7 @@ function OnboardingDashboard() {
               {dashboardData.totalClients}
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
@@ -132,7 +132,7 @@ function OnboardingDashboard() {
         <Card>
           <CardHeader className="flex flex-row justify-between">
             <CardTitle>Onboarding Status Overview</CardTitle>
-            <DateRangePicker placeholder="Select Date Range" />
+            <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>

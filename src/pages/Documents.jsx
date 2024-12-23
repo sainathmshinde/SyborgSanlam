@@ -16,11 +16,21 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const documents = [
-  { id: 1, name: "National ID" },
-  { id: 2, name: "Social securtiy card" },
-  { id: 3, name: "Tax return" },
-  { id: 4, name: "Address Proof" },
-  { id: 5, name: "Driver's License" },
+  {
+    id: 1,
+    country: "South Africa",
+    clientType: "Company",
+    name: "Certificate Of Incorporation",
+  },
+  { id: 2, country: "South Africa", clientType: "Company", name: "Id Proof" },
+  {
+    id: 3,
+    country: "South Africa",
+    clientType: "Company",
+    name: "Address proof",
+  },
+  // { id: 4,country:"South Africa",clientType:"Company",  name: "Address Proof" },
+  // { id: 5,country:"South Africa",clientType:"Company",  name: "Driver's License" },
 ];
 
 const Documents = () => {
@@ -33,7 +43,7 @@ const Documents = () => {
   const handleDeleteDocument = () => {};
 
   const handleEdit = (id) => {
-    navigate(`/createDocument/${id}`);
+    navigate(`/viewChecklist`);
   };
 
   const handleNew = () => {
@@ -43,14 +53,12 @@ const Documents = () => {
     <div className="p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold ">
-            Compliance checklist document types
-          </h1>
+          <h1 className="text-2xl font-bold ">Compliance checklist</h1>
         </div>
         <div className="flex items-center justify-between mt-6 mb-6">
           <Input
             type="search"
-            placeholder="Search document..."
+            placeholder="Search..."
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
@@ -61,7 +69,7 @@ const Documents = () => {
             className="ml-10"
           >
             <span className="flex items-center">
-              Create Document
+              Create Checklist
               <CirclePlus className="ml-2 h-4 w-4" />
             </span>
           </RButton>
@@ -72,7 +80,9 @@ const Documents = () => {
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
               <TableHead className="text-white p-2">Id</TableHead>
-              <TableHead className="text-white p-2">Document Name</TableHead>
+              <TableHead className="text-white p-2">Country</TableHead>
+              <TableHead className="text-white p-2">Client Type</TableHead>
+
               <TableHead className="text-white p-2 text-right">
                 Actions
               </TableHead>
@@ -83,13 +93,15 @@ const Documents = () => {
               document?.map((item) => (
                 <TableRow key={item.name}>
                   <TableCell className="p-2">{item.id}</TableCell>
+                  {/* <TableCell className="p-2">{item.name}</TableCell> */}
+                  <TableCell className="p-2">{item.country}</TableCell>
+                  <TableCell className="p-2">{item.clientType}</TableCell>
 
-                  <TableCell className="p-2">{item.name}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton
                         variant="ghost"
-                        className="flex items-center gap-2 "
+                        className="text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => {
                           handleEdit(item.id);
                         }}
@@ -133,4 +145,4 @@ const Documents = () => {
   );
 };
 
-export default WithLayout("admin")(Documents);
+export default WithLayout("compliance")(Documents);

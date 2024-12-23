@@ -27,11 +27,11 @@ const maintenance = [
   { name: "Entity Type", path: "/entityType", id: "entityType" },
   { name: "Client Type", path: "/clientType", id: "clientType" },
   { name: "Fund Type", path: "/fundType", id: "fundType" },
-  {
-    name: "Compliance checklist document types",
-    path: "/documentsList",
-    id: "documentsList",
-  },
+  // {
+  //   name: "Compliance checklist document types",
+  //   path: "/documentsList",
+  //   id: "documentsList",
+  // },
   { name: "Country", path: "/country", id: "country" },
   { name: "Currency", path: "/currency", id: "currency" },
 ];
@@ -225,17 +225,14 @@ export default function AppLayout({ children }) {
                 </div>
                 <div
                   className={cn(
-                    activeItem === "createChecklict" &&
+                    activeItem === "documentsList" &&
                       "bg-custom-black text-white",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                   )}
-                  onClick={handleNavigate(
-                    "/createChecklict",
-                    "createChecklict"
-                  )}
+                  onClick={handleNavigate("/documentsList", "documentsList")}
                 >
                   <Package className="h-4 w-4" />
-                  Create Checklist
+                  Checklist
                 </div>
               </nav>
             </div>
@@ -298,7 +295,7 @@ export default function AppLayout({ children }) {
                   Lead Management
                 </div>
 
-                <div
+                {/* <div
                   className={cn(
                     activeItem === "leads" && "bg-custom-black text-white",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
@@ -307,7 +304,7 @@ export default function AppLayout({ children }) {
                 >
                   <Package className="h-4 w-4" />
                   Initiate Onboarding
-                </div>
+                </div> */}
               </nav>
             </div>
           ) : null}

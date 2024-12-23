@@ -100,12 +100,12 @@ export default function UploadDocuments() {
                 {documents.map((document) => (
                   <li key={document} className="flex items-center">
                     <Button
-                      variant={
-                        document === selectedDocument &&
-                        category === selectedCategory
-                          ? "default"
-                          : "ghost"
-                      }
+                      // variant={
+                      //   document === selectedDocument &&
+                      //   category === selectedCategory
+                      //     ? "default"
+                      //     : "ghost"
+                      // }
                       className="w-full justify-start text-sm"
                       onClick={() => handleDocumentSelect(category, document)}
                     >

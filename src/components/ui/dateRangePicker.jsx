@@ -1,5 +1,5 @@
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ export function DateRangePicker({
   label,
   id,
   size,
+  placeholder,
 }) {
   const [selectedDates, setSelectedDates] = React.useState(null);
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);
@@ -89,7 +90,7 @@ export function DateRangePicker({
                 format(selectedDates.from, "LLL dd, y")
               )
             ) : (
-              <span>Select Date Range</span>
+              <span>{placeholder}</span>
             )}
           </Button>
         </PopoverTrigger>

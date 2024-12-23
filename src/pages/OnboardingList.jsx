@@ -1,39 +1,38 @@
-import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
 import WithLayout from "@/components/layout/WithLayout";
-import { useNavigate } from "react-router";
-import { useState } from "react";
+import { ConfirmDialog } from "@/components/ui/confirmDialog";
 import { Input } from "@/components/ui/input";
 import RButton from "@/components/ui/rButton";
 import {
-  CalendarIcon,
-  FilePenIcon,
-  SearchIcon,
-  Trash2Icon,
-} from "lucide-react";
-import { ConfirmDialog } from "@/components/ui/confirmDialog";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import customerData from "@/lib/customerData";
+import { FilePenIcon, SearchIcon, Trash2Icon } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const OnboardingList = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("");
 
   const leads = customerData;
+
+  const statuses = Array.from(new Set(customerData.map((item) => item.Stage)));
+
+  const filteredData = filter
+    ? leads.filter((item) => item.Stage === filter)
+    : leads;
 
   const [date, setDate] = useState();
 
@@ -55,51 +54,6 @@ const OnboardingList = () => {
                 className="pl-10 w-2/3"
               />
             </div>
-            <div className="flex space-x-2">
-              <Button
-                variant={status === "pending" ? "default" : "outline"}
-                // onClick={() => handleStatusFilter("pending")}
-                className="flex-1 md:flex-none"
-              >
-                Pending
-              </Button>
-              <Button
-                variant={status === "approved" ? "default" : "outline"}
-                // onClick={() => handleStatusFilter("approved")}
-                className="flex-1 md:flex-none"
-              >
-                Approved
-              </Button>
-              <Button
-                variant={status === "rejected" ? "default" : "outline"}
-                // onClick={() => handleStatusFilter("rejected")}
-                className="flex-1 md:flex-none"
-              >
-                Rejected
-              </Button>
-            </div>
-            {/* <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className={cn(
-                    "w-full md:w-[200px] justify-start text-left font-normal",
-                    !date && "text-muted-foreground"
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover> */}
           </div>
         </div>
         <div className="border rounded-lg overflow-x-auto">
@@ -110,7 +64,48 @@ const OnboardingList = () => {
                 <TableHead className="text-white">Contact Name</TableHead>
                 <TableHead className="text-white">Client Type</TableHead>
                 <TableHead className="text-white">Country</TableHead>
-                <TableHead className="text-white">Status</TableHead>
+                <TableHead className="text-white">
+                  {" "}
+                  <div className="flex items-center space-x-2 text-black">
+                    <span className="text-white">Stage</span>
+                    <Select
+                      value={filter}
+                      onValueChange={(value) => setFilter(value)}
+                      className="text-black"
+                    >
+                      <SelectTrigger className="w-[40px] text-white">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2.5}
+                          stroke="currentColor"
+                          className="h-20 w-20 text-black"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3.75 9l7.5 7.5 7.5-7.5"
+                          />
+                        </svg>
+                      </SelectTrigger>
+                      <SelectContent className="text-black">
+                        <SelectItem value="all" className="text-black">
+                          All Stages
+                        </SelectItem>
+                        {statuses.map((stage) => (
+                          <SelectItem
+                            className="text-black"
+                            key={stage}
+                            value={stage}
+                          >
+                            {stage}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Email</TableHead>
                 <TableHead className="text-white">Action</TableHead>

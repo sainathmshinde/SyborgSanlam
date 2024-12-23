@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/table";
 import WithLayout from "@/components/layout/WithLayout";
 import { DateRangePicker } from "@/components/ui/dateRangePicker";
+import { useNavigate } from "react-router";
 
 // Mock data
 const userData = [
@@ -73,9 +74,15 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
+
 const COLORS = ["#003f5c", "#58508d", "#bc5090"];
 
 function ComplianceDashboard() {
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate("/compliance");
+  };
+
   return (
     <div className="container mx-auto p-4 space-y-6">
       {/* Pie Chart */}
@@ -83,8 +90,8 @@ function ComplianceDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row justify-between">
-            <CardTitle>Total Clients</CardTitle>
-            <DateRangePicker />
+            <CardTitle>Total Requests</CardTitle>
+            <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
           </CardHeader>
           <CardContent>
             <div className="h-[300px]">
@@ -115,18 +122,18 @@ function ComplianceDashboard() {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="mt-4 text-center">
+            {/* <div className="mt-4 text-center">
               <p className="text-sm text-muted-foreground">
                 Total Requests: {totalRequests}
               </p>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 
         {/* Bar Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Pending with compliance by User</CardTitle>
+            <CardTitle>Pending with compliance team</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -152,21 +159,23 @@ function ComplianceDashboard() {
       {/* User Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Pending with compliance</CardTitle>
+          <CardTitle>Pending with compliance team</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black">
               <TableRow>
                 <TableHead className="text-white">Name</TableHead>
-                <TableHead className="text-white text-end">
-                  Pending With Compliance
-                </TableHead>
+                <TableHead className="text-white text-end">Pending</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {userData.map((user) => (
-                <TableRow key={user.name}>
+                <TableRow
+                  key={user.name}
+                  className="cursor-pointer hover:text-blue-500"
+                  onClick={handleEdit}
+                >
                   <TableCell>{user.name}</TableCell>
                   <TableCell className="text-end">{user.pending}</TableCell>
                 </TableRow>

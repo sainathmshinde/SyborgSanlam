@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,7 @@ import {
   XCircle,
   CircleArrowLeft,
   SearchIcon,
+  FilePenIcon,
 } from "lucide-react";
 import WithLayout from "@/components/layout/WithLayout";
 import { Label } from "@/components/ui/label";
@@ -32,7 +33,7 @@ import bankStatement from "@/assets/BankStatementChequing.png";
 import addressproof from "@/assets/addressproof.png";
 import idproof from "@/assets/idproof.png";
 
-import { Navigate, useNavigate } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
@@ -52,6 +53,7 @@ const customerData = {
   mobile: "0855678901",
   email: "sarahjohnson@outlook.com",
   country: "South Africa",
+  designation: "Administrative Assistant",
 };
 
 const documents = [
@@ -75,11 +77,16 @@ const documents = [
   },
   {
     id: 4,
-    name: "Director 1 ID Proof",
+    name: "Director Jony clark ID Proof",
     content: "ID Proof content...",
     image: idproof,
   },
-  { id: 5, name: "Director 2 ID Proof", content: "ID Proof content..." },
+  {
+    id: 5,
+    name: "Director Andrew ID Proof",
+    content: "ID Proof content...",
+    image: idproof,
+  },
   // Add more documents as needed
 ];
 // To do document categories based on selected client type
@@ -92,8 +99,43 @@ const documents = [
 function ComplianceChecklist() {
   const [selectedDoc, setSelectedDoc] = useState(documents[0]);
   const [comment, setComment] = useState("");
+  const [indexValue, setIndexValue] = useState("");
 
-  // let params = new URLSearchParams(window.location.search);
+  const [customerData, setCustomerData] = useState({
+    status: "Pending",
+    name: "Teslack Organization",
+    contactName: "Sarah Johnson",
+    clientType: "Company",
+    Stage: "With Compliance Team",
+    mobile: "0855678901",
+    email: "sarahjohnson@outlook.com",
+    country: "South Africa",
+    designation: "Administrative Assistant",
+  });
+  console.log("indexValue", indexValue);
+
+  const param = useParams();
+  let id = param.id;
+  useEffect(() => {
+    if (id == 1) {
+      setIndexValue(5);
+    } else if (id == 2) {
+      setCustomerData({
+        status: "Approved",
+        name: "Crios Organization",
+        contactName: "Mila Powell",
+        clientType: "Company",
+        Stage: "With Compliance Team",
+        mobile: "0855678901",
+        email: "milapowell@outlook.com",
+        country: "South Africa",
+        designation: "Administrative Assistant",
+      });
+      setIndexValue(6);
+    } else {
+      setIndexValue(4);
+    }
+  }, [id]);
 
   const handleSendBack = () => {
     console.log(
@@ -196,56 +238,32 @@ function ComplianceChecklist() {
               <p className="text-sm text-muted-foreground">
                 {customerData.email}
               </p>
+              <p className="text-sm">
+                Designation : {customerData.designation}
+              </p>
             </div>
             <div>
               <p className="text-sm">Client Type : {customerData.clientType}</p>
-              <Badge
-                variant={
-                  customerData.status === "Pending" ? "secondary" : "success"
-                }
-              >
-                {customerData.status}
+              <Badge variant={id == 2 ? "default" : "secondary"}>
+                {id == 1 ? "Pending" : id == 2 ? "Approved" : "Rejected"}
               </Badge>
+              <p className="text-lg">
+                <Button
+                  variant="gost"
+                  size="icon"
+                  className="text-blue-500 hover:bg-blue-500 hover:text-white"
+                  // onClick={() => {
+                  //   navigate("/viewcontact");
+                  // }}
+                >
+                  <FilePenIcon className="h-4 w-4" />
+                  <span className="sr-only">Edit</span>
+                </Button>
+              </p>
             </div>
           </div>
         </CardContent>
       </Card>
-      {
-        // <div>
-        //   <Card>
-        //     <CardContent className="p-4">
-        //       <CardTitle className="mb-2 text-md">
-        //         Compliance Checklist
-        //       </CardTitle>
-        //       <div className="space-y-4">
-        //         <div className="flex flex-row space-x-4">
-        //           {Object.entries(documentCategories).map(
-        //             ([category, documents]) => (
-        //               <div key={category} className="flex-1">
-        //                 <div className="flex items-center mb-2">
-        //                   {getCategoryIcon(category)}
-        //                   <span className="ml-2 font-semibold">{category}</span>
-        //                 </div>
-        //                 <div className="pl-6 space-y-2 flex gap-2">
-        //                   {documents.map((document) => (
-        //                     <div key={document} className="flex items-center">
-        //                       <FileText className="mr-2 h-4 w-4" />
-        //                       {document} ,
-        //                     </div>
-        //                   ))}
-        //                 </div>
-        //                 {/* {category !== "Director 2" && (
-        //                   <Separator className="my-1" />
-        //                 )} */}
-        //               </div>
-        //             )
-        //           )}
-        //         </div>
-        //       </div>
-        //     </CardContent>
-        //   </Card>
-        // </div>
-      }
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="md:col-span-1">
@@ -258,63 +276,63 @@ function ComplianceChecklist() {
                 {documents.map((doc, index) => (
                   <li key={doc.id} className="flex justify-between">
                     <Button
-                      variant={selectedDoc.id === doc.id ? "default" : "ghost"}
+                      variant={
+                        selectedDoc.id === doc.id ? "secondary" : "ghost"
+                      }
                       className="w-full justify-start"
                       onClick={() => setSelectedDoc(doc)}
                     >
-                      {index < 4 ? (
-                        <CheckCircle2
-                          className="h-5 w-5 text-green-500 ml-2"
-                          aria-label={`${doc.name} uploaded`}
-                        />
+                      {index < indexValue ? (
+                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
                       ) : (
-                        <XCircle
-                          className="h-5 w-5 text-red-500 ml-2"
-                          aria-label={`${doc.name} not uploaded`}
-                        />
+                        // <CheckCircle2
+                        //   className="h-5 w-5 text-green-500 ml-2"
+                        //   aria-label={`${doc.name} uploaded`}
+                        // />
+                        // <XCircle
+                        //   className="h-5 w-5 text-red-500 ml-2"
+                        //   aria-label={`${doc.name} not uploaded`}
+                        // />
+                        <FileIcon className="mr-2 h-4 w-4" />
                       )}
-                      <FileIcon className="mr-2 h-4 w-4" />
+
                       {doc.name}
                     </Button>
-                    <RadioGroup
+                    <div
                       defaultValue="comfortable"
-                      className="flex justify-end ml-2"
+                      className="flex flex-col justify-end ml-2 gap-1"
                     >
-                      <div className="flex items-center space-x-2">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <RadioGroupItem
-                                value="approve"
-                                id="r2"
-                                className="text-green-500"
-                                aria-label="Approve option"
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent side="top">
-                              <span>Approve</span>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <RadioGroupItem
-                                value="reject"
-                                id="r2"
-                                className="text-red-500"
-                                aria-label="Reject option"
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent side="top">
-                              <span>Reject</span>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </RadioGroup>
+                      <Button
+                        variant={"secondary"}
+                        value="approve"
+                        id="r2"
+                        className={
+                          id == 3 && index == 4
+                            ? "text-black"
+                            : "text-green-500"
+                        }
+                        // className="text-green-500"
+                        aria-label="Approve option"
+                        disabled={index === indexValue}
+                      >
+                        {id == 2 ? "Approved" : "Approve"}
+                      </Button>
+
+                      <Button
+                        variant={"secondary"}
+                        value="reject"
+                        id="r2"
+                        className={
+                          id == 2 || (id == 3 && index == 4)
+                            ? "text-black"
+                            : "text-red-500"
+                        }
+                        aria-label="Reject option"
+                        disabled={index === indexValue || id == 2}
+                      >
+                        {id == 3 && index == 3 ? "Rejected" : "Reject"}
+                      </Button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -346,16 +364,29 @@ function ComplianceChecklist() {
                 onChange={(e) => setComment(e.target.value)}
                 className="min-h-[100px]"
               />
-              <div className="flex justify-end space-x-2">
-                <Button onClick={handleSendBack}>
-                  <XCircleIcon className="mr-2 h-4 w-4" />
-                  Send Back
-                </Button>
-                <Button variant="outline" onClick={handleApprove}>
-                  <CheckCircleIcon className="mr-2 h-4 w-4" />
-                  Approve
-                </Button>
-              </div>
+              {id == 3 ? (
+                <div className="flex justify-end space-x-2">
+                  <Button onClick={handleSendBack}>
+                    <XCircleIcon className="mr-2 h-4 w-4" />
+                    Send Back
+                  </Button>
+                  <Button onClick={handleApprove} variant={"outline"}>
+                    <CheckCircleIcon className="mr-2 h-4 w-4" />
+                    Approve
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex justify-end space-x-2">
+                  <Button onClick={handleSendBack} variant={"outline"}>
+                    <XCircleIcon className="mr-2 h-4 w-4" />
+                    Send Back
+                  </Button>
+                  <Button onClick={handleApprove}>
+                    <CheckCircleIcon className="mr-2 h-4 w-4" />
+                    {id == 2 ? "Approved" : "Approve"}
+                  </Button>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

@@ -7,11 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -39,13 +37,12 @@ import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Separator } from "@radix-ui/react-select";
 import {
   Building,
-  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
   Dot,
   FileIcon,
   FileText,
-  Info,
   PlusCircle,
-  SearchIcon,
   Upload,
   User,
 } from "lucide-react";
@@ -81,9 +78,23 @@ const TreeNode = ({ node, level }) => {
 };
 // To do document categories based on selected client type
 const documentCategories = {
-  Company: ["Certificate of Incorporation", "Bank Statement", "Address Proof"],
-  "Director 1": ["ID Proof"],
-  "Director 2": ["ID Proof"],
+  "Company Documents": {
+    main: "Incorporation Document",
+    subOptions: ["Registartion Certificate", "Incorportation Letter"],
+  },
+  "Address Proof": {
+    main: "Address Document",
+    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  },
+
+  "ID Proof Director 1": {
+    main: "ID Document",
+    subOptions: ["National ID", "PAN Card", "Passport"],
+  },
+  "ID Proof Director 2": {
+    main: "ID Document",
+    subOptions: ["National ID", "PAN Card", "Passport"],
+  },
 };
 
 const CreateLead = () => {
@@ -181,10 +192,9 @@ const CreateLead = () => {
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
   const [isBeneficiaryDialogOpen, setIsBeneficiaryDialogOpen] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState("Company");
-  const [selectedDocument, setSelectedDocument] = useState(
-    documentCategories.Company[0]
-  );
+  // const [selectedDocument, setSelectedDocument] = useState(
+  //   documentCategories.Company[0]
+  // );
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [uploadedDocuments, setUploadedDocuments] = useState({
@@ -193,6 +203,9 @@ const CreateLead = () => {
     "Director 2": [],
   });
   const fileInputRef = useRef(null);
+  const [selectedCategory, setSelectedCategory] = useState("Company");
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const [selectedSubOption, setSelectedSubOption] = useState(null);
 
   const handleSubmit = () => {
     toast({
@@ -244,10 +257,22 @@ const CreateLead = () => {
     setBeneficiaries([...beneficiaries, beneficiary]);
     setIsBeneficiaryDialogOpen(false);
   };
+  const toggleCategory = (category) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
 
-  const handleDocumentSelect = (category, document) => {
+  // const handleDocumentSelect = (category, document) => {
+  //   setSelectedCategory(category);
+  //   setSelectedDocument(document);
+  //   setFile(null);
+  //   setPreview(null);
+  // };
+  const handleDocumentSelect = (category, subOption) => {
     setSelectedCategory(category);
-    setSelectedDocument(document);
+    setSelectedSubOption(subOption);
     setFile(null);
     setPreview(null);
   };
@@ -346,7 +371,7 @@ const CreateLead = () => {
               setClientType(e);
             }}
             value={clientType === "company" ? "company" : "individual"}
-            disabled
+            // disabled
           >
             <SelectTrigger>
               <SelectValue placeholder="Select client type" />
@@ -593,7 +618,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type">Type</Label>
                           <Select name="type" required>
                             <SelectTrigger>
@@ -610,7 +635,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation
@@ -721,63 +746,85 @@ const CreateLead = () => {
           </TabsContent>
           <TabsContent value="documents">
             <div className="flex h-screen bg-gray-100">
+              {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
-                    ([category, documents]) => (
+                    ([category, categoryData]) => (
                       <li key={category}>
-                        <div className="flex items-center mb-2">
-                          {getCategoryIcon(category)}
-                          <span className="ml-2 font-semibold">{category}</span>
-                        </div>
-                        <ul className="pl-6 space-y-2">
-                          {console.log(document)}
-                          {documents.map((document) => (
-                            <li key={document} className="flex items-center">
-                              <Button
-                                variant={
-                                  document === selectedDocument &&
-                                  category === selectedCategory
-                                    ? "default"
-                                    : "ghost"
-                                }
-                                className="w-full justify-start text-sm"
-                                onClick={() =>
-                                  handleDocumentSelect(category, document)
-                                }
-                              >
-                                <FileText className="mr-2 h-4 w-4" />
-                                {document}
-                              </Button>
-                              {uploadedDocuments[category].includes(
-                                document
-                              ) && (
-                                <CheckCircle2
-                                  className="h-5 w-5 text-green-500 ml-2"
-                                  aria-label={`${document} uploaded`}
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category} Document`}
                                 />
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {category !== "Director 2" && (
-                          <Separator className="my-2" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
                         )}
+
+                        <Separator className="my-2" />
                       </li>
                     )
                   )}
                 </ul>
               </div>
+
+              {/* Document Upload Section */}
               <div className="flex-1 p-4 overflow-auto">
                 <Card className="mb-6">
                   <CardContent className="p-4">
                     <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </h1>
 
                     <div className="mb-4">
-                      <Label htmlFor="file-upload">Select file</Label>
+                      <Label htmlFor="file-upload" className="required">
+                        Select file
+                      </Label>
                       <Input
                         id="file-upload"
                         type="file"
@@ -786,8 +833,9 @@ const CreateLead = () => {
                         accept=".pdf,.jpg,.jpeg,.png"
                       />
                     </div>
+
                     <div
-                      className=" my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
                       style={{ minHeight: "400px" }}
                     >
                       {preview ? (
@@ -811,12 +859,31 @@ const CreateLead = () => {
                         </p>
                       )}
                     </div>
-                    <Button onClick={handleUpload} disabled={!file}>
+
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                    >
                       <Upload className="mr-2 h-4 w-4" />
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </Button>
                   </CardContent>
                 </Card>
+
+                {/* <div className="my-10 flex justify-end">
+                  <Button
+                    className="mx-5"
+                    onClick={() =>
+                      toast({
+                        title: "Success",
+                        description: "Onboarding initiated successfully.",
+                        variant: "success",
+                      })
+                    }
+                  >
+                    Submit
+                  </Button>
+                </div> */}
               </div>
             </div>
           </TabsContent>
@@ -857,7 +924,7 @@ const CreateLead = () => {
           <TabsContent value="basic">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="source"> Parent</Label>
                   <div className="relative ">
                     <div className="flex items-center">
@@ -917,11 +984,11 @@ const CreateLead = () => {
                       </DialogContent>
                     </Dialog>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="space-y-2">
                   <Label htmlFor="firstName" className="required">
-                    Entity Name
+                    Customer Name
                   </Label>
                   <Input
                     id="firstName"
@@ -929,7 +996,7 @@ const CreateLead = () => {
                     onChange={(e) =>
                       setNewLead({ ...newLead, firstName: e.target.value })
                     }
-                    placeholder="Enter Entity Name"
+                    placeholder="Enter Customer Name"
                   />
                 </div>
 
@@ -993,7 +1060,7 @@ const CreateLead = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="industry" className="required">
-                    Base Currency/Billing Currency
+                    Currency
                   </Label>
                   <Select
                     id="industry"
@@ -1062,7 +1129,7 @@ const CreateLead = () => {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="industry">Regulatory Authority</Label>
                   <Select
                     id="industry"
@@ -1080,7 +1147,7 @@ const CreateLead = () => {
                       <SelectItem value="Retail">Auth 2</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
+                </div> */}
 
                 <div className="space-y-2">
                   <Label htmlFor="finance" className="required">
@@ -1294,7 +1361,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -1313,7 +1380,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation
@@ -1437,58 +1504,79 @@ const CreateLead = () => {
           </TabsContent>
           <TabsContent value="documents">
             <div className="flex h-screen bg-gray-100">
+              {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
-                    ([category, documents]) => (
+                    ([category, categoryData]) => (
                       <li key={category}>
-                        <div className="flex items-center mb-2">
-                          {getCategoryIcon(category)}
-                          <span className="ml-2 font-semibold">{category}</span>
-                        </div>
-                        <ul className="pl-6 space-y-2">
-                          {documents.map((document) => (
-                            <li key={document} className="flex items-center">
-                              <Button
-                                variant={
-                                  document === selectedDocument &&
-                                  category === selectedCategory
-                                    ? "default"
-                                    : "ghost"
-                                }
-                                className="w-full justify-start text-sm"
-                                onClick={() =>
-                                  handleDocumentSelect(category, document)
-                                }
-                              >
-                                <FileText className="mr-2 h-4 w-4" />
-                                {document}
-                              </Button>
-                              {uploadedDocuments[category].includes(
-                                document
-                              ) && (
-                                <CheckCircle2
-                                  className="h-5 w-5 text-green-500 ml-2"
-                                  aria-label={`${document} uploaded`}
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category} Document`}
                                 />
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {category !== "Director 2" && (
-                          <Separator className="my-2" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
                         )}
+
+                        <Separator className="my-2" />
                       </li>
                     )
                   )}
                 </ul>
               </div>
+
+              {/* Document Upload Section */}
               <div className="flex-1 p-4 overflow-auto">
                 <Card className="mb-6">
                   <CardContent className="p-4">
                     <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </h1>
 
                     <div className="mb-4">
@@ -1503,8 +1591,9 @@ const CreateLead = () => {
                         accept=".pdf,.jpg,.jpeg,.png"
                       />
                     </div>
+
                     <div
-                      className=" my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
                       style={{ minHeight: "400px" }}
                     >
                       {preview ? (
@@ -1528,17 +1617,31 @@ const CreateLead = () => {
                         </p>
                       )}
                     </div>
-                    <Button onClick={handleUpload} disabled={!file}>
+
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                    >
                       <Upload className="mr-2 h-4 w-4" />
-                      Upload {selectedDocument}
+                      Upload {selectedSubOption || "Document"}
                     </Button>
                   </CardContent>
                 </Card>
-                <div className="my-10 flex justify-end">
-                  <Button className="mx-5" onClick={handleSubmit}>
+
+                {/* <div className="my-10 flex justify-end">
+                  <Button
+                    className="mx-5"
+                    onClick={() =>
+                      toast({
+                        title: "Success",
+                        description: "Onboarding initiated successfully.",
+                        variant: "success",
+                      })
+                    }
+                  >
                     Submit
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
           </TabsContent>

@@ -413,40 +413,6 @@ const CreateLead = () => {
         </CardContent>
       </Card>
 
-      {/*    {clientType && (
-        <div>
-          <Card>
-            <CardContent className="p-4">
-              <CardTitle className="mb-2 text-md">
-                Compliance Checklist
-              </CardTitle>
-              <div className="space-y-4">
-                <div className="flex flex-row space-x-4">
-                  {Object.entries(documentCategories).map(
-                    ([category, documents]) => (
-                      <div key={category} className="flex-1">
-                        <div className="flex items-center mb-2">
-                          {getCategoryIcon(category)}
-                          <span className="ml-2 font-semibold">{category}</span>
-                        </div>
-                        <div className="pl-6 space-y-2">
-                          {documents.map((document) => (
-                            <div key={document} className="flex items-center">
-                              <FileText className="mr-2 h-4 w-4" />
-                              {document}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )} */}
-
       {clientType === "Individual" ? (
         <Tabs defaultValue="basic">
           <TabsList className=" flex justify-start mb-4 ">
@@ -751,7 +717,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -770,7 +736,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation
@@ -1101,7 +1067,7 @@ const CreateLead = () => {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <Label htmlFor="source"> Parent</Label>
                     <div className="relative ">
                       <div className="flex items-center">
@@ -1163,11 +1129,11 @@ const CreateLead = () => {
                         </DialogContent>
                       </Dialog>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
-                      Entity Name
+                      Customer Name
                     </Label>
                     <Input
                       id="firstName"
@@ -1175,7 +1141,7 @@ const CreateLead = () => {
                       onChange={(e) =>
                         setNewLead({ ...newLead, firstName: e.target.value })
                       }
-                      placeholder="Enter Entity Name"
+                      placeholder="Enter Customer Name"
                     />
                   </div>
 
@@ -1237,7 +1203,7 @@ const CreateLead = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="industry" className="required">
-                      Base Currency/Billing Currency
+                      Currency
                     </Label>
                     <Select
                       id="industry"
@@ -1303,7 +1269,7 @@ const CreateLead = () => {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <Label htmlFor="industry">Regulatory Authority</Label>
                     <Select
                       id="industry"
@@ -1320,7 +1286,7 @@ const CreateLead = () => {
                         <SelectItem value="Retail">Auth 2</SelectItem>
                       </SelectContent>
                     </Select>
-                  </div>
+                  </div> */}
 
                   <div className="space-y-2">
                     <Label htmlFor="finance" className="required">
@@ -1537,7 +1503,7 @@ const CreateLead = () => {
                         }}
                         className="space-y-4"
                       >
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -1556,7 +1522,7 @@ const CreateLead = () => {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
                             Designation

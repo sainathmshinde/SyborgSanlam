@@ -3,7 +3,7 @@ import Compliance from "@/pages/Compliance";
 import ComplianceChecklist from "@/pages/ComplianceChecklist";
 import Contacts from "@/pages/Contacts";
 import Country from "@/pages/Country";
-import CreateChecklist from "@/pages/CreateChecklist";
+import CreateChecklist from "@/pages/createDocument";
 import CreateContact from "@/pages/CreateContact";
 import CreateLead from "@/pages/CreateLead";
 import CreateOpportunity from "@/pages/CreateOpportunity";
@@ -37,6 +37,7 @@ import ComplianceDashboard from "@/pages/ComplianceDashboard";
 import ViewContact from "@/pages/ViewContact";
 import SalesCustomerOnboarding from "@/pages/SalesCustomerOnboarding";
 import CreateDocument from "@/pages/createDocument";
+import ViewChecklist from "@/pages/viewChecklist";
 
 const routes = [
   {
@@ -116,13 +117,18 @@ const routes = [
   },
   {
     exact: true,
-    path: "/complianceChecklist",
+    path: "/complianceChecklist/:id",
     component: <ComplianceChecklist />,
   },
   {
     exact: true,
     path: "/createChecklict",
     component: <CreateChecklist />,
+  },
+  {
+    exact: true,
+    path: "/viewChecklist",
+    component: <ViewChecklist />,
   },
   {
     exact: true,

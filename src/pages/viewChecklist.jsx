@@ -36,7 +36,11 @@ function CreateUser() {
     country: "",
     clientType: "",
   });
-  const [selectedDocuments, setSelectedDocuments] = useState([]);
+  const [selectedDocuments, setSelectedDocuments] = useState([
+    "Certificate",
+    "Id Proof",
+    "Address Proof",
+  ]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [next, setNext] = useState(1);
 
@@ -77,7 +81,7 @@ function CreateUser() {
       initialState[category] = {
         isChecked:
           category === "Certificate" ||
-          category === "BankStatement" ||
+          category === "Id Proof" ||
           category === "AddressProof", // Independent state for the category
         items: allDocuments[category].reduce((acc, item) => {
           acc[item] = false; // Independent state for each sub-item
@@ -275,7 +279,7 @@ function CreateUser() {
             </div>
             <div className="flex justify-end">
               <RButton onClick={() => navigate("/documentsList")} type="submit">
-                Create Checklist
+                Update Checklist
               </RButton>
             </div>
           </div>
