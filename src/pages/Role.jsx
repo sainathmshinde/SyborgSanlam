@@ -186,13 +186,13 @@ const Role = () => {
           </RButton>
         </div>
       </div>
-      <div className="rounded-lg">
+      <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
-              <TableHead className="p-2 text-white text-right">
+              <TableHead className="p-2 text-white text-center">
                 Actions
               </TableHead>
             </TableRow>

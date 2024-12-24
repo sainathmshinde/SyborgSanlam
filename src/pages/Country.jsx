@@ -59,7 +59,7 @@ const Country = () => {
           </RButton> */}
         </div>
       </div>
-      <div className="rounded-lg overflow-y-auto">
+      <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>

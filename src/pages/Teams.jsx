@@ -25,7 +25,7 @@ const Teams = () => {
       <div className="flex items-center justify-between mb-6">
         <Input
           type="search"
-          placeholder="Search teams..."
+          placeholder="Search Teams..."
           //   value={}
           //   onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
@@ -70,14 +70,16 @@ const Teams = () => {
         <RButton onClick={() => navigate("/createTeam")}>Create Team</RButton>
       </div>
       <div>
-        <div className="rounded-lg border border-gray-200 bg-white shadow-md">
+        <div className="border rounded-lg overflow-x-auto">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
                 <TableHead className="text-white">Name</TableHead>
                 <TableHead className="text-white">Members</TableHead>
-                <TableHead className="text-white">Roles</TableHead>
-                <TableHead className="text-white">Actions</TableHead>
+                {/* <TableHead className="text-white">Roles</TableHead> */}
+                <TableHead className="text-white text-right ">
+                  Actions
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -88,11 +90,11 @@ const Teams = () => {
                     <Badge>John Doe</Badge>
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">Admin</Badge>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <div className="flex justify-end">
                     <RButton
@@ -105,7 +107,7 @@ const Teams = () => {
                       dialogTrigger={
                         <RButton
                           variant="ghost"
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-2 "
                         >
                           <Trash2Icon className="h-4 w-4 text-red-500" />
                         </RButton>
@@ -126,11 +128,11 @@ const Teams = () => {
                     <Badge>Alex Doe</Badge>
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">Sales Manager</Badge>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <div className="flex justify-end">
                     <RButton
@@ -165,11 +167,11 @@ const Teams = () => {
                     <Badge>Jessica Wilson</Badge>
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">Onboarding Manager</Badge>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <div className="flex justify-end">
                     <RButton
@@ -203,11 +205,11 @@ const Teams = () => {
                     <Badge>Samantha Green</Badge>
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">Compliance Manager</Badge>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <div className="flex justify-end">
                     <RButton
@@ -242,12 +244,12 @@ const Teams = () => {
                     <Badge>Daniel Smith</Badge>
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">Support Manager</Badge>
                     <Badge variant="secondary">Account Manager</Badge>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <div className="flex justify-end">
                     <RButton

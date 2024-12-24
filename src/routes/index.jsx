@@ -38,6 +38,10 @@ import ViewContact from "@/pages/ViewContact";
 import SalesCustomerOnboarding from "@/pages/SalesCustomerOnboarding";
 import CreateDocument from "@/pages/createDocument";
 import ViewChecklist from "@/pages/viewChecklist";
+import CreateEntityType from "@/pages/CreateEntityType";
+import CreateClientType from "@/pages/CreateClientType";
+import CreateFundType from "@/pages/CreateFundType";
+import CreateCurrency from "@/pages/CreateCurrency";
 
 const routes = [
   {
@@ -242,6 +246,26 @@ const routes = [
     exact: true,
     path: "/salesCustomerOnboarding",
     component: <SalesCustomerOnboarding />,
+  },
+  {
+    exact: true,
+    path: "/createEntityType",
+    component: <CreateEntityType />,
+  },
+  {
+    exact: true,
+    path: "/createClientType",
+    component: <CreateClientType />,
+  },
+  {
+    exact: true,
+    path: "/createFundType",
+    component: <CreateFundType />,
+  },
+  {
+    exact: true,
+    path: "/createCurrency",
+    component: <CreateCurrency />,
   },
 ];
 

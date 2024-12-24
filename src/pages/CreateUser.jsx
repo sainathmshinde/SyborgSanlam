@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 function CreateUser() {
   return (
     <div className="w-full">
-      Please complete the details and submit
+      {/* Please complete the details and submit */}
       <div className="flex justify-between items-center ">
-        <h1 className="text-2xl font-bold">User Profile</h1>
+        <h1 className="text-xl font-bold mt-2 mb-6">Create User</h1>
         <div className="flex justify-end"></div>
       </div>
       <div className="mb-4">

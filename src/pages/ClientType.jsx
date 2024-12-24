@@ -65,7 +65,7 @@ const ClientType = () => {
           </RButton>
         </div>
       </div>
-      <div className=" rounded-lg shadow-lg">
+      <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>

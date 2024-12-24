@@ -241,7 +241,7 @@ const Compliance = () => {
       <div className="mb-3 p-4">
         <h1 className="text-2xl font-bold">Compliance Requests</h1>
         <p className="text-muted-foreground">
-          View and manage all complaince requests.
+          View and manage all compliance requests.
         </p>
       </div>
       <div className="px-4">
