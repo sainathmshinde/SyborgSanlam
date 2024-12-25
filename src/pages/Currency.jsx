@@ -232,13 +232,13 @@ const CurrencyPage = () => {
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2">Id</TableHead>
-              <TableHead className="text-white p-2">Country</TableHead>
-              <TableHead className="text-white p-2">Currency Name</TableHead>
-              <TableHead className="text-white p-2">Code</TableHead>
+              <TableHead className="text-white p-2 pr-10">Id</TableHead>
+              <TableHead className="text-white p-2 pr-10">Country</TableHead>
+              <TableHead className="text-white p-2 pr-16">Currency Name</TableHead>
+              <TableHead className="text-white p-2 pr-20">Code</TableHead>
               <TableHead className="text-white p-2">Symbol</TableHead>
 
-              <TableHead className="p-2 text-right">Actions</TableHead>
+              <TableHead className="p-2 px-8 text-white text-end">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
-const initialRoles = [
+export const initialRoles = [
   {
     id: 1,
     name: "Admin",
