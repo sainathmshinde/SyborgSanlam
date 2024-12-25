@@ -42,6 +42,7 @@ import CreateEntityType from "@/pages/CreateEntityType";
 import CreateClientType from "@/pages/CreateClientType";
 import CreateFundType from "@/pages/CreateFundType";
 import CreateCurrency from "@/pages/CreateCurrency";
+import EditTeams from "@/pages/EditTeams";
 
 const routes = [
   {
@@ -266,6 +267,11 @@ const routes = [
     exact: true,
     path: "/createCurrency",
     component: <CreateCurrency />,
+  },
+  {
+    exact: true,
+    path: "/editTeams",
+    component: <EditTeams />,
   },
 ];
 

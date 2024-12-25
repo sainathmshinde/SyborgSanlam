@@ -44,7 +44,7 @@ const Country = () => {
             type="search"
             placeholder="Search country..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           {/* <RButton
             onClick={() => {

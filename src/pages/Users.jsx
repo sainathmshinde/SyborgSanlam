@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ConfirmDialog } from "@/components/ui/confirmDialog";
+
 import {
   Table,
   TableHeader,
@@ -12,6 +14,8 @@ import { Pagination } from "@/components/ui/pagination";
 import WithLayout from "@/components/layout/WithLayout";
 import { useNavigate } from "react-router";
 import { Input } from "@/components/ui/input";
+import RButton from "@/components/ui/rButton";
+import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 
 const Users = () => {
   const navigate = useNavigate();
@@ -78,10 +82,10 @@ const Users = () => {
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
-            placeholder="Search users..."
+            placeholder="Search Users..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <Button onClick={handleCreateUser}>Create User</Button>
         </div>
@@ -93,6 +97,7 @@ const Users = () => {
                 <TableHead className="text-white">Email</TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Username</TableHead>
+                <TableHead className=" text-white text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -102,6 +107,36 @@ const Users = () => {
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.mobile}</TableCell>
                   <TableCell>{user.userName}</TableCell>
+                  <TableCell className="p-2 text-right">
+                    <div className="flex justify-end">
+                      <RButton
+                        variant="ghost"
+                        className="flex items-center gap-2 "
+                        onClick={() => {
+                          handleEdit(role.id);
+                        }}
+                      >
+                        <FilePenIcon className="h-4 w-4" />
+                      </RButton>
+                      <ConfirmDialog
+                        dialogTrigger={
+                          <RButton
+                            variant="ghost"
+                            className="flex items-center gap-2"
+                            onClick={() => {
+                              setRoleIndex(role.id);
+                            }}
+                          >
+                            <Trash2Icon className="h-4 w-4 text-red-500" />
+                          </RButton>
+                        }
+                        onConfirm={() => handleDeleteRole(roleIndex)}
+                        dialogTitle="Are you sure to delete the role?"
+                        dialogDescription="This action cannot be undone. This will permanently delete your
+                              product and remove your data from our servers."
+                      />
+                    </div>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -51,7 +51,7 @@ const EntityType = () => {
             type="search"
             placeholder="Search entity..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -61,7 +61,7 @@ const EntityType = () => {
           >
             <span className="flex items-center">
               Create Entity Type
-              <CirclePlus className="ml-2 h-4 w-4" />
+              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
             </span>
           </RButton>
         </div>

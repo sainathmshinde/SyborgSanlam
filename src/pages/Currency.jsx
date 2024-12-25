@@ -213,7 +213,7 @@ const CurrencyPage = () => {
             type="search"
             placeholder="Search currency ..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -223,7 +223,7 @@ const CurrencyPage = () => {
           >
             <span className="flex items-center">
               Create Currency
-              <CirclePlus className="ml-2 h-4 w-4" />
+              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
             </span>
           </RButton>
         </div>
@@ -235,10 +235,12 @@ const CurrencyPage = () => {
               <TableHead className="text-white p-2">Id</TableHead>
               <TableHead className="text-white p-2">Country</TableHead>
               <TableHead className="text-white p-2">Currency Name</TableHead>
-              <TableHead className="text-white p-2">Code</TableHead>
-              <TableHead className="text-white p-2">Symbol</TableHead>
+              <TableHead className="text-white p-2 pl-0">Code</TableHead>
+              <TableHead className="text-white p-2 pl-0">Symbol</TableHead>
 
-              <TableHead className="p-2 text-right">Actions</TableHead>
+              <TableHead className="p-2 text-white text-right pl-0 ">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

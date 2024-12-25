@@ -28,7 +28,7 @@ const Teams = () => {
           placeholder="Search Teams..."
           //   value={}
           //   onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+          className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
         />
         {/* <div className="flex space-x-2">
           <Button
@@ -100,6 +100,9 @@ const Teams = () => {
                     <RButton
                       variant="ghost"
                       className="flex items-center gap-2 "
+                      onClick={() => {
+                        navigate("/editTeams");
+                      }}
                     >
                       <FilePenIcon className="h-4 w-4" />
                     </RButton>
@@ -138,6 +141,9 @@ const Teams = () => {
                     <RButton
                       variant="ghost"
                       className="flex items-center gap-2 "
+                      onClick={() => {
+                        navigate("/editTeams");
+                      }}
                     >
                       <FilePenIcon className="h-4 w-4" />
                     </RButton>
@@ -177,6 +183,9 @@ const Teams = () => {
                     <RButton
                       variant="ghost"
                       className="flex items-center gap-2 "
+                      onClick={() => {
+                        navigate("/editTeams");
+                      }}
                     >
                       <FilePenIcon className="h-4 w-4" />
                     </RButton>
@@ -215,6 +224,9 @@ const Teams = () => {
                     <RButton
                       variant="ghost"
                       className="flex items-center gap-2 "
+                      onClick={() => {
+                        navigate("/editTeams");
+                      }}
                     >
                       <FilePenIcon className="h-4 w-4" />
                     </RButton>
@@ -255,6 +267,9 @@ const Teams = () => {
                     <RButton
                       variant="ghost"
                       className="flex items-center gap-2 "
+                      onClick={() => {
+                        navigate("/editTeams");
+                      }}
                     >
                       <FilePenIcon className="h-4 w-4" />
                     </RButton>
