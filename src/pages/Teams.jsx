@@ -74,10 +74,10 @@ const Teams = () => {
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
-                <TableHead className="text-white">Name</TableHead>
+                <TableHead className= "p-2 text-white">Name</TableHead>
                 <TableHead className="text-white">Members</TableHead>
                 {/* <TableHead className="text-white">Roles</TableHead> */}
-                <TableHead className="text-white text-right ">
+                <TableHead className= "p-2 px-10 text-white text-end">
                   Actions
                 </TableHead>
               </TableRow>

@@ -70,7 +70,7 @@ const FundType = () => {
             <TableRow>
               <TableHead className="text-white p-2">Id</TableHead>
               <TableHead className="text-white p-2">Fund Type</TableHead>
-              <TableHead className="text-white p-2 text-right">
+              <TableHead className="p-2 px-8 text-white text-end">
                 Actions
               </TableHead>
             </TableRow>

@@ -72,7 +72,7 @@ const EntityType = () => {
             <TableRow>
               <TableHead className="p-2 text-white">Id</TableHead>
               <TableHead className="p-2 text-white">Entity Type</TableHead>
-              <TableHead className="p-2 text-white text-right">
+              <TableHead className="p-2 px-8 text-white text-end">
                 Actions
               </TableHead>
             </TableRow>
