@@ -73,6 +73,15 @@ const Users = () => {
     navigate("/createUser");
   };
 
+  const filterData = currentUsers.filter((user) => {
+    const searchValue = searchTerm.toLowerCase();
+    return (
+      user.name?.toLowerCase().includes(searchValue) ||
+      user.email?.toLowerCase().includes(searchValue) ||
+      user.userName?.toLowerCase().includes(searchValue)
+    );
+  });
+
   return (
     <div className="flex flex-col gap-8">
       <div className="p-4">
@@ -101,7 +110,7 @@ const Users = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers.map((user) => (
+              {filterData.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>

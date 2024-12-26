@@ -126,7 +126,14 @@ const Role = () => {
   //     await getPaginatedRoles(pageModel, event.target.value);
   //   };
 
-  const handleSearch = () => {};
+  const [searchterm, setSearchTerm] = useState("");
+  const filterData = roles.filter((role) =>
+    role.name.toLocaleLowerCase().includes(searchterm.toLowerCase())
+  );
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
   const handleDeleteRole = () => {};
   //   const handleDeleteRole = async (roleId) => {
   //     let response = await deleteRole(roleId);
@@ -170,6 +177,7 @@ const Role = () => {
           <Input
             type="search"
             placeholder="Search Roles..."
+            value={searchterm}
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
@@ -198,8 +206,8 @@ const Role = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {roles?.length ? (
-              roles?.map((role) => (
+            {filterData?.length ? (
+              filterData?.map((role) => (
                 <TableRow key={role.name}>
                   <TableCell className="p-2">{role.name}</TableCell>
                   <TableCell className="p-2">{role.description}</TableCell>

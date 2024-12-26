@@ -29,8 +29,16 @@ const EntityType = () => {
 
   const [entity, setEntity] = useState(entities);
   const [entityIndex, setEntityIndex] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = () => {};
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filterData = entities.filter((entity) =>
+    entity.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleDeleteEntity = () => {};
 
   const handleEdit = (id) => {
@@ -78,8 +86,8 @@ const EntityType = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {entity?.length ? (
-              entity?.map((item) => (
+            {filterData?.length ? (
+              filterData?.map((item) => (
                 <TableRow key={item.name}>
                   <TableCell className="p-2">{item.id}</TableCell>
 
