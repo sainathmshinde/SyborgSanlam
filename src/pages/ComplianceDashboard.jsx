@@ -137,7 +137,7 @@ function ComplianceDashboard() {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={userData}>
+              <BarChart data={userData} className="mt-9 mb-2 px-4 py-4">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />

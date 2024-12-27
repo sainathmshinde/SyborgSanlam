@@ -49,6 +49,7 @@ import EditFundType from "@/pages/EditFundType";
 import EditCountry from "@/pages/EditCountry";
 import EditCurrency from "@/pages/EditCurrency";
 import EditRoles from "@/pages/EditRoles";
+import EditUsers from "@/pages/EditUsers";
 
 const routes = [
   {
@@ -261,6 +262,11 @@ const routes = [
   },
   {
     exact: true,
+    path: "/editrole",
+    component: <CreateRole/>,
+  },
+  {
+    exact: true,
     path: "/createClientType",
     component: <CreateClientType />,
   },
@@ -308,6 +314,8 @@ const routes = [
     exact: true,
     path: "/editRole",
     component: <EditRoles />,
+    path: "/editUsers",
+    component: <EditUsers />,
   },
 ];
 

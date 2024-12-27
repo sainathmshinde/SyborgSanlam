@@ -20,7 +20,7 @@ import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 const Users = () => {
   const navigate = useNavigate();
   const users = [
-    {
+    { 
       id: 1,
       name: "John Doe",
       email: "john.doe@example.com",
@@ -73,14 +73,9 @@ const Users = () => {
     navigate("/createUser");
   };
 
-  const filterData = currentUsers.filter((user) => {
-    const searchValue = searchTerm.toLowerCase();
-    return (
-      user.name?.toLowerCase().includes(searchValue) ||
-      user.email?.toLowerCase().includes(searchValue) ||
-      user.userName?.toLowerCase().includes(searchValue)
-    );
-  });
+  const handleEdit =()=>{
+    navigate("/editUsers");
+  };
 
   return (
     <div className="flex flex-col gap-8">
@@ -110,7 +105,7 @@ const Users = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filterData.map((user) => (
+              {users.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
@@ -122,7 +117,7 @@ const Users = () => {
                         variant="ghost"
                         className="flex items-center gap-2 "
                         onClick={() => {
-                          handleEdit(role.id);
+                          handleEdit();
                         }}
                       >
                         <FilePenIcon className="h-4 w-4" />

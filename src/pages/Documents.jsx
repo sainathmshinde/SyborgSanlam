@@ -53,7 +53,7 @@ const Documents = () => {
     <div className="p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold ">Compliance checklist</h1>
+          <h1 className="text-2xl font-bold ">Compliance Checklist</h1>
         </div>
         <div className="flex items-center justify-between mt-6 mb-6">
           <Input
@@ -75,7 +75,7 @@ const Documents = () => {
           </RButton>
         </div>
       </div>
-      <div className=" rounded-lg shadow-lg">
+      <div className=" rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
@@ -83,7 +83,7 @@ const Documents = () => {
               <TableHead className="text-white p-2">Country</TableHead>
               <TableHead className="text-white p-2">Client Type</TableHead>
 
-              <TableHead className="text-white p-2 text-right">
+              <TableHead className="text-white text-end p-2 px-8">
                 Actions
               </TableHead>
             </TableRow>
