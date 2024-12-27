@@ -196,7 +196,7 @@ const CurrencyPage = () => {
   const handleDeleteCurrency = () => {};
 
   const handleEdit = (id) => {
-    navigate(`/createCurrency/${id}`);
+    navigate("/editCurrency");
   };
 
   const handleNew = () => {
@@ -208,10 +208,10 @@ const CurrencyPage = () => {
         <div>
           <h1 className="text-2xl font-bold ">Currency</h1>
         </div>
-        <div className="flex items-center justify-between mt-6 mb-6">
+        <div className="flex items-center justify-between mt-4 mb-6">
           <Input
             type="search"
-            placeholder="Search currency ..."
+            placeholder="Search Currency ..."
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />

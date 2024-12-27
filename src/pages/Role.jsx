@@ -161,11 +161,11 @@ const Role = () => {
   //   };
 
   const handleEdit = (id) => {
-    navigate(`/createrole`);
+    navigate("/editRole");
   };
 
   const handleNew = () => {
-    navigate("/editrole");
+    navigate("/createrole");
   };
   return (
     <div className="p-4">

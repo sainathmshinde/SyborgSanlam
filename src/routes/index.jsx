@@ -43,6 +43,12 @@ import CreateClientType from "@/pages/CreateClientType";
 import CreateFundType from "@/pages/CreateFundType";
 import CreateCurrency from "@/pages/CreateCurrency";
 import EditTeams from "@/pages/EditTeams";
+import EditEntityType from "@/pages/EditEntityType";
+import EditClientType from "@/pages/EditClientType";
+import EditFundType from "@/pages/EditFundType";
+import EditCountry from "@/pages/EditCountry";
+import EditCurrency from "@/pages/EditCurrency";
+import EditRoles from "@/pages/EditRoles";
 
 const routes = [
   {
@@ -272,6 +278,36 @@ const routes = [
     exact: true,
     path: "/editTeams",
     component: <EditTeams />,
+  },
+  {
+    exact: true,
+    path: "/editEntityType",
+    component: <EditEntityType />,
+  },
+  {
+    exact: true,
+    path: "/editClientType",
+    component: <EditClientType />,
+  },
+  {
+    exact: true,
+    path: "/editFundType",
+    component: <EditFundType />,
+  },
+  {
+    exact: true,
+    path: "/editCountry",
+    component: <EditCountry />,
+  },
+  {
+    exact: true,
+    path: "/editCurrency",
+    component: <EditCurrency />,
+  },
+  {
+    exact: true,
+    path: "/editRole",
+    component: <EditRoles />,
   },
 ];
 

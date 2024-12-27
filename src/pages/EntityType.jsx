@@ -42,7 +42,7 @@ const EntityType = () => {
   const handleDeleteEntity = () => {};
 
   const handleEdit = (id) => {
-    navigate(`/createEntityType/${id}`);
+    navigate(`/editEntityType`);
   };
 
   const handleNew = () => {
@@ -54,10 +54,10 @@ const EntityType = () => {
         <div>
           <h1 className="text-2xl font-bold ">Entity Types</h1>
         </div>
-        <div className="flex items-center justify-between mt-6 mb-6">
+        <div className="flex items-center justify-between mt-4 mb-6">
           <Input
             type="search"
-            placeholder="Search entity..."
+            placeholder="Search Entity Types..."
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />

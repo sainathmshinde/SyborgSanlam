@@ -261,7 +261,7 @@ const Compliance = () => {
         </div>
         <div>
           <div className="rounded-lg bg-white shadow-md">
-            <Table>
+            <Table className="rounded-lg">
               <TableHeader className="bg-custom-black hover:bg-custom-black">
                 <TableRow>
                   <TableHead className="text-white">Customer Name</TableHead>
