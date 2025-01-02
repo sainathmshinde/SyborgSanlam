@@ -1757,7 +1757,7 @@ const CreateLead = () => {
                       toast({
                         title: "Success",
                         className: "bg-green",
-                        description: "Onborading initiated successfully.",
+                        description: "Onboarding initiated successfully.",
                         variant: "success",
                       })
                     }
