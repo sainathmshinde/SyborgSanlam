@@ -15,7 +15,7 @@ const EditUsers = () => {
     email: "john.doe@example.com",
     mobile_number: "+1234567890",
     username: "johnDoe",
-    role:"Admin",
+    role: "Admin",
   });
 
   const handleInputChange = (field, value) => {
@@ -66,27 +66,26 @@ const EditUsers = () => {
                   id="teamName"
                   placeholder="Enter Mobile Number"
                   value={user.mobile_number}
-                  onChange={(e) => handleInputChange("mobile_number", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("mobile_number", e.target.value)
+                  }
                 />
               </div>
 
-              
               <div className="space-y-2 w-full">
-                  <Label htmlFor="teamMembers" className="w-full required">
-                   Username
-                  </Label>
-                  <Input
-                    id="teamMembers="
-                    placeholder="Enter Username"
-                    value={user.username}
-                    onChange={(e) =>
-                      handleInputChange("username", e.target.value)
-                    }
-                  />
-                </div>
-              
-              
-             
+                <Label htmlFor="teamMembers" className="w-full required">
+                  Username
+                </Label>
+                <Input
+                  id="teamMembers="
+                  placeholder="Enter Username"
+                  value={user.username}
+                  onChange={(e) =>
+                    handleInputChange("username", e.target.value)
+                  }
+                />
+              </div>
+
               {/* <div className="space-y-2 w-full">
                   <Label htmlFor="teamMembers" className="w-full required">
                    Role
@@ -101,29 +100,27 @@ const EditUsers = () => {
                   />
                   
                 </div> */}
-                <div className="space-y-2 w-full">
-  <Label htmlFor="teamMembers" className="w-full required">
-    Role
-  </Label>
-  <select
-    id="teamMembers"
-    value={user.role}
-    onChange={(e) => handleInputChange("role", e.target.value)}
-    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-500"
-  >
-    <option value="" disabled>
-      Select Role
-    </option>
-    <option value="admin">Admin</option>
-    <option value="editor">Sales Manager</option>
-    <option value="viewer">Onboarding Team</option>
-    <option value="viewer">Compliance Approver</option>
-    <option value="viewer">Client User</option>
-    {/* Add more roles as needed */}
-  </select>
-</div>
-
-            
+              <div className="space-y-2 w-full">
+                <Label htmlFor="teamMembers" className="w-full required">
+                  Role
+                </Label>
+                <select
+                  id="teamMembers"
+                  value={user.role}
+                  onChange={(e) => handleInputChange("role", e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-500"
+                >
+                  <option value="" disabled>
+                    Select Role
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="editor">Sales Manager</option>
+                  <option value="viewer">Onboarding Team</option>
+                  <option value="viewer">Compliance Approver</option>
+                  <option value="viewer">Client User</option>
+                  {/* Add more roles as needed */}
+                </select>
+              </div>
             </CardContent>
           </Card>
 

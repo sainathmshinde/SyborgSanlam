@@ -288,167 +288,169 @@ const Compliance = () => {
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
-            </div>
-            </div>
-          <div className="rounded-lg bg-white overflow-x-auto">
-            <Table>
-              <TableHeader className="bg-custom-black hover:bg-custom-black">
-                <TableRow>
-                  <TableHead className="text-white">Customer Name</TableHead>
-                   <TableHead className="text-white">Date</TableHead> 
-                     <TableHead className="text-white">
-                    {" "}
-                    <div className="flex items-center space-x-2 text-black">
-                      <span className="text-white">Client Type</span>
+        </div>
+      </div>
+      <div className="rounded-lg bg-white overflow-x-auto">
+        <Table>
+          <TableHeader className="bg-custom-black hover:bg-custom-black">
+            <TableRow>
+              <TableHead className="text-white">Customer Name</TableHead>
+              {/* <TableHead className="text-white">Client Type</TableHead> */}
+              <TableHead className="text-white">
+                {" "}
+                <div className="flex items-center space-x-2 text-black">
+                  <span className="text-white">Client Type</span>
                   {/* <div className="space-y-2">
                       <Label htmlFor="client-type" >
                          Client Type
                       </Label> */}
-                      <Select
-                        id="clientType"
-                          value={formValues.clientType}
-                          onValueChange={
-                          (value) => handleChange("clientType", value) // Update the clientType value
-                            }
-                      >
-                      <SelectTrigger className="w-[40px] text-white">
+                  <Select
+                    id="clientType"
+                    value={formValues.clientType}
+                    onValueChange={
+                      (value) => handleChange("clientType", value) // Update the clientType value
+                    }
+                  >
+                    <SelectTrigger className="w-[40px] text-white">
                       {/* <SelectValue placeholder="Select client type" /> */}
                       <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2.5}
-                            stroke="currentColor"
-                            className="h-20 w-20 text-black"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3.75 9l7.5 7.5 7.5-7.5"
-                            />
-                          </svg>
-                      </SelectTrigger>
-                      <SelectContent className="text-black">
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2.5}
+                        stroke="currentColor"
+                        className="h-20 w-20 text-black"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.75 9l7.5 7.5 7.5-7.5"
+                        />
+                      </svg>
+                    </SelectTrigger>
+                    <SelectContent className="text-black">
                       <SelectItem value="individual">Individual</SelectItem>
                       <SelectItem value="partnership">Partnership</SelectItem>
                       <SelectItem value="trust">Trust</SelectItem>
                       <SelectItem value="company">Company</SelectItem>
-                     </SelectContent>
-                      </Select>
-                  </div>
-                  </TableHead>
-                  <TableHead className="text-white">Contact Name</TableHead>
-                  <TableHead className="text-white">
-                    {" "}
-                    <div className="flex items-center space-x-2 text-black">
-                      <span className="text-white">Stage</span>
-                      <Select
-                        value={filter}
-                        onValueChange={(value) => setFilter(value)}
-                        className="text-black"
-                      >
-                        <SelectTrigger className="w-[40px] text-white">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2.5}
-                            stroke="currentColor"
-                            className="h-20 w-20 text-black"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3.75 9l7.5 7.5 7.5-7.5"
-                            />
-                          </svg>
-                        </SelectTrigger>
-                        <SelectContent className="text-black">
-                          <SelectItem value="all" className="text-black">
-                            All
-                          </SelectItem>
-                          {stages.map((stage) => (
-                            <SelectItem
-                              className="text-black"
-                              key={stage}
-                              value={stage}
-                            >
-                              {stage}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </TableHead>
-
-                  <TableHead className="text-white">Mobile Number</TableHead>
-                  <TableHead className="p-2 px-8 text-white text-center">Email</TableHead>
-                  {/* <TableHead className="text-white">Country</TableHead> */}
-                  <TableHead className="text-white">
-                    {" "}
-                    <div className="flex items-center space-x-2 text-black">
-                      <span className="text-white">Country</span>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </TableHead>
+              <TableHead className="text-white">Contact Name</TableHead>
+              <TableHead className="text-white">
+                {" "}
+                <div className="flex items-center space-x-2 text-black">
+                  <span className="text-white">Stage</span>
                   <Select
-                      id="country"
-                      onValueChange={(value) =>
-                        handleSelectChange("country", value)
-                      }
-                      value={selectedCountry} // Set the selected value
-                    >
-                      <SelectTrigger className="w-[40px] text-white">
+                    value={filter}
+                    onValueChange={(value) => setFilter(value)}
+                    className="text-black"
+                  >
+                    <SelectTrigger className="w-[40px] text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2.5}
+                        stroke="currentColor"
+                        className="h-20 w-20 text-black"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.75 9l7.5 7.5 7.5-7.5"
+                        />
+                      </svg>
+                    </SelectTrigger>
+                    <SelectContent className="text-black">
+                      <SelectItem value="all" className="text-black">
+                        All
+                      </SelectItem>
+                      {stages.map((stage) => (
+                        <SelectItem
+                          className="text-black"
+                          key={stage}
+                          value={stage}
+                        >
+                          {stage}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </TableHead>
+
+              <TableHead className="text-white">Mobile Number</TableHead>
+              <TableHead className="p-2 px-8 text-white text-center">
+                Email
+              </TableHead>
+              {/* <TableHead className="text-white">Country</TableHead> */}
+              <TableHead className="text-white">
+                {" "}
+                <div className="flex items-center space-x-2 text-black">
+                  <span className="text-white">Country</span>
+                  <Select
+                    id="country"
+                    onValueChange={(value) =>
+                      handleSelectChange("country", value)
+                    }
+                    value={selectedCountry} // Set the selected value
+                  >
+                    <SelectTrigger className="w-[40px] text-white">
                       {/* <SelectValue placeholder="Select client type" /> */}
                       <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2.5}
-                            stroke="currentColor"
-                            className="h-20 w-20 text-black"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3.75 9l7.5 7.5 7.5-7.5"
-                            />
-                          </svg>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {countries.map((country) => (
-                          <SelectItem key={country.id} value={country.id}>
-                            {country.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    </div>
-                  </TableHead>
-                  <TableHead className="text-white">Assigned To</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredData.map((lead, index) => (
-                  <TableRow
-                    key={index}
-                    className="cursor-pointer hover:text-blue-500"
-                    onClick={() => handleEdit(lead?.id)}
-                  >
-                    <TableCell>{lead.Customer}</TableCell>
-                    <TableCell>{lead.Date}</TableCell>
-                    <TableCell>{lead.ClientType}</TableCell>
-                    <TableCell>{lead.Name}</TableCell>
-                    <TableCell>
-                      <Badge variant="secondary">{lead.Stage}</Badge>
-                    </TableCell>
-                    <TableCell>{lead.MobileNumber}</TableCell>
-                    <TableCell>{lead.Email}</TableCell>
-                    <TableCell>{lead.Country}</TableCell>
-                    <TableCell>{lead.AssignedTo}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </div>
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2.5}
+                        stroke="currentColor"
+                        className="h-20 w-20 text-black"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.75 9l7.5 7.5 7.5-7.5"
+                        />
+                      </svg>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country.id} value={country.id}>
+                          {country.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </TableHead>
+              <TableHead className="text-white">Assigned To</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredData.map((lead, index) => (
+              <TableRow
+                key={index}
+                className="cursor-pointer hover:text-blue-500"
+                onClick={() => handleEdit(lead?.id)}
+              >
+                <TableCell>{lead.Customer}</TableCell>
+                <TableCell>{lead.Date}</TableCell>
+                <TableCell>{lead.ClientType}</TableCell>
+                <TableCell>{lead.Name}</TableCell>
+                <TableCell>
+                  <Badge variant="secondary">{lead.Stage}</Badge>
+                </TableCell>
+                <TableCell>{lead.MobileNumber}</TableCell>
+                <TableCell>{lead.Email}</TableCell>
+                <TableCell>{lead.Country}</TableCell>
+                <TableCell>{lead.AssignedTo}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
     //   </div>
     // </div>
   );
