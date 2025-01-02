@@ -64,13 +64,13 @@ function SalesDashboard() {
             </Card>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
-            <Card>
+            <Card className="mb-0 max-h-[400px]">
               <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
-                <CardTitle className=" mb-5">Month wise onboarding</CardTitle>
+                <CardTitle className="text-lg font-semibold">Month wise onboarding</CardTitle>
                 <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
               </CardHeader>
-              <CardContent>
-                <LineChart className="w-full aspect-[4/3]" />
+              <CardContent className="p-2">
+                <LineChart className="w-full aspect-[4/2]" />
               </CardContent>
             </Card>
             <Card>

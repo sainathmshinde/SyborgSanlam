@@ -26,6 +26,7 @@ const Users = () => {
       email: "john.doe@example.com",
       mobile: "+1234567890",
       userName: "johnDoe",
+      role: "Admin",
       status: "In Progress",
     },
     {
@@ -34,6 +35,7 @@ const Users = () => {
       email: "jane.smith@example.com",
       mobile: "+1234567891",
       userName: "janeSmith",
+      role: "Onboarding Manger",
       status: "To Do",
     },
     {
@@ -42,6 +44,7 @@ const Users = () => {
       email: "bob.johnson@example.com",
       mobile: "+1234567892",
       userName: "bobJohnson",
+      role: "Compliance Reviewer",
       status: "In Review",
     },
     {
@@ -50,6 +53,7 @@ const Users = () => {
       email: "alice.lee@example.com",
       mobile: "+1234567893",
       userName: "aliceLee",
+      role: "Client Admin User",
       status: "Done",
     },
     {
@@ -58,6 +62,7 @@ const Users = () => {
       email: "tom.wilson@example.com",
       mobile: "+1234567894",
       userName: "tomWilson",
+      role: "Client Support User",
       status: "In Progress",
     },
   ];
@@ -101,7 +106,8 @@ const Users = () => {
                 <TableHead className="text-white">Email</TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Username</TableHead>
-                <TableHead className=" text-white text-end">Actions</TableHead>
+                <TableHead className="text-white">Role</TableHead>
+                <TableHead className="p-2 px-8 text-white text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -111,6 +117,7 @@ const Users = () => {
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.mobile}</TableCell>
                   <TableCell>{user.userName}</TableCell>
+                  <TableCell>{user.role}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

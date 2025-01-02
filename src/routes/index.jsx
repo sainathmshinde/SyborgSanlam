@@ -262,7 +262,7 @@ const routes = [
   },
   {
     exact: true,
-    path: "/editrole",
+    path: "/createrole",
     component: <CreateRole/>,
   },
   {
@@ -310,10 +310,18 @@ const routes = [
     path: "/editCurrency",
     component: <EditCurrency />,
   },
+  // {
+  //   exact: true,
+  //   path: "/editRole",
+  //   component: <EditRoles />,
+  // },
   {
     exact: true,
     path: "/editRole",
     component: <EditRoles />,
+  },
+   {
+    exact: true,
     path: "/editUsers",
     component: <EditUsers />,
   },

@@ -84,7 +84,7 @@ const EditCurrency = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit Currency</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>

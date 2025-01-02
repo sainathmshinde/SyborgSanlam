@@ -232,7 +232,7 @@ const CurrencyPage = () => {
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2 pr-10">Id</TableHead>
+              <TableHead className="text-white p-2 pr-10">Sr No.</TableHead>
               <TableHead className="text-white p-2 pr-10">Country</TableHead>
               <TableHead className="text-white p-2 pr-16">
                 Currency Name

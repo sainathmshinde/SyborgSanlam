@@ -49,7 +49,7 @@ const EditCountry = () => {
                 <Input
                   id="countryCode"
                   placeholder="Enter Country Code "
-                  value={country.countryName}
+                  value={country.countryCode}
                   onChange={(e) =>
                     handleInputChange("Country Code", e.target.value)
                   }
@@ -60,7 +60,7 @@ const EditCountry = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit Country</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>

@@ -35,6 +35,11 @@ const OnboardingList = () => {
     : leads;
 
   const [date, setDate] = useState();
+  
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="flex flex-col ">
@@ -42,25 +47,30 @@ const OnboardingList = () => {
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Customer Onboarding</h1>
         </div>
-        <div className="bg-background my-4 ">
-          <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-            <div className="relative flex-grow">
-              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search..."
-                // value={search}
-                // onChange={handleSearch}
-                className="pl-10 w-2/3"
-              />
-            </div>
-          </div>
-        </div>
+       <div className="flex items-center justify-between mt-4 mb-6">
+                 <Input
+                   type="search"
+                   placeholder="Search Customer Onboarding..."
+                   value={searchTerm}
+                   onChange={handleSearch}
+                   className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+                 />
+                 {/* <RButton
+                   onClick={() => {
+                     handleNew();
+                   }}
+                   className="ml-10"
+                 >
+                   
+                 </RButton> */}
+               </div>
         <div className="border rounded-lg overflow-x-auto">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black">
               <TableRow>
                 <TableHead className="text-white">Customer Name</TableHead>
+                <TableHead className="text-white">Date</TableHead>
+
                 <TableHead className="text-white">Contact Name</TableHead>
                 <TableHead className="text-white">Client Type</TableHead>
                 <TableHead className="text-white">Country</TableHead>
@@ -108,13 +118,14 @@ const OnboardingList = () => {
                 </TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Email</TableHead>
-                <TableHead className="text-white">Action</TableHead>
+                <TableHead className=" text-white text-center -ml-2">Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {leads.map((lead) => (
                 <TableRow key={lead.id}>
                   <TableCell>{lead?.Customer}</TableCell>
+                  <TableCell>{lead.Date}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <div>{lead.Name}</div>

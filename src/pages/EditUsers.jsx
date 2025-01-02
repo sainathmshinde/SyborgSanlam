@@ -15,6 +15,7 @@ const EditUsers = () => {
     email: "john.doe@example.com",
     mobile_number: "+1234567890",
     username: "johnDoe",
+    role:"Admin",
   });
 
   const handleInputChange = (field, value) => {
@@ -35,7 +36,7 @@ const EditUsers = () => {
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
                 <Label htmlFor="teamName" className="w-full required">
-                  User Name
+                  Name
                 </Label>
                 <Input
                   id="teamName"
@@ -47,7 +48,7 @@ const EditUsers = () => {
 
               <div className="space-y-2 w-full">
                 <Label htmlFor="teamName" className="w-full required">
-                  User Name
+                  Email
                 </Label>
                 <Input
                   id="teamName"
@@ -59,7 +60,7 @@ const EditUsers = () => {
 
               <div className="space-y-2 w-full">
                 <Label htmlFor="teamName" className="w-full required">
-                  User Name
+                  Mobile Number
                 </Label>
                 <Input
                   id="teamName"
@@ -69,26 +70,65 @@ const EditUsers = () => {
                 />
               </div>
 
-              <div className="flex gap-20">
-                <div className="space-y-2 mt-2">
+              
+              <div className="space-y-2 w-full">
                   <Label htmlFor="teamMembers" className="w-full required">
-                   User Name
+                   Username
                   </Label>
                   <Input
-                    id="teamMembers"
-                    placeholder="Search for team members"
+                    id="teamMembers="
+                    placeholder="Enter Username"
                     value={user.username}
                     onChange={(e) =>
                       handleInputChange("username", e.target.value)
                     }
                   />
                 </div>
-              </div>
+              
+              
+             
+              {/* <div className="space-y-2 w-full">
+                  <Label htmlFor="teamMembers" className="w-full required">
+                   Role
+                  </Label>
+                  <Input
+                    id="teamMembers"
+                    placeholder="Enter Role"
+                    value={user.role}
+                    onChange={(e) =>
+                      handleInputChange("role", e.target.value)
+                    }
+                  />
+                  
+                </div> */}
+                <div className="space-y-2 w-full">
+  <Label htmlFor="teamMembers" className="w-full required">
+    Role
+  </Label>
+  <select
+    id="teamMembers"
+    value={user.role}
+    onChange={(e) => handleInputChange("role", e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-500"
+  >
+    <option value="" disabled>
+      Select Role
+    </option>
+    <option value="admin">Admin</option>
+    <option value="editor">Sales Manager</option>
+    <option value="viewer">Onboarding Team</option>
+    <option value="viewer">Compliance Approver</option>
+    <option value="viewer">Client User</option>
+    {/* Add more roles as needed */}
+  </select>
+</div>
+
+            
             </CardContent>
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit User</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>

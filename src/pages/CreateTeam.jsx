@@ -117,7 +117,7 @@ const CreateTeam = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Create Team</RButton>
+            <RButton type="submit">Submit</RButton>
           </div>
         </form>
       </div>

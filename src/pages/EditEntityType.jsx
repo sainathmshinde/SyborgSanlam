@@ -9,7 +9,8 @@ import { useState } from "react";
 
 const EditEntityType = () => {
   const [entity, setEntity] = useState({
-    entityType: "Client",
+    entityType: "Customer",
+    description: "Their involvement or responsibilities in a project or business relationship"
   });
 
   const handleInputChange = (field, value) => {
@@ -39,11 +40,23 @@ const EditEntityType = () => {
                   //   required
                 />
               </div>
+              <div className="space-y-2 w-full">
+                <Label htmlFor="teamName" className="w-full required">
+                  Description
+                </Label>
+                <Input
+                  id="teamName"
+                  placeholder="Enter Description "
+                  value={entity.description}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  //   required
+                />
+              </div>
             </CardContent>
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit Entity Type</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>
