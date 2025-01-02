@@ -16,12 +16,12 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const entities = [
-  { id: 1, name: "Client" },
-  { id: 2, name: "Broker" },
-  { id: 3, name: "Bank" },
-  { id: 4, name: "Fund" },
-  { id: 5, name: "Company" },
-  { id: 5, name: "Trust" },
+  { id: 1, name: "Customer", description: "Their involvement or responsibilities in a project or business relationship."},
+  { id: 2, name: "Broker", description: "A broker acts as an intermediary between two parties to facilitate a transaction or agreement." },
+  { id: 3, name: "Bank", description:"Providing financial services to individuals, businesses, and governments." },
+  { id: 4, name: "Fund", description:"It involves pooling resources from investors to achieve specific financial objectives."},
+  { id: 5, name: "Company", description:"Its purpose and responsibilities in a specific context, such as in the economy, a project, or an industry. " },
+  { id: 5, name: "Trust", description:"Managing and safeguarding assets on behalf of beneficiaries." },
 ];
 
 const EntityType = () => {
@@ -78,8 +78,9 @@ const EntityType = () => {
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
-              <TableHead className="p-2 text-white">Id</TableHead>
+              <TableHead className="p-2 text-white">Sr No.</TableHead>
               <TableHead className="p-2 text-white">Entity Type</TableHead>
+              <TableHead className="p-2 text-white">Description</TableHead>
               <TableHead className="p-2 px-8 text-white text-end">
                 Actions
               </TableHead>
@@ -92,6 +93,7 @@ const EntityType = () => {
                   <TableCell className="p-2">{item.id}</TableCell>
 
                   <TableCell className="p-2">{item.name}</TableCell>
+                  <TableCell className="p-2">{item.description}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

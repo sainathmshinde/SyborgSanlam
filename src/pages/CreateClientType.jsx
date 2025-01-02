@@ -11,18 +11,28 @@ const CreateClientType = () => {
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
         <div className="">
-          <h1 className="text-xl font-bold">Create Client Type</h1>
+          <h1 className="text-xl font-bold">Create Customer Type</h1>
         </div>
         <form className="space-y-4">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
                 <Label htmlFor="teamName" className="w-full required">
-                  Client Type
+                  Customer Type
                 </Label>
                 <Input
                   id="teamName"
-                  placeholder="Enter Client Type "
+                  placeholder="Enter Customer Type "
+                  //   required
+                />
+              </div>
+              <div className="space-y-2 w-full">
+                <Label htmlFor="teamName" className="w-full required">
+                  Description
+                </Label>
+                <Input
+                  id="teamName"
+                  placeholder="Enter Description "
                   //   required
                 />
               </div>
@@ -30,7 +40,7 @@ const CreateClientType = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Create Client Type</RButton>
+            <RButton type="submit">Submit</RButton>
           </div>
         </form>
       </div>

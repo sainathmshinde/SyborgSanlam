@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -185,7 +186,7 @@ function ComplianceChecklist() {
     navigate("/compliance");
   };
   return (
-    <div className="container mx-auto p-4 space-y-4">
+    <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
       <div className="flex justify-between items-center mb-4">
         <div
           onClick={goBack}
@@ -207,7 +208,7 @@ function ComplianceChecklist() {
       </div>
 
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 ">
           <CardTitle className="text-2xl font-bold">Customer Details</CardTitle>
           <div className="flex items-center space-x-2">
             <Label htmlFor="assignTo" className="whitespace-nowrap">

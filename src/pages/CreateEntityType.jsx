@@ -26,11 +26,21 @@ const CreateEntityType = () => {
                   //   required
                 />
               </div>
+              <div className="space-y-2 w-full">
+                <Label htmlFor="teamName" className="w-full required">
+                  Description
+                </Label>
+                <Input
+                  id="teamName"
+                  placeholder="Enter Description "
+                  //   required
+                />
+              </div>
             </CardContent>
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Create Entity Type</RButton>
+            <RButton type="submit">Submit</RButton>
           </div>
         </form>
       </div>

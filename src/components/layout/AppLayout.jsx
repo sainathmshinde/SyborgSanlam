@@ -24,9 +24,9 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
 const maintenance = [
-  { name: "Entity Type", path: "/entityType", id: "entityType" },
-  { name: "Client Type", path: "/clientType", id: "clientType" },
-  { name: "Fund Type", path: "/fundType", id: "fundType" },
+  // { name: "Entity Type", path: "/entityType", id: "entityType" },
+  { name: "Customer Type", path: "/clientType", id: "clientType" },
+  // { name: "Fund Type", path: "/fundType", id: "fundType" },
   // {
   //   name: "Compliance checklist document types",
   //   path: "/documentsList",
@@ -34,6 +34,8 @@ const maintenance = [
   // },
   { name: "Country", path: "/country", id: "country" },
   { name: "Currency", path: "/currency", id: "currency" },
+  { name: "Entity Type", path: "/entityType", id: "entityType" },
+  { name: "Fund Type", path: "/fundType", id: "fundType" },
 ];
 
 export default function AppLayout({ children }) {
@@ -232,7 +234,7 @@ export default function AppLayout({ children }) {
                   onClick={handleNavigate("/documentsList", "documentsList")}
                 >
                   <Package className="h-4 w-4" />
-                  Checklist
+                  Manage Checklist
                 </div>
               </nav>
             </div>

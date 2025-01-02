@@ -32,8 +32,8 @@ const initialRoleObject = () => {
     permissions: [
       {
         id: 0,
-        type: "documents",
-        name: "documents",
+        type: "checklist",
+        name: "checklist",
         actions: {
           create: false,
           read: false,
@@ -65,8 +65,8 @@ const initialRoleObject = () => {
       },
       {
         id: 3,
-        type: "compilance",
-        name: "compilance",
+        type: "compliance",
+        name: "compliance",
         actions: {
           create: false,
           read: false,
@@ -315,7 +315,7 @@ function CreateRole() {
         </Accordion>
       </div>
       <div className="flex justify-end mt-10">
-        <RButton onClick={handleSubmit}>Save</RButton>
+        <RButton onClick={handleSubmit}>Submit</RButton>
       </div>
     </div>
   );

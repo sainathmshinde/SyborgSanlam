@@ -217,7 +217,7 @@ const Role = () => {
                         variant="ghost"
                         className="flex items-center gap-2 "
                         onClick={() => {
-                          handleEdit(role.id);
+                          handleEdit();
                         }}
                       >
                         <FilePenIcon className="h-4 w-4" />

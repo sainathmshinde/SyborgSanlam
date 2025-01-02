@@ -47,13 +47,14 @@ const handleSelectRoleChange = (key, value) => {
         <form className="space-y-4">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
-              <div className="space-y-2 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="space-y-2 ">
                 <Label htmlFor="teamName" className="w-full required">
                   Name
                 </Label>
                 <Input id="teamName" placeholder="Enter Name" />
               </div>
-              <div className="space-y-2 mt-2">
+              <div className="space-y-2">
                 <Label htmlFor="teamName" className=" w-full required">
                   Username
                 </Label>
@@ -71,11 +72,49 @@ const handleSelectRoleChange = (key, value) => {
                 </Label>
                 <Input id="teamEmail" placeholder="Enter Mobile Number" />
               </div>
+              </div>
               <div className="space-y-2 mt-2">
                 <Label htmlFor="teamName" className=" w-full required">
                   Address
                 </Label>
                 <Input id="teamEmail" placeholder="Enter Address" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <Label className="required" htmlFor="city">
+                    City
+                  </Label>
+
+                  <Input
+                    id="city"
+                    placeholder="Enter City"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="required" htmlFor="state">
+                    State
+                  </Label>
+                  <Input
+                    id="state"
+                    placeholder="Enter State"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="country">
+                    Country<span className="text-red-600 ml-1">*</span>
+                  </Label>
+                  <Select id="source">
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select Country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Website">India</SelectItem>
+                      <SelectItem value="Trade Show">South Africa</SelectItem>
+                      <SelectItem value="Referral">China</SelectItem>
+                      <SelectItem value="Cold Call">Australia</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
               <div className="flex gap-20">
@@ -113,7 +152,7 @@ const handleSelectRoleChange = (key, value) => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Create User</RButton>
+            <RButton type="submit">Submit</RButton>
           </div>
         </form>
       </div>

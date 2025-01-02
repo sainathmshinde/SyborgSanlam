@@ -16,10 +16,10 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const fundTypes = [
-  { id: 1, name: "Equity" },
-  { id: 2, name: "Money market" },
-  { id: 4, name: "Balanced" },
-  { id: 5, name: "Property" },
+  { id: 1, name: "Equity", description: "Type of investment fund that primarily invests in stocks or shares of companies." },
+  { id: 2, name: "Money market", description: "Type of mutual fund that invests in short-term, low-risk, and highly liquid financial instruments." },
+  { id: 4, name: "Balanced", description: "Type of mutual fund that invests in a mix of different asset classes, such as stocks, bonds, and sometimes other investments like cash or real estate. " },
+  { id: 5, name: "Property", description: "Type of investment fund that primarily invests in real estate properties or real estate-related assets. " },
 ];
 
 const FundType = () => {
@@ -68,8 +68,9 @@ const FundType = () => {
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2">Id</TableHead>
+              <TableHead className="text-white p-2">Sr No.</TableHead>
               <TableHead className="text-white p-2">Fund Type</TableHead>
+              <TableHead className="text-white p-2">Description</TableHead>
               <TableHead className="p-2 px-8 text-white text-end">
                 Actions
               </TableHead>
@@ -82,6 +83,7 @@ const FundType = () => {
                   <TableCell className="p-2">{item.id}</TableCell>
 
                   <TableCell className="p-2">{item.name}</TableCell>
+                  <TableCell className="p-2">{item.description}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

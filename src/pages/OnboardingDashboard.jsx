@@ -132,7 +132,7 @@ function OnboardingDashboard() {
         <Card>
           <CardHeader className="flex flex-row justify-between">
             <CardTitle>Onboarding Status Overview</CardTitle>
-            <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
+            <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>

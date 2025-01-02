@@ -62,7 +62,7 @@ const EditTeams = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit Team</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>

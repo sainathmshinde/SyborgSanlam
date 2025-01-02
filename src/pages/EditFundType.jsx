@@ -10,6 +10,7 @@ import { useState } from "react";
 const EditFundType = () => {
   const [fund, setFund] = useState({
     fundType: "Equity",
+    description: "Type of investment fund that primarily invests in stocks or shares of companies.",
   });
 
   const handleInputChange = (field, value) => {
@@ -39,11 +40,23 @@ const EditFundType = () => {
                   //   required
                 />
               </div>
+              <div className="space-y-2 w-full">
+                <Label htmlFor="fundType" className="w-full required">
+                 Description
+                </Label>
+                <Input
+                  id="fundType"
+                  placeholder="Enter Fund Type "
+                  value={fund.description}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  //   required
+                />
+              </div>
             </CardContent>
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Edit Fund Type</RButton>
+            <RButton type="submit">Update</RButton>
           </div>
         </form>
       </div>
