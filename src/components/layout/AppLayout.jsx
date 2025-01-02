@@ -286,10 +286,11 @@ export default function AppLayout({ children }) {
                 </div>
                 <div
                   className={cn(
-                    activeItem === "contacts" && "bg-custom-black text-white",
+                    activeItem === "leadManagement" &&
+                      "bg-custom-black text-white",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                   )}
-                  onClick={handleNavigate("/contacts", "contacts")}
+                  onClick={handleNavigate("/leadManagement", "leadManagement")}
                 >
                   <Package className="h-4 w-4" />
                   Lead Management
