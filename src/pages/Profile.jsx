@@ -140,6 +140,14 @@ function Profile() {
       type: "Individual",
       designation: "Director",
     },
+    {
+      firstName: "Bob",
+      lastName: "Johnson",
+      email: "bob.johnson@example.com",
+      mobile: "+1 (555) 111-3333",
+      type: "Individual",
+      designation: "Director",
+    },
   ]);
   const documentCategories = {
     "Company Documents": {
@@ -151,11 +159,11 @@ function Profile() {
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
 
-    "ID Proof Director 1": {
+    "ID Proof Alice Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "PAN Card", "Passport"],
     },
-    "ID Proof Director 2": {
+    "ID Proof Bob Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "PAN Card", "Passport"],
     },
