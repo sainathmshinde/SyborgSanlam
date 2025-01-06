@@ -38,7 +38,7 @@ function CreateUser() {
   });
 
   const handleInputChange = (field, value) => {
-   setViewChecklist((prev) => ({
+    setViewChecklist((prev) => ({
       ...prev,
       [field]: value,
     }));
@@ -189,17 +189,17 @@ function CreateUser() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="client-type" className="required">
-                      Client Type
+                      Customer Type
                     </Label>
                     <Select
                       id="clientType"
                       value={formValues.clientType}
-                      onValueChange={
-                        (value) => handleChange("clientType", value) // Update the clientType value
+                      onValueChange={(value) =>
+                        handleChange("clientType", value)
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select client type" />
+                        <SelectValue placeholder="Select customer type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="individual">Individual</SelectItem>

@@ -6,6 +6,7 @@ import RButton from "@/components/ui/rButton";
 import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 
@@ -59,6 +60,10 @@ const CreateTeam = () => {
   //   }
   //   // Handle other fields if necessary
   // };
+   const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/teams"); 
+  };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
@@ -117,8 +122,11 @@ const CreateTeam = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Submit</RButton>
-          </div>
+                      <RButton variant="outline" onClick={goBack}>
+                          Back
+                        </RButton>
+                      <RButton className="ml-5" type="submit">Submit</RButton>
+                    </div>
         </form>
       </div>
     </div>

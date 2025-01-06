@@ -7,12 +7,13 @@ import RButton from "@/components/ui/rButton";
 import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import {initialRoles}  from "./Role";
+import { useNavigate } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 
 const CreateUser = () => {
   const roles = initialRoles;
-
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     role: ""
   
@@ -30,7 +31,9 @@ const handleSelectRoleChange = (key, value) => {
   // Handle other fields if necessary
 };
 
-  
+const goBack = () => {
+  navigate("/users"); 
+};
   // const handleRoleChange = (id, value) => {
   //   setFormValues({
   //     ...formValues,
@@ -152,7 +155,10 @@ const handleSelectRoleChange = (key, value) => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Submit</RButton>
+            <RButton variant="outline" onClick={goBack}>
+                Back
+              </RButton>
+            <RButton className="ml-5" type="submit">Submit</RButton>
           </div>
         </form>
       </div>

@@ -35,17 +35,18 @@ const dashboardData = {
 };
 
 const pieChartData = [
-  { name: "Pending", value: dashboardData.pendingRequests, color: "#f97316" },
+  { name: "Onboarding", value: dashboardData.pendingRequests, color: "#f97316" },
+  {
+    name: "Compliance",
+    value: dashboardData.withComplianceTeam,
+    color: "#3b82f6",
+  },
   {
     name: "Onboarded",
     value: dashboardData.onboardedClients,
     color: "#22c55e",
   },
-  {
-    name: "With Compliance",
-    value: dashboardData.withComplianceTeam,
-    color: "#3b82f6",
-  },
+  
 ];
 function OnboardingDashboard() {
   const RADIAN = Math.PI / 180;
@@ -75,7 +76,7 @@ function OnboardingDashboard() {
   };
   return (
     <div className="container mx-auto p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"> */}
         {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">Total Clients</CardTitle>
@@ -87,7 +88,7 @@ function OnboardingDashboard() {
             </div>
           </CardContent>
         </Card> */}
-        <Card>
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               Pending Onboarding
@@ -99,8 +100,8 @@ function OnboardingDashboard() {
               {dashboardData.pendingRequests}
             </div>
           </CardContent>
-        </Card>
-        <Card>
+        </Card> */}
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               Onboarded Clients
@@ -112,8 +113,8 @@ function OnboardingDashboard() {
               {dashboardData.onboardedClients}
             </div>
           </CardContent>
-        </Card>
-        <Card>
+        </Card> */}
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               With Compliance Team
@@ -125,13 +126,13 @@ function OnboardingDashboard() {
               {dashboardData.withComplianceTeam}
             </div>
           </CardContent>
-        </Card>
-      </div>
+        </Card> */}
+      {/* </div> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         <Card>
           <CardHeader className="flex flex-row justify-between">
-            <CardTitle>Onboarding Status Overview</CardTitle>
+            <CardTitle>Onboarding Status</CardTitle>
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
           <CardContent>

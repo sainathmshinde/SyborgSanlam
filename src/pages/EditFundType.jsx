@@ -6,12 +6,19 @@ import RButton from "@/components/ui/rButton";
 import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
 
 const EditFundType = () => {
   const [fund, setFund] = useState({
     fundType: "Equity",
     description: "Type of investment fund that primarily invests in stocks or shares of companies.",
   });
+
+   const navigate = useNavigate();
+    const goBack = () => {
+      navigate("/fundType"); 
+    };
 
   const handleInputChange = (field, value) => {
     setFund((prev) => ({
@@ -56,7 +63,8 @@ const EditFundType = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Update</RButton>
+            <RButton variant="outline" onClick={goBack}>Back</RButton>
+            <RButton className="ml-5" type="submit">Update</RButton>
           </div>
         </form>
       </div>
