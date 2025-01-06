@@ -21,10 +21,12 @@ import { toast } from "@/components/ui/use-toast";
 import { produce } from "immer";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Button } from "react-day-picker";
 import { useNavigate } from "react-router-dom";
 import { ValidationError } from "yup";
 
 const initialRoleObject = () => {
+  
   return {
     id: 0,
     name: "",
@@ -89,13 +91,30 @@ const initialRoleObject = () => {
   };
 };
 
-function CreateRole() {
+function EditRoles() {
   const navigate = useNavigate();
-
+  const [next, setNext] = useState(1);
   const [role, setRole] = useState(() => ({
     ...initialRoleObject(),
   }));
+  const goBack = () => {
+    navigate("/roles");
+  };
 
+  // const [role, setRole] = useState({
+  //   name: "Admin",
+  //   description: "Responsible for managing the system , users and overall configaration."
+  // });
+
+  // const handleInputChange = (field, value) => {
+  //   setRole((prev) => ({
+  //     ...prev,
+  //     [field]: value,
+  //   }));
+  // };
+
+
+  
   const handleChange = (name, section, entity, action) => (event) => {
     let nextState = produce(role, (draft) => {
       switch (name) {
@@ -264,9 +283,9 @@ function CreateRole() {
   );
 
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full max-w-4xl p-4">
       <div>
-        <h1 className="mb-6 mt-2 text-xl font-bold ">Create Role</h1>
+        <h1 className="mb-6 mt-2 text-xl font-bold ">Edit Role</h1>
       </div>
       <div className="space-y-2">
         <Card className="bg-gray-200  ">
@@ -276,7 +295,7 @@ function CreateRole() {
               label="Role Name"
               id="name"
               type="text"
-              placeholder="Enter Role Name"
+              placeholder="Admin"
               className="w-full "
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
@@ -286,7 +305,7 @@ function CreateRole() {
               label="Description"
               id="description"
               type="text"
-              placeholder="Enter Description"
+              placeholder="Responsible for managing the system, users, and overall configurations."
               className="w-full"
               onChange={(event) => handleChange("description")(event)}
               value={role.description}
@@ -314,11 +333,17 @@ function CreateRole() {
           ))}
         </Accordion>
       </div>
-      <div className="flex justify-end mt-10">
-        <RButton onClick={handleSubmit}>Submit</RButton>
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
+      <div className="flex justify-end">
+        <RButton onClick={() => setNext(1)}>Back</RButton>
       </div>
+      <div className="flex justify-end ">
+        <RButton onClick={handleSubmit}>Update</RButton>
+        </div>
+      </div>
+      
     </div>
   );
 }
 
-export default WithLayout("admin")(CreateRole);
+export default WithLayout("admin")(EditRoles);

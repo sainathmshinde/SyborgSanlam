@@ -16,11 +16,11 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const clients = [
-  { id: 1, name: "Individual" },
-  { id: 2, name: "Partnership" },
-  { id: 3, name: "Trust" },
-  { id: 4, name: "Fund" },
-  { id: 5, name: "Company" },
+  { id: 1, name: "Individual", description: "Clearly communicate their needs, provide necessary information, make timely decisions, give feedback, and fulfill financial obligations." },
+  { id: 2, name: "Partnership", description: "The responsibilities and contributions each partner makes to achieve mutual goals in a collaborative business or project." },
+  { id: 3, name: "Trust", description: "Managing and safeguarding assets on behalf of beneficiaries."},
+  { id: 4, name: "Fund" , description:"It involves pooling resources from investors to achieve specific financial objectives."},
+  { id: 5, name: "Company", description: "Its purpose and responsibilities in a specific context, such as in the economy, a project, or an industry. " },
 ];
 
 const ClientType = () => {
@@ -33,7 +33,7 @@ const ClientType = () => {
   const handleDeleteClient = () => {};
 
   const handleEdit = (id) => {
-    navigate(`/createClientType/${id}`);
+    navigate("/editClientType");
   };
 
   const handleNew = () => {
@@ -43,14 +43,14 @@ const ClientType = () => {
     <div className="p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold ">Client Types</h1>
+          <h1 className="text-2xl font-bold ">Customer Types</h1>
         </div>
-        <div className="flex items-center justify-between mt-6 mb-6">
+        <div className="flex items-center justify-between mt-4 mb-6">
           <Input
             type="search"
-            placeholder="Search client type..."
+            placeholder="Search Customer Types..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -59,19 +59,20 @@ const ClientType = () => {
             className="ml-10"
           >
             <span className="flex items-center">
-              Create Client Type
-              <CirclePlus className="ml-2 h-4 w-4" />
+              Create Customer Type
+              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
             </span>
           </RButton>
         </div>
       </div>
-      <div className=" rounded-lg shadow-lg">
+      <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
-              <TableHead className="text-white p-2">Id</TableHead>
-              <TableHead className="text-white p-2">Client Type</TableHead>
-              <TableHead className="text-white p-2 text-right">
+              <TableHead className="text-white p-2">Sr No.</TableHead>
+              <TableHead className="text-white p-2">Customer Type</TableHead>
+              <TableHead className="text-white p-2">Description</TableHead>
+              <TableHead className="p-2 px-8 text-white text-end">
                 Actions
               </TableHead>
             </TableRow>
@@ -83,6 +84,7 @@ const ClientType = () => {
                   <TableCell className="p-2">{item.id}</TableCell>
 
                   <TableCell className="p-2">{item.name}</TableCell>
+                  <TableCell className="p-2">{item.description}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

@@ -22,11 +22,13 @@ const documents = [
     clientType: "Company",
     name: "Certificate Of Incorporation",
   },
-  { id: 2, country: "South Africa", clientType: "Company", name: "Id Proof" },
+  { id: 2, country: "Canada",
+     clientType: "Individual",
+      name: "Id Proof" },
   {
     id: 3,
     country: "South Africa",
-    clientType: "Company",
+    clientType: "Trust",
     name: "Address proof",
   },
   // { id: 4,country:"South Africa",clientType:"Company",  name: "Address Proof" },
@@ -53,14 +55,14 @@ const Documents = () => {
     <div className="p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold ">Compliance checklist</h1>
+          <h1 className="text-2xl font-bold ">Compliance Checklist</h1>
         </div>
-        <div className="flex items-center justify-between mt-6 mb-6">
+        <div className="flex items-center justify-between mt-4 mb-6">
           <Input
             type="search"
-            placeholder="Search..."
+            placeholder="Search Compliance Checklist..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -70,20 +72,20 @@ const Documents = () => {
           >
             <span className="flex items-center">
               Create Checklist
-              <CirclePlus className="ml-2 h-4 w-4" />
+              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
             </span>
           </RButton>
         </div>
       </div>
-      <div className=" rounded-lg shadow-lg">
+      <div className=" rounded-lg overflow-x-auto">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2">Id</TableHead>
+              <TableHead className="text-white p-2">Sr No.</TableHead>
               <TableHead className="text-white p-2">Country</TableHead>
               <TableHead className="text-white p-2">Client Type</TableHead>
 
-              <TableHead className="text-white p-2 text-right">
+              <TableHead className="text-white text-end p-2 px-8">
                 Actions
               </TableHead>
             </TableRow>

@@ -80,7 +80,7 @@ const TreeNode = ({ node, level }) => {
 const documentCategories = {
   "Company Documents": {
     main: "Incorporation Document",
-    subOptions: ["Registartion Certificate", "Incorportation Letter"],
+    subOptions: ["Registration Certificate", "Incorporation Letter"],
   },
   "Address Proof": {
     main: "Address Document",
@@ -343,7 +343,7 @@ const CreateLead = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
         <div className="space-y-2">
-          <Label htmlFor="country" className="required">
+          <Label htmlFor="country" className="required ">
             Country
           </Label>
           <Select id="country" value="sa" disabled>

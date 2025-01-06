@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ConfirmDialog } from "@/components/ui/confirmDialog";
+
 import {
   Table,
   TableHeader,
@@ -12,16 +14,19 @@ import { Pagination } from "@/components/ui/pagination";
 import WithLayout from "@/components/layout/WithLayout";
 import { useNavigate } from "react-router";
 import { Input } from "@/components/ui/input";
+import RButton from "@/components/ui/rButton";
+import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 
 const Users = () => {
   const navigate = useNavigate();
   const users = [
-    {
+    { 
       id: 1,
       name: "John Doe",
       email: "john.doe@example.com",
       mobile: "+1234567890",
       userName: "johnDoe",
+      role: "Admin",
       status: "In Progress",
     },
     {
@@ -30,6 +35,7 @@ const Users = () => {
       email: "jane.smith@example.com",
       mobile: "+1234567891",
       userName: "janeSmith",
+      role: "Onboarding Manger",
       status: "To Do",
     },
     {
@@ -38,6 +44,7 @@ const Users = () => {
       email: "bob.johnson@example.com",
       mobile: "+1234567892",
       userName: "bobJohnson",
+      role: "Compliance Reviewer",
       status: "In Review",
     },
     {
@@ -46,6 +53,7 @@ const Users = () => {
       email: "alice.lee@example.com",
       mobile: "+1234567893",
       userName: "aliceLee",
+      role: "Client Admin User",
       status: "Done",
     },
     {
@@ -54,6 +62,7 @@ const Users = () => {
       email: "tom.wilson@example.com",
       mobile: "+1234567894",
       userName: "tomWilson",
+      role: "Client Support User",
       status: "In Progress",
     },
   ];
@@ -69,6 +78,10 @@ const Users = () => {
     navigate("/createUser");
   };
 
+  const handleEdit =()=>{
+    navigate("/editUsers");
+  };
+
   return (
     <div className="flex flex-col gap-8">
       <div className="p-4">
@@ -78,10 +91,10 @@ const Users = () => {
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
-            placeholder="Search users..."
+            placeholder="Search Users..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <Button onClick={handleCreateUser}>Create User</Button>
         </div>
@@ -93,15 +106,48 @@ const Users = () => {
                 <TableHead className="text-white">Email</TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Username</TableHead>
+                <TableHead className="text-white">Role</TableHead>
+                <TableHead className="p-2 px-8 text-white text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers.map((user) => (
+              {users.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.mobile}</TableCell>
                   <TableCell>{user.userName}</TableCell>
+                  <TableCell>{user.role}</TableCell>
+                  <TableCell className="p-2 text-right">
+                    <div className="flex justify-end">
+                      <RButton
+                        variant="ghost"
+                        className="flex items-center gap-2 "
+                        onClick={() => {
+                          handleEdit();
+                        }}
+                      >
+                        <FilePenIcon className="h-4 w-4" />
+                      </RButton>
+                      <ConfirmDialog
+                        dialogTrigger={
+                          <RButton
+                            variant="ghost"
+                            className="flex items-center gap-2"
+                            onClick={() => {
+                              setRoleIndex(role.id);
+                            }}
+                          >
+                            <Trash2Icon className="h-4 w-4 text-red-500" />
+                          </RButton>
+                        }
+                        onConfirm={() => handleDeleteRole(roleIndex)}
+                        dialogTitle="Are you sure to delete the role?"
+                        dialogDescription="This action cannot be undone. This will permanently delete your
+                              product and remove your data from our servers."
+                      />
+                    </div>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
