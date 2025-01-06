@@ -195,7 +195,7 @@ function ComplianceChecklist() {
           {" "}
           <CircleArrowLeft className="w-8 h-8" />
         </div>
-        <div className="relative flex-grow">
+        {/* <div className="relative flex-grow">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
           <Input
             type="text"
@@ -204,7 +204,7 @@ function ComplianceChecklist() {
             // onChange={handleSearch}
             className="pl-10 w-1/2"
           />
-        </div>
+        </div> */}
       </div>
 
       <Card>
@@ -244,7 +244,7 @@ function ComplianceChecklist() {
               </p>
             </div>
             <div>
-              <p className="text-sm">Client Type : {customerData.clientType}</p>
+              <p className="text-sm">Customer Type : {customerData.clientType}</p>
               <Badge variant={id == 2 ? "default" : "secondary"}>
                 {id == 1 ? "Pending" : id == 2 ? "Approved" : "Rejected"}
               </Badge>
@@ -257,7 +257,7 @@ function ComplianceChecklist() {
                   //   navigate("/viewcontact");
                   // }}
                 >
-                  <FilePenIcon className="h-4 w-4" />
+                  {/* <FilePenIcon className="h-4 w-4" /> */}
                   <span className="sr-only">Edit</span>
                 </Button>
               </p>

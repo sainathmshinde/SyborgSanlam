@@ -10,12 +10,21 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { Pagination } from "@/components/ui/pagination";
+// import { Pagination } from "@/components/ui/pagination";
 import WithLayout from "@/components/layout/WithLayout";
 import { useNavigate } from "react-router";
 import { Input } from "@/components/ui/input";
 import RButton from "@/components/ui/rButton";
 import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const Users = () => {
   const navigate = useNavigate();
@@ -170,13 +179,31 @@ const Users = () => {
             </TableBody>
           </Table>
         </div>
-        <div className="flex justify-center mt-4">
+        {/* <div className="flex justify-center mt-4">
           <Pagination
             currentPage={currentPage}
             totalPages={Math.ceil(users.length / usersPerPage)}
             onPageChange={paginate}
           />
-        </div>
+        </div> */}
+        <div className="flex mt-4">
+                        <Pagination>
+                          <PaginationContent>
+                            <PaginationItem>
+                              <PaginationPrevious href="#" />
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationLink href="#">1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationEllipsis />
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationNext href="#" />
+                            </PaginationItem>
+                          </PaginationContent>
+                        </Pagination>
+                      </div>
       </div>
     </div>
   );
