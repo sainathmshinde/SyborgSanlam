@@ -38,7 +38,7 @@ function CreateUser() {
   });
 
   const handleInputChange = (field, value) => {
-   setViewChecklist((prev) => ({
+    setViewChecklist((prev) => ({
       ...prev,
       [field]: value,
     }));
@@ -194,8 +194,8 @@ function CreateUser() {
                     <Select
                       id="clientType"
                       value={formValues.clientType}
-                      onValueChange={
-                        (value) => handleChange("clientType", value) // Update the clientType value
+                      onValueChange={(value) =>
+                        handleChange("clientType", value)
                       }
                     >
                       <SelectTrigger>

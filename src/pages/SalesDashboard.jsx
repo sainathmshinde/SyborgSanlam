@@ -8,10 +8,57 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { ResponsiveLine } from "@nivo/line";
+import { useNavigate } from "react-router";
+
 import WithLayout from "@/components/layout/WithLayout";
 import { DateRangePicker } from "@/components/ui/dateRangePicker";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Bar,
+} from "recharts";
+import { useState } from "react";
+import { Pointer } from "lucide-react";
+
+const JaredPalmer = [
+  { name: "Sales", leadsWithSales: 10 },
+  { name: "Onboarding", leadsWithOnboarding: 15 },
+  { name: "Compliance", leadsWithCompliance: 10 },
+  { name: "Lost", lost: 20 },
+];
+const SarahJohnson = [
+  { name: "Sales", leadsWithSales: 12 },
+  { name: "Onboarding", leadsWithOnboarding: 10 },
+  { name: "Compliance", leadsWithCompliance: 11 },
+  { name: "Lost", lost: 13 },
+];
+const AlexDoe = [
+  { name: "Sales", leadsWithSales: 9 },
+  { name: "Onboarding", leadsWithOnboarding: 6 },
+  { name: "Compliance", leadsWithCompliance: 5 },
+  { name: "Lost", lost: 4 },
+];
 
 function SalesDashboard() {
+  const navigate = useNavigate();
+  const [record, setRecord] = useState("");
+  const handleClick = (record) => {
+    setRecord(record);
+  };
+  // console.log("record", record);
+
+  const handleGraphClick = () => {
+    navigate("/leadM");
+  };
+
   return (
     <div className="p-4">
       {/* <h1 className="text-2xl font-bold">Sales Dashboard</h1> */}
@@ -75,29 +122,22 @@ function SalesDashboard() {
               </CardContent>
             </Card> */}
           {/* </div> */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 ">
-            <Card>
-              <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
-                <CardTitle className=" mb-5">Month Wise Onboarding</CardTitle>
-                <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
-              </CardHeader>
-              <CardContent>
-                <LineChart className="w-full aspect-[4/2]" />
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 ">
+          <div className="grid grid-cols-1 gap-4  ">
+            <Card className="w-full">
+              <CardHeader className="flex flex-row items-center  pb-2 ">
                 <CardTitle className=" mb-5">Process Wise Breakup</CardTitle>
               </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader className="bg-custom-black hover:bg-custom-black">
-                    <TableRow>
-                      <TableHead className="text-white ">Name</TableHead>
-                      <TableHead className="text-white ">
-                        Total Leads year to date
-                      </TableHead>
-                      <TableHead className="text-white ">
+
+              <div>
+                <CardContent className="grid grid-cols-2">
+                  <Table>
+                    <TableHeader className="bg-custom-black hover:bg-custom-black">
+                      <TableRow>
+                        {/* <TableHead className="text-white ">Name</TableHead>
+                      <TableHead className="text-white text-center ">
+                        Total Leads Year To Date
+                      </TableHead> */}
+                        {/* <TableHead className="text-white ">
                         Leads with Sales
                       </TableHead>
                       <TableHead className="text-white ">
@@ -106,70 +146,102 @@ function SalesDashboard() {
 
                       <TableHead className="text-white ">
                         Leads with Compliance
-                      </TableHead>
+                      </TableHead> */}
 
-                      {/* <TableHead className="text-white ">Total Leads</TableHead> */}
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">
-                        Jared Palmer
-                      </TableCell>
-                      <TableCell className="text-center">55</TableCell>
+                        {/* <TableHead className="text-white ">Total Leads</TableHead> */}
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow
+                        onClick={() => handleClick(JaredPalmer)}
+                        className="cursor-pointer hover:text-blue-500"
+                      >
+                        <TableCell className="font-medium">
+                          Jared Palmer
+                        </TableCell>
+                        <TableCell className="text-center">55</TableCell>
+                      </TableRow>
+                      <TableRow
+                        onClick={() => handleClick(SarahJohnson)}
+                        className="cursor-pointer hover:text-blue-500"
+                      >
+                        <TableCell className="font-medium">
+                          Sarah Johnson
+                        </TableCell>
+                        <TableCell className="text-center">46</TableCell>
+                      </TableRow>
+                      <TableRow
+                        onClick={() => handleClick(AlexDoe)}
+                        className="cursor-pointer hover:text-blue-500"
+                      >
+                        <TableCell className="font-medium">Alex Doe</TableCell>
+                        <TableCell className="text-center ">24</TableCell>
+                      </TableRow>
 
-                      <TableCell className="text-center">7</TableCell>
-                      <TableCell className="text-center">10</TableCell>
-                      <TableCell className="text-center">10</TableCell>
+                      <TableRow>
+                        <TableCell className=" text-black font-bold">
+                          Total
+                        </TableCell>
 
-                      {/* <TableCell className="text-end">37</TableCell> */}
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">
-                        Sarah Johnson
-                      </TableCell>
-                      <TableCell className="text-center">46</TableCell>
-
-                      <TableCell className="text-center">15</TableCell>
-                      <TableCell className="text-center">8</TableCell>
-                      <TableCell className="text-center">10</TableCell>
-
-                      {/* <TableCell className="text-end">68</TableCell> */}
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Alex Doe</TableCell>
-                      <TableCell className="text-center">22</TableCell>
-
-                      <TableCell className="text-center">3</TableCell>
-                      <TableCell className="text-center">7</TableCell>
-                      <TableCell className="text-center">5</TableCell>
-
-                      {/* <TableCell className="text-end">45</TableCell> */}
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className=" text-black font-bold">
-                        Total
-                      </TableCell>
-
-                      <TableCell className="text-center text-black font-bold">
-                        123
-                      </TableCell>
-
-                      <TableCell className="text-center text-black font-bold">
-                        25
-                      </TableCell>
-                      <TableCell className="text-center text-black font-bold">
-                        25
-                      </TableCell>
-                      <TableCell className="text-center text-black font-bold">
-                        25
-                      </TableCell>
-                      {/* <TableCell className="text-end text-black font-bold">
-                        150
-                      </TableCell> */}
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                        <TableCell className="text-center text-black font-bold">
+                          125
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                  {record && (
+                    <div className="mb-2">
+                      <h1 className="text-center">
+                        <strong> Jared Palmer</strong>
+                      </h1>
+                      <ResponsiveContainer width="100%" height={300}>
+                        <BarChart
+                          data={record}
+                          className="  px-4 py-4 cursor-pointer"
+                          onClick={handleGraphClick}
+                        >
+                          <CartesianGrid strokeDasharray="4 4" />
+                          <XAxis dataKey="name" />
+                          <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                          <Legend />
+                          <Bar
+                            dataKey="leadsWithSales"
+                            fill="#58508d"
+                            name="Sales"
+                            barSize={50}
+                          />
+                          <Bar
+                            dataKey="leadsWithOnboarding"
+                            fill="#2563EB"
+                            name="Onboarding "
+                            barSize={50}
+                          />
+                          <Bar
+                            dataKey="leadsWithCompliance"
+                            fill="#60A5FA"
+                            name="Compliance"
+                            barSize={50}
+                          />
+                          <Bar
+                            dataKey="lost"
+                            fill="#93C5FD"
+                            name="lost"
+                            barSize={50}
+                          />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  )}
+                </CardContent>
+              </div>
+            </Card>
+            <Card className="w-1/2">
+              <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
+                <CardTitle className=" mb-5">Month Wise Onboarding</CardTitle>
+                <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
+              </CardHeader>
+              <CardContent>
+                <LineChart className=" aspect-[4/2]" />
               </CardContent>
             </Card>
           </div>
@@ -210,16 +282,16 @@ function LineChart(props) {
             id: "Mobile",
             data: [
               { x: "Jan", y: 5 },
-              { x: "Feb", y: 10 },
+              { x: "Feb", y: 15 },
               { x: "Mar", y: 5 },
-              { x: "Apr", y: 15 },
-              { x: "May", y: 5 },
+              { x: "Apr", y: 20 },
+              { x: "May", y: 10 },
               { x: "Jun", y: 5 },
-              { x: "Jul", y: 10 },
+              { x: "Jul", y: 15 },
               { x: "Aug", y: 5 },
               { x: "Sept", y: 20 },
               { x: "Oct", y: 15 },
-              { x: "Nov", y: 5 },
+              { x: "Nov", y: 10 },
             ],
           },
         ]}
