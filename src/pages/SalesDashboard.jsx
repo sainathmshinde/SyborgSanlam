@@ -14,11 +14,11 @@ import { DateRangePicker } from "@/components/ui/dateRangePicker";
 function SalesDashboard() {
   return (
     <div className="p-4">
-      {/* <h1 className="text-2xl font-bold">Sales Dashboard</h1> */}
+      <h1 className="text-2xl font-bold">Sales Dashboard</h1>
       <div className="flex  ">
         <main className="flex-1 grid py-4 ">
-          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mb-5"> */}
-          {/* <Card>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mb-5">
+            {/* <Card>
               <CardHeader className="h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
                   Total Leads
@@ -31,63 +31,51 @@ function SalesDashboard() {
                 </p>
               </CardContent>
             </Card> */}
-          {/* <Card>
+            <Card>
               <CardHeader className=" h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
-                  Total Leads year to date
+                  Clients onboarded year to date
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">100</div>
               </CardContent>
-            </Card> */}
+            </Card>
 
-          {/* <Card>
+            <Card>
               <CardHeader className="h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
-                  Leads with Sales
+                  Leads with compliance
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">25</div>
               </CardContent>
-            </Card> */}
-
-          {/* <Card>
+            </Card>
+            <Card>
               <CardHeader className="h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
                 <CardTitle className="text-sm font-medium">
-                  Leads with Onboarding
+                  Leads with onboarding
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">25</div>
               </CardContent>
-            </Card> */}
-
-          {/* <Card>
-              <CardHeader className="h-16 flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
-                <CardTitle className="text-sm font-medium">
-                  Leads with Compliance
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">25</div>
-              </CardContent>
-            </Card> */}
-          {/* </div> */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 ">
+            </Card>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
             <Card>
               <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
-                <CardTitle className=" mb-5">Month Wise Onboarding</CardTitle>
-                <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
+                <CardTitle className=" mb-5">Month wise onboarding</CardTitle>
+                <DateRangePicker placeholder="Jan 01 2024 - DEC 10 2024" />
               </CardHeader>
               <CardContent>
-                <LineChart className="w-full aspect-[4/2]" />
+                <LineChart className="w-full aspect-[4/3]" />
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 ">
-                <CardTitle className=" mb-5">Process Wise Breakup</CardTitle>
+                <CardTitle className=" mb-5">Relationship Managers</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -95,19 +83,15 @@ function SalesDashboard() {
                     <TableRow>
                       <TableHead className="text-white ">Name</TableHead>
                       <TableHead className="text-white ">
-                        Total Leads year to date
-                      </TableHead>
-                      <TableHead className="text-white ">
-                        Leads with Sales
-                      </TableHead>
-                      <TableHead className="text-white ">
-                        Leads with Onboarding
+                        Clients onboarded year to date
                       </TableHead>
 
                       <TableHead className="text-white ">
-                        Leads with Compliance
+                        Leads with compliance
                       </TableHead>
-
+                      <TableHead className="text-white ">
+                        Leads with onboarding
+                      </TableHead>
                       {/* <TableHead className="text-white ">Total Leads</TableHead> */}
                     </TableRow>
                   </TableHeader>
@@ -116,34 +100,28 @@ function SalesDashboard() {
                       <TableCell className="font-medium">
                         Jared Palmer
                       </TableCell>
-                      <TableCell className="text-center">55</TableCell>
+                      <TableCell className="text-end">20</TableCell>
 
-                      <TableCell className="text-center">7</TableCell>
-                      <TableCell className="text-center">10</TableCell>
-                      <TableCell className="text-center">10</TableCell>
-
+                      <TableCell className="text-end">7</TableCell>
+                      <TableCell className="text-end">10</TableCell>
                       {/* <TableCell className="text-end">37</TableCell> */}
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">
                         Sarah Johnson
                       </TableCell>
-                      <TableCell className="text-center">46</TableCell>
+                      <TableCell className="text-end">45</TableCell>
 
-                      <TableCell className="text-center">15</TableCell>
-                      <TableCell className="text-center">8</TableCell>
-                      <TableCell className="text-center">10</TableCell>
-
+                      <TableCell className="text-end">15</TableCell>
+                      <TableCell className="text-end">8</TableCell>
                       {/* <TableCell className="text-end">68</TableCell> */}
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">Alex Doe</TableCell>
-                      <TableCell className="text-center">22</TableCell>
+                      <TableCell className="text-end">35</TableCell>
 
-                      <TableCell className="text-center">3</TableCell>
-                      <TableCell className="text-center">7</TableCell>
-                      <TableCell className="text-center">5</TableCell>
-
+                      <TableCell className="text-end">3</TableCell>
+                      <TableCell className="text-end">7</TableCell>
                       {/* <TableCell className="text-end">45</TableCell> */}
                     </TableRow>
                     <TableRow>
@@ -151,17 +129,14 @@ function SalesDashboard() {
                         Total
                       </TableCell>
 
-                      <TableCell className="text-center text-black font-bold">
-                        123
+                      <TableCell className="text-end text-black font-bold">
+                        100
                       </TableCell>
 
-                      <TableCell className="text-center text-black font-bold">
+                      <TableCell className="text-end text-black font-bold">
                         25
                       </TableCell>
-                      <TableCell className="text-center text-black font-bold">
-                        25
-                      </TableCell>
-                      <TableCell className="text-center text-black font-bold">
+                      <TableCell className="text-end text-black font-bold">
                         25
                       </TableCell>
                       {/* <TableCell className="text-end text-black font-bold">
@@ -210,7 +185,7 @@ function LineChart(props) {
             id: "Mobile",
             data: [
               { x: "Jan", y: 5 },
-              { x: "Feb", y: 10 },
+              { x: "feb", y: 10 },
               { x: "Mar", y: 5 },
               { x: "Apr", y: 15 },
               { x: "May", y: 5 },

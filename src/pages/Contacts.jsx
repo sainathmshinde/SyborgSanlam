@@ -16,13 +16,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import WithLayout from "@/components/layout/WithLayout";
 import { useNavigate } from "react-router";
@@ -38,17 +31,14 @@ import {
 } from "@/components/ui/tooltip";
 import ClientType from "./ClientType";
 
-const LeadManagement = () => {
+const Contacts = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState("");
 
-  const LeadManagement = [
+  const contacts = [
     {
       id: 1,
       name: "Sarah Johnson",
-      date: "1/12/2024",
-
       stage: "Onboarding",
       email: "sarah.j@example.com",
       mobile: "+1234567890",
@@ -64,8 +54,6 @@ const LeadManagement = () => {
     {
       id: 2,
       name: "Merry Johnson",
-      date: "30/11/2024",
-
       stage: "Proposal",
       email: "merry@example.com",
       mobile: "+1234567866",
@@ -81,8 +69,6 @@ const LeadManagement = () => {
     {
       id: 4,
       name: "Jane Smith",
-      date: "2/12/2024",
-
       stage: " Lead",
       email: "jane@example.com",
       mobile: "+1234567811",
@@ -98,8 +84,6 @@ const LeadManagement = () => {
     {
       id: 3,
       name: "Bob Johnson",
-      date: "3/12/2024",
-
       stage: "Prospect",
       email: "bob@example.com",
       mobile: "+1234567822",
@@ -116,8 +100,6 @@ const LeadManagement = () => {
     {
       id: 3,
       name: "Carl El",
-      date: "4/12/2024",
-
       stage: "Lost",
       email: "carl@example.com",
       mobile: "+1234567891",
@@ -133,16 +115,8 @@ const LeadManagement = () => {
   ];
 
   const handleCreateContact = () => {
-    navigate("/createLeadManagement");
+    navigate("/createContact");
   };
-
-  const stages = Array.from(new Set(LeadManagement.map((item) => item.stage)));
-  // const filteredData = filter
-  //   ? LeadManagement.filter((item) => item.stage === filter)
-  //   : LeadManagement;
-  const clientTypes = Array.from(
-    new Set(LeadManagement.map((item) => item.clientType))
-  );
 
   return (
     <div>
@@ -153,16 +127,16 @@ const LeadManagement = () => {
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
-            placeholder="Search by Customer Name"
+            placeholder="Search leads..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white shadow-none appearance-none  md:w-2/3 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 dark:bg-gray-950"
           />
           {/* <div className="flex space-x-2">
             <Button
               variant={status === "pending" ? "default" : "outline"}
               // onClick={() => handleStatusFilter("pending")}
-              className="flex-1 md:flex-none "
+              className="flex-1 md:flex-none"
             >
               Qualified
             </Button>
@@ -190,126 +164,36 @@ const LeadManagement = () => {
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
                 <TableHead className="text-white">Customer Name</TableHead>
-                <TableHead className="text-white">Date</TableHead>
-                {/* <TableHead className="text-white">Client Type</TableHead> */}
-                <TableHead className="text-white">
-                  {" "}
-                  <div className="flex items-center space-x-2 text-black">
-                    <span className="text-white">Customer Type</span>
-                    <Select
-                      value={filter}
-                      onValueChange={(value) => setFilter(value)}
-                      className="text-black"
-                    >
-                      <SelectTrigger className="w-[40px] text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2.5}
-                          stroke="currentColor"
-                          className="h-20 w-20 text-black"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 9l7.5 7.5 7.5-7.5"
-                          />
-                        </svg>
-                      </SelectTrigger>
-                      <SelectContent className="text-black">
-                        {clientTypes.map((clientType) => (
-                          <SelectItem
-                            className="text-black"
-                            key={clientType}
-                            value={clientType}
-                          >
-                            {clientType}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </TableHead>
-
+                <TableHead className="text-white">Client Type</TableHead>
                 <TableHead className="text-white">Contact Name</TableHead>
                 <TableHead className="text-white">Email</TableHead>
                 <TableHead className="text-white">Mobile Number</TableHead>
                 <TableHead className="text-white">Country</TableHead>
-                {/* <TableHead className="text-white">Stage</TableHead> */}
-
-                <TableHead className="text-white">
-                  {" "}
-                  <div className="flex items-center space-x-2 text-black">
-                    <span className="text-white">Stages</span>
-                    <Select
-                      value={filter}
-                      onValueChange={(value) => setFilter(value)}
-                      className="text-black"
-                    >
-                      <SelectTrigger className="w-[40px] text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2.5}
-                          stroke="currentColor"
-                          className="h-20 w-20 text-black"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 9l7.5 7.5 7.5-7.5"
-                          />
-                        </svg>
-                      </SelectTrigger>
-                      <SelectContent className="text-black">
-                        <SelectItem value="all" className="text-black">
-                          All
-                        </SelectItem>
-                        {stages.map((stage) => (
-                          <SelectItem
-                            className="text-black"
-                            key={stage}
-                            value={stage}
-                          >
-                            {stage}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </TableHead>
-
+                <TableHead className="text-white">Stage</TableHead>
                 <TableHead className="text-white">Comment</TableHead>
 
                 <TableHead className="text-white">
                   Relationship Manager
                 </TableHead>
-                <TableHead className="text-white text-center">
-                  Actions
-                </TableHead>
+                <TableHead className="text-white">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {LeadManagement.map((LeadManagement) => (
-                <TableRow key={LeadManagement.id}>
-                  <TableCell>{LeadManagement.customer}</TableCell>
-                  <TableCell>{LeadManagement.date}</TableCell>
+              {contacts.map((contact) => (
+                <TableRow key={contact.id}>
+                  <TableCell>{contact.customer}</TableCell>
+                  <TableCell>{contact.clientType}</TableCell>
+                  <TableCell>{contact.name}</TableCell>
+                  <TableCell>{contact.email}</TableCell>
+                  <TableCell>{contact.mobile}</TableCell>
 
-                  <TableCell>{LeadManagement.clientType}</TableCell>
-                  <TableCell>{LeadManagement.name}</TableCell>
-
-                  <TableCell>{LeadManagement.email}</TableCell>
-                  <TableCell>{LeadManagement.mobile}</TableCell>
-
-                  <TableCell>{LeadManagement.country}</TableCell>
+                  <TableCell>{contact.country}</TableCell>
                   <TableCell>
-                    <Badge>{LeadManagement.stage}</Badge>
+                    <Badge>{contact.stage}</Badge>
                   </TableCell>
-                  <TableCell>{LeadManagement.comment}</TableCell>
+                  <TableCell>{contact.comment}</TableCell>
 
-                  <TableCell>{LeadManagement.relationshipManager}</TableCell>
+                  <TableCell>{contact.relationshipManager}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Button
@@ -317,7 +201,7 @@ const LeadManagement = () => {
                         size="icon"
                         className="text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => {
-                          navigate("/editLeadManagement");
+                          navigate("/viewcontact");
                         }}
                       >
                         <FilePenIcon className="h-4 w-4" />
@@ -339,7 +223,7 @@ const LeadManagement = () => {
                               variant="gost"
                               size="icon"
                               className="text-green-500 hover:bg-green-500 hover:text-white"
-                              disabled={LeadManagement.stage !== "Onboarding"}
+                              disabled={contact.stage !== "Onboarding"}
                               onClick={() => {
                                 navigate("/salesCustomerOnboarding");
                               }}
@@ -383,4 +267,4 @@ const LeadManagement = () => {
   );
 };
 
-export default WithLayout("sales")(LeadManagement);
+export default WithLayout("sales")(Contacts);

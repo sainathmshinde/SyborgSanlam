@@ -333,7 +333,7 @@ const CreateLead = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold mb-4">Teslack Organization Onboarding</h1>
+        <h1 className="text-2xl font-bold">Teslack Organization Onboarding</h1>
         {/* <div className="flex items-center space-x-2 mt-2">
           <Label htmlFor="assignTo" className="whitespace-nowrap required">
             Assign to
@@ -352,8 +352,8 @@ const CreateLead = () => {
           </Select>
         </div> */}
       </div>
-      <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 ">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
         <div className="space-y-2">
           <Label htmlFor="country" className="required">
             Country
@@ -384,7 +384,6 @@ const CreateLead = () => {
             }}
             value={clientType === "company" ? "company" : "individual"}
             disabled
-           
           >
             <SelectTrigger>
               <SelectValue placeholder="Select client type" />
@@ -1660,7 +1659,6 @@ const CreateLead = () => {
           </TabsContent>
         </Tabs>
       ) : null}
-    </div>
     </div>
   );
 };

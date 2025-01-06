@@ -32,8 +32,8 @@ const initialRoleObject = () => {
     permissions: [
       {
         id: 0,
-        type: "checklist",
-        name: "checklist",
+        type: "documents",
+        name: "documents",
         actions: {
           create: false,
           read: false,
@@ -65,8 +65,8 @@ const initialRoleObject = () => {
       },
       {
         id: 3,
-        type: "compliance",
-        name: "compliance",
+        type: "compilance",
+        name: "compilance",
         actions: {
           create: false,
           read: false,
@@ -266,31 +266,29 @@ function CreateRole() {
   return (
     <div className="w-full max-w-4xl">
       <div>
-        <h1 className="mb-6 mt-2 text-xl font-bold ">Create Role</h1>
+        <h1 className="mb-8 text-2xl font-bold ">Create Role</h1>
       </div>
       <div className="space-y-2">
-        <Card className="bg-gray-200  ">
-          <CardContent className="p-4 gap-4">
+        <Card className="bg-gray-200">
+          <CardContent className="p-4">
             {" "}
             <RInput
               label="Role Name"
               id="name"
               type="text"
-              placeholder="Enter Role Name"
-              className="w-full "
+              placeholder="Enter a Role Name"
+              className="w-full"
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
-              isRequired
             />
             <RInput
               label="Description"
               id="description"
               type="text"
-              placeholder="Enter Description"
+              placeholder="Enter a description"
               className="w-full"
               onChange={(event) => handleChange("description")(event)}
               value={role.description}
-              isRequired
             />
           </CardContent>
         </Card>
@@ -315,7 +313,7 @@ function CreateRole() {
         </Accordion>
       </div>
       <div className="flex justify-end mt-10">
-        <RButton onClick={handleSubmit}>Submit</RButton>
+        <RButton onClick={handleSubmit}>Save</RButton>
       </div>
     </div>
   );

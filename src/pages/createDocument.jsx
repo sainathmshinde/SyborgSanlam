@@ -8,8 +8,6 @@ import { useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { CircleArrowLeft } from "lucide-react";
 import country from "@/lib/country";
-import { Plus } from "lucide-react";
-
 import {
   Select,
   SelectContent,
@@ -38,7 +36,6 @@ function CreateUser() {
     country: "",
     clientType: "",
   });
-  
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [next, setNext] = useState(1);
@@ -80,7 +77,7 @@ function CreateUser() {
       initialState[category] = {
         isChecked:
           category === "Certificate" ||
-          category === "IdProof" ||
+          category === "BankStatement" ||
           category === "AddressProof", // Independent state for the category
         items: allDocuments[category].reduce((acc, item) => {
           acc[item] = false; // Independent state for each sub-item
@@ -115,15 +112,7 @@ function CreateUser() {
       },
     }));
   };
-  const [customDocuments, setCustomDocuments] = useState([]);
 
-  const handleAddDocument = () => {
-    const newDocument = prompt("Enter the new document name:");
-    if (newDocument) {
-      setCustomDocuments((prev) => [...prev, newDocument]);
-    }
-  };
-  
   return (
     <div className="w-full p-4">
       {next == 1 && (
@@ -136,12 +125,11 @@ function CreateUser() {
               {" "}
               <CircleArrowLeft className="w-8 h-8" />
             </div>
-            <h1 className="text-xl font-bold mb-4"> Create Checklist</h1>
+            <h1 className="text-2xl font-bold mb-4"> Create Checklist</h1>
             <div className="flex justify-end"></div>
           </div>
-         
-          <div className="mb-4 text-md bg-gray-200 border rounded-lg overflow-x-auto">
-            <div className="space-y-4 p-4">
+          <div className="mb-4 text-md">
+            <div className="space-y-4">
               <div className="flex flex-col">
                 {/* <div className="space-y-2 w-1/2">
                <Label htmlFor="name" className="text-md">
@@ -197,8 +185,8 @@ function CreateUser() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <Label htmlFor="doc" className="text-md  required">
-                    Select Applicable Document Types
+                  <Label htmlFor="doc" className="text-md ">
+                    Required Documents
                   </Label>
                   <div className="grid grid-cols-3 mt-2̦ gap-4">
                     {checklist.map((document) => (
@@ -222,21 +210,11 @@ function CreateUser() {
                       </Card>
                     ))}
                   </div>
-                  <div className="flex justify-end">
-                    <button
-                      onClick={handleAddDocument}
-                      className=" flex items-center justify-center
-                       w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-700"
-                      aria-label="Add document"
-                    >
-                      <Plus className="w-5 h-5" />
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-end mt-16">
+          <div className="flex justify-end">
             <RButton onClick={HandleNext} type="submit">
               Next
             </RButton>
@@ -254,12 +232,11 @@ function CreateUser() {
               </Label>
               <Input id="name" placeholder="Enter checklist name" />
             </div> */}
-                <div className="gap-4 "></div>
-                <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
-                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
-                  {/* <Label htmlFor="doc" className="text-2xl font-bold mb-4">
+                <div className="gap-4 mt-2"></div>
+                <div className="mt-4">
+                  <Label htmlFor="doc" className="text-lg font-bold">
                     Required Documents
-                  </Label> */}
+                  </Label>
                   <div className="grid grid-cols-3 gap-4">
                     {Object.keys(allDocuments).map((category) => (
                       <Card key={category} className="mt-4 gap-2 p-4">
@@ -298,7 +275,7 @@ function CreateUser() {
             </div>
             <div className="flex justify-end">
               <RButton onClick={() => navigate("/documentsList")} type="submit">
-                Submit
+                Create Checklist
               </RButton>
             </div>
           </div>

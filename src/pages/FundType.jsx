@@ -16,10 +16,10 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const fundTypes = [
-  { id: 1, name: "Equity", description: "Type of investment fund that primarily invests in stocks or shares of companies." },
-  { id: 2, name: "Money market", description: "Type of mutual fund that invests in short-term, low-risk, and highly liquid financial instruments." },
-  { id: 4, name: "Balanced", description: "Type of mutual fund that invests in a mix of different asset classes, such as stocks, bonds, and sometimes other investments like cash or real estate. " },
-  { id: 5, name: "Property", description: "Type of investment fund that primarily invests in real estate properties or real estate-related assets. " },
+  { id: 1, name: "Equity" },
+  { id: 2, name: "Money market" },
+  { id: 4, name: "Balanced" },
+  { id: 5, name: "Property" },
 ];
 
 const FundType = () => {
@@ -32,7 +32,7 @@ const FundType = () => {
   const handleDeleteFundType = () => {};
 
   const handleEdit = (id) => {
-    navigate("/editFundType");
+    navigate(`/createFundType/${id}`);
   };
 
   const handleNew = () => {
@@ -44,12 +44,12 @@ const FundType = () => {
         <div>
           <h1 className="text-2xl font-bold ">Fund Types</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex items-center justify-between mt-6 mb-6">
           <Input
             type="search"
-            placeholder="Search Fund Types..."
+            placeholder="Search fund type..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -59,19 +59,18 @@ const FundType = () => {
           >
             <span className="flex items-center">
               Create Fund Type
-              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
+              <CirclePlus className="ml-2 h-4 w-4" />
             </span>
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className=" rounded-lg shadow-lg">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2">Sr No.</TableHead>
+              <TableHead className="text-white p-2">Id</TableHead>
               <TableHead className="text-white p-2">Fund Type</TableHead>
-              <TableHead className="text-white p-2">Description</TableHead>
-              <TableHead className="p-2 px-8 text-white text-end">
+              <TableHead className="text-white p-2 text-right">
                 Actions
               </TableHead>
             </TableRow>
@@ -83,7 +82,6 @@ const FundType = () => {
                   <TableCell className="p-2">{item.id}</TableCell>
 
                   <TableCell className="p-2">{item.name}</TableCell>
-                  <TableCell className="p-2">{item.description}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

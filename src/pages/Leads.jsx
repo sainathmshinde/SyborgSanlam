@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 
 const Leads = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const leads = [
     {
@@ -69,19 +70,6 @@ const Leads = () => {
       assignedUser: "John Doe",
     },
   ];
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filterData = leads.filter((l) => {
-    const searchQuery = searchTerm.toLowerCase();
-    return (
-      l.firstName?.toLowerCase().includes(searchQuery) ||
-      false ||
-      l.lastName?.toLowerCase().includes(searchQuery) ||
-      false ||
-      l.email?.toLowerCase().includes(searchQuery) ||
-      false
-    );
-  });
 
   return (
     <div className="flex flex-col gap-8 p-4">
@@ -134,8 +122,8 @@ const Leads = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filterData.map((lead) => (
-                <TableRow key={lead.email}>
+              {leads.map((lead) => (
+                <TableRow key={lead.id}>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <div>

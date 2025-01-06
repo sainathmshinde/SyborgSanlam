@@ -1,10 +1,10 @@
 import ClientType from "@/pages/ClientType";
 import Compliance from "@/pages/Compliance";
 import ComplianceChecklist from "@/pages/ComplianceChecklist";
-// import Contacts from "@/pages/Contacts";
+import Contacts from "@/pages/Contacts";
 import Country from "@/pages/Country";
 import CreateChecklist from "@/pages/createDocument";
-// import CreateContact from "@/pages/CreateContact";
+import CreateContact from "@/pages/CreateContact";
 import CreateLead from "@/pages/CreateLead";
 import CreateOpportunity from "@/pages/CreateOpportunity";
 import CreateRole from "@/pages/CreateRole";
@@ -34,25 +34,10 @@ import Reports from "@/pages/Reports";
 import CustomerSuceess from "@/pages/customerSuceess";
 import CustomerOnboardSuceess from "@/pages/customerOnboardSuceess";
 import ComplianceDashboard from "@/pages/ComplianceDashboard";
-// import ViewContact from "@/pages/EditLeadManagement";
+import ViewContact from "@/pages/ViewContact";
 import SalesCustomerOnboarding from "@/pages/SalesCustomerOnboarding";
 import CreateDocument from "@/pages/createDocument";
 import ViewChecklist from "@/pages/viewChecklist";
-import CreateEntityType from "@/pages/CreateEntityType";
-import CreateClientType from "@/pages/CreateClientType";
-import CreateFundType from "@/pages/CreateFundType";
-import CreateCurrency from "@/pages/CreateCurrency";
-import EditTeams from "@/pages/EditTeams";
-import EditEntityType from "@/pages/EditEntityType";
-import EditClientType from "@/pages/EditClientType";
-import EditFundType from "@/pages/EditFundType";
-import EditCountry from "@/pages/EditCountry";
-import EditCurrency from "@/pages/EditCurrency";
-import EditRoles from "@/pages/EditRoles";
-import EditUsers from "@/pages/EditUsers";
-import LeadManagement from "@/pages/LeadManagement";
-import CreateLeadManagement from "@/pages/CreateLeadManagement";
-import EditLeadManagement from "@/pages/EditLeadManagement";
 
 const routes = [
   {
@@ -105,20 +90,15 @@ const routes = [
     path: "/createUser",
     component: <CreateUser />,
   },
-  // {
-  //   exact: true,
-  //   path: "/contacts",
-  //   component: <Contacts />,
-  // },
   {
     exact: true,
-    path: "/leadManagement",
-    component: <LeadManagement />,
+    path: "/contacts",
+    component: <Contacts />,
   },
   {
     exact: true,
-    path: "/createLeadManagement",
-    component: <CreateLeadManagement />,
+    path: "/createContact",
+    component: <CreateContact />,
   },
   {
     exact: true,
@@ -255,83 +235,13 @@ const routes = [
   },
   {
     exact: true,
-    path: "/editLeadManagement",
-    component: <EditLeadManagement />,
+    path: "/viewcontact",
+    component: <ViewContact />,
   },
   {
     exact: true,
     path: "/salesCustomerOnboarding",
     component: <SalesCustomerOnboarding />,
-  },
-  {
-    exact: true,
-    path: "/createEntityType",
-    component: <CreateEntityType />,
-  },
-  {
-    exact: true,
-    path: "/createrole",
-    component: <CreateRole />,
-  },
-  {
-    exact: true,
-    path: "/createClientType",
-    component: <CreateClientType />,
-  },
-  {
-    exact: true,
-    path: "/createFundType",
-    component: <CreateFundType />,
-  },
-  {
-    exact: true,
-    path: "/createCurrency",
-    component: <CreateCurrency />,
-  },
-  {
-    exact: true,
-    path: "/editTeams",
-    component: <EditTeams />,
-  },
-  {
-    exact: true,
-    path: "/editEntityType",
-    component: <EditEntityType />,
-  },
-  {
-    exact: true,
-    path: "/editClientType",
-    component: <EditClientType />,
-  },
-  {
-    exact: true,
-    path: "/editFundType",
-    component: <EditFundType />,
-  },
-  {
-    exact: true,
-    path: "/editCountry",
-    component: <EditCountry />,
-  },
-  {
-    exact: true,
-    path: "/editCurrency",
-    component: <EditCurrency />,
-  },
-  // {
-  //   exact: true,
-  //   path: "/editRole",
-  //   component: <EditRoles />,
-  // },
-  {
-    exact: true,
-    path: "/editRole",
-    component: <EditRoles />,
-  },
-  {
-    exact: true,
-    path: "/editUsers",
-    component: <EditUsers />,
   },
 ];
 

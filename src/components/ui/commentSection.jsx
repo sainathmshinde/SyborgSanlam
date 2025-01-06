@@ -13,7 +13,7 @@ export default function CommentSection() {
       avatar: "/placeholder.svg?height=40&width=40",
       content:
         "Initial consultation completed with client. Need to schedule a follow-up demo next week.",
-      timestamp: "06/12/2024",
+      timestamp: "2 hours ago",
     },
     {
       id: 2,
@@ -21,14 +21,14 @@ export default function CommentSection() {
       avatar: "/placeholder.svg?height=40&width=40",
       content:
         "Enhanced due diligence required. Source of funds documentation needs clarification. please request additional bank statements for the past 24 months.",
-      timestamp: "12/9/2024",
+      timestamp: "1 hour ago",
     },
     {
       id: 3,
       author: "Carol White",
       avatar: "/placeholder.svg?height=40&width=40",
       content: "Initial KYC documentation received from investor",
-      timestamp: "25/7/2024",
+      timestamp: "30 minutes ago",
     },
   ]);
   const [newComment, setNewComment] = useState("");

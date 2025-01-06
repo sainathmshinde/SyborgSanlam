@@ -196,7 +196,7 @@ const CurrencyPage = () => {
   const handleDeleteCurrency = () => {};
 
   const handleEdit = (id) => {
-    navigate("/editCurrency");
+    navigate(`/createCurrency/${id}`);
   };
 
   const handleNew = () => {
@@ -208,12 +208,12 @@ const CurrencyPage = () => {
         <div>
           <h1 className="text-2xl font-bold ">Currency</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex items-center justify-between mt-6 mb-6">
           <Input
             type="search"
-            placeholder="Search Currency ..."
+            placeholder="Search currency ..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -223,26 +223,22 @@ const CurrencyPage = () => {
           >
             <span className="flex items-center">
               Create Currency
-              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
+              <CirclePlus className="ml-2 h-4 w-4" />
             </span>
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className=" rounded-lg shadow-lg">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-              <TableHead className="text-white p-2 pr-10">Sr No.</TableHead>
-              <TableHead className="text-white p-2 pr-10">Country</TableHead>
-              <TableHead className="text-white p-2 pr-16">
-                Currency Name
-              </TableHead>
-              <TableHead className="text-white p-2 pr-20">Code</TableHead>
+              <TableHead className="text-white p-2">Id</TableHead>
+              <TableHead className="text-white p-2">Country</TableHead>
+              <TableHead className="text-white p-2">Currency Name</TableHead>
+              <TableHead className="text-white p-2">Code</TableHead>
               <TableHead className="text-white p-2">Symbol</TableHead>
 
-              <TableHead className="p-2 px-8 text-white text-end">
-                Actions
-              </TableHead>
+              <TableHead className="p-2 text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
