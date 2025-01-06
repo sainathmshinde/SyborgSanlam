@@ -338,7 +338,7 @@ function Profile() {
           <UploadDocuments />
         </div>
       ) : (
-        <div>
+        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
             <div className="flex items-start gap-4">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
@@ -388,14 +388,14 @@ function Profile() {
                     <Label htmlFor="firstName" className="required">
                       First Name
                     </Label>
-                    <Input id="firstName" placeholder="John" value="Sarah" />
+                    <Input id="firstName" placeholder="John" value="Sipho" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="lastName" className="required">
                       Last Name
                     </Label>
-                    <Input id="lastName" placeholder="Doe" value="Johnson" />
+                    <Input id="lastName" placeholder="Doe" value="Keita" />
                   </div>
 
                   <div className="space-y-2">
@@ -406,7 +406,7 @@ function Profile() {
                       id="email"
                       type="email"
                       placeholder="john@example.com"
-                      value="sarahjohnson@example.com"
+                      value="siphokeita@example.com"
                     />
                   </div>
 
@@ -418,7 +418,7 @@ function Profile() {
                       id="mobile"
                       type="tel"
                       placeholder="555-1234"
-                      value="0824567890"
+                      value="0824555555"
                     />
                   </div>
 
@@ -437,7 +437,7 @@ function Profile() {
                       id="employer"
                       name="employer"
                       placeholder="Employer"
-                      value="Teslack Organization"
+                      value="Eskom Organization"
                     />
                   </div>
 
