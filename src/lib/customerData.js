@@ -1,7 +1,6 @@
 const leads = [
   {
     Name: "Sarah Johnson",
-    Date: "2/12/2024",
     Customer: "Teslack Organization",
     ClientType: "Company",
     Stage: "Pending",
@@ -11,7 +10,6 @@ const leads = [
   },
   {
     Customer: "John Doe",
-    Date: "3/12/2024",
     Name: "John Doe",
     ClientType: "Individual",
     Stage: "Pending",
@@ -21,7 +19,6 @@ const leads = [
   },
   {
     Customer: "Jane Smith",
-    Date: "4/12/2024",
     Name: "Jane Smith",
     ClientType: "Trust",
     Stage: "Pending",
@@ -31,7 +28,6 @@ const leads = [
   },
   {
     Customer: "ABC Corporation",
-    Date: "5/12/2024",
     Name: "Michael Brown",
     ClientType: "Company",
     Stage: "Pending",
@@ -41,7 +37,6 @@ const leads = [
   },
   {
     Customer: "David Wilson",
-    Date: "6/12/2024",
     Name: "David Wilson",
     ClientType: "Individual",
     Stage: "Pending",
@@ -51,7 +46,6 @@ const leads = [
   },
   {
     Customer: "Crios Trust",
-    Date: "7/12/2024",
     Name: "Emily Davis",
     ClientType: "Trust",
     Stage: "Pending",
@@ -61,7 +55,6 @@ const leads = [
   },
   {
     Customer: "CrioSoft",
-    Date: "8/12/2024",
     Name: "Daniel Martinez",
     ClientType: "Company",
     Stage: "Pending",
@@ -71,7 +64,6 @@ const leads = [
   },
   {
     Customer: "Olivia Garcia Partners",
-    Date: "9/12/2024",
     Name: "Olivia Garcia",
     ClientType: "Partnership",
     Stage: "Pending",
@@ -81,7 +73,6 @@ const leads = [
   },
   {
     Customer: "Liam White",
-    Date: "10/12/2024",
     Name: "Liam White",
     ClientType: "Individual",
     Stage: "Pending",
@@ -91,7 +82,6 @@ const leads = [
   },
   {
     Customer: "Lia Trust",
-    Date: "12/12/2024",
     Name: "Sophia Lewis",
     ClientType: "Trust",
     Stage: "Pending",

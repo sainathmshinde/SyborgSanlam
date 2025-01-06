@@ -16,12 +16,12 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const entities = [
-  { id: 1, name: "Customer", description: "Their involvement or responsibilities in a project or business relationship."},
-  { id: 2, name: "Broker", description: "A broker acts as an intermediary between two parties to facilitate a transaction or agreement." },
-  { id: 3, name: "Bank", description:"Providing financial services to individuals, businesses, and governments." },
-  { id: 4, name: "Fund", description:"It involves pooling resources from investors to achieve specific financial objectives."},
-  { id: 5, name: "Company", description:"Its purpose and responsibilities in a specific context, such as in the economy, a project, or an industry. " },
-  { id: 5, name: "Trust", description:"Managing and safeguarding assets on behalf of beneficiaries." },
+  { id: 1, name: "Client" },
+  { id: 2, name: "Broker" },
+  { id: 3, name: "Bank" },
+  { id: 4, name: "Fund" },
+  { id: 5, name: "Company" },
+  { id: 5, name: "Trust" },
 ];
 
 const EntityType = () => {
@@ -29,20 +29,12 @@ const EntityType = () => {
 
   const [entity, setEntity] = useState(entities);
   const [entityIndex, setEntityIndex] = useState(0);
-  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const filterData = entities.filter((entity) =>
-    entity.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+  const handleSearch = () => {};
   const handleDeleteEntity = () => {};
 
   const handleEdit = (id) => {
-    navigate(`/editEntityType`);
+    navigate(`/createEntityType/${id}`);
   };
 
   const handleNew = () => {
@@ -54,12 +46,12 @@ const EntityType = () => {
         <div>
           <h1 className="text-2xl font-bold ">Entity Types</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex items-center justify-between mt-6 mb-6">
           <Input
             type="search"
-            placeholder="Search Entity Types..."
+            placeholder="Search entity..."
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -69,31 +61,29 @@ const EntityType = () => {
           >
             <span className="flex items-center">
               Create Entity Type
-              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
+              <CirclePlus className="ml-2 h-4 w-4" />
             </span>
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className=" rounded-lg shadow-lg">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
-              <TableHead className="p-2 text-white">Sr No.</TableHead>
+              <TableHead className="p-2 text-white">Id</TableHead>
               <TableHead className="p-2 text-white">Entity Type</TableHead>
-              <TableHead className="p-2 text-white">Description</TableHead>
-              <TableHead className="p-2 px-8 text-white text-end">
+              <TableHead className="p-2 text-white text-right">
                 Actions
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filterData?.length ? (
-              filterData?.map((item) => (
+            {entity?.length ? (
+              entity?.map((item) => (
                 <TableRow key={item.name}>
                   <TableCell className="p-2">{item.id}</TableCell>
 
                   <TableCell className="p-2">{item.name}</TableCell>
-                  <TableCell className="p-2">{item.description}</TableCell>
                   <TableCell className="p-2 text-right">
                     <div className="flex justify-end">
                       <RButton

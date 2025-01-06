@@ -140,14 +140,6 @@ function Profile() {
       type: "Individual",
       designation: "Director",
     },
-    {
-      firstName: "Bob",
-      lastName: "Johnson",
-      email: "bob.johnson@example.com",
-      mobile: "+1 (555) 111-3333",
-      type: "Individual",
-      designation: "Director",
-    },
   ]);
   const documentCategories = {
     "Company Documents": {
@@ -159,11 +151,11 @@ function Profile() {
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
 
-    "ID Proof Alice Johnson": {
+    "ID Proof Director 1": {
       main: "ID Document",
       subOptions: ["National ID", "PAN Card", "Passport"],
     },
-    "ID Proof Bob Johnson": {
+    "ID Proof Director 2": {
       main: "ID Document",
       subOptions: ["National ID", "PAN Card", "Passport"],
     },
@@ -338,7 +330,7 @@ function Profile() {
           <UploadDocuments />
         </div>
       ) : (
-        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+        <div>
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
             <div className="flex items-start gap-4">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
@@ -388,14 +380,14 @@ function Profile() {
                     <Label htmlFor="firstName" className="required">
                       First Name
                     </Label>
-                    <Input id="firstName" placeholder="John" value="Sipho" />
+                    <Input id="firstName" placeholder="John" value="Sarah" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="lastName" className="required">
                       Last Name
                     </Label>
-                    <Input id="lastName" placeholder="Doe" value="Keita" />
+                    <Input id="lastName" placeholder="Doe" value="Johnson" />
                   </div>
 
                   <div className="space-y-2">
@@ -406,7 +398,7 @@ function Profile() {
                       id="email"
                       type="email"
                       placeholder="john@example.com"
-                      value="siphokeita@example.com"
+                      value="sarahjohnson@example.com"
                     />
                   </div>
 
@@ -418,7 +410,7 @@ function Profile() {
                       id="mobile"
                       type="tel"
                       placeholder="555-1234"
-                      value="0824555555"
+                      value="0824567890"
                     />
                   </div>
 
@@ -437,7 +429,7 @@ function Profile() {
                       id="employer"
                       name="employer"
                       placeholder="Employer"
-                      value="Eskom Organization"
+                      value="Teslack Organization"
                     />
                   </div>
 

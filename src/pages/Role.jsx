@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
-export const initialRoles = [
+const initialRoles = [
   {
     id: 1,
     name: "Admin",
@@ -126,14 +126,7 @@ const Role = () => {
   //     await getPaginatedRoles(pageModel, event.target.value);
   //   };
 
-  const [searchterm, setSearchTerm] = useState("");
-  const filterData = roles.filter((role) =>
-    role.name.toLocaleLowerCase().includes(searchterm.toLowerCase())
-  );
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  const handleSearch = () => {};
   const handleDeleteRole = () => {};
   //   const handleDeleteRole = async (roleId) => {
   //     let response = await deleteRole(roleId);
@@ -161,7 +154,7 @@ const Role = () => {
   //   };
 
   const handleEdit = (id) => {
-    navigate("/editRole");
+    navigate(`/createrole`);
   };
 
   const handleNew = () => {
@@ -173,13 +166,12 @@ const Role = () => {
         <div>
           <h1 className="text-2xl font-bold ">Roles</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex items-center justify-between mt-6 mb-6">
           <Input
             type="search"
             placeholder="Search Roles..."
-            value={searchterm}
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full bg-white shadow-none appearance-none pl-8 md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -189,25 +181,25 @@ const Role = () => {
           >
             <span className="flex items-center">
               Create Role
-              {/* <CirclePlus className="ml-2 h-4 w-4" /> */}
+              <CirclePlus className="ml-2 h-4 w-4" />
             </span>
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className="rounded-lg">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
-              <TableHead className="p-2 text-white text-center">
+              <TableHead className="p-2 text-white text-right">
                 Actions
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filterData?.length ? (
-              filterData?.map((role) => (
+            {roles?.length ? (
+              roles?.map((role) => (
                 <TableRow key={role.name}>
                   <TableCell className="p-2">{role.name}</TableCell>
                   <TableCell className="p-2">{role.description}</TableCell>
@@ -217,7 +209,7 @@ const Role = () => {
                         variant="ghost"
                         className="flex items-center gap-2 "
                         onClick={() => {
-                          handleEdit();
+                          handleEdit(role.id);
                         }}
                       >
                         <FilePenIcon className="h-4 w-4" />

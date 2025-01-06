@@ -49,17 +49,16 @@ export default function Login() {
         </CardHeader>
         <CardContent>
           {step === 1 ? (
-            <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
             <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2 ">
+              <div className="space-y-2">
                 <Label htmlFor="email" className="required">
                   Email
                 </Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="siphokeita@example.com"
-                  value="siphokeita@example.com"
+                  placeholder="sarahjohnson@example.com"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -70,9 +69,9 @@ export default function Login() {
                 <Input
                   id="password"
                   type="password"
-                  value="sipho@123"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter Password"
+                  placeholder="********"
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
@@ -80,9 +79,7 @@ export default function Login() {
                 Login
               </Button>
             </form>
-            </div>
           ) : (
-            <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
             <form onSubmit={handleOtpVerification} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="otp" className="required">
@@ -92,7 +89,7 @@ export default function Login() {
                   id="otp"
                   type="text"
                   placeholder="1234"
-                  value="1234"
+                  value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />
               </div>
@@ -101,7 +98,6 @@ export default function Login() {
                 Verify OTP
               </Button>
             </form>
-            </div>
           )}
 
           <div className="mt-4 text-center text-sm">
