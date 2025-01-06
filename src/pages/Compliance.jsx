@@ -16,6 +16,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { DateRangePicker } from "@/components/ui/dateRangePicker";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { useNavigate, useParams } from "react-router";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -118,18 +128,7 @@ const Compliance = () => {
       Country: "India",
       AssignedTo: "Lisa Anderson",
     },
-    {
-      id: 4,
-      Customer: "Harper Ward",
-      Name: "Harper Ward",
-      Date: "6/12/2024",
-      ClientType: "Individual",
-      Stage: "Approved",
-      MobileNumber: "0859012345",
-      Email: "harperward@example.com",
-      Country: "Australia",
-      AssignedTo: "David Thompson",
-    },
+    
     {
       id: 5,
       Customer: "Harper Ward",
@@ -142,138 +141,138 @@ const Compliance = () => {
       Country: "South Africa",
       AssignedTo: "Samantha Green",
     },
-    {
-      id: 6,
-      Customer: "Harper Ward",
-      Name: "Ella Gray",
-      Date: "8/12/2024",
-      ClientType: "Company",
-      Stage: "Pending",
-      MobileNumber: "0861234567",
-      Email: "ellagray@example.com",
-      Country: "United States",
-      AssignedTo: "Lisa Anderson",
-    },
-    {
-      id: 7,
-      Customer: "Harper Ward",
-      Name: "Liam Murphy",
-      Date: "9/12/2024",
-      ClientType: "Partnership",
-      Stage: "Approved",
-      MobileNumber: "0862345678",
-      Email: "liammurphy@example.com",
-      Country: "United Kingdom",
-      AssignedTo: "David Thompson",
-    },
-    {
-      id: 8,
-      Customer: "Harper Ward",
-      Name: "Charlotte Barnes",
-      Date: "10/12/2024",
-      ClientType: "Individual",
-      Stage: "Approved",
-      MobileNumber: "0863456789",
-      Email: "charlottebarnes@example.com",
-      Country: "South Africa",
-      AssignedTo: "Samantha Green",
-    },
-    {
-      id: 9,
-      Customer: "Harper Ward",
-      Name: "Amelia Shaw",
-      Date: "11/12/2024",
-      ClientType: "Trust",
-      Stage: "Pending",
-      MobileNumber: "0864567890",
-      Email: "ameliashaw@example.com",
-      Country: "Canada",
-      AssignedTo: "Lisa Anderson",
-    },
-    {
-      id: 10,
-      Customer: "Harper Ward",
-      Name: "Henry Patterson",
-      Date: "12/12/2024",
-      ClientType: "Company",
-      Stage: "Approved",
-      MobileNumber: "0865678901",
-      Email: "henrypatterson@example.com",
-      Country: "New Zealand",
-      AssignedTo: "David Thompson",
-    },
-    {
-      id: 11,
-      Customer: "Harper Ward",
-      Name: "Lucas Wallace",
-      Date: "13/12/2024",
-      ClientType: "Partnership",
-      Stage: "Approved",
-      MobileNumber: "0866789012",
-      Email: "lucaswallace@example.com",
-      Country: "Australia",
-      AssignedTo: "Samantha Green",
-    },
-    {
-      id: 12,
-      Customer: "Harper Ward",
-      Name: "Isla Mitchell",
-      Date: "14/12/2024",
-      ClientType: "Individual",
-      Stage: "Pending",
-      MobileNumber: "0867890123",
-      Email: "islamitchell@example.com",
-      Country: "South Africa",
-      AssignedTo: "Lisa Anderson",
-    },
-    {
-      id: 13,
-      Customer: "Harper Ward",
-      Name: "Oscar Knight",
-      Date: "15/12/2024",
-      ClientType: "Trust",
-      Stage: "Approved",
-      MobileNumber: "0868901234",
-      Email: "oscarKnight@example.com",
-      Country: "United States",
-      AssignedTo: "David Thompson",
-    },
-    {
-      id: 14,
-      Customer: "Harper Ward",
-      Name: "Grace Cooper",
-      Date: "16/12/2024",
-      ClientType: "Company",
-      Stage: "Approved",
-      MobileNumber: "0869012345",
-      Email: "gracecooper@example.com",
-      Country: "United Kingdom",
-      AssignedTo: "Samantha Green",
-    },
-    {
-      id: 15,
-      Customer: "Harper Ward",
-      Name: "Emily Turner",
-      Date: "17/12/2024",
-      ClientType: "Partnership",
-      Stage: "Pending",
-      MobileNumber: "0870123456",
-      Email: "emilyturner@example.com",
-      Country: "Canada",
-      AssignedTo: "Lisa Anderson",
-    },
-    {
-      id: 16,
-      Customer: "Harper Ward",
-      Name: "James Simmons",
-      Date: "18/12/2024",
-      ClientType: "Individual",
-      Stage: "Approved",
-      MobileNumber: "0871234567",
-      Email: "jamessimmons@example.com",
-      Country: "India",
-      AssignedTo: "David Thompson",
-    },
+    // {
+    //   id: 6,
+    //   Customer: "Harper Ward",
+    //   Name: "Ella Gray",
+    //   Date: "8/12/2024",
+    //   ClientType: "Company",
+    //   Stage: "Pending",
+    //   MobileNumber: "0861234567",
+    //   Email: "ellagray@example.com",
+    //   Country: "United States",
+    //   AssignedTo: "Lisa Anderson",
+    // },
+    // {
+    //   id: 7,
+    //   Customer: "Harper Ward",
+    //   Name: "Liam Murphy",
+    //   Date: "9/12/2024",
+    //   ClientType: "Partnership",
+    //   Stage: "Approved",
+    //   MobileNumber: "0862345678",
+    //   Email: "liammurphy@example.com",
+    //   Country: "United Kingdom",
+    //   AssignedTo: "David Thompson",
+    // },
+    // {
+    //   id: 8,
+    //   Customer: "Harper Ward",
+    //   Name: "Charlotte Barnes",
+    //   Date: "10/12/2024",
+    //   ClientType: "Individual",
+    //   Stage: "Approved",
+    //   MobileNumber: "0863456789",
+    //   Email: "charlottebarnes@example.com",
+    //   Country: "South Africa",
+    //   AssignedTo: "Samantha Green",
+    // },
+    // {
+    //   id: 9,
+    //   Customer: "Harper Ward",
+    //   Name: "Amelia Shaw",
+    //   Date: "11/12/2024",
+    //   ClientType: "Trust",
+    //   Stage: "Pending",
+    //   MobileNumber: "0864567890",
+    //   Email: "ameliashaw@example.com",
+    //   Country: "Canada",
+    //   AssignedTo: "Lisa Anderson",
+    // },
+    // {
+    //   id: 10,
+    //   Customer: "Harper Ward",
+    //   Name: "Henry Patterson",
+    //   Date: "12/12/2024",
+    //   ClientType: "Company",
+    //   Stage: "Approved",
+    //   MobileNumber: "0865678901",
+    //   Email: "henrypatterson@example.com",
+    //   Country: "New Zealand",
+    //   AssignedTo: "David Thompson",
+    // },
+    // {
+    //   id: 11,
+    //   Customer: "Harper Ward",
+    //   Name: "Lucas Wallace",
+    //   Date: "13/12/2024",
+    //   ClientType: "Partnership",
+    //   Stage: "Approved",
+    //   MobileNumber: "0866789012",
+    //   Email: "lucaswallace@example.com",
+    //   Country: "Australia",
+    //   AssignedTo: "Samantha Green",
+    // },
+    // {
+    //   id: 12,
+    //   Customer: "Harper Ward",
+    //   Name: "Isla Mitchell",
+    //   Date: "14/12/2024",
+    //   ClientType: "Individual",
+    //   Stage: "Pending",
+    //   MobileNumber: "0867890123",
+    //   Email: "islamitchell@example.com",
+    //   Country: "South Africa",
+    //   AssignedTo: "Lisa Anderson",
+    // },
+    // {
+    //   id: 13,
+    //   Customer: "Harper Ward",
+    //   Name: "Oscar Knight",
+    //   Date: "15/12/2024",
+    //   ClientType: "Trust",
+    //   Stage: "Approved",
+    //   MobileNumber: "0868901234",
+    //   Email: "oscarKnight@example.com",
+    //   Country: "United States",
+    //   AssignedTo: "David Thompson",
+    // },
+    // {
+    //   id: 14,
+    //   Customer: "Harper Ward",
+    //   Name: "Grace Cooper",
+    //   Date: "16/12/2024",
+    //   ClientType: "Company",
+    //   Stage: "Approved",
+    //   MobileNumber: "0869012345",
+    //   Email: "gracecooper@example.com",
+    //   Country: "United Kingdom",
+    //   AssignedTo: "Samantha Green",
+    // },
+    // {
+    //   id: 15,
+    //   Customer: "Harper Ward",
+    //   Name: "Emily Turner",
+    //   Date: "17/12/2024",
+    //   ClientType: "Partnership",
+    //   Stage: "Pending",
+    //   MobileNumber: "0870123456",
+    //   Email: "emilyturner@example.com",
+    //   Country: "Canada",
+    //   AssignedTo: "Lisa Anderson",
+    // },
+    // {
+    //   id: 16,
+    //   Customer: "Harper Ward",
+    //   Name: "James Simmons",
+    //   Date: "18/12/2024",
+    //   ClientType: "Individual",
+    //   Stage: "Approved",
+    //   MobileNumber: "0871234567",
+    //   Email: "jamessimmons@example.com",
+    //   Country: "India",
+    //   AssignedTo: "David Thompson",
+    // },
   ];
 
   const stages = Array.from(
@@ -305,6 +304,7 @@ const Compliance = () => {
     <option value="stage2">Pending</option>
     <option value="stage3">Rejected</option>
   </select>
+  <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
         </div>
       </div>
       <div className="rounded-lg bg-white overflow-x-auto">
@@ -513,6 +513,24 @@ const Compliance = () => {
           </TableBody>
         </Table>
       </div>
+      <div className="flex mt-4">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink href="#">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationNext href="#" />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
     </div>
     //   </div>
     // </div>
