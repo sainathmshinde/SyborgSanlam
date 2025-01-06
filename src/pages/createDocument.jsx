@@ -136,7 +136,7 @@ function CreateUser() {
               {" "}
               <CircleArrowLeft className="w-8 h-8" />
             </div>
-            <h1 className="text-xl font-bold mb-4"> Create Checklist</h1>
+            <h1 className="text-xl font-bold mb-4"> Create New Checklist</h1>
             <div className="flex justify-end"></div>
           </div>
          
@@ -175,7 +175,7 @@ function CreateUser() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="client-type" className="required">
-                      Client Type
+                      Customer Type
                     </Label>
                     <Select
                       id="clientType"
@@ -185,7 +185,7 @@ function CreateUser() {
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select client type" />
+                        <SelectValue placeholder="Select customer type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="individual">Individual</SelectItem>

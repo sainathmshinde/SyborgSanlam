@@ -358,7 +358,7 @@ const CreateLead = () => {
           <Label htmlFor="country" className="required">
             Country
           </Label>
-          <Select id="country" value="sa" disabled>
+          <Select id="country" value="sa">
             <SelectTrigger>
               <SelectValue placeholder="Select country" />
             </SelectTrigger>
@@ -375,7 +375,7 @@ const CreateLead = () => {
         </div>
         <div className="space-y-2">
           <Label htmlFor="client-type" className="required">
-            Client Type
+            Customer Type
           </Label>
           <Select
             id="client-type"
@@ -383,7 +383,7 @@ const CreateLead = () => {
               setClientType(e);
             }}
             value={clientType === "company" ? "company" : "individual"}
-            disabled
+            
            
           >
             <SelectTrigger>
@@ -1506,9 +1506,9 @@ const CreateLead = () => {
                 </Table>
               </CardContent>
               <div className="my-10 flex justify-end mx-5">
-                <Button variant="outline" onClick={() => navigate("/leads")}>
+                {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
-                </Button>
+                </Button> */}
                 <Button className="ml-5" onClick={handleCreateLead}>
                   Initiate Onboarding
                 </Button>

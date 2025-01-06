@@ -6,6 +6,7 @@ import RButton from "@/components/ui/rButton";
 import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const EditEntityType = () => {
   const [entity, setEntity] = useState({
@@ -19,6 +20,12 @@ const EditEntityType = () => {
       [field]: value,
     }));
   };
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/entityType"); 
+  };
+
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
@@ -56,7 +63,10 @@ const EditEntityType = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Update</RButton>
+            <RButton variant="outline" onClick={goBack}>
+                                                  Back
+                                                </RButton>
+            <RButton className="ml-5" type="submit">Update</RButton>
           </div>
         </form>
       </div>

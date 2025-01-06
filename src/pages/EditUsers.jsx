@@ -24,6 +24,14 @@ const EditUsers = () => {
       [field]: value,
     }));
   };
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/users"); 
+  };
+  const handleSubmit = () => {
+    console.log("Submitted user data:", user);
+    
+  };
 
   return (
     <div className="mx-auto p-4">
@@ -124,9 +132,12 @@ const EditUsers = () => {
             </CardContent>
           </Card>
 
-          <div className="flex justify-end">
-            <RButton type="submit">Update</RButton>
-          </div>
+          <div className="flex justify-end mt-10">
+                <RButton variant="outline" onClick={goBack}>
+              Back
+            </RButton>
+                  <RButton className="ml-5" onClick={handleSubmit}>update</RButton>
+                </div>
         </form>
       </div>
     </div>
