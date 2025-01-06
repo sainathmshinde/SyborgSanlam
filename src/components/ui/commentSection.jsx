@@ -81,6 +81,12 @@ export default function CommentSection() {
           </div>
         ))}
       </div>
+      {/* <div className="flex justify-end space-x-4">
+        <Button variant="outline" onClick={() => navigate("/leadManagement")}>
+          Back
+        </Button>
+        <Button onClick={() => navigate("/leadManagement")}>Update</Button>
+      </div> */}
     </div>
   );
 }

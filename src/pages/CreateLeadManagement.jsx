@@ -449,10 +449,10 @@ const CreateLeadManagement = () => {
                   variant="outline"
                   onClick={() => navigate("/leadManagement")}
                 >
-                  Cancel
+                  Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
-                  Submit
+                  Save
                 </Button>
               </div>
             </form>
@@ -480,66 +480,25 @@ const CreateLeadManagement = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="name">
-                        Contact Person
+                      <Label htmlFor="country">
+                        Customer Type
                         <span className="text-red-600 ml-1">*</span>
                       </Label>
-                      <Input
-                        id="contactName"
-                        value={newContact.contactName}
-                        onChange={(e) =>
-                          setNewContact({
-                            ...newContact,
-                            contactName: e.target.value,
-                          })
-                        }
-                        placeholder="Enter Name"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="mobile">
-                        Mobile<span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="mobile"
-                        value={newContact.mobile}
-                        onChange={(e) =>
-                          setNewContact({
-                            ...newContact,
-                            mobile: e.target.value,
-                          })
-                        }
-                        placeholder="Enter Mobile Number"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">
-                        Email<span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={newContact.email}
-                        onChange={(e) =>
-                          setNewContact({
-                            ...newContact,
-                            email: e.target.value,
-                          })
-                        }
-                        placeholder="Enter Email"
-                        className="w-full"
-                      />
+                      <Select id="source">
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select Customer Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Website">Company</SelectItem>
+                          <SelectItem value="Trade Show">Individual</SelectItem>
+                          <SelectItem value="Referral">Partnership</SelectItem>
+                          <SelectItem value="Cold Call">Trust</SelectItem>
+                          <SelectItem value="Cold Call">Fund</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-              {/* Address Information Card */}
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Address Information</h2> */}
-                  <div className="space-y-4">
+                  <div className="space-y-4 mt-4">
                     <div className="space-y-2">
                       <Label htmlFor="address">
                         Address<span className="text-red-600 ml-1">*</span>
@@ -605,13 +564,73 @@ const CreateLeadManagement = () => {
                   </div>
                 </CardContent>
               </Card>
+              {/* Address Information Card */}
+              <Card className="bg-gray-200">
+                <CardContent className="p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">
+                        Contact Person
+                        <span className="text-red-600 ml-1">*</span>
+                      </Label>
+                      <Input
+                        id="contactName"
+                        value={newContact.contactName}
+                        onChange={(e) =>
+                          setNewContact({
+                            ...newContact,
+                            contactName: e.target.value,
+                          })
+                        }
+                        placeholder="Enter Name"
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="mobile">
+                        Mobile<span className="text-red-600 ml-1">*</span>
+                      </Label>
+                      <Input
+                        id="mobile"
+                        value={newContact.mobile}
+                        onChange={(e) =>
+                          setNewContact({
+                            ...newContact,
+                            mobile: e.target.value,
+                          })
+                        }
+                        placeholder="Enter Mobile Number"
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">
+                        Email<span className="text-red-600 ml-1">*</span>
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={newContact.email}
+                        onChange={(e) =>
+                          setNewContact({
+                            ...newContact,
+                            email: e.target.value,
+                          })
+                        }
+                        placeholder="Enter Email"
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
               <div className="flex justify-end space-x-4 pt-4">
                 <Button
                   variant="outline"
                   onClick={() => navigate("/leadManagement")}
                 >
-                  Cancel
+                  Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
                   Save

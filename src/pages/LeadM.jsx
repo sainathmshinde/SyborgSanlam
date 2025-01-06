@@ -39,7 +39,7 @@ import {
 import ClientType from "./ClientType";
 import { DateRangePicker } from "@/components/ui/dateRangePicker";
 
-const LeadManagement = () => {
+const LeadM = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
@@ -67,7 +67,7 @@ const LeadManagement = () => {
       name: "Merry Johnson",
       date: "30/11/2024",
 
-      stage: "Proposal",
+      stage: "Onboarding",
       email: "merry@example.com",
       mobile: "+1234567866",
       address: "789 Elm St",
@@ -84,7 +84,7 @@ const LeadManagement = () => {
       name: "Jane Smith",
       date: "2/12/2024",
 
-      stage: " Lead",
+      stage: " Onboarding",
       email: "jane@example.com",
       mobile: "+1234567811",
       address: "456 Oak Rd",
@@ -101,7 +101,7 @@ const LeadManagement = () => {
       name: "Bob Johnson",
       date: "3/12/2024",
 
-      stage: "Prospect",
+      stage: "Onboarding",
       email: "bob@example.com",
       mobile: "+1234567822",
       address: "789 Elm St",
@@ -119,7 +119,7 @@ const LeadManagement = () => {
       name: "Carl El",
       date: "4/12/2024",
 
-      stage: "Lost",
+      stage: "Onboarding",
       email: "carl@example.com",
       mobile: "+1234567891",
       address: "789 Elm St",
@@ -155,8 +155,9 @@ const LeadManagement = () => {
     <div>
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold">Leads</h1>
+          <h1 className="text-2xl font-bold">Leads </h1>
         </div>
+        <h1 className="mb-4 text-xl"> Jared Palmer</h1>
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
@@ -165,15 +166,15 @@ const LeadManagement = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-white shadow-none appearance-none  md:w-2/3 lg:w-1/2 dark:bg-gray-950"
           />
-          {/* <div className="flex space-x-2">
-            <Button
+          <div className="flex space-x-2">
+            {/* <Button
               variant={status === "pending" ? "default" : "outline"}
               onClick={() => handleStatusFilter("pending")}
               className="flex-1 md:flex-none ml-2 "
             >
-              Stages
-            </Button>
-            <Button
+              Jared Palmer
+            </Button> */}
+            {/* <Button
               variant={status === "approved" ? "default" : "outline"}
               onClick={() => handleStatusFilter("approved")}
               className="flex-1 md:flex-none"
@@ -186,22 +187,20 @@ const LeadManagement = () => {
               className="flex-1 md:flex-none"
             >
               Closed Won
-            </Button>
-          </div> */}
+            </Button> */}
+          </div>
           <select
             onChange={handleStageFilter}
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
           >
-            <option value="">Stages</option>
-            <option value="stage2">Lead</option>
-
+            {/* <option value="">Stages</option> */}
             <option value="stage2">Onboarding</option>
-
+            <option value="stage1">Lead</option>
             <option value="stage1">Prospect</option>
             <option value="stage3">Proposal</option>
             <option value="stage3">Lost</option>
           </select>
-          <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
+          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
 
           <Button Onboarding onClick={handleCreateContact}>
             Create Lead
@@ -261,11 +260,11 @@ const LeadManagement = () => {
                 {/* <TableHead className="text-white">Mobile Number</TableHead> */}
                 {/* <TableHead className="text-white">Stage</TableHead> */}
 
-                {/* <TableHead className="text-white">
+                <TableHead className="text-white">
                   {" "}
                   <div className="flex items-center space-x-2 text-black">
                     <span className="text-white">Stages</span>
-                    <Select
+                    {/* <Select
                       value={filter}
                       onValueChange={(value) => setFilter(value)}
                       className="text-black"
@@ -300,9 +299,9 @@ const LeadManagement = () => {
                           </SelectItem>
                         ))}
                       </SelectContent>
-                    </Select>
+                    </Select> */}
                   </div>
-                </TableHead> */}
+                </TableHead>
 
                 <TableHead className="text-white">Comment</TableHead>
 
@@ -329,9 +328,9 @@ const LeadManagement = () => {
                   <TableCell>{LeadManagement.email}</TableCell>
                   {/* <TableCell>{LeadManagement.mobile}</TableCell> */}
 
-                  {/* <TableCell>
+                  <TableCell>
                     <Badge>{LeadManagement.stage}</Badge>
-                  </TableCell> */}
+                  </TableCell>
                   <TableCell>{LeadManagement.comment}</TableCell>
 
                   <TableCell>{LeadManagement.relationshipManager}</TableCell>
@@ -432,4 +431,4 @@ const LeadManagement = () => {
   );
 };
 
-export default WithLayout("sales")(LeadManagement);
+export default WithLayout("sales")(LeadM);
