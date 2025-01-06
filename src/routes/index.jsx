@@ -53,6 +53,7 @@ import EditUsers from "@/pages/EditUsers";
 import LeadManagement from "@/pages/LeadManagement";
 import CreateLeadManagement from "@/pages/CreateLeadManagement";
 import EditLeadManagement from "@/pages/EditLeadManagement";
+import LeadM from "@/pages/LeadM";
 
 const routes = [
   {
@@ -332,6 +333,11 @@ const routes = [
     exact: true,
     path: "/editUsers",
     component: <EditUsers />,
+  },
+  {
+    exact: true,
+    path: "/leadM",
+    component: <LeadM />,
   },
 ];
 
