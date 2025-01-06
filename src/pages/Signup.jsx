@@ -79,7 +79,7 @@ export default function SignUp() {
 
             <section className="space-y-4">
               {/* <h3 className="text-lg font-semibold">Primary Contact</h3> */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
                 <div className="space-y-2">
                   <Label htmlFor="firstName" className="required">
                     First Name
@@ -87,7 +87,7 @@ export default function SignUp() {
                   <Input
                     id="firstName"
                     placeholder="Enter Primary Contact First Name"
-                    value="Sarah"
+                    value="Sipho"
                   />
                 </div>
                 <div className="space-y-2">
@@ -97,7 +97,7 @@ export default function SignUp() {
                   <Input
                     id="lastName"
                     placeholder="Enter Primary Contact Last Name"
-                    value="Johnson"
+                    value="Keita"
                   />
                 </div>
                 <div className="space-y-2">
@@ -108,7 +108,7 @@ export default function SignUp() {
                     id="mobile"
                     type="tel"
                     placeholder="Enter Primary Contact Mobile Number"
-                    value="0824567890"
+                    value="0824555555"
                   />
                 </div>
                 <div className="space-y-2">
@@ -119,7 +119,7 @@ export default function SignUp() {
                     id="email"
                     type="email"
                     placeholder="Enter Primary Contact Email"
-                    value="sarahjohnson@example.com"
+                    value="siphokeita@example.com"
                   />
                 </div>
                 {/* <div className="space-y-2">
@@ -142,7 +142,7 @@ export default function SignUp() {
 
             <section className="space-y-4">
               <h3 className="text-lg font-semibold">Account Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
                 <div className="space-y-2">
                   <Label htmlFor="username" className="required">
                     Username
@@ -150,7 +150,7 @@ export default function SignUp() {
                   <Input
                     id="username"
                     placeholder="Enter your username"
-                    value="sarahjohnson"
+                    value="siphokeita"
                   />
                 </div>
                 <div className="space-y-2">
