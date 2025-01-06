@@ -51,6 +51,30 @@ const initialRoleObject = () => {
           update: false,
           delete: false,
         },
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+          {
+            id:2,
+            type: "Customer onboarding",
+            name: "Customer onboarding",
+            actions : {
+              create: false,
+              read: false,
+              update: false,
+              delete: false,
+            },
+          },
+        ],
       },
       {
         id: 2,
@@ -62,6 +86,30 @@ const initialRoleObject = () => {
           update: false,
           delete: false,
         },
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+          {
+            id:2,
+            type: "lead management",
+            name: "lead management",
+            actions : {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+        ],
       },
       {
         id: 3,
@@ -73,6 +121,41 @@ const initialRoleObject = () => {
           update: false,
           delete: false,
         },
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+          {
+            id:2,
+            type: "compliance",
+            name: "compliance",
+            actions : {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+          {
+            id:3,
+            type: "manage checklist",
+            name: "manage checklist",
+            actions : {
+              create: false,
+          read: false,
+          update: false,
+          delete: false,
+            },
+          },
+        ],
       },
       {
         id: 4,
@@ -96,30 +179,33 @@ function CreateRole() {
     ...initialRoleObject(),
   }));
 
+  const goBack = () => {
+    navigate("/roles"); 
+  };
+  
   const handleChange = (name, section, entity, action) => (event) => {
-    let nextState = produce(role, (draft) => {
-      switch (name) {
-        case "name":
-        case "description":
-          draft[name] = event.target.value;
-          break;
-        case "permissions":
-          // eslint-disable-next-line no-case-declarations
-          const index = draft.permissions.findIndex(
-            (p) => p.type === section && p.name === entity
-          );
-          if (index !== -1) {
-            draft.permissions[index].actions[action] = event;
-            if (draft.permissions[index].id) {
-              draft.permissions[index].id = draft.permissions[index].id || 0;
+    const nextState = produce(role, (draft) => {
+      if (name === "permissions") {
+        const [mainEntity, subEntity] = entity.split(" - ");
+        const mainIndex = draft.permissions.findIndex(
+          (p) => p.type === section && p.name === mainEntity
+        );
+  
+        if (mainIndex !== -1) {
+          if (subEntity) {
+            const pageIndex = draft.permissions[mainIndex].pages.findIndex(
+              (page) => page.name === subEntity
+            );
+            if (pageIndex !== -1) {
+              draft.permissions[mainIndex].pages[pageIndex].actions[action] = event;
             }
+          } else {
+            draft.permissions[mainIndex].actions[action] = event;
           }
-          break;
-        default:
-          break;
+        }
       }
     });
-
+  
     setRole(nextState);
   };
 
@@ -231,7 +317,7 @@ function CreateRole() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Entity</TableHead>
+              <TableHead>Pages</TableHead>
               <TableHead>Create</TableHead>
               <TableHead>Read</TableHead>
               <TableHead>Update</TableHead>
@@ -239,14 +325,26 @@ function CreateRole() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {permissions.map((permission) => (
-              <PermissionRow
-                key={permission.name}
-                section={section}
-                entity={permission.name}
-                permissions={permission.actions}
-              />
-            ))}
+          {permissions.map((permission) => (
+  <>
+    <PermissionRow
+      key={permission.name}
+      section={section}
+      entity={permission.name}
+      permissions={permission.actions}
+    />
+    {permission.pages &&
+      permission.pages.map((page) => (
+        <PermissionRow
+          key={`${permission.name}-${page.name}`}
+          section={section}
+          entity={`${permission.name} - ${page.name}`}
+          permissions={page.actions}
+        />
+      ))}
+  </>
+))}
+
           </TableBody>
         </Table>
       </AccordionContent>
@@ -264,9 +362,10 @@ function CreateRole() {
   );
 
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full p-4
+     max-w-4xl">
       <div>
-        <h1 className="mb-6 mt-2 text-xl font-bold ">Create Role</h1>
+        <h1 className="mb-6 mt-2 text-xl font-bold ">Create New Role</h1>
       </div>
       <div className="space-y-2">
         <Card className="bg-gray-200  ">
@@ -315,7 +414,10 @@ function CreateRole() {
         </Accordion>
       </div>
       <div className="flex justify-end mt-10">
-        <RButton onClick={handleSubmit}>Submit</RButton>
+      <RButton variant="outline" onClick={goBack}>
+    Back
+  </RButton>
+        <RButton className="ml-5" onClick={handleSubmit}>Submit</RButton>
       </div>
     </div>
   );

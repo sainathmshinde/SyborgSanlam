@@ -5,13 +5,19 @@ import { Combobox } from "@/components/ui/combobox";
 import RButton from "@/components/ui/rButton";
 import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
+import { useNavigate } from "react-router";
 
 const CreateEntityType = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/entityType"); 
+  };
+
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
         <div className="">
-          <h1 className="text-xl font-bold">Create Entity Type</h1>
+          <h1 className="text-xl font-bold">Create New Entity Type</h1>
         </div>
         <form className="space-y-4">
           <Card className="bg-gray-200">
@@ -40,7 +46,10 @@ const CreateEntityType = () => {
           </Card>
 
           <div className="flex justify-end">
-            <RButton type="submit">Submit</RButton>
+            <RButton variant="outline" onClick={goBack}>
+                                                  Back
+                                                </RButton>
+            <RButton className="ml-5" type="submit">Submit</RButton>
           </div>
         </form>
       </div>

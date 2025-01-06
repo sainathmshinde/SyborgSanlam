@@ -90,7 +90,7 @@ function ComplianceDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row justify-between">
-            <CardTitle>Total Requests</CardTitle>
+            <CardTitle>Request With Compliance</CardTitle>
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
           <CardContent>
@@ -133,7 +133,7 @@ function ComplianceDashboard() {
         {/* Bar Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Pending with compliance team</CardTitle>
+            <CardTitle>Pending With Compliance Team</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -159,7 +159,7 @@ function ComplianceDashboard() {
       {/* User Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Pending with compliance team</CardTitle>
+          <CardTitle>Pending With Compliance Team</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>

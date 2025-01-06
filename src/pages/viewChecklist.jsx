@@ -189,7 +189,7 @@ function CreateUser() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="client-type" className="required">
-                      Client Type
+                      Customer Type
                     </Label>
                     <Select
                       id="clientType"
@@ -199,7 +199,7 @@ function CreateUser() {
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select client type" />
+                        <SelectValue placeholder="Select customer type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="individual">Individual</SelectItem>

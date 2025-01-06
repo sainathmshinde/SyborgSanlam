@@ -47,11 +47,27 @@ const initialRoleObject = () => {
         id: 1,
         type: "onboarding",
         name: "onboarding",
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              read: true,
+            },
+          },
+          {
+            id:2,
+            type: "Customer onboarding",
+            name: "Customer onboarding",
+            actions : {
+              read: true,
+            },
+          },
+        ],
+
         actions: {
-          create: false,
-          read: false,
-          update: false,
-          delete: false,
+          read: true,
         },
       },
       {
@@ -59,32 +75,78 @@ const initialRoleObject = () => {
         type: "sales",
         name: "sales",
         actions: {
-          create: false,
-          read: false,
-          update: false,
-          delete: false,
+          create: true,
+               read: true,
+              update: true,
+              delete: true,
         },
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              create: true,
+               read: true,
+              update: true,
+              delete: true,
+            },
+          },
+          {
+            id:2,
+            type: "lead management",
+            name: "lead management",
+            actions : {
+              create: true,
+               read: true,
+              update: true,
+              delete: true,
+            },
+          },
+        ],
       },
       {
         id: 3,
         type: "compliance",
         name: "compliance",
         actions: {
-          create: false,
-          read: false,
-          update: false,
-          delete: false,
+         
+          read: true,
+         
         },
+        pages:[
+          {
+            id: 1,
+            type: "dashboard",
+            name: "dashboard",
+            actions: {
+              read: true,
+            },
+          },
+          {
+            id:2,
+            type: "compliance",
+            name: "compliance",
+            actions : {
+              read: true,
+            },
+          },
+          {
+            id:3,
+            type: "manage checklist",
+            name: "manage checklist",
+            actions : {
+              read: true,
+            },
+          },
+        ],
       },
       {
         id: 4,
         type: "customer",
         name: "customer",
         actions: {
-          create: false,
-          read: false,
-          update: false,
-          delete: false,
+          read: true,
         },
       },
     ],
@@ -115,33 +177,59 @@ function EditRoles() {
 
 
   
+  // const handleChange = (name, section, entity, action) => (event) => {
+  //   let nextState = produce(role, (draft) => {
+  //     switch (name) {
+  //       case "name":
+  //       case "description":
+  //         draft[name] = event.target.value;
+  //         break;
+  //       case "permissions":
+  //         // eslint-disable-next-line no-case-declarations
+  //         const index = draft.permissions.findIndex(
+  //           (p) => p.type === section && p.name === entity
+  //         );
+  //         if (index !== -1) {
+  //           draft.permissions[index].actions[action] = event;
+  //           if (draft.permissions[index].id) {
+  //             draft.permissions[index].id = draft.permissions[index].id || 0;
+  //           }
+  //         }
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   });
+
+  //   setRole(nextState);
+  // };
+
   const handleChange = (name, section, entity, action) => (event) => {
-    let nextState = produce(role, (draft) => {
-      switch (name) {
-        case "name":
-        case "description":
-          draft[name] = event.target.value;
-          break;
-        case "permissions":
-          // eslint-disable-next-line no-case-declarations
-          const index = draft.permissions.findIndex(
-            (p) => p.type === section && p.name === entity
-          );
-          if (index !== -1) {
-            draft.permissions[index].actions[action] = event;
-            if (draft.permissions[index].id) {
-              draft.permissions[index].id = draft.permissions[index].id || 0;
+    const nextState = produce(role, (draft) => {
+      if (name === "permissions") {
+        const [mainEntity, subEntity] = entity.split(" - ");
+        const mainIndex = draft.permissions.findIndex(
+          (p) => p.type === section && p.name === mainEntity
+        );
+  
+        if (mainIndex !== -1) {
+          if (subEntity) {
+            const pageIndex = draft.permissions[mainIndex].pages.findIndex(
+              (page) => page.name === subEntity
+            );
+            if (pageIndex !== -1) {
+              draft.permissions[mainIndex].pages[pageIndex].actions[action] = event;
             }
+          } else {
+            draft.permissions[mainIndex].actions[action] = event;
           }
-          break;
-        default:
-          break;
+        }
       }
     });
-
+  
     setRole(nextState);
   };
-
+  
   const saveRole = async () => {
     // Implement your save logic here
     console.log("Saving role:", role);
@@ -250,7 +338,7 @@ function EditRoles() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Entity</TableHead>
+              <TableHead>Pages</TableHead>
               <TableHead>Create</TableHead>
               <TableHead>Read</TableHead>
               <TableHead>Update</TableHead>
@@ -258,14 +346,26 @@ function EditRoles() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {permissions.map((permission) => (
-              <PermissionRow
-                key={permission.name}
-                section={section}
-                entity={permission.name}
-                permissions={permission.actions}
-              />
-            ))}
+          {permissions.map((permission) => (
+  <>
+    <PermissionRow
+      key={permission.name}
+      section={section}
+      entity={permission.name}
+      permissions={permission.actions}
+    />
+    {permission.pages &&
+      permission.pages.map((page) => (
+        <PermissionRow
+          key={`${permission.name}-${page.name}`}
+          section={section}
+          entity={`${permission.name} - ${page.name}`}
+          permissions={page.actions}
+        />
+      ))}
+  </>
+))}
+
           </TableBody>
         </Table>
       </AccordionContent>
@@ -295,7 +395,7 @@ function EditRoles() {
               label="Role Name"
               id="name"
               type="text"
-              placeholder="Admin"
+              placeholder="Sales Manager"
               className="w-full "
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
@@ -305,7 +405,7 @@ function EditRoles() {
               label="Description"
               id="description"
               type="text"
-              placeholder="Responsible for managing the system, users, and overall configurations."
+              placeholder="Oversees the sales team, sets targets, and tracks performance metrics."
               className="w-full"
               onChange={(event) => handleChange("description")(event)}
               value={role.description}
@@ -333,14 +433,12 @@ function EditRoles() {
           ))}
         </Accordion>
       </div>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
-      <div className="flex justify-end">
-        <RButton onClick={() => setNext(1)}>Back</RButton>
-      </div>
-      <div className="flex justify-end ">
-        <RButton onClick={handleSubmit}>Update</RButton>
-        </div>
-      </div>
+      <div className="flex justify-end mt-10">
+            <RButton variant="outline" onClick={goBack}>
+          Back
+        </RButton>
+              <RButton className="ml-5" onClick={handleSubmit}>Update</RButton>
+            </div>
       
     </div>
   );

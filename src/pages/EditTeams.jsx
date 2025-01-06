@@ -9,7 +9,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const EditTeams = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/teams"); 
+  };
   const [teams, setTeams] = useState({
     name: "Admin",
     members: "John Doe",
@@ -62,6 +65,9 @@ const EditTeams = () => {
           </Card>
 
           <div className="flex justify-end">
+             <RButton variant="outline" onClick={goBack}>
+                          Back
+                        </RButton>
             <RButton type="submit">Update</RButton>
           </div>
         </form>
