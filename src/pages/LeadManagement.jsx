@@ -157,6 +157,30 @@ const LeadManagement = () => {
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">Leads</h1>
         </div>
+        <div className="flex flex-row items-center mb-4">
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage2"> Sarah Johnson </option>
+            <option value="stage2"> Jared Palmer</option>
+            <option value="stage1">Sarah Johnson </option>
+            <option value="stage1">Alex Doe </option>
+          </select>
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            <option value="">Compliance</option>
+            <option value="stage2">Onboarding</option>
+            <option value="stage1">Lead</option>
+            <option value="stage1">Prospect</option>
+            <option value="stage3">Proposal</option>
+            <option value="stage3">Lost</option>
+          </select>
+          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+        </div>
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
@@ -188,20 +212,6 @@ const LeadManagement = () => {
               Closed Won
             </Button>
           </div> */}
-          <select
-            onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
-          >
-            <option value="">Stages</option>
-            <option value="stage2">Lead</option>
-
-            <option value="stage2">Onboarding</option>
-
-            <option value="stage1">Prospect</option>
-            <option value="stage3">Proposal</option>
-            <option value="stage3">Lost</option>
-          </select>
-          <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
 
           <Button Onboarding onClick={handleCreateContact}>
             Create Lead

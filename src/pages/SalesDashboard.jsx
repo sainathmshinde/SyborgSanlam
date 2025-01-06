@@ -156,26 +156,50 @@ function SalesDashboard() {
                         onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium relative group">
                           Jared Palmer
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click Here to See Bar Chart
+                          </div>
                         </TableCell>
                         <TableCell className="text-center">55</TableCell>
                       </TableRow>
                       <TableRow
-                        onClick={() => handleClick(SarahJohnson)}
+                        onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium relative group">
                           Sarah Johnson
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click Here to See Bar Chart
+                          </div>
                         </TableCell>
                         <TableCell className="text-center">46</TableCell>
                       </TableRow>
+
                       <TableRow
-                        onClick={() => handleClick(AlexDoe)}
+                        onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">Alex Doe</TableCell>
-                        <TableCell className="text-center ">24</TableCell>
+                        <TableCell className="font-medium relative group">
+                          Alex Doe
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click Here to See Bar Chart
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center">24</TableCell>
                       </TableRow>
 
                       <TableRow>

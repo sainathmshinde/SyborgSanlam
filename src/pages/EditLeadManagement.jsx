@@ -146,7 +146,9 @@ const EditLeadManagement = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold">Teslack Organization </h1>
+        <h1 className="fixed z-auto text-xl font-bold">
+          Teslack Organization{" "}
+        </h1>
       </div>
 
       {clientType === "company" ||
@@ -175,7 +177,7 @@ const EditLeadManagement = () => {
                 <CardContent className="p-4">
                   {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
 
-                  <div className="space-y-2 grid-cols-1 mt-2">
+                  <div className="space-y-2 grid-cols-1 ">
                     <Label htmlFor="address">
                       About Lead<span className="text-red-600 ml-1">*</span>
                     </Label>
@@ -190,11 +192,7 @@ const EditLeadManagement = () => {
                       className="min-h-[50px]"
                     />
                   </div>
-                </CardContent>
-              </Card>
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="space-y-2">
                       <Label htmlFor="relationshipManager" className="required">
                         Relationship Manager
@@ -243,14 +241,8 @@ const EditLeadManagement = () => {
                       </Select>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Assignment Details</h2> */}
-                  <div className="grid grid-cols-2 md:grid-cols-2 gap-16">
-                    <div className="space-y-2">
+                  <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
+                    <div className="space-y-2  ">
                       <Label htmlFor="onboardingManager" className="required">
                         Assign To
                       </Label>
@@ -289,7 +281,6 @@ const EditLeadManagement = () => {
                 </CardContent>
               </Card>
 
-              <CommentSection className="bg-gray-200" />
               <div className="flex justify-end space-x-4">
                 <Button
                   variant="outline"
@@ -298,9 +289,11 @@ const EditLeadManagement = () => {
                   Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
-                  Update
+                  Update Customer Details
                 </Button>
               </div>
+
+              <CommentSection className="bg-gray-200" />
             </form>
           </TabsContent>
 
@@ -352,30 +345,6 @@ const EditLeadManagement = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    {/* <div className="space-y-2">
-                      <Label htmlFor="customerType" className="required">
-                        Customer Type
-                      </Label>
-                      <Select
-                        id="customerType"
-                        value={contact.customerType}
-                        onValueChange={(value) =>
-                          handleInputChange("customerType", value)
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Customer Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="company">Company</SelectItem>
-                          <SelectItem value="individual">Individual</SelectItem>
-                          <SelectItem value="partnership">
-                            Partnership
-                          </SelectItem>
-                          <SelectItem value="trust">Trust</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div> */}
                   </div>
                   <div className="space-y-4 mt-4">
                     <div className="space-y-2">
@@ -394,7 +363,9 @@ const EditLeadManagement = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="city">City</Label>
+                        <Label htmlFor="city">
+                          City <span className="text-red-600 ml-1">*</span>
+                        </Label>
                         <Input
                           id="city"
                           value={contact.city}
@@ -405,7 +376,9 @@ const EditLeadManagement = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="state">State</Label>
+                        <Label htmlFor="state">
+                          State <span className="text-red-600 ml-1">*</span>
+                        </Label>
                         <Input
                           id="state"
                           value={contact.state}
