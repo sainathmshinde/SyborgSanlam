@@ -170,7 +170,7 @@ export default function UploadDocuments() {
                 </p>
               )}
             </div>
-            <Button onClick={handleUpload} disabled={!file}>
+            <Button className="mr-10" onClick={handleUpload} disabled={!file}>
               <Upload className="mr-2 h-4 w-4" />
               Upload {selectedDocument}
             </Button>

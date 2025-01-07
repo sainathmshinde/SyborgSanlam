@@ -423,7 +423,7 @@ function Profile() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="profession">Profession</Label>
+                    <Label htmlFor="profession" className="required">Profession</Label>
                     <Input
                       id="profession"
                       name="profession"
@@ -432,7 +432,7 @@ function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="employer">Employer</Label>
+                    <Label htmlFor="employer" className="required">Employer</Label>
                     <Input
                       id="employer"
                       name="employer"
@@ -459,6 +459,7 @@ function Profile() {
                       id="address"
                       name="address"
                       placeholder="Address"
+                      style={{ width: "600px", height: "50px" }}
                     />
                   </div>
                   {/* <div className="space-y-4">
@@ -485,7 +486,7 @@ function Profile() {
                   <div></div>
                 </div>
 
-                <div className="my-10 flex justify-end">
+                <div className="my-1 flex justify-end">
                   <Button className="mx-5">Save & Next</Button>
                 </div>
               </TabsContent>
@@ -587,7 +588,7 @@ function Profile() {
                       </TableBody>
                     </Table>
                   </CardContent>
-                  <div className="my-10 flex justify-end">
+                  <div className="my-5 flex justify-end">
                     <Button className="mx-5">Save & Next</Button>
                   </div>
                 </Card>
@@ -775,13 +776,13 @@ function Profile() {
                       </TableBody>
                     </Table>
                   </CardContent>
-                  <div className="my-10 flex justify-end mx-5">
-                    <Button
+                  <div className="my-5 flex justify-end mx-5">
+                    {/* <Button
                       variant="outline"
                       onClick={() => navigate("/leads")}
                     >
                       Cancel
-                    </Button>
+                    </Button> */}
                     <Button className="ml-5" onClick={handleCreateLead}>
                       Initiate Onboarding
                     </Button>
@@ -862,8 +863,8 @@ function Profile() {
                   </div>
 
                   {/* Document Upload Section */}
-                  <div className="flex-1 p-4 overflow-auto">
-                    <Card className="mb-6">
+                  <div className="flex-1 px-4 overflow-auto">
+                    <Card className="h-full">
                       <CardContent className="p-4">
                         <h1 className="text-2xl font-bold mb-4">
                           Upload {selectedSubOption || "Document"}
@@ -884,7 +885,7 @@ function Profile() {
 
                         <div
                           className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
-                          style={{ minHeight: "400px" }}
+                          style={{ minHeight: "520px" }}
                         >
                           {preview ? (
                             file.type.startsWith("image/") ? (
@@ -912,13 +913,16 @@ function Profile() {
                           )}
                         </div>
 
+                        <div className="flex justify-end">
                         <Button
                           onClick={handleUpload}
                           disabled={!file || !selectedSubOption}
+                          className="ml-auto flex items-center"
                         >
                           <Upload className="mr-2 h-4 w-4" />
                           Upload {selectedSubOption || "Document"}
                         </Button>
+                      </div>
                       </CardContent>
                     </Card>
 
@@ -937,7 +941,7 @@ function Profile() {
                   </Button>
                 </div> */}
                   </div>
-                </div>
+                </div>             
               </TabsContent>
             </Tabs>
           ) : null}
