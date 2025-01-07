@@ -154,10 +154,10 @@ const LeadM = () => {
   return (
     <div>
       <div className="p-4">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-2 overflow-hidden sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Leads </h1>
         </div>
-        <div className="flex flex-row items-center mb-4">
+        <div className="flex flex-row items-center mb-4 mt-4">
           <select
             onChange={handleStageFilter}
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
@@ -216,7 +216,7 @@ const LeadM = () => {
             Create Lead
           </Button>
         </div>
-        <div className="border rounded-lg overflow-x-auto">
+        <div className="border rounded-lg  overflow-auto max-h-[400px] ">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
