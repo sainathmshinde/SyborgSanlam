@@ -257,8 +257,10 @@ function CreateUser() {
               </Label>
               <Input id="name" placeholder="Enter checklist name" />
             </div> */}
-                <div className="gap-4 "></div>
+                <div className="overflow-hidden  sticky top-0 z-10"> 
                 <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
+                </div>
+                {/* <div className="overflow-auto max-h-[500px]"> */}
                 <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
                   {/* <Label htmlFor="doc" className="text-2xl font-bold mb-4">
                     Required Documents

@@ -26,13 +26,16 @@ const EditCurrency = () => {
       const goBack = () => {
         navigate("/currency"); 
       };
+      const handleSubmit = () => {
+        navigate("/currency"); 
+      };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Edit Currency</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
@@ -47,7 +50,7 @@ const EditCurrency = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="currencyName" className="w-full required">
                   Currency Name
                 </Label>
@@ -61,7 +64,7 @@ const EditCurrency = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="code" className="w-full required">
                   Code
                 </Label>
@@ -73,7 +76,7 @@ const EditCurrency = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="symbol" className="w-full required">
                   Symbol
                 </Label>
@@ -92,7 +95,7 @@ const EditCurrency = () => {
             <RButton variant="outline" onClick={goBack}>
                                       Back
                                     </RButton>
-            <RButton className="ml-5" type="submit">Update</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Update</RButton>
           </div>
         </form>
       </div>

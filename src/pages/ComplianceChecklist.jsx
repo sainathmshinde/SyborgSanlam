@@ -187,7 +187,8 @@ function ComplianceChecklist() {
   };
   return (
     <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
-      <div className="flex justify-between items-center mb-4">
+      <div className="overflow-hidden  sticky top-0 z-10">
+      <div className="flex justify-between items-center mb-4 ">
         <div
           onClick={goBack}
           className="hover:cursor-pointer hover:text-blue-600  w-1/12"
@@ -206,7 +207,7 @@ function ComplianceChecklist() {
           />
         </div> */}
       </div>
-
+     
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 ">
           <CardTitle className="text-2xl font-bold">Customer Details</CardTitle>
@@ -265,7 +266,8 @@ function ComplianceChecklist() {
           </div>
         </CardContent>
       </Card>
-
+     </div>
+     <div className="overflow-auto max-h-[500px]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="md:col-span-1">
           <CardHeader>
@@ -391,6 +393,7 @@ function ComplianceChecklist() {
             </div>
           </CardContent>
         </Card>
+      </div>
       </div>
     </div>
   );
