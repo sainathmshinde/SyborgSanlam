@@ -173,9 +173,9 @@ const LeadM = () => {
           >
             {/* <option value="">Stages</option> */}
             <option value="stage2">Onboarding</option>
-            <option value="stage1">Lead</option>
-            <option value="stage1">Prospect</option>
-            <option value="stage3">Proposal</option>
+            <option value="stage1">Sales</option>
+            <option value="stage1">Compliance</option>
+            {/* <option value="stage3">Proposal</option> */}
             <option value="stage3">Lost</option>
           </select>
           <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />

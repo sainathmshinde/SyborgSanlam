@@ -146,9 +146,7 @@ const EditLeadManagement = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h1 className="fixed z-auto text-xl font-bold">
-          Teslack Organization{" "}
-        </h1>
+        <h1 className="fixed z-auto text-xl font-bold">Teslack Organization</h1>
       </div>
 
       {clientType === "company" ||

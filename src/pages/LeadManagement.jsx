@@ -172,7 +172,7 @@ const LeadManagement = () => {
             onChange={handleStageFilter}
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
           >
-            <option value="">Compliance</option>
+            {/* <option value="">Compliance</option> */}
             <option value="stage2">Onboarding</option>
             <option value="stage1">Lead</option>
             <option value="stage1">Prospect</option>
