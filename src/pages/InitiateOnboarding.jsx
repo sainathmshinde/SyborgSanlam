@@ -496,7 +496,7 @@ const CreateLead = () => {
                 <div></div>
               </div>
 
-              <div className="my-10 flex justify-end">
+              <div className="my-1 flex justify-end">
                 <Button className="mx-5">Save & Next</Button>
               </div>
             </TabsContent>
@@ -594,7 +594,7 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-10 flex justify-end">
+                <div className="my-1 flex justify-end">
                   <Button className="mx-5">Save & Next</Button>
                 </div>
               </Card>
@@ -752,7 +752,7 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-10 flex justify-end mx-5">
+                <div className="my-5 flex justify-end mx-5">
                   <Button variant="outline" onClick={() => navigate("/leads")}>
                     Cancel
                   </Button>
@@ -833,7 +833,7 @@ const CreateLead = () => {
 
                 {/* Document Upload Section */}
                 <div className="flex-1 p-4 overflow-auto">
-                  <Card className="mb-6">
+                  <Card className="h-full">
                     <CardContent className="p-4">
                       <h1 className="text-2xl font-bold mb-4">
                         Upload {selectedSubOption || "Document"}
@@ -1206,7 +1206,7 @@ const CreateLead = () => {
                 )} */}
                 </div>
 
-                <div className="my-10 flex justify-end">
+                <div className="my-5 flex justify-end">
                   <Button className="mx-5">Save & Next</Button>
                 </div>
               </form>
@@ -1347,7 +1347,7 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-10 flex justify-end">
+                <div className="my-5 flex justify-end">
                   <Button className="mx-5">Save & Next</Button>
                 </div>
               </Card>
@@ -1597,8 +1597,8 @@ const CreateLead = () => {
                 </div>
 
                 {/* Document Upload Section */}
-                <div className="flex-1 p-4 overflow-auto">
-                  <Card className="mb-6">
+                <div className="flex-1 px-4 overflow-auto">
+                  <Card className="h-full">
                     <CardContent className="p-4">
                       <h1 className="text-2xl font-bold mb-4">
                         Upload {selectedSubOption || "Document"}
@@ -1647,13 +1647,23 @@ const CreateLead = () => {
                         )}
                       </div>
 
-                      <Button
+                      {/* <Button
                         onClick={handleUpload}
                         disabled={!file || !selectedSubOption}
                       >
                         <Upload className="mr-2 h-4 w-4" />
                         Upload {selectedSubOption || "Document"}
-                      </Button>
+                      </Button> */}
+                      <div className="flex justify-end">
+                        <Button
+                          onClick={handleUpload}
+                          disabled={!file || !selectedSubOption}
+                          className="ml-auto flex items-center"
+                        >
+                          <Upload className="mr-2 h-4 w-4" />
+                          Upload {selectedSubOption || "Document"}
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
 
