@@ -145,14 +145,14 @@ const EditLeadManagement = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="fixed z-auto text-xl font-bold">Teslack Organization</h1>
+      <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
+        <h1 className=" text-xl font-bold ">Teslack Organization</h1>
       </div>
 
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic">
+        <Tabs defaultValue="basic" className="overflow-auto max-h-[500px]">
           <TabsList className=" flex justify-start mb-4 mt-4 ">
             <TabsTrigger
               value="basic"

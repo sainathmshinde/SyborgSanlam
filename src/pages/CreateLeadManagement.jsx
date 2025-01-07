@@ -332,14 +332,14 @@ const CreateLeadManagement = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
         <h1 className="text-xl font-bold">Create New Lead</h1>
       </div>
 
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic">
+        <Tabs defaultValue="basic" className="overflow-auto max-h-[500px]">
           <TabsList className=" flex justify-start mb-4 mt-4 ">
             <TabsTrigger
               value="basic"
