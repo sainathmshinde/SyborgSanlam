@@ -59,6 +59,21 @@ function SalesDashboard() {
     navigate("/leadM");
   };
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border rounded shadow">
+          <p>{label}</p>
+
+          <p className="text-sm text-gray-500">
+            Tap here for onboarding leads details.
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="p-4">
       {/* <h1 className="text-2xl font-bold">Sales Dashboard</h1> */}
@@ -156,26 +171,50 @@ function SalesDashboard() {
                         onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium relative group">
                           Jared Palmer
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click here for the bar chart visualization.
+                          </div>
                         </TableCell>
                         <TableCell className="text-center">55</TableCell>
                       </TableRow>
                       <TableRow
-                        onClick={() => handleClick(SarahJohnson)}
+                        onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium relative group">
                           Sarah Johnson
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click here for the bar chart visualization.{" "}
+                          </div>
                         </TableCell>
                         <TableCell className="text-center">46</TableCell>
                       </TableRow>
+
                       <TableRow
-                        onClick={() => handleClick(AlexDoe)}
+                        onClick={() => handleClick(JaredPalmer)}
                         className="cursor-pointer hover:text-blue-500"
                       >
-                        <TableCell className="font-medium">Alex Doe</TableCell>
-                        <TableCell className="text-center ">24</TableCell>
+                        <TableCell className="font-medium relative group">
+                          Alex Doe
+                          <div
+                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ top: "100%", left: "0" }}
+                          >
+                            Click here for the bar chart visualization.
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center">24</TableCell>
                       </TableRow>
 
                       <TableRow>
@@ -204,6 +243,8 @@ function SalesDashboard() {
                           <XAxis dataKey="name" />
                           <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
                           <Legend />
+
+                          <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="leadsWithSales"
                             fill="#58508d"

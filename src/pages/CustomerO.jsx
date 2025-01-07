@@ -31,7 +31,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-const OnboardingList = () => {
+const CustomerO = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
@@ -49,6 +49,7 @@ const OnboardingList = () => {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
+
   const [selectedStage, setSelectedStage] = useState("");
   const handleStageFilter = (e) => {
     const stage = e.target.value;
@@ -66,8 +67,8 @@ const OnboardingList = () => {
             onChange={handleStageFilter}
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
           >
-            <option value="stage2"> Emily Davis</option>
-            <option value="stage1">John Smith</option>
+            <option value="stage2">John Smith</option>
+            <option value="stage1">Emily Davis</option>
             <option value="stage1">Michael Brown </option>
           </select>
 
@@ -81,16 +82,9 @@ const OnboardingList = () => {
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
-          {/* <RButton
-                   onClick={() => {
-                     handleNew();
-                   }}
-                   className="ml-10"
-                 >
-                   
-                 </RButton> */}
+          {/* <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" /> */}
         </div>
-        <div className="border rounded-lg overflow-x-auto max-h-[400px]">
+        <div className="border rounded-lg  overflow-auto max-h-[400px] ">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black">
               <TableRow>
@@ -250,4 +244,4 @@ const OnboardingList = () => {
   );
 };
 
-export default WithLayout("onboarding")(OnboardingList);
+export default WithLayout("onboarding")(CustomerO);

@@ -54,6 +54,8 @@ import LeadManagement from "@/pages/LeadManagement";
 import CreateLeadManagement from "@/pages/CreateLeadManagement";
 import EditLeadManagement from "@/pages/EditLeadManagement";
 import LeadM from "@/pages/LeadM";
+import ComplianceT from "@/pages/ComplianceT";
+import CustomerO from "@/pages/CustomerO";
 
 const routes = [
   {
@@ -338,6 +340,16 @@ const routes = [
     exact: true,
     path: "/leadM",
     component: <LeadM />,
+  },
+  {
+    exact: true,
+    path: "/complianceT",
+    component: <ComplianceT />,
+  },
+  {
+    exact: true,
+    path: "/customerO",
+    component: <CustomerO />,
   },
 ];
 

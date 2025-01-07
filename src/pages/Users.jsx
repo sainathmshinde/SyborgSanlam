@@ -10,12 +10,21 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { Pagination } from "@/components/ui/pagination";
+// import { Pagination } from "@/components/ui/pagination";
 import WithLayout from "@/components/layout/WithLayout";
 import { useNavigate } from "react-router";
 import { Input } from "@/components/ui/input";
 import RButton from "@/components/ui/rButton";
 import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const Users = () => {
   const navigate = useNavigate();
@@ -85,7 +94,7 @@ const Users = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 overflow-hidden  sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Users</h1>
         </div>
         <div className="flex items-center justify-between mb-6">
@@ -98,7 +107,7 @@ const Users = () => {
           />
           <Button onClick={handleCreateUser}>Create User</Button>
         </div>
-        <div className="border rounded-lg overflow-x-auto">
+        <div className="border rounded-lg  overflow-auto max-h-[400px]">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
@@ -110,6 +119,10 @@ const Users = () => {
                 <TableHead className="p-2 px-8 text-white text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
+            {/* </Table>
+            </div>
+            <div className="overflow-auto max-h-[400px]">
+            <Table> */}
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.id}>
@@ -170,13 +183,31 @@ const Users = () => {
             </TableBody>
           </Table>
         </div>
-        <div className="flex justify-center mt-4">
+        {/* <div className="flex justify-center mt-4">
           <Pagination
             currentPage={currentPage}
             totalPages={Math.ceil(users.length / usersPerPage)}
             onPageChange={paginate}
           />
-        </div>
+        </div> */}
+        <div className="flex mt-4">
+                        <Pagination>
+                          <PaginationContent>
+                            <PaginationItem>
+                              <PaginationPrevious href="#" />
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationLink href="#">1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationEllipsis />
+                            </PaginationItem>
+                            <PaginationItem>
+                              <PaginationNext href="#" />
+                            </PaginationItem>
+                          </PaginationContent>
+                        </Pagination>
+                      </div>
       </div>
     </div>
   );

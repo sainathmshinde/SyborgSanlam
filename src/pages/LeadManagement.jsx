@@ -131,6 +131,40 @@ const LeadManagement = () => {
       clientType: "Trust",
       customer: "Prestine",
     },
+    {
+      id: 3,
+      name: "Carl El",
+      date: "4/12/2024",
+
+      stage: "Lost",
+      email: "carl@example.com",
+      mobile: "+1234567891",
+      address: "789 Elm St",
+      city: "Elsewhere",
+      state: "TX",
+      country: "Canada",
+      comment: "Not Interested",
+      relationshipManager: "Jane Smith",
+      clientType: "Trust",
+      customer: "Prestine",
+    },
+    {
+      id: 3,
+      name: "Carl El",
+      date: "4/12/2024",
+
+      stage: "Lost",
+      email: "carl@example.com",
+      mobile: "+1234567891",
+      address: "789 Elm St",
+      city: "Elsewhere",
+      state: "TX",
+      country: "Canada",
+      comment: "Not Interested",
+      relationshipManager: "Jane Smith",
+      clientType: "Trust",
+      customer: "Prestine",
+    },
   ];
 
   const handleCreateContact = () => {
@@ -154,8 +188,32 @@ const LeadManagement = () => {
   return (
     <div>
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 overflow-hidden sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Leads</h1>
+        </div>
+        <div className="flex flex-row items-center mb-4 ">
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage2"> Sarah Johnson </option>
+            <option value="stage2"> Jared Palmer</option>
+            <option value="stage1">Sarah Johnson </option>
+            <option value="stage1">Alex Doe </option>
+          </select>
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Compliance</option> */}
+            <option value="stage2">Onboarding</option>
+            <option value="stage1">Lead</option>
+            <option value="stage1">Prospect</option>
+            <option value="stage3">Proposal</option>
+            <option value="stage3">Lost</option>
+          </select>
+          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
         </div>
         <div className="flex items-center justify-between mb-6">
           <Input
@@ -188,32 +246,20 @@ const LeadManagement = () => {
               Closed Won
             </Button>
           </div> */}
-          <select
-            onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
-          >
-            <option value="">Stages</option>
-            <option value="stage2">Lead</option>
-
-            <option value="stage2">Onboarding</option>
-
-            <option value="stage1">Prospect</option>
-            <option value="stage3">Proposal</option>
-            <option value="stage3">Lost</option>
-          </select>
-          <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
 
           <Button Onboarding onClick={handleCreateContact}>
             Create Lead
           </Button>
         </div>
-        <div className="border rounded-lg overflow-x-auto">
+        <div className="border rounded-lg overflow-auto max-h-[400px] ">
           <Table>
-            <TableHeader className="bg-custom-black hover:bg-custom-black ">
+            <TableHeader className="bg-custom-black hover:bg-custom-black  ">
               <TableRow>
-                <TableHead className="text-white">Lead Creation</TableHead>
+                <TableHead className="text-white text-left ">
+                  Lead Creation
+                </TableHead>
 
-                <TableHead className="text-white">Customer Name</TableHead>
+                <TableHead className="text-white  ">Customer Name</TableHead>
                 {/* <TableHead className="text-white">Client Type</TableHead> */}
                 <TableHead className="text-white">
                   {" "}
@@ -224,8 +270,8 @@ const LeadManagement = () => {
                       onValueChange={(value) => setFilter(value)}
                       className="text-black"
                     >
-                      <SelectTrigger className="w-[40px] text-white">
-                        <svg
+                      <SelectTrigger className="w-[35px] p-2 rounded-md flex items-center space-x-2 bg-white text-black">
+                        {/* <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -238,7 +284,7 @@ const LeadManagement = () => {
                             strokeLinejoin="round"
                             d="M3.75 9l7.5 7.5 7.5-7.5"
                           />
-                        </svg>
+                        </svg> */}
                       </SelectTrigger>
                       <SelectContent className="text-black">
                         {clientTypes.map((clientType) => (
@@ -314,18 +360,15 @@ const LeadManagement = () => {
                 </TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {LeadManagement.map((LeadManagement) => (
                 <TableRow key={LeadManagement.id}>
                   <TableCell>{LeadManagement.date}</TableCell>
-
                   <TableCell>{LeadManagement.customer}</TableCell>
-
                   <TableCell>{LeadManagement.clientType}</TableCell>
                   <TableCell>{LeadManagement.country}</TableCell>
-
                   <TableCell>{LeadManagement.name}</TableCell>
-
                   <TableCell>{LeadManagement.email}</TableCell>
                   {/* <TableCell>{LeadManagement.mobile}</TableCell> */}
 
@@ -409,6 +452,7 @@ const LeadManagement = () => {
             </TableBody>
           </Table>
         </div>
+
         <div className="flex mt-4">
           <Pagination>
             <PaginationContent>

@@ -14,6 +14,15 @@ import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const entities = [
   { id: 1, name: "Customer", description: "Their involvement or responsibilities in a project or business relationship."},
@@ -50,7 +59,7 @@ const EntityType = () => {
   };
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between overflow-hidden  sticky top-0 z-10">
         <div>
           <h1 className="text-2xl font-bold ">Entity Types</h1>
         </div>
@@ -74,7 +83,7 @@ const EntityType = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className="border rounded-lg overflow-x-auto overflow-auto max-h-[500px]">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black ">
             <TableRow>
@@ -153,6 +162,24 @@ const EntityType = () => {
           </TableBody>
         </Table>
       </div>
+      <div className="flex mt-4">
+                      <Pagination>
+                        <PaginationContent>
+                          <PaginationItem>
+                            <PaginationPrevious href="#" />
+                          </PaginationItem>
+                          <PaginationItem>
+                            <PaginationLink href="#">1</PaginationLink>
+                          </PaginationItem>
+                          <PaginationItem>
+                            <PaginationEllipsis />
+                          </PaginationItem>
+                          <PaginationItem>
+                            <PaginationNext href="#" />
+                          </PaginationItem>
+                        </PaginationContent>
+                      </Pagination>
+                    </div>
       <div className="flex justify-end"></div>
     </div>
   );

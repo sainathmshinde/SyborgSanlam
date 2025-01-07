@@ -29,6 +29,8 @@ const EditUsers = () => {
     navigate("/users"); 
   };
   const handleSubmit = () => {
+    navigate("/users"); 
+
     console.log("Submitted user data:", user);
     
   };
@@ -36,10 +38,10 @@ const EditUsers = () => {
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Edit User</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">

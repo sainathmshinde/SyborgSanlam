@@ -49,7 +49,29 @@ const pieChartData = [
   { name: "Sent Back", value: sentBackRequests },
 ];
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-2 border rounded shadow">
+        <p>{label}</p>
+
+        <p className="text-sm text-gray-500">
+          Tap here for compliance team details.
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+// const handleNameClick = (name) => {
+//   alert(`Clicked on ${name}`);
+// };
+
+// const CustomizedXAxisTick = ({ x, y, payload }) => {
+//   const [isHovered, setIsHovered] = React.useState(false);
+
 const RADIAN = Math.PI / 180;
+
 const renderCustomizedLabel = ({
   cx,
   cy,
@@ -75,13 +97,18 @@ const renderCustomizedLabel = ({
   );
 };
 
+
 const COLORS = ["#003f5c", "#58508d", "#bc5090"];
 
 function ComplianceDashboard() {
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate("/compliance");
+    navigate("/complianceT");
   };
+
+  // const handleGraphClick = () => {
+  //   navigate("/complianceT");
+  // };
 
   return (
     <div className="container mx-auto p-4 space-y-6">
@@ -91,8 +118,11 @@ function ComplianceDashboard() {
         <Card>
           <CardHeader className="flex flex-row justify-between">
             <CardTitle>Request With Compliance</CardTitle>
+            {/* <div>Total Request</div> */}
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
+             <h1 className="text-lg ml-4">
+              Total Request : 175</h1>
           <CardContent>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -137,11 +167,12 @@ function ComplianceDashboard() {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={userData} className="mt-10 mb-2 px-4 py-4">
+              <BarChart onClick={handleEdit} data={userData} className="mt-10 mb-2 px-4 py-4 ">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
-                {/* <Tooltip /> */}
+                <Tooltip content={<CustomTooltip />} />
+                {/* <Tooltip/> */}
                 {/* <Legend /> */}
                 <Bar dataKey="pending" fill="#58508d" name="Pending " />
                 {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
@@ -157,7 +188,7 @@ function ComplianceDashboard() {
       </div>
 
       {/* User Table */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle>Pending With Compliance Team</CardTitle>
         </CardHeader>
@@ -183,7 +214,7 @@ function ComplianceDashboard() {
             </TableBody>
           </Table>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }

@@ -332,14 +332,14 @@ const CreateLeadManagement = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
         <h1 className="text-xl font-bold">Create New Lead</h1>
       </div>
 
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic">
+        <Tabs defaultValue="basic" className="overflow-auto max-h-[500px]">
           <TabsList className=" flex justify-start mb-4 mt-4 ">
             <TabsTrigger
               value="basic"
@@ -362,7 +362,7 @@ const CreateLeadManagement = () => {
                 <CardContent className="p-4">
                   {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
 
-                  <div className="space-y-2 grid-cols-1 mt-2">
+                  <div className="space-y-2 grid-cols-1 ">
                     <Label htmlFor="address">
                       About Lead<span className="text-red-600 ml-1">*</span>
                     </Label>
@@ -371,14 +371,7 @@ const CreateLeadManagement = () => {
                       className="min-h-[50px]"
                     />
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Assignment Details Card */}
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Assignment Details</h2> */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="space-y-2">
                       <Label
                         htmlFor="clientServiceManager"

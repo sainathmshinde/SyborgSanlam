@@ -8,11 +8,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, CartesianGrid,XAxis,
+  YAxis,
+  Bar, Tooltip } from "recharts";
 import { Users, UserCheck, ShieldAlert, Clock } from "lucide-react";
 import WithLayout from "@/components/layout/WithLayout";
 import { DatePicker } from "@/components/ui/datePicker";
 import { DateRangePicker } from "@/components/ui/dateRangePicker";
+import { useNavigate } from "react-router";
 
 // Mock data for the dashboard
 const dashboardData = {
@@ -74,6 +77,32 @@ function OnboardingDashboard() {
       </text>
     );
   };
+
+  const userData = [
+    { name: "John Smith", pending: 10, completed: 50, sentBack: 15 },
+    { name: "Emily Davis", pending: 15, completed: 30, sentBack: 10 },
+    { name: "Michael Brown", pending: 20, completed: 20, sentBack: 5 },
+  ];
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate("/customerO");
+  };
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border rounded shadow">
+          <p>{label}</p>
+  
+          <p className="text-sm text-gray-500">
+            Tap here for onboarding team details.
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="container mx-auto p-4">
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"> */}
@@ -155,11 +184,35 @@ function OnboardingDashboard() {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
+                 <Tooltip />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
+         <Card>
+                  <CardHeader>
+                    <CardTitle>Pending With Onboarding Team</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart onClick={handleEdit} data={userData} className="mt-10 mb-2 px-4 py-4 ">
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                        <Tooltip content={<CustomTooltip />} />
+                        {/* <Legend /> */}
+                        <Bar dataKey="pending" fill="#58508d" name="Pending " />
+                        {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
+                        {/* <Bar
+                          dataKey="withSalesTeam"
+                          fill="#bc5090"
+                          name="With Sales Team"
+                        /> */}
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </CardContent>
+                </Card>
 
         {/* <Card>
           <CardHeader>
@@ -199,6 +252,7 @@ function OnboardingDashboard() {
           </CardContent>
         </Card> */}
       </div>
+      
     </div>
   );
 }

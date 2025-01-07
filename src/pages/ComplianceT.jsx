@@ -43,7 +43,7 @@ import { useState } from "react";
 import country from "@/lib/country";
 import RButton from "@/components/ui/rButton";
 
-const Compliance = () => {
+const ComplianceT = () => {
   const navigate = useNavigate();
   const handleSearch = () => {};
   const countries = country;
@@ -142,45 +142,6 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     
-    {
-      id: 5,
-      Customer: "Harper Ward",
-      Name: "Jackson Perez",
-      Date: "7/12/2024",
-      ClientType: "Trust",
-      Stage: "Approved",
-      MobileNumber: "0860123456",
-      Email: "jacksonperez@example.com",
-      Country: "South Africa",
-      AssignedTo: "Samantha Green",
-    },
-    
-    {
-      id: 5,
-      Customer: "Harper Ward",
-      Name: "Jackson Perez",
-      Date: "7/12/2024",
-      ClientType: "Trust",
-      Stage: "Approved",
-      MobileNumber: "0860123456",
-      Email: "jacksonperez@example.com",
-      Country: "South Africa",
-      AssignedTo: "Samantha Green",
-    },
-    
-    {
-      id: 5,
-      Customer: "Harper Ward",
-      Name: "Jackson Perez",
-      Date: "7/12/2024",
-      ClientType: "Trust",
-      Stage: "Approved",
-      MobileNumber: "0860123456",
-      Email: "jacksonperez@example.com",
-      Country: "South Africa",
-      AssignedTo: "Samantha Green",
-    },
-    
   ];
 
   const stages = Array.from(
@@ -192,9 +153,9 @@ const Compliance = () => {
 
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between overflow-hidden sticky top-0 z-10">
+      <div className="flex flex-col justify-between  overflow-hidden sticky top-0 z-10 ">
         <div>
-          <h1 className="text-2xl font-bold ">Compliance Requests</h1>
+          <h1 className="text-2xl font-bold ">Compliance Request</h1>
         </div>
         <div className="flex flex-row items-center mt-4 mb-4">
           <select
@@ -202,9 +163,8 @@ const Compliance = () => {
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
           >
             {/* <option value="">Stages</option> */}
-            <option value="stage1">David Thompson </option>
             <option value="stage2">Lisa Anderson</option>
-            
+            <option value="stage1">David Thompson </option>
             <option value="stage1">Samantha Green </option>
           </select>
           <select
@@ -212,9 +172,8 @@ const Compliance = () => {
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
           >
             {/* <option value="">Stages</option> */}
-            <option value="stage1">Pending</option>
             <option value="stage2">Approved</option>
-            
+            <option value="stage1">Pending</option>
             <option value="stage1">Rejected</option>
             {/* <option value="stage3">Proposal</option>
             <option value="stage3">Lost</option> */}
@@ -228,25 +187,34 @@ const Compliance = () => {
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
-         
+          {/* <select
+    onChange={handleStageFilter}
+    className="ml-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+  >
+    <option value="">Stages</option>
+    <option value="stage1">Approved</option>
+    <option value="stage2">Pending</option>
+    <option value="stage3">Rejected</option>
+  </select>
+  <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" /> */}
         </div>
       </div>
-      <div className="rounded-lg bg-white overflow-auto max-h-[400px]  ">
-      <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black  ">
+      <div className="rounded-lg bg-white overflow-x-auto overflow-auto max-h-[400px] ">
+        <Table>
+          <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
-            <TableHead className="text-white  text-left">Date</TableHead>
-              <TableHead className="text-white  text-center">Customer Name</TableHead>
+            <TableHead className="text-white">Date</TableHead>
+              <TableHead className="text-white">Customer Name</TableHead>
               
               <TableHead className="text-white">
                 {" "}
                 <div className="flex items-center text-black">
-                  <span className="text-white text-left">Customer Type</span>
+                  <span className="text-white">Customer Type</span>
                   {/* <div className="space-y-2">
                       <Label htmlFor="client-type" >
                          Client Type
                       </Label> */}
-                  {/* <Select
+                  <Select
                     id="clientType"
                     value={formValues.clientType}
                     onValueChange={
@@ -254,6 +222,7 @@ const Compliance = () => {
                     }
                   >
                     <SelectTrigger className="w-[40px] text-white">
+                      {/* <SelectValue placeholder="Select client type" /> */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -275,59 +244,22 @@ const Compliance = () => {
                       <SelectItem value="trust">Trust</SelectItem>
                       <SelectItem value="company">Company</SelectItem>
                     </SelectContent>
-                  </Select> */}
+                  </Select>
                 </div>
               </TableHead>
               <TableHead className="text-white">
                 {" "}
                 <div className="flex items-center space-x-2 text-black">
-                  <span className="text-white text-left">Country</span>
+                  <span className="text-white">Country</span>
                   <Select
                     id="country"
                     onValueChange={(value) =>
                       handleSelectChange("country", value)
                     }
-                    value={selectedCountry} 
-                  >
-                    <SelectTrigger className="flex items-center space-x-2 w-[35px] text-black bg-white p-2 rounded-md">
-                    {/* <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2.5}
-      stroke="currentColor"
-      // className="h-5 w-5 text-white"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 4h18M8 12h8m-5 8h2"
-      />
-    </svg> */}
-                      
-                    </SelectTrigger>
-                    
-                    <SelectContent>
-                      {countries.map((country) => (
-                        <SelectItem key={country.id} value={country.id}>
-                          {country.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </TableHead>
-              <TableHead className="text-white text-left">Contact Name</TableHead>
-              {/* <TableHead className="text-white">
-                {" "}
-                <div className="flex items-center space-x-2 text-black">
-                  <span className="text-white">Stage</span>
-                  <Select
-                    value={filter}
-                    onValueChange={(value) => setFilter(value)}
-                    className="text-black"
+                    value={selectedCountry} // Set the selected value
                   >
                     <SelectTrigger className="w-[40px] text-white">
+                      {/* <SelectValue placeholder="Select client type" /> */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -343,38 +275,29 @@ const Compliance = () => {
                         />
                       </svg>
                     </SelectTrigger>
-                    <SelectContent className="text-black">
-                      <SelectItem value="all" className="text-black">
-                        All
-                      </SelectItem>
-                      {stages.map((stage) => (
-                        <SelectItem
-                          className="text-black"
-                          key={stage}
-                          value={stage}
-                        >
-                          {stage}
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country.id} value={country.id}>
+                          {country.name}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-              </TableHead> */}
-              <TableHead className="text-white text-left">
+              </TableHead>
+              <TableHead className="text-white">Contact Name</TableHead>
+              
+              <TableHead className="text-white">
                 Email
               </TableHead>
-              <TableHead className="text-white text-left">Mobile Number</TableHead>
+              <TableHead className="text-white">Mobile Number</TableHead>
               
               {/* <TableHead className="text-white">Country</TableHead> */}
               
-              <TableHead className="text-white w-48text-left">Assigned To</TableHead>
-              <TableHead className=" text-white text-center">Action</TableHead>
+              <TableHead className="text-white">Assigned To</TableHead>
+              <TableHead className=" text-white text-center -ml-2">Action</TableHead>
             </TableRow>
           </TableHeader>
-          {/* </Table>
-      </div>
-      <div >
-        <Table> */}
           <TableBody>
             {filteredData.map((lead, index) => (
               <TableRow
@@ -465,4 +388,4 @@ const Compliance = () => {
   );
 };
 
-export default WithLayout("compliance")(Compliance);
+export default WithLayout("compliance")(ComplianceT);

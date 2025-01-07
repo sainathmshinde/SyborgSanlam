@@ -24,13 +24,16 @@ const EditCountry = () => {
     const goBack = () => {
       navigate("/country"); 
     };
+    const handleSubmit = () => {
+      navigate("/country"); 
+    };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Edit Country</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
@@ -47,7 +50,7 @@ const EditCountry = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-4">
                 <Label htmlFor="countryCode" className="w-full required">
                   Country Code
                 </Label>
@@ -68,7 +71,7 @@ const EditCountry = () => {
             <RButton variant="outline" onClick={goBack}>
                                       Back
                                     </RButton>
-            <RButton className="ml-5" type="submit">Update</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Update</RButton>
           </div>
         </form>
       </div>
