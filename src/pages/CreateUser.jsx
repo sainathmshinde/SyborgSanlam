@@ -31,6 +31,9 @@ const handleSelectRoleChange = (key, value) => {
   // Handle other fields if necessary
 };
 
+const handleSubmit =()=>{
+  navigate("/users")
+}
 const goBack = () => {
   navigate("/users"); 
 };
@@ -44,10 +47,10 @@ const goBack = () => {
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Create New User</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -158,7 +161,7 @@ const goBack = () => {
             <RButton variant="outline" onClick={goBack}>
                 Back
               </RButton>
-            <RButton className="ml-5" type="submit">Submit</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Submit</RButton>
           </div>
         </form>
       </div>

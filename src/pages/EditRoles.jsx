@@ -251,13 +251,13 @@ function EditRoles() {
         response = await updateRole(role.id, role);
       }
       if (response.status === "success") {
-        navigate("/role");
+        navigate("/roles");
         setRole(initialRoleObject());
         toast({
           title: "Role saved successfully",
           description: "Role has been saved successfully.",
         });
-        navigate("/role");
+        navigate("/roles");
       } else {
         toast({
           variant: "destructive",
@@ -384,14 +384,13 @@ function EditRoles() {
 
   return (
     <div className="w-full max-w-4xl p-4">
-      <div>
+      <div className="overflow-hidden  sticky top-0 z-10">
         <h1 className="mb-6 mt-2 text-xl font-bold ">Edit Role</h1>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 overflow-auto max-h-[500px]">
         <Card className="bg-gray-200  ">
           <CardContent className="p-4 gap-4">
-            {" "}
-            <RInput
+            <div><RInput
               label="Role Name"
               id="name"
               type="text"
@@ -400,8 +399,9 @@ function EditRoles() {
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
               isRequired
-            />
-            <RInput
+            /></div>
+            <div className="mt-4"> 
+              <RInput
               label="Description"
               id="description"
               type="text"
@@ -410,7 +410,8 @@ function EditRoles() {
               onChange={(event) => handleChange("description")(event)}
               value={role.description}
               isRequired
-            />
+            /></div>
+           
           </CardContent>
         </Card>
 
@@ -419,7 +420,7 @@ function EditRoles() {
           Manage the permissions for your application. Adjust the API and UI
           access levels as needed.
         </div>
-      </div>
+      
 
       <div>
         <Accordion type="single" collapsible>
@@ -433,13 +434,14 @@ function EditRoles() {
           ))}
         </Accordion>
       </div>
-      <div className="flex justify-end mt-10">
+      <div className="flex justify-end mb-6">
             <RButton variant="outline" onClick={goBack}>
           Back
         </RButton>
               <RButton className="ml-5" onClick={handleSubmit}>Update</RButton>
             </div>
       
+    </div>
     </div>
   );
 }

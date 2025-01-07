@@ -178,9 +178,9 @@ const Role = () => {
   };
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between">
+      <div className=" flex flex-col justify-between overflow-hidden sticky top-0 z-10">
         <div>
-          <h1 className="text-2xl font-bold ">Roles</h1>
+          <h1 className=" text-2xl font-bold ">Roles</h1>
         </div>
         <div className="flex items-center justify-between mt-4 mb-6">
           <Input
@@ -188,7 +188,7 @@ const Role = () => {
             placeholder="Search Roles..."
             value={searchterm}
             onChange={handleSearch}
-            className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
+            className="w-full  bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
           <RButton
             onClick={() => {
@@ -203,9 +203,9 @@ const Role = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-hidden">
+      <div className="border rounded-lg overflow-auto max-h-[400px]">
         <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black sticky top-0 z-10 ">
+          <TableHeader className="bg-custom-black hover:bg-custom-black  ">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
@@ -214,10 +214,10 @@ const Role = () => {
               </TableHead>
             </TableRow>
           </TableHeader>
-        </Table>
+        {/* </Table>
       </div>
       <div className="overflow-auto max-h-[400px]">
-        <Table>
+        <Table> */}
           <TableBody>
             {filterData?.length ? (
               filterData?.map((role) => (

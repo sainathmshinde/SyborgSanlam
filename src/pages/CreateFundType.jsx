@@ -12,14 +12,17 @@ const CreateFundType = () => {
     const goBack = () => {
       navigate("/fundType"); 
     };
+    const handleSubmit = () => {
+      navigate("/fundType"); 
+    };
 
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Create New Fund Type</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
@@ -32,7 +35,7 @@ const CreateFundType = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-4">
                 <Label htmlFor="teamName" className="w-full required">
                  Description
                 </Label>
@@ -47,7 +50,7 @@ const CreateFundType = () => {
 
           <div className="flex justify-end">
             <RButton variant="outline" onClick={goBack}>Back</RButton>
-            <RButton className="ml-5" type="submit">Submit</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Submit</RButton>
           </div>
         </form>
       </div>

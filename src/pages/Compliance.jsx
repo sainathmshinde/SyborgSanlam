@@ -142,6 +142,45 @@ const Compliance = () => {
       AssignedTo: "Samantha Green",
     },
     
+    {
+      id: 5,
+      Customer: "Harper Ward",
+      Name: "Jackson Perez",
+      Date: "7/12/2024",
+      ClientType: "Trust",
+      Stage: "Approved",
+      MobileNumber: "0860123456",
+      Email: "jacksonperez@example.com",
+      Country: "South Africa",
+      AssignedTo: "Samantha Green",
+    },
+    
+    {
+      id: 5,
+      Customer: "Harper Ward",
+      Name: "Jackson Perez",
+      Date: "7/12/2024",
+      ClientType: "Trust",
+      Stage: "Approved",
+      MobileNumber: "0860123456",
+      Email: "jacksonperez@example.com",
+      Country: "South Africa",
+      AssignedTo: "Samantha Green",
+    },
+    
+    {
+      id: 5,
+      Customer: "Harper Ward",
+      Name: "Jackson Perez",
+      Date: "7/12/2024",
+      ClientType: "Trust",
+      Stage: "Approved",
+      MobileNumber: "0860123456",
+      Email: "jacksonperez@example.com",
+      Country: "South Africa",
+      AssignedTo: "Samantha Green",
+    },
+    
   ];
 
   const stages = Array.from(
@@ -153,45 +192,61 @@ const Compliance = () => {
 
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between overflow-hidden sticky top-0 z-10">
         <div>
           <h1 className="text-2xl font-bold ">Compliance Requests</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex flex-row items-center mt-4 mb-4">
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage1">David Thompson </option>
+            <option value="stage2">Lisa Anderson</option>
+            
+            <option value="stage1">Samantha Green </option>
+          </select>
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage1">Pending</option>
+            <option value="stage2">Approved</option>
+            
+            <option value="stage1">Rejected</option>
+            {/* <option value="stage3">Proposal</option>
+            <option value="stage3">Lost</option> */}
+          </select>
+          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+        </div>
+        <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
             placeholder="Search Compliance Requests..."
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
-          <select
-    onChange={handleStageFilter}
-    className="ml-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
-  >
-    <option value="">Pending</option>
-    <option value="stage1">Approved</option>
-    {/* <option value="stage2">Pending</option> */}
-    <option value="stage3">Rejected</option>
-  </select>
-  <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
+         
         </div>
       </div>
-      <div className="rounded-lg bg-white overflow-x-auto">
-        <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black">
+      <div className="rounded-lg bg-white overflow-auto max-h-[400px]  ">
+      <Table>
+          <TableHeader className="bg-custom-black hover:bg-custom-black  ">
             <TableRow>
-            <TableHead className="text-white">Date</TableHead>
-              <TableHead className="text-white">Customer Name</TableHead>
+            <TableHead className="text-white  text-left">Date</TableHead>
+              <TableHead className="text-white  text-center">Customer Name</TableHead>
               
               <TableHead className="text-white">
                 {" "}
                 <div className="flex items-center text-black">
-                  <span className="text-white">Customer Type</span>
+                  <span className="text-white text-left">Customer Type</span>
                   {/* <div className="space-y-2">
                       <Label htmlFor="client-type" >
                          Client Type
                       </Label> */}
-                  <Select
+                  {/* <Select
                     id="clientType"
                     value={formValues.clientType}
                     onValueChange={
@@ -199,7 +254,6 @@ const Compliance = () => {
                     }
                   >
                     <SelectTrigger className="w-[40px] text-white">
-                      {/* <SelectValue placeholder="Select client type" /> */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -221,37 +275,38 @@ const Compliance = () => {
                       <SelectItem value="trust">Trust</SelectItem>
                       <SelectItem value="company">Company</SelectItem>
                     </SelectContent>
-                  </Select>
+                  </Select> */}
                 </div>
               </TableHead>
               <TableHead className="text-white">
                 {" "}
                 <div className="flex items-center space-x-2 text-black">
-                  <span className="text-white">Country</span>
+                  <span className="text-white text-left">Country</span>
                   <Select
                     id="country"
                     onValueChange={(value) =>
                       handleSelectChange("country", value)
                     }
-                    value={selectedCountry} // Set the selected value
+                    value={selectedCountry} 
                   >
-                    <SelectTrigger className="w-[40px] text-white">
-                      {/* <SelectValue placeholder="Select client type" /> */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        stroke="currentColor"
-                        className="h-20 w-20 text-black"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3.75 9l7.5 7.5 7.5-7.5"
-                        />
-                      </svg>
+                    <SelectTrigger className="flex items-center space-x-2 w-[35px] text-black bg-white p-2 rounded-md">
+                    {/* <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2.5}
+      stroke="currentColor"
+      // className="h-5 w-5 text-white"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 4h18M8 12h8m-5 8h2"
+      />
+    </svg> */}
+                      
                     </SelectTrigger>
+                    
                     <SelectContent>
                       {countries.map((country) => (
                         <SelectItem key={country.id} value={country.id}>
@@ -262,7 +317,7 @@ const Compliance = () => {
                   </Select>
                 </div>
               </TableHead>
-              <TableHead className="text-white">Contact Name</TableHead>
+              <TableHead className="text-white text-left">Contact Name</TableHead>
               {/* <TableHead className="text-white">
                 {" "}
                 <div className="flex items-center space-x-2 text-black">
@@ -305,17 +360,21 @@ const Compliance = () => {
                   </Select>
                 </div>
               </TableHead> */}
-              <TableHead className="text-white">
+              <TableHead className="text-white text-left">
                 Email
               </TableHead>
-              <TableHead className="text-white">Mobile Number</TableHead>
+              <TableHead className="text-white text-left">Mobile Number</TableHead>
               
               {/* <TableHead className="text-white">Country</TableHead> */}
               
-              <TableHead className="text-white">Assigned To</TableHead>
-              <TableHead className=" text-white text-center -ml-2">Action</TableHead>
+              <TableHead className="text-white w-48text-left">Assigned To</TableHead>
+              <TableHead className=" text-white text-center">Action</TableHead>
             </TableRow>
           </TableHeader>
+          {/* </Table>
+      </div>
+      <div >
+        <Table> */}
           <TableBody>
             {filteredData.map((lead, index) => (
               <TableRow
