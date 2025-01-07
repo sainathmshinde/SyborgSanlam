@@ -203,9 +203,9 @@ const Role = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className="border rounded-lg overflow-hidden">
         <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black ">
+          <TableHeader className="bg-custom-black hover:bg-custom-black sticky top-0 z-10 ">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
@@ -214,6 +214,10 @@ const Role = () => {
               </TableHead>
             </TableRow>
           </TableHeader>
+        </Table>
+      </div>
+      <div className="overflow-auto max-h-[400px]">
+        <Table>
           <TableBody>
             {filterData?.length ? (
               filterData?.map((role) => (
@@ -302,23 +306,23 @@ const Role = () => {
         </Table>
       </div>
       <div className="flex mt-4">
-                <Pagination>
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationNext href="#" />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </div>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
       <div className="flex justify-end"></div>
     </div>
   );
