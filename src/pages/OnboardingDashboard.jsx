@@ -85,8 +85,24 @@ function OnboardingDashboard() {
   ];
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate("/onboardinglist");
+    navigate("/customerO");
   };
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border rounded shadow">
+          <p>{label}</p>
+  
+          <p className="text-sm text-gray-500">
+            Tap here for onboarding team details.
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="container mx-auto p-4">
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"> */}
@@ -184,7 +200,7 @@ function OnboardingDashboard() {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
-                        {/* <Tooltip /> */}
+                        <Tooltip content={<CustomTooltip />} />
                         {/* <Legend /> */}
                         <Bar dataKey="pending" fill="#58508d" name="Pending " />
                         {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}

@@ -43,7 +43,7 @@ import { useState } from "react";
 import country from "@/lib/country";
 import RButton from "@/components/ui/rButton";
 
-const Compliance = () => {
+const ComplianceT = () => {
   const navigate = useNavigate();
   const handleSearch = () => {};
   const countries = country;
@@ -153,30 +153,53 @@ const Compliance = () => {
 
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between ">
         <div>
-          <h1 className="text-2xl font-bold ">Compliance Requests</h1>
+          <h1 className="text-2xl font-bold ">Compliance Request</h1>
         </div>
-        <div className="flex items-center justify-between mt-4 mb-6">
+        <div className="flex flex-row items-center mt-2 mb-4">
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage2">Lisa Anderson</option>
+            <option value="stage1">David Thompson </option>
+            <option value="stage1">Samantha Green </option>
+          </select>
+          <select
+            onChange={handleStageFilter}
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+          >
+            {/* <option value="">Stages</option> */}
+            <option value="stage2">Approved</option>
+            <option value="stage1">Pending</option>
+            <option value="stage1">Rejected</option>
+            {/* <option value="stage3">Proposal</option>
+            <option value="stage3">Lost</option> */}
+          </select>
+          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+        </div>
+        <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
             placeholder="Search Compliance Requests..."
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
           />
-          <select
+          {/* <select
     onChange={handleStageFilter}
     className="ml-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
   >
-    <option value="">Pending</option>
+    <option value="">Stages</option>
     <option value="stage1">Approved</option>
-    {/* <option value="stage2">Pending</option> */}
+    <option value="stage2">Pending</option>
     <option value="stage3">Rejected</option>
   </select>
-  <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
+  <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" /> */}
         </div>
       </div>
-      <div className="rounded-lg bg-white overflow-x-auto">
+      <div className="rounded-lg bg-white overflow-x-auto ">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
@@ -263,48 +286,7 @@ const Compliance = () => {
                 </div>
               </TableHead>
               <TableHead className="text-white">Contact Name</TableHead>
-              {/* <TableHead className="text-white">
-                {" "}
-                <div className="flex items-center space-x-2 text-black">
-                  <span className="text-white">Stage</span>
-                  <Select
-                    value={filter}
-                    onValueChange={(value) => setFilter(value)}
-                    className="text-black"
-                  >
-                    <SelectTrigger className="w-[40px] text-white">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        stroke="currentColor"
-                        className="h-20 w-20 text-black"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3.75 9l7.5 7.5 7.5-7.5"
-                        />
-                      </svg>
-                    </SelectTrigger>
-                    <SelectContent className="text-black">
-                      <SelectItem value="all" className="text-black">
-                        All
-                      </SelectItem>
-                      {stages.map((stage) => (
-                        <SelectItem
-                          className="text-black"
-                          key={stage}
-                          value={stage}
-                        >
-                          {stage}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </TableHead> */}
+              
               <TableHead className="text-white">
                 Email
               </TableHead>
@@ -406,4 +388,4 @@ const Compliance = () => {
   );
 };
 
-export default WithLayout("compliance")(Compliance);
+export default WithLayout("compliance")(ComplianceT);
