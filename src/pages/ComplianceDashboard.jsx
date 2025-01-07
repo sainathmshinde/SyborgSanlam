@@ -49,6 +49,20 @@ const pieChartData = [
   { name: "Sent Back", value: sentBackRequests },
 ];
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-2 border rounded shadow">
+        <p>{label}</p>
+
+        <p className="text-sm text-gray-500">
+          Tap here for compliance team details.
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
 // const handleNameClick = (name) => {
 //   alert(`Clicked on ${name}`);
 // };
@@ -89,8 +103,12 @@ const COLORS = ["#003f5c", "#58508d", "#bc5090"];
 function ComplianceDashboard() {
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate("/compliance");
+    navigate("/complianceT");
   };
+
+  // const handleGraphClick = () => {
+  //   navigate("/complianceT");
+  // };
 
   return (
     <div className="container mx-auto p-4 space-y-6">
@@ -153,7 +171,8 @@ function ComplianceDashboard() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
-                {/* <Tooltip /> */}
+                <Tooltip content={<CustomTooltip />} />
+                {/* <Tooltip/> */}
                 {/* <Legend /> */}
                 <Bar dataKey="pending" fill="#58508d" name="Pending " />
                 {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
