@@ -59,6 +59,21 @@ function SalesDashboard() {
     navigate("/leadM");
   };
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border rounded shadow">
+          <p>{label}</p>
+
+          <p className="text-sm text-gray-500">
+            Tap here for onboarding leads details.
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="p-4">
       {/* <h1 className="text-2xl font-bold">Sales Dashboard</h1> */}
@@ -163,7 +178,7 @@ function SalesDashboard() {
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "100%", left: "0" }}
                           >
-                            Click Here to See Bar Chart
+                            Click here for the bar chart visualization.
                           </div>
                         </TableCell>
                         <TableCell className="text-center">55</TableCell>
@@ -179,7 +194,7 @@ function SalesDashboard() {
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "100%", left: "0" }}
                           >
-                            Click Here to See Bar Chart
+                            Click here for the bar chart visualization.{" "}
                           </div>
                         </TableCell>
                         <TableCell className="text-center">46</TableCell>
@@ -196,7 +211,7 @@ function SalesDashboard() {
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "100%", left: "0" }}
                           >
-                            Click Here to See Bar Chart
+                            Click here for the bar chart visualization.
                           </div>
                         </TableCell>
                         <TableCell className="text-center">24</TableCell>
@@ -228,6 +243,8 @@ function SalesDashboard() {
                           <XAxis dataKey="name" />
                           <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
                           <Legend />
+
+                          <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="leadsWithSales"
                             fill="#58508d"
