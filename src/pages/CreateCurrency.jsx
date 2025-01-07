@@ -12,13 +12,16 @@ const CreateCurrency = () => {
   const goBack = () => {
     navigate("/currency"); 
   };
+  const handleSubmit = () => {
+    navigate("/currency"); 
+  };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Create New Currency</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
@@ -41,7 +44,7 @@ const CreateCurrency = () => {
                 </Label>
                 <Input id="code" placeholder="Enter Code" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 mt-2">
                 <Label htmlFor="teamRoles" className="w-full required">
                   Symbol
                 </Label>
@@ -55,7 +58,7 @@ const CreateCurrency = () => {
             <RButton variant="outline" onClick={goBack}>
                                                   Back
                                                 </RButton>
-            <RButton className="ml-5" type="submit">Submit</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Submit</RButton>
           </div>
         </form>
       </div>

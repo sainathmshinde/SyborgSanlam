@@ -230,13 +230,13 @@ function CreateRole() {
         response = await updateRole(role.id, role);
       }
       if (response.status === "success") {
-        navigate("/role");
+        navigate("/roles");
         setRole(initialRoleObject());
         toast({
           title: "Role saved successfully",
           description: "Role has been saved successfully.",
         });
-        navigate("/role");
+        navigate("/roles");
       } else {
         toast({
           variant: "destructive",
@@ -364,33 +364,37 @@ function CreateRole() {
   return (
     <div className="w-full p-4
      max-w-4xl">
-      <div>
+      
+      <div className="overflow-hidden  sticky top-0 z-10">
         <h1 className="mb-6 mt-2 text-xl font-bold ">Create New Role</h1>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 overflow-auto max-h-[500px] ">
         <Card className="bg-gray-200  ">
           <CardContent className="p-4 gap-4">
-            {" "}
-            <RInput
+            <div>
+              <RInput
               label="Role Name"
               id="name"
               type="text"
               placeholder="Enter Role Name"
-              className="w-full "
+              className="w-full mb-4 "
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
               isRequired
-            />
-            <RInput
+            /></div>
+            <div className="mt-4">
+             <RInput
               label="Description"
               id="description"
               type="text"
               placeholder="Enter Description"
-              className="w-full"
+              className="w-full  "
               onChange={(event) => handleChange("description")(event)}
               value={role.description}
               isRequired
-            />
+                
+            /></div>
+           
           </CardContent>
         </Card>
 
@@ -399,7 +403,7 @@ function CreateRole() {
           Manage the permissions for your application. Adjust the API and UI
           access levels as needed.
         </div>
-      </div>
+      
 
       <div>
         <Accordion type="single" collapsible>
@@ -419,6 +423,7 @@ function CreateRole() {
   </RButton>
         <RButton className="ml-5" onClick={handleSubmit}>Submit</RButton>
       </div>
+    </div>
     </div>
   );
 }

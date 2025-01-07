@@ -94,7 +94,7 @@ const Users = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 overflow-hidden  sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Users</h1>
         </div>
         <div className="flex items-center justify-between mb-6">
@@ -107,7 +107,7 @@ const Users = () => {
           />
           <Button onClick={handleCreateUser}>Create User</Button>
         </div>
-        <div className="border rounded-lg overflow-x-auto">
+        <div className="border rounded-lg  overflow-auto max-h-[400px]">
           <Table>
             <TableHeader className="bg-custom-black hover:bg-custom-black ">
               <TableRow>
@@ -119,6 +119,10 @@ const Users = () => {
                 <TableHead className="p-2 px-8 text-white text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
+            {/* </Table>
+            </div>
+            <div className="overflow-auto max-h-[400px]">
+            <Table> */}
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.id}>

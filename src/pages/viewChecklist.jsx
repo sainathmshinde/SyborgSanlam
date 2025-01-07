@@ -141,7 +141,7 @@ function CreateUser() {
     <div className="w-full p-4">
       {next == 1 && (
         <div>
-          <div className="flex justify-start items-center ">
+          <div className="flex justify-start items-center overflow-hidden  sticky top-0 z-10 ">
             {/* <div
               onClick={goBack}
               className="hover:cursor-pointer hover:text-blue-600  w-12 -mt-4"
@@ -150,8 +150,9 @@ function CreateUser() {
               <CircleArrowLeft className="w-8 h-8" />
             </div> */}
             <h1 className="text-xl font-bold mb-4"> Edit Checklist</h1>
-            <div className="flex justify-end"></div>
+            {/* <div className="flex justify-end"></div> */}
           </div>
+          <div className="overflow-auto max-h-[500px]">
           <div className="mb-4 text-md  bg-gray-200 border rounded-lg overflow-x-auto">
             <div className="space-y-4 p-4">
               <div className="flex flex-col">
@@ -259,6 +260,7 @@ function CreateUser() {
               Next
             </RButton>
           </div>
+          </div>
         </div>
       )}
       {next === 2 && (
@@ -272,8 +274,9 @@ function CreateUser() {
               </Label>
               <Input id="name" placeholder="Enter checklist name" />
             </div> */}
-                <div className="gap-4"></div>
-                <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
+                <div className="overflow-hidden  sticky top-0 z-10">                
+                  <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
+                </div>
                 <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
                   {/* <Label htmlFor="doc" className="text-lg font-bold">
                     Required Documents
@@ -307,7 +310,6 @@ function CreateUser() {
                     ))}
                   </div>
                 </div>
-              </div>
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
@@ -322,6 +324,7 @@ function CreateUser() {
               </RButton>
             </div>
           </div>
+        </div>
         </div>
       )}
     </div>

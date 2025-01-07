@@ -153,7 +153,7 @@ const ComplianceT = () => {
 
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between ">
+      <div className="flex flex-col justify-between  overflow-hidden sticky top-0 z-10 ">
         <div>
           <h1 className="text-2xl font-bold ">Compliance Request</h1>
         </div>
@@ -199,7 +199,7 @@ const ComplianceT = () => {
   <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" /> */}
         </div>
       </div>
-      <div className="rounded-lg bg-white overflow-x-auto ">
+      <div className="rounded-lg bg-white overflow-x-auto overflow-auto max-h-[400px] ">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>

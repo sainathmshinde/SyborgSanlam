@@ -19,6 +19,9 @@ const EditFundType = () => {
     const goBack = () => {
       navigate("/fundType"); 
     };
+    const handleSubmit = () => {
+      navigate("/fundType"); 
+    };
 
   const handleInputChange = (field, value) => {
     setFund((prev) => ({
@@ -29,10 +32,10 @@ const EditFundType = () => {
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
-        <div className="">
+        <div className="overflow-hidden  sticky top-0 z-10">
           <h1 className="text-xl font-bold">Edit Fund Type</h1>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4 overflow-auto max-h-[500px]">
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
@@ -47,7 +50,7 @@ const EditFundType = () => {
                   //   required
                 />
               </div>
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-4">
                 <Label htmlFor="fundType" className="w-full required">
                  Description
                 </Label>
@@ -64,7 +67,7 @@ const EditFundType = () => {
 
           <div className="flex justify-end">
             <RButton variant="outline" onClick={goBack}>Back</RButton>
-            <RButton className="ml-5" type="submit">Update</RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">Update</RButton>
           </div>
         </form>
       </div>

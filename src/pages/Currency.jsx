@@ -213,7 +213,7 @@ const CurrencyPage = () => {
   };
   return (
     <div className="p-4">
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between overflow-hidden  sticky top-0 z-10">
         <div>
           <h1 className="text-2xl font-bold ">Currency</h1>
         </div>
@@ -237,7 +237,7 @@ const CurrencyPage = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-x-auto">
+      <div className="border rounded-lg overflow-x-auto overflow-auto max-h-[400px]">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
