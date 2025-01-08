@@ -130,6 +130,7 @@ function CreateChecklist() {
               id="country"
               onValueChange={(value) => handleSelectChange("country", value)}
               value={selectedCountry} // Set the selected value
+              
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select country" />

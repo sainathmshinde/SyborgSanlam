@@ -445,7 +445,7 @@ const CreateLeadManagement = () => {
                   Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
-                  Save
+                  Submit
                 </Button>
               </div>
             </form>
@@ -626,7 +626,7 @@ const CreateLeadManagement = () => {
                   Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
-                  Save
+                  Submit
                 </Button>
               </div>
             </form>

@@ -61,7 +61,7 @@ const OnboardingList = () => {
         <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Customer Onboarding</h1>
         </div>
-        <div className="flex flex-row items-center mt-2 mb-4">
+        <div className="flex flex-row items-center mt-4 mb-4">
           <select
             onChange={handleStageFilter}
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
