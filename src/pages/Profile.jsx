@@ -278,7 +278,7 @@ function Profile() {
       {mode === "doc" ? (
         <div>
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 overflow-hidden sticky top-0 z-10">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
               <div>
                 <h3 className="text-yellow-800 font-medium">
@@ -338,7 +338,7 @@ function Profile() {
           <UploadDocuments />
         </div>
       ) : (
-        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto max-h-[500px]">
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
             <div className="flex items-start gap-4">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
@@ -487,7 +487,7 @@ function Profile() {
                 </div>
 
                 <div className="my-1 flex justify-end">
-                  <Button className="mx-5">Save & Next</Button>
+                  <Button className="mx-5">Submit & Next</Button>
                 </div>
               </TabsContent>
               <TabsContent value="contact">
@@ -589,7 +589,7 @@ function Profile() {
                     </Table>
                   </CardContent>
                   <div className="my-5 flex justify-end">
-                    <Button className="mx-5">Save & Next</Button>
+                    <Button className="mx-5">Submit & Next</Button>
                   </div>
                 </Card>
               </TabsContent>
@@ -1200,7 +1200,7 @@ function Profile() {
                   </div>
 
                   <div className="my-10 flex  justify-end">
-                    <Button className="mx-5">Save & Next</Button>
+                    <Button className="mx-5">Submit & Next</Button>
                   </div>
                 </form>
               </TabsContent>
@@ -1333,7 +1333,7 @@ function Profile() {
                     </Table>
                   </CardContent>
                   <div className="my-10 flex justify-end">
-                    <Button className="mx-5">Save & Next</Button>
+                    <Button className="mx-5">Submit & Next</Button>
                   </div>
                 </Card>
               </TabsContent>
