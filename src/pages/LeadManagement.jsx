@@ -262,7 +262,6 @@ const LeadManagement = () => {
                 <TableHead className="text-white  ">Customer Name</TableHead>
                 {/* <TableHead className="text-white">Client Type</TableHead> */}
                 <TableHead className="text-white">
-                  {" "}
                   <div className="flex items-center space-x-2 text-black">
                     <span className="text-white">Customer Type</span>
                     <Select

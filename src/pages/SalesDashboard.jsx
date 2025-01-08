@@ -140,8 +140,11 @@ function SalesDashboard() {
           <div className="grid grid-cols-1 gap-4  ">
             <Card className="w-full">
               <CardHeader className="flex flex-row items-center  pb-2 ">
-                <CardTitle className=" mb-5">Process Wise Breakup</CardTitle>
+                <CardTitle>Process Wise Breakup</CardTitle>
               </CardHeader>
+              <h1 className="ml-4 mb-4">
+                Select a name to view its corresponding bar chart.{" "}
+              </h1>
 
               <div>
                 <CardContent className="grid grid-cols-2">
@@ -176,7 +179,7 @@ function SalesDashboard() {
                           <div
                             className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
-                            style={{ top: "100%", left: "0" }}
+                            style={{ top: "0", left: "30%" }}
                           >
                             Click here for the bar chart visualization.
                           </div>
@@ -189,13 +192,13 @@ function SalesDashboard() {
                       >
                         <TableCell className="font-medium relative group">
                           Sarah Johnson
-                          <div
+                          {/* <div
                             className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "100%", left: "0" }}
                           >
                             Click here for the bar chart visualization.{" "}
-                          </div>
+                          </div> */}
                         </TableCell>
                         <TableCell className="text-center">46</TableCell>
                       </TableRow>
@@ -206,13 +209,13 @@ function SalesDashboard() {
                       >
                         <TableCell className="font-medium relative group">
                           Alex Doe
-                          <div
+                          {/* <div
                             className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "100%", left: "0" }}
                           >
                             Click here for the bar chart visualization.
-                          </div>
+                          </div> */}
                         </TableCell>
                         <TableCell className="text-center">24</TableCell>
                       </TableRow>
