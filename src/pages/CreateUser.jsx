@@ -85,7 +85,7 @@ const goBack = () => {
                 </Label>
                 <Input id="teamEmail" placeholder="Enter Address" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                 <div className="space-y-2">
                   <Label className="required" htmlFor="city">
                     City

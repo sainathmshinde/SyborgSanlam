@@ -497,7 +497,7 @@ const CreateLead = () => {
               </div>
 
               <div className="my-1 flex justify-end">
-                <Button className="mx-5">Save & Next</Button>
+                <Button className="mx-5">Submit & Next</Button>
               </div>
             </TabsContent>
             <TabsContent value="contact">
@@ -595,7 +595,7 @@ const CreateLead = () => {
                   </Table>
                 </CardContent>
                 <div className="my-1 flex justify-end">
-                  <Button className="mx-5">Save & Next</Button>
+                  <Button className="mx-5">Submit & Next</Button>
                 </div>
               </Card>
             </TabsContent>
@@ -1207,7 +1207,7 @@ const CreateLead = () => {
                 </div>
 
                 <div className="my-5 flex justify-end">
-                  <Button className="mx-5">Save & Next</Button>
+                  <Button className="mx-5">Submit & Next</Button>
                 </div>
               </form>
             </TabsContent>
@@ -1348,7 +1348,7 @@ const CreateLead = () => {
                   </Table>
                 </CardContent>
                 <div className="my-5 flex justify-end">
-                  <Button className="mx-5">Save & Next</Button>
+                  <Button className="mx-5">Submit & Next</Button>
                 </div>
               </Card>
             </TabsContent>
@@ -1517,7 +1517,7 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-10 flex justify-end mx-5">
+                <div className="my-5 flex justify-end mx-5">
                   {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
                 </Button> */}
