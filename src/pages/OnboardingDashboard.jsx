@@ -8,9 +8,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, CartesianGrid,XAxis,
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  BarChart,
+  CartesianGrid,
+  XAxis,
   YAxis,
-  Bar, Tooltip } from "recharts";
+  Bar,
+  Tooltip,
+} from "recharts";
 import { Users, UserCheck, ShieldAlert, Clock } from "lucide-react";
 import WithLayout from "@/components/layout/WithLayout";
 import { DatePicker } from "@/components/ui/datePicker";
@@ -38,7 +48,11 @@ const dashboardData = {
 };
 
 const pieChartData = [
-  { name: "Onboarding", value: dashboardData.pendingRequests, color: "#f97316" },
+  {
+    name: "Onboarding",
+    value: dashboardData.pendingRequests,
+    color: "#f97316",
+  },
   {
     name: "Compliance",
     value: dashboardData.withComplianceTeam,
@@ -49,7 +63,6 @@ const pieChartData = [
     value: dashboardData.onboardedClients,
     color: "#22c55e",
   },
-  
 ];
 function OnboardingDashboard() {
   const RADIAN = Math.PI / 180;
@@ -93,7 +106,7 @@ function OnboardingDashboard() {
       return (
         <div className="bg-white p-2 border rounded shadow">
           <p>{label}</p>
-  
+
           <p className="text-sm text-gray-500">
             Tap here for onboarding team details.
           </p>
@@ -106,7 +119,7 @@ function OnboardingDashboard() {
   return (
     <div className="container mx-auto p-4">
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"> */}
-        {/* <Card>
+      {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">Total Clients</CardTitle>
             <Users className="h-4 w-4 text-white" />
@@ -117,7 +130,7 @@ function OnboardingDashboard() {
             </div>
           </CardContent>
         </Card> */}
-        {/* <Card>
+      {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               Pending Onboarding
@@ -130,7 +143,7 @@ function OnboardingDashboard() {
             </div>
           </CardContent>
         </Card> */}
-        {/* <Card>
+      {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               Onboarded Clients
@@ -143,7 +156,7 @@ function OnboardingDashboard() {
             </div>
           </CardContent>
         </Card> */}
-        {/* <Card>
+      {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b mb-3 bg-custom-black text-white py-3 rounded-tl-lg rounded-tr-lg">
             <CardTitle className="text-sm font-medium">
               With Compliance Team
@@ -164,6 +177,7 @@ function OnboardingDashboard() {
             <CardTitle>Onboarding Status</CardTitle>
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
+          <h1 className="text-lg ml-4">Total Request : 175</h1>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
@@ -184,35 +198,39 @@ function OnboardingDashboard() {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                 <Tooltip />
+                <Tooltip />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
-         <Card>
-                  <CardHeader>
-                    <CardTitle>Pending With Onboarding Team</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <BarChart onClick={handleEdit} data={userData} className="mt-10 mb-2 px-4 py-4 ">
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
-                        <Tooltip content={<CustomTooltip />} />
-                        {/* <Legend /> */}
-                        <Bar dataKey="pending" fill="#58508d" name="Pending " />
-                        {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
-                        {/* <Bar
+        <Card>
+          <CardHeader>
+            <CardTitle>Pending With Onboarding Team</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                onClick={handleEdit}
+                data={userData}
+                className="mt-10 mb-2 px-4 py-4 "
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                <Tooltip content={<CustomTooltip />} />
+                {/* <Legend /> */}
+                <Bar dataKey="pending" fill="#58508d" name="Pending " />
+                {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
+                {/* <Bar
                           dataKey="withSalesTeam"
                           fill="#bc5090"
                           name="With Sales Team"
                         /> */}
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </CardContent>
-                </Card>
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
 
         {/* <Card>
           <CardHeader>
@@ -252,7 +270,6 @@ function OnboardingDashboard() {
           </CardContent>
         </Card> */}
       </div>
-      
     </div>
   );
 }
