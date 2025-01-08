@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 const EditUsers = () => {
   //   const navigate = useNavigate();
@@ -34,6 +35,19 @@ const EditUsers = () => {
     console.log("Submitted user data:", user);
     
   };
+  // const roleOptions = [
+  //   { value: "admin", label: "Admin" },
+  //   { value: "sales_manager", label: "Sales Manager" },
+  //   { value: "onboarding_team", label: "Onboarding Team" },
+  //   { value: "compliance_approver", label: "Compliance Approver" },
+  //   { value: "client_user", label: "Client User" },
+  // ];
+
+  // const handleRoleChange = (selectedOptions) => {
+  //   const selectedRoles = selectedOptions.map((option) => option.value);
+  //   handleInputChange("role", selectedRoles);
+  // };
+
 
   return (
     <div className="mx-auto p-4">
@@ -56,7 +70,7 @@ const EditUsers = () => {
                 />
               </div>
 
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="teamName" className="w-full required">
                   Email
                 </Label>
@@ -68,7 +82,7 @@ const EditUsers = () => {
                 />
               </div>
 
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="teamName" className="w-full required">
                   Mobile Number
                 </Label>
@@ -82,7 +96,7 @@ const EditUsers = () => {
                 />
               </div>
 
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="teamMembers" className="w-full required">
                   Username
                 </Label>
@@ -110,7 +124,7 @@ const EditUsers = () => {
                   />
                   
                 </div> */}
-              <div className="space-y-2 w-full">
+              <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="teamMembers" className="w-full required">
                   Role
                 </Label>
@@ -119,6 +133,7 @@ const EditUsers = () => {
                   value={user.role}
                   onChange={(e) => handleInputChange("role", e.target.value)}
                   className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-500"
+                  
                 >
                   <option value="" disabled>
                     Select Role
@@ -128,9 +143,26 @@ const EditUsers = () => {
                   <option value="viewer">Onboarding Team</option>
                   <option value="viewer">Compliance Approver</option>
                   <option value="viewer">Client User</option>
-                  {/* Add more roles as needed */}
+                 
                 </select>
+               
               </div>
+              {/* <div className="space-y-2">
+          <label className="block font-medium" htmlFor="role">
+            Roles
+          </label>
+          <Select
+            id="role"
+            isMulti
+            options={roleOptions}
+            value={roleOptions.filter((option) =>
+              user.role.includes(option.value)
+            )}
+            onChange={handleRoleChange}
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
+        </div> */}
             </CardContent>
           </Card>
 
@@ -138,7 +170,7 @@ const EditUsers = () => {
                 <RButton variant="outline" onClick={goBack}>
               Back
             </RButton>
-                  <RButton className="ml-5" onClick={handleSubmit}>update</RButton>
+                  <RButton className="ml-5" onClick={handleSubmit}>Update</RButton>
                 </div>
         </form>
       </div>
