@@ -278,7 +278,7 @@ function Profile() {
       {mode === "doc" ? (
         <div>
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
-            <div className="flex items-start gap-4 overflow-hidden sticky top-0 z-10">
+            <div className="flex items-start gap-4 ">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
               <div>
                 <h3 className="text-yellow-800 font-medium">
@@ -355,7 +355,7 @@ function Profile() {
           </div>
           {clientType === "individual" ? (
             <Tabs defaultValue="basic">
-              <TabsList className=" flex justify-start mb-4 ">
+              <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
                 <TabsTrigger
                   value="basic"
                   className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
@@ -863,7 +863,7 @@ function Profile() {
                   </div>
 
                   {/* Document Upload Section */}
-                  <div className="flex-1 px-4 overflow-auto">
+                  <div className="flex-1 px-4 ">
                     <Card className="h-full">
                       <CardContent className="p-4">
                         <h1 className="text-2xl font-bold mb-4">
