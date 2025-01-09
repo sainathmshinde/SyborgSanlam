@@ -157,19 +157,25 @@ const LeadM = () => {
         <div className="flex justify-between items-center mb-2 overflow-hidden sticky top-0 z-10">
           <h1 className="text-2xl font-bold">Leads </h1>
         </div>
-        <div className="flex flex-row items-center mb-4 mt-4">
+        <div className="flex flex-row items-center mb-4 ">
+          <h1>
+            <strong> Relationship Manager : </strong>
+          </h1>
           <select
             onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             {/* <option value="">Stages</option> */}
             <option value="stage2"> Jared Palmer</option>
             <option value="stage1">Sarah Johnson </option>
             <option value="stage1">Alex Doe </option>
           </select>
+          <h1>
+            <strong> Stages : </strong>
+          </h1>
           <select
             onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             {/* <option value="">Stages</option> */}
             <option value="stage2">Onboarding</option>
@@ -178,7 +184,13 @@ const LeadM = () => {
             {/* <option value="stage3">Proposal</option> */}
             <option value="stage3">Lost</option>
           </select>
-          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+          <h1>
+            <strong> Date : </strong>
+          </h1>
+          <DateRangePicker
+            placeholder="Jan 01 2024   To   Dec 31 2024"
+            className="ml-2"
+          />
         </div>
         <div className="flex items-center justify-between mb-6">
           <Input
