@@ -368,7 +368,7 @@ function CreateRole() {
       <div className="overflow-hidden  sticky top-0 z-10">
         <h1 className="mb-6 mt-2 text-xl font-bold ">Create New Role</h1>
       </div>
-      <div className="space-y-2 overflow-auto max-h-[500px] ">
+      <div className="space-y-2 overflow-auto max-h-[550px] ">
         <Card className="bg-gray-200  ">
           <CardContent className="p-4 gap-4">
             <div>
@@ -380,8 +380,8 @@ function CreateRole() {
               className="w-full mb-4 "
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
-              isRequired
-            /></div>
+              isRequired/>
+              </div>
             <div className="mt-4">
              <RInput
               label="Description"
