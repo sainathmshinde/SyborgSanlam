@@ -145,345 +145,351 @@ const EditLeadManagement = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
+      <div className="flex  items-center overflow-hidden sticky top-0 z-10">
         <h1 className=" text-xl font-bold ">Teslack Organization</h1>
       </div>
 
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic" className="overflow-auto max-h-[500px]">
-          <TabsList className=" flex justify-start mb-4 mt-4 ">
-            <TabsTrigger
-              value="basic"
-              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-            >
-              About Lead
-            </TabsTrigger>
-            <TabsTrigger
-              value="contact"
-              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-            >
-              Customer Details
-            </TabsTrigger>
-          </TabsList>
+        <Tabs defaultValue="basic">
+          <div className="overflow-hidden sticky z-10 mb-2">
+            <TabsList className=" flex justify-start mb-4 mt-4 ">
+              <TabsTrigger
+                value="basic"
+                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+              >
+                About Lead
+              </TabsTrigger>
+              <TabsTrigger
+                value="contact"
+                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+              >
+                Customer Details
+              </TabsTrigger>
+            </TabsList>
+          </div>
+          <div className="overflow-auto max-h-[500px]">
+            <TabsContent value="basic">
+              <form className="space-y-4">
+                {/* Personal Information Card */}
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
 
-          <TabsContent value="basic">
-            <form className="space-y-4">
-              {/* Personal Information Card */}
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
-
-                  <div className="space-y-2 grid-cols-1 ">
-                    <Label htmlFor="address">
-                      About Lead<span className="text-red-600 ml-1">*</span>
-                    </Label>
-                    <Textarea
-                      id="description"
-                      type="text"
-                      value={contact.description}
-                      onChange={(e) =>
-                        handleInputChange("description", e.target.value)
-                      }
-                      placeholder="Write more about lead"
-                      className="min-h-[50px]"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="relationshipManager" className="required">
-                        Relationship Manager
-                      </Label>
-                      <Select
-                        value={contact.relationshipManager}
-                        onValueChange={(value) =>
-                          handleInputChange("relationshipManager", value)
-                        }
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select Relationship Manager" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {relationshipManagers.map((manager) => (
-                            <SelectItem
-                              key={manager.value}
-                              value={manager.value}
-                            >
-                              {manager.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="stage">
-                        Stage<span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Select
-                        value={contact.stage}
-                        onValueChange={(value) =>
-                          handleInputChange("stage", value)
-                        }
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select Stage" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {stages.map((stage) => (
-                            <SelectItem key={stage.value} value={stage.value}>
-                              {stage.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
-                    <div className="space-y-2  ">
-                      <Label htmlFor="onboardingManager" className="required">
-                        Assign To
-                      </Label>
-                      <Select
-                        value={contact.onboardingManager}
-                        onValueChange={(value) => {
-                          handleInputChange("onboardingManager", value);
-                          setIsManagerSelected(true); // Set to true when a selection is made
-                        }}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select onboarding manager" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {onboardingManagers.map((manager) => (
-                            <SelectItem
-                              key={manager.value}
-                              value={manager.value}
-                            >
-                              {manager.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="p-8">
-                      <Button
-                        disabled={!isManagerSelected}
-                        onClick={() => navigate("/leadManagement")}
-                      >
-                        Assign For Onboarding
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="flex justify-end space-x-4">
-                <Button
-                  variant="outline"
-                  onClick={() => navigate("/leadManagement")}
-                >
-                  Back
-                </Button>
-                <Button onClick={() => navigate("/leadManagement")}>
-                  Update Customer Details
-                </Button>
-              </div>
-
-              <CommentSection className="bg-gray-200" />
-            </form>
-          </TabsContent>
-
-          <TabsContent value="contact">
-            <form className="space-y-4">
-              {/* Personal Information Card */}
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">
-                        Customer Name
-                        <span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="name"
-                        value={contact.name}
-                        onChange={(e) =>
-                          handleInputChange("name", e.target.value)
-                        }
-                        placeholder="Enter Full Name"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="customerType">
-                        Customer Type
-                        <span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Select
-                        // value="com"
-                        onValueChange={(value) =>
-                          handleInputChange("customerType", value)
-                        }
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Company" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {customerType.map((customer) => (
-                            <SelectItem
-                              key={customer.value}
-                              value={customer.value}
-                            >
-                              {customer.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div className="space-y-4 mt-4">
-                    <div className="space-y-2">
+                    <div className="space-y-2 grid-cols-1 ">
                       <Label htmlFor="address">
-                        Address<span className="text-red-600 ml-1">*</span>
+                        About Lead<span className="text-red-600 ml-1">*</span>
                       </Label>
                       <Textarea
-                        id="address"
-                        value={contact.address}
+                        id="description"
+                        type="text"
+                        value={contact.description}
                         onChange={(e) =>
-                          handleInputChange("address", e.target.value)
+                          handleInputChange("description", e.target.value)
                         }
-                        placeholder="Enter Complete Address"
+                        placeholder="Write more about lead"
                         className="min-h-[50px]"
                       />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                       <div className="space-y-2">
-                        <Label htmlFor="city">
-                          City <span className="text-red-600 ml-1">*</span>
-                        </Label>
-                        <Input
-                          id="city"
-                          value={contact.city}
-                          onChange={(e) =>
-                            handleInputChange("city", e.target.value)
-                          }
-                          placeholder="Enter City"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="state">
-                          State <span className="text-red-600 ml-1">*</span>
-                        </Label>
-                        <Input
-                          id="state"
-                          value={contact.state}
-                          onChange={(e) =>
-                            handleInputChange("state", e.target.value)
-                          }
-                          placeholder="Enter State"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="country">
-                          Country<span className="text-red-600 ml-1">*</span>
+                        <Label
+                          htmlFor="relationshipManager"
+                          className="required"
+                        >
+                          Relationship Manager
                         </Label>
                         <Select
-                          value={contact.country}
+                          value={contact.relationshipManager}
                           onValueChange={(value) =>
-                            handleInputChange("country", value)
+                            handleInputChange("relationshipManager", value)
                           }
                         >
                           <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Country" />
+                            <SelectValue placeholder="Select Relationship Manager" />
                           </SelectTrigger>
                           <SelectContent>
-                            {countries.map((country) => (
+                            {relationshipManagers.map((manager) => (
                               <SelectItem
-                                key={country.value}
-                                value={country.value}
+                                key={manager.value}
+                                value={manager.value}
                               >
-                                {country.label}
+                                {manager.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="stage">
+                          Stage<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Select
+                          value={contact.stage}
+                          onValueChange={(value) =>
+                            handleInputChange("stage", value)
+                          }
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Stage" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {stages.map((stage) => (
+                              <SelectItem key={stage.value} value={stage.value}>
+                                {stage.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-              {/* Address Information Card */}
-              <Card className="bg-gray-200">
-                <CardContent className="p-4">
-                  {/* <h2 className="text-lg font-semibold mb-4">Address Information</h2> */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">
-                        Contact Person
-                        <span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="contactName"
-                        value={contact.contactName}
-                        onChange={(e) =>
-                          setContact({
-                            ...newContact,
-                            contactName: e.target.value,
-                          })
-                        }
-                        placeholder="Enter Name"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="mobile">
-                        Mobile<span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="mobile"
-                        value={contact.mobile}
-                        onChange={(e) =>
-                          handleInputChange("mobile", e.target.value)
-                        }
-                        placeholder="Enter Mobile Number"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">
-                        Email<span className="text-red-600 ml-1">*</span>
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={contact.email}
-                        onChange={(e) =>
-                          handleInputChange("email", e.target.value)
-                        }
-                        placeholder="Enter Email Address"
-                        className="w-full"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
+                      <div className="space-y-2  ">
+                        <Label htmlFor="onboardingManager" className="required">
+                          Assign To
+                        </Label>
+                        <Select
+                          value={contact.onboardingManager}
+                          onValueChange={(value) => {
+                            handleInputChange("onboardingManager", value);
+                            setIsManagerSelected(true); // Set to true when a selection is made
+                          }}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select onboarding manager" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {onboardingManagers.map((manager) => (
+                              <SelectItem
+                                key={manager.value}
+                                value={manager.value}
+                              >
+                                {manager.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-              <div className="flex justify-end space-x-4">
-                <Button
-                  variant="outline"
-                  onClick={() => navigate("/leadManagement")}
-                >
-                  Back
-                </Button>
-                <Button onClick={() => navigate("/leadManagement")}>
-                  Update
-                </Button>
-              </div>
-            </form>
-          </TabsContent>
+                      <div className="p-8">
+                        <Button
+                          disabled={!isManagerSelected}
+                          onClick={() => navigate("/leadManagement")}
+                        >
+                          Assign For Onboarding
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-end space-x-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate("/leadManagement")}
+                  >
+                    Back
+                  </Button>
+                  <Button onClick={() => navigate("/leadManagement")}>
+                    Update Customer Details
+                  </Button>
+                </div>
+
+                <CommentSection className="bg-gray-200" />
+              </form>
+            </TabsContent>
+
+            <TabsContent value="contact">
+              <form className="space-y-4">
+                {/* Personal Information Card */}
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">
+                          Customer Name
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="name"
+                          value={contact.name}
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
+                          placeholder="Enter Full Name"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="customerType">
+                          Customer Type
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Select
+                          // value="com"
+                          onValueChange={(value) =>
+                            handleInputChange("customerType", value)
+                          }
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Company" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {customerType.map((customer) => (
+                              <SelectItem
+                                key={customer.value}
+                                value={customer.value}
+                              >
+                                {customer.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div className="space-y-4 mt-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="address">
+                          Address<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Textarea
+                          id="address"
+                          value={contact.address}
+                          onChange={(e) =>
+                            handleInputChange("address", e.target.value)
+                          }
+                          placeholder="Enter Complete Address"
+                          className="min-h-[50px]"
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="city">
+                            City <span className="text-red-600 ml-1">*</span>
+                          </Label>
+                          <Input
+                            id="city"
+                            value={contact.city}
+                            onChange={(e) =>
+                              handleInputChange("city", e.target.value)
+                            }
+                            placeholder="Enter City"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="state">
+                            State <span className="text-red-600 ml-1">*</span>
+                          </Label>
+                          <Input
+                            id="state"
+                            value={contact.state}
+                            onChange={(e) =>
+                              handleInputChange("state", e.target.value)
+                            }
+                            placeholder="Enter State"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="country">
+                            Country<span className="text-red-600 ml-1">*</span>
+                          </Label>
+                          <Select
+                            value={contact.country}
+                            onValueChange={(value) =>
+                              handleInputChange("country", value)
+                            }
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select Country" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {countries.map((country) => (
+                                <SelectItem
+                                  key={country.value}
+                                  value={country.value}
+                                >
+                                  {country.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                {/* Address Information Card */}
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    {/* <h2 className="text-lg font-semibold mb-4">Address Information</h2> */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">
+                          Contact Person
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="contactName"
+                          value={contact.contactName}
+                          onChange={(e) =>
+                            setContact({
+                              ...newContact,
+                              contactName: e.target.value,
+                            })
+                          }
+                          placeholder="Enter Name"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="mobile">
+                          Mobile<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="mobile"
+                          value={contact.mobile}
+                          onChange={(e) =>
+                            handleInputChange("mobile", e.target.value)
+                          }
+                          placeholder="Enter Mobile Number"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">
+                          Email<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={contact.email}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
+                          placeholder="Enter Email Address"
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-end space-x-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate("/leadManagement")}
+                  >
+                    Back
+                  </Button>
+                  <Button onClick={() => navigate("/leadManagement")}>
+                    Update
+                  </Button>
+                </div>
+              </form>
+            </TabsContent>
+          </div>
         </Tabs>
       ) : null}
     </div>

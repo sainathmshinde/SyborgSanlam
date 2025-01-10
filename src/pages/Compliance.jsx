@@ -197,9 +197,10 @@ const Compliance = () => {
           <h1 className="text-2xl font-bold ">Compliance Requests</h1>
         </div>
         <div className="flex flex-row items-center mt-4 mb-4">
+        <h1> <strong>Compliance Team : </strong> </h1>
           <select
             onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             {/* <option value="">Stages</option> */}
             <option value="stage1">David Thompson </option>
@@ -207,9 +208,10 @@ const Compliance = () => {
             
             <option value="stage1">Samantha Green </option>
           </select>
+          <h1> <strong>Stages : </strong> </h1>
           <select
             onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             {/* <option value="">Stages</option> */}
             <option value="stage1">Pending</option>
@@ -219,7 +221,8 @@ const Compliance = () => {
             {/* <option value="stage3">Proposal</option>
             <option value="stage3">Lost</option> */}
           </select>
-          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+          <h1> <strong>Date : </strong> </h1>
+          <DateRangePicker className="ml-2" placeholder="Jan 01 2024   To   Dec 31 2024" />
         </div>
         <div className="flex items-center justify-between mb-6">
           <Input

@@ -63,16 +63,18 @@ const CustomerO = () => {
           <h1 className="text-2xl font-bold">Customer Onboarding</h1>
         </div>
         <div className="flex flex-row items-center mt-4 mb-4">
+        <h1> <strong>Onboarding Team : </strong> </h1>
           <select
             onChange={handleStageFilter}
-            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700"
+            className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             <option value="stage2">John Smith</option>
             <option value="stage1">Emily Davis</option>
             <option value="stage1">Michael Brown </option>
           </select>
 
-          <DateRangePicker placeholder="Jan 01 2024   To   Dec 31 2024" />
+          <h1> <strong>Date : </strong> </h1>
+          <DateRangePicker className="ml-2" placeholder="Jan 01 2024   To   Dec 31 2024" />
         </div>
         <div className="flex items-center justify-between mt-4 mb-6">
           <Input

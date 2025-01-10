@@ -207,7 +207,7 @@ function ComplianceChecklist() {
           />
         </div> */}
       </div>
-     
+      </div>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 ">
           <CardTitle className="text-2xl font-bold">Customer Details</CardTitle>
@@ -266,8 +266,8 @@ function ComplianceChecklist() {
           </div>
         </CardContent>
       </Card>
-     </div>
-     <div className="overflow-auto max-h-[500px]">
+    
+     {/* <div className="overflow-auto max-h-[500px]"> */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="md:col-span-1">
           <CardHeader>
@@ -382,7 +382,7 @@ function ComplianceChecklist() {
                 <div className="flex justify-end space-x-2">
                   <Button onClick={handleSendBack} variant={"outline"}>
                     <XCircleIcon className="mr-2 h-4 w-4" />
-                    Send Back
+                    Send Back to Onboarding
                   </Button>
                   <Button onClick={handleApprove}>
                     <CheckCircleIcon className="mr-2 h-4 w-4" />
@@ -394,7 +394,7 @@ function ComplianceChecklist() {
           </CardContent>
         </Card>
       </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
