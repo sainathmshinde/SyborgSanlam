@@ -153,72 +153,74 @@ function CreateUser() {
             {/* <div className="flex justify-end"></div> */}
           </div>
           <div className="overflow-auto max-h-[500px]">
-          <div className="mb-4 text-md  bg-gray-200 border rounded-lg overflow-x-auto">
-            <div className="space-y-4 p-4">
-              <div className="flex flex-col">
-                {/* <div className="space-y-2 w-1/2">
+            <div className="mb-4 text-md  bg-gray-200 border rounded-lg overflow-x-auto">
+              <div className="space-y-4 p-4">
+                <div className="flex flex-col">
+                  {/* <div className="space-y-2 w-1/2">
                <Label htmlFor="name" className="text-md">
                  Checklist Name
                </Label>
                <Input id="name" placeholder="Enter checklist name" />
              </div> */}
-                <div className="grid grid-cols-2 gap-4 mt-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="country" className="required">
-                      Country
-                    </Label>
-                    <Select
-                      id="country"
-                      onValueChange={(value) =>
-                        handleSelectChange("country", value)
-                      }
-                      value={selectedCountry} // Set the selected value
-                    >
-                      {/* value={teams.name}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="country" className="required">
+                        Country
+                      </Label>
+                      <Select
+                        id="country"
+                        onValueChange={(value) =>
+                          handleSelectChange("country", value)
+                        }
+                        value={selectedCountry} // Set the selected value
+                      >
+                        {/* value={teams.name}
                       onChange={(e) => handleInputChange("name", e.target.value)} */}
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select country" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {countries.map((country) => (
-                          <SelectItem key={country.id} value={country.id}>
-                            {country.name}
+                        <SelectTrigger>
+                          <SelectValue placeholder="South Africa" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem key={country.id} value={country.id}>
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="client-type" className="required">
+                        Customer Type
+                      </Label>
+                      <Select
+                        id="clientType"
+                        value={formValues.clientType}
+                        onValueChange={(value) =>
+                          handleChange("clientType", value)
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Company" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="individual">Individual</SelectItem>
+                          <SelectItem value="partnership">
+                            Partnership
                           </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                          <SelectItem value="trust">Trust</SelectItem>
+                          <SelectItem value="company">Company</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="client-type" className="required">
-                      Customer Type
+                  <div className="mt-4">
+                    <Label htmlFor="doc" className="text-md required">
+                      Select Applicable Document Types
                     </Label>
-                    <Select
-                      id="clientType"
-                      value={formValues.clientType}
-                      onValueChange={(value) =>
-                        handleChange("clientType", value)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select customer type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="individual">Individual</SelectItem>
-                        <SelectItem value="partnership">Partnership</SelectItem>
-                        <SelectItem value="trust">Trust</SelectItem>
-                        <SelectItem value="company">Company</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Label htmlFor="doc" className="text-md required">
-                    Select Applicable Document Types
-                  </Label>
-                  <div className="grid grid-cols-3 mt-2̦ gap-4">
+                    {/* <div className="grid grid-cols-3 mt-2̦ gap-4">
                     {checklist.map((document) => (
                       <Card key={document} className="mt-4 gap-2 p-4">
-                        {/* <label>
+                        <label>
                           <input
                             type="checkbox"
                             checked={isChecked(document)}
@@ -226,7 +228,7 @@ function CreateUser() {
                             style={{ margin: 10 }}
                           />
                           {document}
-                        </label> */}
+                        </label>
                         <div key={document} className="flex items-center gap-2">
                           <Checkbox
                             checked={isChecked(document)}
@@ -236,30 +238,101 @@ function CreateUser() {
                         </div>
                       </Card>
                     ))}
-                  </div>
-                  <div className="flex justify-end">
-                    <button
-                      onClick={handleAddDocument}
-                      className=" flex items-center justify-center
+                  </div> */}
+                    <div className="space-y-4">
+                      <div className="flex flex-col">
+                        {/* <div className="space-y-2 w-1/2">
+              <Label htmlFor="name" className="text-md">
+                Checklist Name
+              </Label>
+              <Input id="name" placeholder="Enter checklist name" />
+            </div> */}
+                        {/* <div className="overflow-hidden  sticky top-0 z-10">
+                          <h1 className="text-2xl font-bold mb-4">
+                            {" "}
+                            Required Documents
+                          </h1>
+                        </div> */}
+                        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+                          {/* <Label htmlFor="doc" className="text-lg font-bold">
+                    Required Documents
+                  </Label> */}
+                          <div className="grid grid-cols-3 gap-4">
+                            {Object.keys(allDocuments).map((category) => (
+                              <Card key={category} className="mt-4 gap-2 p-4">
+                                <div className="flex items-center gap-2">
+                                  <Checkbox
+                                    checked={checkedItems[category].isChecked}
+                                    onCheckedChange={(checked) =>
+                                      handleCategoryChange(category, checked)
+                                    }
+                                  />
+                                  <span className="font-semibold">
+                                    {category}
+                                  </span>
+                                </div>
+                                <div className="pl-6 space-y-2">
+                                  {allDocuments[category].map((item) => (
+                                    <div
+                                      key={item}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <Checkbox
+                                        checked={
+                                          checkedItems[category].items[item]
+                                        }
+                                        onCheckedChange={(checked) =>
+                                          handleItemChange(
+                                            category,
+                                            item,
+                                            checked
+                                          )
+                                        }
+                                      />
+                                      <span>{item}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="justify-end">
+                                  <button
+                                    onClick={handleAddDocument}
+                                    className=" flex items-center justify-center mt-5
+                       w-1/2 h-10 rounded-full bg-gray-800 text-white shadow-md"
+                                    aria-label="Add document"
+                                  >
+                                    {/* <Plus className="w-5 h-5" /> */}
+                                    Add Documents +
+                                  </button>
+                                </div>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-end">
+                      <button
+                        onClick={handleAddDocument}
+                        className=" flex items-center justify-center
                        w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-700"
-                      aria-label="Add document"
-                    >
-                      <Plus className="w-5 h-5" />
-                    </button>
+                        aria-label="Add document"
+                      >
+                        <Plus className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end mt-10">
             <RButton variant="outline" onClick={goBack}>
-                    Back
-                  </RButton>
-
-            <RButton className="ml-5" onClick={HandleNext} type="submit">
-              Next
+              Back
             </RButton>
-          </div>
+
+            <RButton className="ml-5" onClick={goBack} type="submit">
+              Update
+            </RButton>
           </div>
         </div>
       )}
@@ -274,8 +347,11 @@ function CreateUser() {
               </Label>
               <Input id="name" placeholder="Enter checklist name" />
             </div> */}
-                <div className="overflow-hidden  sticky top-0 z-10">                
-                  <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
+                <div className="overflow-hidden  sticky top-0 z-10">
+                  <h1 className="text-2xl font-bold mb-4">
+                    {" "}
+                    Required Documents
+                  </h1>
                 </div>
                 <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
                   {/* <Label htmlFor="doc" className="text-lg font-bold">
@@ -310,21 +386,26 @@ function CreateUser() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+            <div
+              style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}
+            >
+              <div className="flex justify-end">
+                <RButton variant="outline" onClick={goBack}>
+                  Back
+                </RButton>
+              </div>
+              <div className="flex justify-end">
+                <RButton
+                  onClick={() => navigate("/documentsList")}
+                  type="submit"
+                >
+                  Update Checklist
+                </RButton>
+              </div>
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
-            <div className="flex justify-end">
-              <RButton variant="outline" onClick={goBack}>
-                        Back
-                      </RButton>
-            </div>
-            <div className="flex justify-end">
-              <RButton onClick={() => navigate("/documentsList")} type="submit">
-                Update Checklist
-              </RButton>
-            </div>
-          </div>
-        </div>
         </div>
       )}
     </div>
