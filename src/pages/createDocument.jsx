@@ -38,7 +38,7 @@ function CreateUser() {
     country: "",
     clientType: "",
   });
-  
+
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [next, setNext] = useState(1);
@@ -78,12 +78,11 @@ function CreateUser() {
     const initialState = {};
     Object.keys(allDocuments).forEach((category) => {
       initialState[category] = {
-        isChecked:
-          category === "Certificate" ||
-          category === "IdProof" ||
-          category === "AddressProof", // Independent state for the category
+        // isChecked: category === "Certificate",
+        // category === "IdProof" ||
+        // category === "AddressProof",
         items: allDocuments[category].reduce((acc, item) => {
-          acc[item] = false; // Independent state for each sub-item
+          acc[item] = false;
           return acc;
         }, {}),
       };
@@ -123,7 +122,7 @@ function CreateUser() {
       setCustomDocuments((prev) => [...prev, newDocument]);
     }
   };
-  
+
   return (
     <div className="w-full p-4">
       {next == 1 && (
@@ -136,11 +135,14 @@ function CreateUser() {
               {" "}
               <CircleArrowLeft className="w-8 h-8" />
             </div> */}
-            <h1 className="text-xl font-bold mb-4"> Create New Checklist</h1>
+            <h1 className="text-xl font-bold mb-4 overflow-hidden sticky top-0 z-10">
+              {" "}
+              Create New Checklist
+            </h1>
             <div className="flex justify-end"></div>
           </div>
-         
-          <div className="mb-4 text-md bg-gray-200 border rounded-lg overflow-x-auto">
+
+          <div className="mb-4 text-md bg-gray-200 border rounded-lg overflow-x-auto max-h-[500px]">
             <div className="space-y-4 p-4">
               <div className="flex flex-col">
                 {/* <div className="space-y-2 w-1/2">
@@ -149,7 +151,7 @@ function CreateUser() {
                </Label>
                <Input id="name" placeholder="Enter checklist name" />
              </div> */}
-                <div className="grid grid-cols-2 gap-4 mt-2">
+                <div className="grid grid-cols-2 gap-4 ">
                   <div className="space-y-2">
                     <Label htmlFor="country" className="required">
                       Country
@@ -200,10 +202,10 @@ function CreateUser() {
                   <Label htmlFor="doc" className="text-md  required">
                     Select Applicable Document Types
                   </Label>
-                  <div className="grid grid-cols-3 mt-2̦ gap-4">
+                  {/* <div className="grid grid-cols-3 mt-2̦ gap-4">
                     {checklist.map((document) => (
                       <Card key={document} className="mt-4 gap-2 p-4">
-                        {/* <label>
+                        <label>
                           <input
                             type="checkbox"
                             checked={isChecked(document)}
@@ -211,7 +213,7 @@ function CreateUser() {
                             style={{ margin: 10 }}
                           />
                           {document}
-                        </label> */}
+                        </label>
                         <div key={document} className="flex items-center gap-2">
                           <Checkbox
                             checked={isChecked(document)}
@@ -221,6 +223,79 @@ function CreateUser() {
                         </div>
                       </Card>
                     ))}
+                  </div> */}
+
+                  <div className="mb-2 mt-0 text-md">
+                    <div className="space-y-4">
+                      <div className="flex flex-col">
+                        {/* <div className="space-y-2 w-1/2">
+              <Label htmlFor="name" className="text-md">
+                Checklist Name
+              </Label>
+              <Input id="name" placeholder="Enter checklist name" />
+            </div> */}
+                        {/* <div className="overflow-hidden  sticky top-0 z-10">
+                          <h1 className="text-2xl font-bold mb-4">
+                            {" "}
+                            Required Documents
+                          </h1>
+                        </div> */}
+                        {/* <div className="overflow-auto max-h-[500px]"> */}
+                        <div className="mb-2 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+                          {/* <Label htmlFor="doc" className="text-2xl font-bold mb-4">
+                    Required Documents
+                  </Label> */}
+                          <div className="grid grid-cols-3 gap-4">
+                            {Object.keys(allDocuments).map((category) => (
+                              <Card key={category} className="mt-4 gap-2 p-4">
+                                <div className="flex items-center gap-2">
+                                  <Checkbox
+                                    checked={checkedItems[category].isChecked}
+                                    onCheckedChange={() =>
+                                      handleCategoryChange(category)
+                                    }
+                                  />
+                                  <span className="font-semibold">
+                                    {category}
+                                  </span>
+                                </div>
+                                <div className="pl-6 space-y-2">
+                                  {allDocuments[category].map((item) => (
+                                    <div
+                                      key={item}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <Checkbox
+                                        checked={
+                                          checkedItems[category].items[item]
+                                        }
+                                        onCheckedChange={(checked) =>
+                                          handleItemChange(
+                                            category,
+                                            item,
+                                            checked
+                                          )
+                                        }
+                                      />
+                                      <span>{item}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                                <button
+                                  onClick={handleAddDocument}
+                                  className=" flex  mt-5 items-center justify-center
+                       w-1/2 h-10 rounded-full bg-gray-800 text-white shadow-md"
+                                  aria-label="Add document"
+                                >
+                                  {/* <Plus className="w-5 h-5" /> */}
+                                  Add Documents +
+                                </button>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="flex justify-end">
                     <button
@@ -236,35 +311,37 @@ function CreateUser() {
               </div>
             </div>
           </div>
-          <div className="flex justify-end mt-16">
+          <div className="flex justify-end mt-10">
             <RButton variant="outline" onClick={goBack}>
-                      Back
-                    </RButton>
-            <RButton className="ml-5" onClick={HandleNext} type="submit">
-              Next
+              Back
+            </RButton>
+            <RButton className="ml-5" onClick={goBack} type="submit">
+              Submit
             </RButton>
           </div>
         </div>
       )}
-      {next === 2 && (
+      {/* {next === 2 && (
         <div>
           <div className="mb-4 text-md">
             <div className="space-y-4">
               <div className="flex flex-col">
-                {/* <div className="space-y-2 w-1/2">
-              <Label htmlFor="name" className="text-md">
-                Checklist Name
-              </Label>
-              <Input id="name" placeholder="Enter checklist name" />
-            </div> */}
-                <div className="overflow-hidden  sticky top-0 z-10"> 
-                <h1 className="text-2xl font-bold mb-4"> Required Documents</h1>
+                <div className="space-y-2 w-1/2">
+                  <Label htmlFor="name" className="text-md">
+                    Checklist Name
+                  </Label>
+                  <Input id="name" placeholder="Enter checklist name" />
                 </div>
-                {/* <div className="overflow-auto max-h-[500px]"> */}
-                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
-                  {/* <Label htmlFor="doc" className="text-2xl font-bold mb-4">
+                <div className="overflow-hidden  sticky top-0 z-10">
+                  <h1 className="text-2xl font-bold mb-4">
+                    {" "}
                     Required Documents
-                  </Label> */}
+                  </h1>
+                </div>
+                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+                  <Label htmlFor="doc" className="text-2xl font-bold mb-4">
+                    Required Documents
+                  </Label>
                   <div className="grid grid-cols-3 gap-4">
                     {Object.keys(allDocuments).map((category) => (
                       <Card key={category} className="mt-4 gap-2 p-4">
@@ -300,8 +377,8 @@ function CreateUser() {
           <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
             <div className="flex justify-end">
               <RButton variant="outline" onClick={goBack}>
-                        Back
-                      </RButton>
+                Back
+              </RButton>
             </div>
             <div className="flex justify-end">
               <RButton onClick={() => navigate("/documentsList")} type="submit">
@@ -310,7 +387,7 @@ function CreateUser() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
