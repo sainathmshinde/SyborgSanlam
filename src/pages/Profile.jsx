@@ -278,7 +278,7 @@ function Profile() {
       {mode === "doc" ? (
         <div>
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
-            <div className="flex items-start gap-4 ">
+            <div className="flex items-start gap-4 overflow-hidden sticky top-0 z-10">
               <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
               <div>
                 <h3 className="text-yellow-800 font-medium">
