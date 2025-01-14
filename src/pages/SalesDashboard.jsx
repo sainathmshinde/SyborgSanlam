@@ -174,7 +174,7 @@ function SalesDashboard() {
                         <TableCell className="font-medium relative group">
                           Jared Palmer
                           <div
-                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            className="absolute bg-slate-300 text-black p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "0", left: "30%" }}
                           >
@@ -190,7 +190,7 @@ function SalesDashboard() {
                         <TableCell className="font-medium relative group">
                           Sarah Johnson
                           <div
-                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            className="absolute bg-slate-300 text-black p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "0", left: "30%" }}
                           >
@@ -207,7 +207,7 @@ function SalesDashboard() {
                         <TableCell className="font-medium relative group">
                           Alex Doe
                           <div
-                            className="absolute bg-slate-800 text-white p-2 rounded shadow-lg opacity-0 
+                            className="absolute bg-slate-300 text-black p-2 rounded shadow-lg opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"
                             style={{ top: "0", left: "30%" }}
                           >
