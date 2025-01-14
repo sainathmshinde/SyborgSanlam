@@ -1,6 +1,12 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+const TableContainer = React.forwardRef(({ className, children, ...props }, ref) => (
+  <div ref={ref} className={cn("relative w-full overflow-auto", className)} {...props}>
+    {children}
+  </div>
+));
+TableContainer.displayName = "TableContainer";
 
 const Table = React.forwardRef(({ className, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
@@ -93,4 +99,5 @@ export {
   TableRow,
   TableCell,
   TableCaption,
+  TableContainer, 
 };

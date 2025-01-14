@@ -3,12 +3,14 @@ import { ConfirmDialog } from "@/components/ui/confirmDialog";
 import RButton from "@/components/ui/rButton";
 import RInput from "@/components/ui/rInput";
 import {
+  TableContainer,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
+ 
 } from "@/components/ui/table";
 import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -203,9 +205,9 @@ const Role = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-auto max-h-[475px]">
+      <TableContainer className="overflow-auto max-h-[450px]">
         <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black  ">
+          <TableHeader className="bg-custom-black hover:bg-custom-black sticky top-0 z-10">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
@@ -304,7 +306,8 @@ const Role = () => {
             {}
           </TableBody>
         </Table>
-      </div>
+        </TableContainer>
+      {/* </div> */}
       <div className="flex mt-4">
         <Pagination>
           <PaginationContent>
