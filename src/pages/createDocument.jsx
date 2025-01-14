@@ -392,4 +392,4 @@ function CreateUser() {
   );
 }
 
-export default WithLayout("compliance")(CreateUser);
+export default WithLayout("admin")(CreateUser);

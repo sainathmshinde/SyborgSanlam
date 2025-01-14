@@ -356,7 +356,7 @@ const CreateLeadManagement = () => {
               </TabsTrigger>
             </TabsList>
           </div>
-          <div className="overflow-auto max-h-[500px]">
+          <div className="overflow-y-auto max-h-[500px]">
             <TabsContent value="basic">
               <form className="space-y-2">
                 {/* Personal Information Card */}
