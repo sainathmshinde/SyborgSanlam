@@ -354,8 +354,8 @@ const CreateLead = () => {
           </Select>
         </div> */}
       </div>
-      <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto max-h-[500px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 ">
+      <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-y-auto max-h-[570px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4  ">
           <div className="space-y-2">
             <Label htmlFor="country" className="required">
               Country
@@ -401,7 +401,7 @@ const CreateLead = () => {
 
         {clientType === "individual" ? (
           <Tabs defaultValue="basic">
-            <TabsList className=" flex justify-start mb-4 ">
+            <TabsList className=" flex justify-start mb-4  ">
               <TabsTrigger
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"

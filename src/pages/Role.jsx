@@ -3,12 +3,14 @@ import { ConfirmDialog } from "@/components/ui/confirmDialog";
 import RButton from "@/components/ui/rButton";
 import RInput from "@/components/ui/rInput";
 import {
+  TableContainer,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
+ 
 } from "@/components/ui/table";
 import { CirclePlus, FilePenIcon, Trash2Icon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -203,9 +205,9 @@ const Role = () => {
           </RButton>
         </div>
       </div>
-      <div className="border rounded-lg overflow-auto max-h-[475px]">
+      <TableContainer className="overflow-auto max-h-[450px]">
         <Table>
-          <TableHeader className="bg-custom-black hover:bg-custom-black  ">
+          <TableHeader className="bg-custom-black hover:bg-custom-black sticky top-0 z-10">
             <TableRow>
               <TableHead className="p-2 text-white">Role Name</TableHead>
               <TableHead className="p-2 text-white">Role Description</TableHead>
@@ -214,7 +216,7 @@ const Role = () => {
               </TableHead>
             </TableRow>
           </TableHeader>
-        {/* </Table>
+          {/* </Table>
       </div>
       <div className="overflow-auto max-h-[400px]">
         <Table> */}
@@ -235,25 +237,22 @@ const Role = () => {
                       >
                         {/* <FilePenIcon className="h-4 w-4" /> */}
                         <svg
-                          width="20"
-                          height="19"
-                          viewBox="0 0 20 19"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M18 7V6L12 0H2C0.89 0 0 0.89 0 2V16C0 16.5304 
-                            0.210714 17.0391 0.585786 17.4142C0.960859 17.7893 1.46957 18 2 
-                            18H8V16.13L16.39 7.74C16.83 7.3 17.39 7.06 18 7ZM11 1.5L16.5 7H11V1.5ZM19.85 
-                            11.19L18.87 12.17L16.83 10.13L17.81 9.15C18 8.95 18.33 8.95 18.53 9.15L19.85 
-                            10.47C20.05 10.67 20.05 11 19.85 11.19ZM16.13 10.83L18.17 12.87L12.04 19H10V16.96L16.13 10.83Z"
-                            fill="#0D99FF"
+                            d="M16 0C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16ZM13.7 6.35C13.92 6.14 13.92 5.79 13.7 5.58L12.42 4.3C12.3705 4.24765 12.3108 4.20595 12.2446 4.17745C12.1784 4.14895 12.1071 4.13425 12.035 4.13425C11.9629 4.13425 11.8916 4.14895 11.8254 4.17745C11.7592 4.20595 11.6995 4.24765 11.65 4.3L10.65 5.3L12.7 7.35L13.7 6.35ZM4 11.94V14H6.06L12.12 7.94L10.06 5.88L4 11.94Z"
+                            fill="#4368FA"
                           />
                         </svg>
+
                         <div
                           className="absolute left-1/2 transform -translate-x-1/2 
                         bottom-full mb-2 hidden group-hover:flex items-center justify-center 
-                        bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg"
+                        bg-white text-black text-xs px-2 py-1 rounded shadow-lg"
                         >
                           Edit
                         </div>
@@ -280,7 +279,7 @@ const Role = () => {
                                 fill="#E31F21"
                               />
                             </svg>
-                            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex items-center justify-center bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg">
+                            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex items-center justify-center bg-white text-black text-xs px-2 py-1 rounded shadow-lg">
                               Delete
                             </div>
                           </RButton>
@@ -304,7 +303,8 @@ const Role = () => {
             {}
           </TableBody>
         </Table>
-      </div>
+        </TableContainer>
+      {/* </div> */}
       <div className="flex mt-4">
         <Pagination>
           <PaginationContent>
