@@ -243,7 +243,7 @@ const Compliance = () => {
           />
         </div>
       </div>
-      <div className="rounded-lg bg-white overflow-auto max-h-[425px]  ">
+      <div className="rounded-lg bg-white overflow-auto max-h-[400px]  ">
         <Table>
           <TableHeader className="bg-custom-black hover:bg-custom-black  ">
             <TableRow>
