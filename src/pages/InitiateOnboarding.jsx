@@ -354,8 +354,8 @@ const CreateLead = () => {
           </Select>
         </div> */}
       </div>
-      <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-y-auto max-h-[570px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4  ">
+      {/* <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10"> */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
           <div className="space-y-2">
             <Label htmlFor="country" className="required">
               Country
@@ -401,6 +401,7 @@ const CreateLead = () => {
 
         {clientType === "individual" ? (
           <Tabs defaultValue="basic">
+            <div className="overflow-hidden sticky z-10 mb-2">
             <TabsList className=" flex justify-start mb-4  ">
               <TabsTrigger
                 value="basic"
@@ -427,7 +428,7 @@ const CreateLead = () => {
                 Upload Documents
               </TabsTrigger>
             </TabsList>
-
+            </div>
             <TabsContent value="basic">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -945,7 +946,7 @@ const CreateLead = () => {
 
             <TabsContent value="basic">
               <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1  gap-4">
                   {/* <div className="space-y-2">
                   <Label htmlFor="source"> Parent</Label>
                   <div className="relative ">
@@ -1007,7 +1008,7 @@ const CreateLead = () => {
                     </Dialog>
                   </div>
                 </div> */}
-
+                 <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[325px]">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       Customer Name
@@ -1184,6 +1185,7 @@ const CreateLead = () => {
                       placeholder="DD/MM/YYYY"
                     />
                   </div>
+                  </div>
 
                   {/* {clientType && (
                   <div className="space-y-5 my-5">
@@ -1212,7 +1214,7 @@ const CreateLead = () => {
               </form>
             </TabsContent>
             <TabsContent value="contact">
-              <Card>
+              <Card className="overflow-auto max-h-[325px]">
                 <CardHeader>
                   <CardTitle>Contact</CardTitle>
                   <CardDescription>
@@ -1347,10 +1349,13 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-5 flex justify-end">
+                {/* <div className="my-5 flex justify-end">
+                  <Button className="mx-5">Submit & Next</Button>
+                </div> */}
+              </Card>
+              <div className="my-5 flex justify-end">
                   <Button className="mx-5">Submit & Next</Button>
                 </div>
-              </Card>
             </TabsContent>
             <TabsContent value="beneficiaries">
               <Card>
@@ -1517,20 +1522,28 @@ const CreateLead = () => {
                     </TableBody>
                   </Table>
                 </CardContent>
-                <div className="my-5 flex justify-end mx-5">
+                {/* <div className="my-5 flex justify-end mx-5"> */}
                   {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
                 </Button> */}
-                  <Button className="ml-5" onClick={handleCreateLead}>
+                  {/* <Button className="mx-5" onClick={handleCreateLead}>
+                    Initiate Onboarding
+                  </Button>
+                </div> */}
+              </Card>
+              <div className="my-5 flex justify-end mx-5">
+                  {/* <Button variant="outline" onClick={() => navigate("/leads")}>
+                  Cancel
+                </Button> */}
+                  <Button className="mx-5" onClick={handleCreateLead}>
                     Initiate Onboarding
                   </Button>
                 </div>
-              </Card>
             </TabsContent>
             <TabsContent value="documents">
-              <div className="flex h-screen bg-gray-100">
+              <div className="flex h-screen bg-gray-100 overflow-auto max-h-[550px]">
                 {/* Sidebar for document categories */}
-                <div className="w-90 bg-white p-4 shadow-md overflow-auto">
+                <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                   <h2 className="text-xl font-bold mb-4">Documents</h2>
                   <ul className="space-y-4">
                     {Object.entries(documentCategories).map(
@@ -1686,7 +1699,7 @@ const CreateLead = () => {
             </TabsContent>
           </Tabs>
         ) : null}
-      </div>
+      {/* </div> */}
     </div>
   );
 };
