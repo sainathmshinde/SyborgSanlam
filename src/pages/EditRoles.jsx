@@ -390,16 +390,17 @@ function EditRoles() {
       <div className="space-y-2 overflow-auto max-h-[550px]">
         <Card className="bg-gray-200  ">
           <CardContent className="p-4 gap-4">
-            <div><RInput
+            <div ><RInput
               label="Role Name"
               id="name"
               type="text"
               placeholder="Sales Manager"
-              className="w-full "
+              className="w-full mb-4 mt-2 px-4 py-3"
               onChange={(event) => handleChange("name")(event)}
               value={role.name}
               isRequired
-            /></div>
+            />
+            </div>
             <div className="mt-4"> 
               <RInput
               label="Description"

@@ -273,7 +273,7 @@ function Profile() {
   };
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-6">My Profile</h1>
+      <h1 className="text-2xl font-bold ml-4">Profile</h1>
 
       {mode === "doc" ? (
         <div>
@@ -387,8 +387,8 @@ function Profile() {
                 </TabsList>
               </div>
               <TabsContent value="basic">
-                <div className="bg-gray-200 p-4 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto max-h-[350px]">
-                  <div className="space-y-2">
+              <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 ">
+              <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       First Name
                     </Label>
@@ -486,8 +486,7 @@ function Profile() {
                       </div>
                     )}
                   </div> */}
-                  <div></div>
-                  <div></div>
+                  
                 </div>
 
                 <div className="my-1 flex justify-end mt-4">
@@ -920,7 +919,7 @@ function Profile() {
                        
                       </CardContent>
                     </Card>
-                    <div className="flex justify-end mt-8">
+                    <div className="flex justify-end mt-2 mb-2">
                         <Button
                           onClick={handleUpload}
                           disabled={!file || !selectedSubOption}

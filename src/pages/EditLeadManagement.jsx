@@ -284,7 +284,7 @@ const EditLeadManagement = () => {
                   </CardContent>
                 </Card>
 
-                <div className="flex justify-end space-x-4">
+                <div className="flex justify-end space-x-4 mr-2">
                   <Button
                     variant="outline"
                     onClick={() => navigate("/leadManagement")}
@@ -476,7 +476,9 @@ const EditLeadManagement = () => {
                   </CardContent>
                 </Card>
 
-                <div className="flex justify-end space-x-4">
+                
+              </form>
+              <div className="flex justify-end space-x-4 mt-3">
                   <Button
                     variant="outline"
                     onClick={() => navigate("/leadManagement")}
@@ -487,7 +489,6 @@ const EditLeadManagement = () => {
                     Update
                   </Button>
                 </div>
-              </form>
             </TabsContent>
           </div>
         </Tabs>

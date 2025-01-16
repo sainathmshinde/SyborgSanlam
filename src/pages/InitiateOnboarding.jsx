@@ -355,7 +355,7 @@ const CreateLead = () => {
         </div> */}
       </div>
       {/* <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10"> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
           <div className="space-y-2">
             <Label htmlFor="country" className="required">
               Country
@@ -917,7 +917,7 @@ const CreateLead = () => {
         clientType === "partnership" ||
         clientType === "trust" ? (
           <Tabs defaultValue="basic">
-            <TabsList className=" flex justify-start mb-4 ">
+            <TabsList className=" flex justify-start mb-6 ">
               <TabsTrigger
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
@@ -1208,7 +1208,7 @@ const CreateLead = () => {
                 )} */}
                 </div>
 
-                <div className="my-5 flex justify-end">
+                <div className="flex justify-end">
                   <Button className="mx-5">Submit & Next</Button>
                 </div>
               </form>
@@ -1531,7 +1531,7 @@ const CreateLead = () => {
                   </Button>
                 </div> */}
               </Card>
-              <div className="my-5 flex justify-end mx-5">
+              <div className="my-5 flex justify-end ">
                   {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
                 </Button> */}
@@ -1541,7 +1541,7 @@ const CreateLead = () => {
                 </div>
             </TabsContent>
             <TabsContent value="documents">
-              <div className="flex h-screen bg-gray-100 overflow-auto max-h-[550px]">
+              <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
                 {/* Sidebar for document categories */}
                 <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                   <h2 className="text-xl font-bold mb-4">Documents</h2>
@@ -1667,7 +1667,10 @@ const CreateLead = () => {
                         <Upload className="mr-2 h-4 w-4" />
                         Upload {selectedSubOption || "Document"}
                       </Button> */}
-                      <div className="flex justify-end">
+                      
+                    </CardContent>
+                  </Card>
+                  <div className="flex justify-end mt-2 mb-2">
                         <Button
                           onClick={handleUpload}
                           disabled={!file || !selectedSubOption}
@@ -1677,9 +1680,6 @@ const CreateLead = () => {
                           Upload {selectedSubOption || "Document"}
                         </Button>
                       </div>
-                    </CardContent>
-                  </Card>
-
                   {/* <div className="my-10 flex justify-end">
                   <Button
                     className="mx-5"
