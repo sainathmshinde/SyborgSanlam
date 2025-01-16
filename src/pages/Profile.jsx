@@ -338,52 +338,56 @@ function Profile() {
           <UploadDocuments />
         </div>
       ) : (
-        <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto max-h-[500px]">
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
-            <div className="flex items-start gap-4">
-              <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
-              <div>
-                <h3 className="text-yellow-800 font-medium">
-                  Please complete the details and submit
-                </h3>
-                <p className="text-yellow-700 text-sm">
-                  Make sure to fill out all the required fields before
-                  submitting the form.
-                </p>
+        
+        <div className="mb-4 text-md p-4 ">
+        <div className="overflow-hidden sticky top-0 z-10">
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
+              <div className="flex items-start gap-4">
+                <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
+                <div>
+                  <h3 className="text-yellow-800 font-medium">
+                    Please complete the details and submit
+                  </h3>
+                  <p className="text-yellow-700 text-sm">
+                    Make sure to fill out all the required fields before
+                    submitting the form.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           {clientType === "individual" ? (
             <Tabs defaultValue="basic">
-              <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
-                <TabsTrigger
-                  value="basic"
-                  className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-                >
-                  Basic Information
-                </TabsTrigger>
-                <TabsTrigger
-                  value="contact"
-                  className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-                >
-                  Contact
-                </TabsTrigger>
-                <TabsTrigger
-                  value="beneficiaries"
-                  className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-                >
-                  Beneficiaries
-                </TabsTrigger>
-                <TabsTrigger
-                  value="documents"
-                  className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-                >
-                  Upload Documents
-                </TabsTrigger>
-              </TabsList>
-
+            <div className="overflow-hidden sticky top-0 z-10">
+                <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
+                  <TabsTrigger
+                    value="basic"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Basic Information
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="contact"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Contact
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="beneficiaries"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Beneficiaries
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="documents"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Upload Documents
+                  </TabsTrigger>
+                </TabsList>
+              </div>
               <TabsContent value="basic">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-200 p-4 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto max-h-[350px]">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       First Name
@@ -486,7 +490,7 @@ function Profile() {
                   <div></div>
                 </div>
 
-                <div className="my-1 flex justify-end">
+                <div className="my-1 flex justify-end mt-4">
                   <Button className="mx-5">Submit & Next</Button>
                 </div>
               </TabsContent>
@@ -588,10 +592,10 @@ function Profile() {
                       </TableBody>
                     </Table>
                   </CardContent>
-                  <div className="my-5 flex justify-end">
+                </Card>
+                <div className="my-5 flex justify-end">
                     <Button className="mx-5">Submit & Next</Button>
                   </div>
-                </Card>
               </TabsContent>
               <TabsContent value="beneficiaries">
                 <Card>
@@ -776,7 +780,8 @@ function Profile() {
                       </TableBody>
                     </Table>
                   </CardContent>
-                  <div className="my-5 flex justify-end mx-5">
+                </Card>
+                <div className="my-5 flex justify-end mx-5">
                     {/* <Button
                       variant="outline"
                       onClick={() => navigate("/leads")}
@@ -787,7 +792,6 @@ function Profile() {
                       Initiate Onboarding
                     </Button>
                   </div>
-                </Card>
               </TabsContent>
               <TabsContent value="documents">
                 <div className="flex h-screen bg-gray-100">
@@ -863,7 +867,7 @@ function Profile() {
                   </div>
 
                   {/* Document Upload Section */}
-                  <div className="flex-1 px-4 ">
+                  <div className="flex-1 px-4 overflow-auto max-h-[700px]">
                     <Card className="h-full">
                       <CardContent className="p-4">
                         <h1 className="text-2xl font-bold mb-4">
@@ -913,7 +917,10 @@ function Profile() {
                           )}
                         </div>
 
-                        <div className="flex justify-end">
+                       
+                      </CardContent>
+                    </Card>
+                    <div className="flex justify-end mt-8">
                         <Button
                           onClick={handleUpload}
                           disabled={!file || !selectedSubOption}
@@ -923,8 +930,6 @@ function Profile() {
                           Upload {selectedSubOption || "Document"}
                         </Button>
                       </div>
-                      </CardContent>
-                    </Card>
 
                     {/* <div className="my-10 flex justify-end">
                   <Button
@@ -950,6 +955,7 @@ function Profile() {
           clientType === "partnership" ||
           clientType === "trust" ? (
             <Tabs defaultValue="basic">
+            
               <TabsList className=" flex justify-start mb-4 ">
                 <TabsTrigger
                   value="basic"
