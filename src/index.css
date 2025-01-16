@@ -81,6 +81,8 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
   }
   body {
     @apply bg-background text-foreground;
@@ -179,4 +181,8 @@
 .toast-error {
   background-color: #e3342f;
   color: #fff;
+}
+
+	h1,h2,h3,table {
+  font-family: 'Poppins', sans-serif;
 }
