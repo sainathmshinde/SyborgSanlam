@@ -183,10 +183,10 @@
   color: #fff;
 }
 
-	h1,h2,h3 {
+	h1,h2,h3,p {
   font-family: 'Poppins', sans-serif;
 }
-Label,form,::placeholder,input,button{
+Label,form,::placeholder,input,button,Textarea{
   font-family: 'Poppins', sans-serif;
   font-size: 14px !important;
 }
