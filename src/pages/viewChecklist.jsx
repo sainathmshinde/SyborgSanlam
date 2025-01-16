@@ -67,6 +67,10 @@ function CreateUser() {
       documentType: "ID Proof",
       documentNames: ["Passport", "Driving Licence", "National ID"],
     },
+    {
+      documentType: "Address Proof",
+      documentNames: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
   ]);
 
   const [documentName, setDocumentName] = useState("");
@@ -184,7 +188,51 @@ function CreateUser() {
   };
 
   const [customDocuments, setCustomDocuments] = useState([]);
+  
+  const [editingDoc, setEditingDoc] = useState(null); // Stores the document being edited
+  const [editDocumentName, setEditDocumentName] = useState(""); // Stores the edited name
+  const [editDocumentType, setEditDocumentType] = useState(''); // Stores the new document type
+  const [showForm, setShowForm] = useState(false);
+  
+  const handleEdit = (doc, name) => {
+    setEditingDoc({ documentType: doc.documentType, editingName: name });
+    setEditDocumentType(doc.documentType); // Pre-fill document type
+    setEditDocumentName(name); // Pre-fill document name
+    setShowForm(true);
+  };
+  
+ const handleSaveEdit = () => {
+  if (!editDocumentType || !editDocumentName) return; // Ensure values are valid
 
+  // Update the document data
+  setDocumentData((prevData) =>
+    prevData.map((doc) => {
+      if (doc.documentType === editingDoc.documentType) {
+        // Update the document name if it matches the documentType
+        return {
+          ...doc,
+          documentNames: doc.documentNames.map((name) =>
+            name === editingDoc.editingName ? editDocumentName : name
+          ),
+        };
+      }
+      return doc;
+    })
+  );
+
+  // Reset the editing state
+  setShowForm(false);
+  setEditingDoc(null);
+  setEditDocumentType('');
+  setEditDocumentName('');
+};
+  
+const handleCancelEdit = () => {
+  setShowForm(false); 
+  setEditingDoc(null); 
+  setEditDocumentType('');
+  setEditDocumentName('');
+};
   // const handleAddDocument = () => {
   //   const newDocument = prompt("Enter the new document name:");
   //   if (newDocument) {
@@ -304,114 +352,122 @@ function CreateUser() {
                     </button>
                   </div>
                 </div> */}
-                  <form className="space-y-4 overflow-auto max-h-[585px] -ml-4">
-                    <Card className="bg-gray-200">
-                      <CardContent className="">
-                        <div className="mt-4 ">
-                          {/* <h1 className="text-xl font-semibold">Select Applicable Document Names</h1> */}
-                          <h2 className="text-lg font-semibold mb-2 required">
-                            Select Applicable Document Types
-                          </h2>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
-                          {/* Document Type */}
-                          <div className="flex items-center space-x-4">
-                            <Label
-                              htmlFor="documentType"
-                              className="text-md font-semibold "
-                            >
-                              Document Type:
-                            </Label>
-                            <Input
-                              id="documentType"
-                              placeholder="Enter Document Type"
-                              value={documentType}
-                              onChange={(e) => setDocumentType(e.target.value)}
-                              className="w-64"
-                            />
-                          </div>
+                   {showForm && (
+        <form className="space-y-4 overflow-auto max-h-[585px] -ml-4">
+          <Card className="bg-gray-200">
+            <CardContent>
+              <div className="mt-4">
+                <h2 className="text-lg font-semibold mb-2 required">Edit Document Type and Name</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
+                <div className="flex items-center space-x-4">
+                  <Label htmlFor="documentType" className="text-md font-semibold">Document Type:</Label>
+                  <Input
+                    id="documentType"
+                    value={editDocumentType}
+                    onChange={(e) => setEditDocumentType(e.target.value)}
+                    className="w-64"
+                  />
+                </div>
 
-                          {/* Document Name and Add Button */}
-                          <div className="flex items-center space-x-4 mt-4">
-                            <Label
-                              htmlFor="documentName"
-                              className="text-md font-semibold"
-                            >
-                              Document Name:
-                            </Label>
-                            <Input
-                              id="documentName"
-                              placeholder="Enter Document Name"
-                              value={documentName}
-                              onChange={(e) => setDocumentName(e.target.value)}
-                              className="w-64"
-                            />
-                            <button
-                              type="button"
-                              onClick={handleAddDocumentName}
-                              className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-700"
-                              aria-label="Add Document Name"
-                            >
-                              <Plus className="w-5 h-5" />
-                            </button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </form>
+                <div className="flex items-center space-x-4 mt-4">
+                  <Label htmlFor="documentName" className="text-md font-semibold">Document Name:</Label>
+                  <Input
+                    id="documentName"
+                    value={editDocumentName}
+                    onChange={(e) => setEditDocumentName(e.target.value)}
+                    className="w-64"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end mt-3">
+                <button type="button" onClick={handleCancelEdit} className="mr-3 text-gray-500">
+                  Cancel
+                </button>
+                <button type="button" onClick={handleSaveEdit} className="ml-3 bg-blue-600 text-white px-4 py-2 rounded">
+                  Save
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+        </form>
+      )}
 
-                  {/* Table to display added documents */}
-                  {documentData.length > 0 && (
-                    <div className="mt-1">
-                      <h2 className="text-lg font-semibold mb-4">
-                        Added Documents
-                      </h2>
-                      <table className="w-full border-collapse table-auto shadow-md bg-white">
-                        <thead>
-                          <tr className="bg-gray-100">
-                            <th className="border px-4 py-2 text-left">
-                              Document Type
-                            </th>
-                            <th className="border px-4 py-2 text-left">
-                              Document Names
-                            </th>
-                            <th className="border px-4 py-2 text-center">
-                              Actions
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {documentData.map((doc, index) => (
-                            <tr key={index} className="border-b">
-                              <td className="border px-4 py-2">
-                                {doc.documentType}
-                              </td>
-                              <td className="border px-4 py-2">
-                                <ul>
-                                  {doc.documentNames.map((name, i) => (
-                                    <li
-                                      key={i}
-                                      className="flex justify-between items-center"
-                                    >
-                                      <span>{name}</span>
-                                      <button
-                                        onClick={() =>
-                                          handleDeleteDocumentName(
-                                            doc.documentType,
-                                            name
-                                          )
-                                        }
-                                        className="text-red-600 hover:text-red-800 text-sm mb-1"
-                                        title="Remove"
-                                        style={{ border: "1px solid red" }}
-                                      >
-                                        <Remove h-2 w-2 />
-                                      </button>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </td>
-                              <td className="border px-4 py-2 text-center">
+      {/* Table to display added documents */}
+      {documentData.length > 0 && (
+        <div className="mt-4">
+          <h2 className="text-lg font-semibold mb-4">Added Documents</h2>
+          <table className="w-full border-collapse table-auto shadow-md bg-white">
+            <thead>
+              <tr className="bg-custom-black text-white">
+                <th className="border px-4 py-2 text-left">Document Type</th>
+                <th className="border px-4 py-2 text-left">Document Names</th>
+                <th className="border px-4 py-2 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {documentData.map((doc, index) => (
+                <tr key={index} className="border-b">
+                  <td className="border px-4 py-2">{doc.documentType}</td>
+                  <td className="border px-4 py-2">
+                    <ul>
+                      {doc.documentNames.map((name, i) => (
+                        <li key={i} className="flex justify-between items-center">
+                          {editingDoc && editingDoc.documentType === doc.documentType && editingDoc.editingName === name ? (
+                            <div className="flex">
+                              <Input
+                                value={editDocumentType}
+                                onChange={(e) => setEditDocumentType(e.target.value)}
+                                className="w-48"
+                              />
+                              <Input
+                                value={editDocumentName}
+                                onChange={(e) => setEditDocumentName(e.target.value)}
+                                className="w-48 ml-2"
+                              />
+                            </div>
+                          ) : (
+                            <span>{name}</span>
+                          )}
+                          {/* <button
+                            onClick={() => handleEdit(doc, name)}
+                            className="ml-2 text-blue-500"
+                          >
+                            Edit
+                          </button> */}
+                          <RButton
+                                              variant="ghost"
+                                              className="relative group flex items-center gap-2"
+                                              onClick={() => handleEdit(doc, name)}
+                                            >
+                                              {/* <FilePenIcon className="h-4 w-4" /> */}
+                                              <svg
+                                                width="18"
+                                                height="18"
+                                                viewBox="0 0 18 18"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                              >
+                                                <path
+                                                  d="M16 0C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16ZM13.7 6.35C13.92 6.14 13.92 5.79 13.7 5.58L12.42 4.3C12.3705 4.24765 12.3108 4.20595 12.2446 4.17745C12.1784 4.14895 12.1071 4.13425 12.035 4.13425C11.9629 4.13425 11.8916 4.14895 11.8254 4.17745C11.7592 4.20595 11.6995 4.24765 11.65 4.3L10.65 5.3L12.7 7.35L13.7 6.35ZM4 11.94V14H6.06L12.12 7.94L10.06 5.88L4 11.94Z"
+                                                  fill="#4368FA"
+                                                />
+                                              </svg>
+                    
+                                              <div
+                                                className="absolute left-1/2 transform -translate-x-1/2 
+                                            bottom-full mb-2 hidden group-hover:flex items-center justify-center 
+                                            bg-white text-black text-xs px-2 py-1 rounded shadow-lg"
+                                              >
+                                                Edit
+                                              </div>
+                                            </RButton>
+
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+      <td className="border px-4 py-2 text-center">
                                 {/* Optional: Button to delete the entire document type */}
                                 {/* <button
                       onClick={() => {
@@ -440,40 +496,32 @@ function CreateUser() {
                       
                       
                     </button> */}
-
-                                <RButton
-                                  variant="ghost"
-                                  className="relative group flex items-center gap-2  ml-60"
-                                  onClick={() => {
-                                    setDocumentData((prevData) =>
-                                      prevData.filter(
-                                        (item) =>
-                                          item.documentType !== doc.documentType
-                                      )
-                                    );
-                                  }}
-                                >
-                                  {/* <Trash2Icon className="h-4 w-4 text-red-500" /> */}
-                                  <svg
-                                    width="16"
-                                    height="18"
-                                    viewBox="0 0 16 18"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M3 18C2.45 18 1.97933 17.8043 1.588 17.413C1.19667 17.0217 1.00067 16.5507 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8043 17.021 14.413 17.413C14.0217 17.805 13.5507 18.0007 13 18H3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
-                                      fill="#E31F21"
-                                    />
-                                  </svg>
-                                  <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex items-center justify-center bg-white text-black text-xs px-2 py-1 rounded shadow-lg">
-                                    Delete
-                                  </div>
-                                </RButton>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
+                    
+<RButton
+          variant="ghost"
+          onClick={() => {
+            setDocumentData((prevData) =>
+              prevData.filter((item) => item.documentType !== doc.documentType)
+            );
+          }}
+        >
+          <svg
+            width="16"
+            height="18"
+            viewBox="0 0 16 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 18C2.45 18 1.97933 17.8043 1.588 17.413C1.19667 17.0217 1.00067 16.5507 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8043 17.021 14.413 17.413C14.0217 17.805 13.5507 18.0007 13 18H3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+              fill="#E31F21"
+            />
+          </svg>
+        </RButton>
+      </td>
+    </tr>
+  ))}
+</tbody>
                       </table>
                     </div>
                   )}
@@ -581,7 +629,7 @@ function CreateUser() {
   );
 }
 
-export default WithLayout("compliance")(CreateUser);
+export default WithLayout("admin")(CreateUser);
 
 function Remove() {
   return (

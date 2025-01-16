@@ -188,15 +188,15 @@ function ComplianceChecklist() {
   return (
     <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
       <div className="overflow-hidden  sticky top-0 z-10">
-      <div className="flex justify-between items-center mb-4 ">
-        <div
-          onClick={goBack}
-          className="hover:cursor-pointer hover:text-blue-600  w-1/12"
-        >
-          {" "}
-          <CircleArrowLeft className="w-8 h-8" />
-        </div>
-        {/* <div className="relative flex-grow">
+        <div className="flex justify-between items-center mb-4 ">
+          <div
+            onClick={goBack}
+            className="hover:cursor-pointer hover:text-blue-600  w-1/12"
+          >
+            {" "}
+            <CircleArrowLeft className="w-8 h-8" />
+          </div>
+          {/* <div className="relative flex-grow">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
           <Input
             type="text"
@@ -206,7 +206,7 @@ function ComplianceChecklist() {
             className="pl-10 w-1/2"
           />
         </div> */}
-      </div>
+        </div>
       </div>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 ">
@@ -245,7 +245,9 @@ function ComplianceChecklist() {
               </p>
             </div>
             <div>
-              <p className="text-sm">Customer Type : {customerData.clientType}</p>
+              <p className="text-sm">
+                Customer Type : {customerData.clientType}
+              </p>
               <Badge variant={id == 2 ? "default" : "secondary"}>
                 {id == 1 ? "Pending" : id == 2 ? "Approved" : "Rejected"}
               </Badge>
@@ -266,8 +268,8 @@ function ComplianceChecklist() {
           </div>
         </CardContent>
       </Card>
-    
-     {/* <div className="overflow-auto max-h-[500px]"> */}
+
+      {/* <div className="overflow-auto max-h-[500px]"> */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="md:col-span-1">
           <CardHeader>
