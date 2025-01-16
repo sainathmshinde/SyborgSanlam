@@ -67,6 +67,10 @@ function CreateUser() {
       documentType: "ID Proof",
       documentNames: ["Passport", "Driving Licence", "National ID"],
     },
+    {
+      documentType: "Address Proof",
+      documentNames: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
   ]);
 
   const [documentName, setDocumentName] = useState("");
@@ -395,7 +399,7 @@ const handleCancelEdit = () => {
           <h2 className="text-lg font-semibold mb-4">Added Documents</h2>
           <table className="w-full border-collapse table-auto shadow-md bg-white">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-custom-black text-white">
                 <th className="border px-4 py-2 text-left">Document Type</th>
                 <th className="border px-4 py-2 text-left">Document Names</th>
                 <th className="border px-4 py-2 text-center">Actions</th>
@@ -425,12 +429,40 @@ const handleCancelEdit = () => {
                           ) : (
                             <span>{name}</span>
                           )}
-                          <button
+                          {/* <button
                             onClick={() => handleEdit(doc, name)}
                             className="ml-2 text-blue-500"
                           >
                             Edit
-                          </button>
+                          </button> */}
+                          <RButton
+                                              variant="ghost"
+                                              className="relative group flex items-center gap-2"
+                                              onClick={() => handleEdit(doc, name)}
+                                            >
+                                              {/* <FilePenIcon className="h-4 w-4" /> */}
+                                              <svg
+                                                width="18"
+                                                height="18"
+                                                viewBox="0 0 18 18"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                              >
+                                                <path
+                                                  d="M16 0C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16ZM13.7 6.35C13.92 6.14 13.92 5.79 13.7 5.58L12.42 4.3C12.3705 4.24765 12.3108 4.20595 12.2446 4.17745C12.1784 4.14895 12.1071 4.13425 12.035 4.13425C11.9629 4.13425 11.8916 4.14895 11.8254 4.17745C11.7592 4.20595 11.6995 4.24765 11.65 4.3L10.65 5.3L12.7 7.35L13.7 6.35ZM4 11.94V14H6.06L12.12 7.94L10.06 5.88L4 11.94Z"
+                                                  fill="#4368FA"
+                                                />
+                                              </svg>
+                    
+                                              <div
+                                                className="absolute left-1/2 transform -translate-x-1/2 
+                                            bottom-full mb-2 hidden group-hover:flex items-center justify-center 
+                                            bg-white text-black text-xs px-2 py-1 rounded shadow-lg"
+                                              >
+                                                Edit
+                                              </div>
+                                            </RButton>
+
                         </li>
                       ))}
                     </ul>
@@ -464,7 +496,7 @@ const handleCancelEdit = () => {
                       
                       
                     </button> */}
-
+                    
 <RButton
           variant="ghost"
           onClick={() => {
