@@ -40,17 +40,19 @@ export default function Login() {
     <div className="flex items-center justify-center h-screen">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>{step === 1 ? "Login" : "OTP Verification"}</CardTitle>
-          <CardDescription>
+        <CardTitle>Login</CardTitle>
+
+          {/* <CardTitle>{step === 1 ? "Login" : "OTP Verification"}</CardTitle> */}
+          {/* <CardDescription>
             {step === 1
               ? "Enter your credentials"
               : "Enter the OTP sent to your email"}
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
-          {step === 1 ? (
+          {/* {step === 1 ? ( */}
             <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleOtpVerification} className="space-y-4">
               <div className="space-y-2 ">
                 <Label htmlFor="email" className="required">
                   Email
@@ -81,8 +83,9 @@ export default function Login() {
               </Button>
             </form>
             </div>
-          ) : (
-            <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
+          {/* ) 
+          : ( */}
+            {/* <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg overflow-x-auto">
             <form onSubmit={handleOtpVerification} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="otp" className="required">
@@ -102,7 +105,7 @@ export default function Login() {
               </Button>
             </form>
             </div>
-          )}
+          )} */}
 
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
