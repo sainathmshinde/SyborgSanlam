@@ -448,7 +448,7 @@ function CreateUser() {
                             </h2>
                             <table className="w-full border-collapse table-auto shadow-md bg-white">
                               <thead>
-                                <tr className="bg-gray-100">
+                                <tr className="bg-custom-black text-white">
                                   <th className="border px-4 py-2 text-left">
                                     Document Type
                                   </th>
