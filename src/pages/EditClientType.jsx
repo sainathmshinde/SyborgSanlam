@@ -11,7 +11,8 @@ import { useNavigate } from "react-router";
 const EditClientType = () => {
   const [client, setClient] = useState({
     clientType: "Individual",
-    description: "Clearly communicate their needs, provide necessary information, make timely decisions, give feedback, and fulfill financial obligations.",
+    description:
+      "Clearly communicate their needs, provide necessary information, make timely decisions, give feedback, and fulfill financial obligations.",
   });
 
   const handleInputChange = (field, value) => {
@@ -21,13 +22,13 @@ const EditClientType = () => {
     }));
   };
   const navigate = useNavigate();
-    const goBack = () => {
-      navigate("/clientType"); 
-    };
+  const goBack = () => {
+    navigate("/clientType");
+  };
 
-    const handleSubmit = () => {
-      navigate("/clientType"); 
-    };
+  const handleSubmit = () => {
+    navigate("/clientType");
+  };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
@@ -38,26 +39,29 @@ const EditClientType = () => {
           <Card className="bg-gray-200">
             <CardContent className="p-4 ">
               <div className="space-y-2 w-full">
-                <Label htmlFor="teamName" className="w-full required">
-                  Customer Type
+                <Label htmlFor="clientType" className="w-full required">
+                  Name
                 </Label>
                 <Input
-                  id="teamName"
-                  placeholder="Enter Client Type "
+                  id="clientType"
+                  placeholder="Enter Name"
                   value={client.clientType}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  //   required
+                  onChange={(e) =>
+                    handleInputChange("clientType", e.target.value)
+                  }
                 />
               </div>
               <div className="space-y-2 w-full mt-4">
-                <Label htmlFor="teamName" className="w-full required">
-                 Description
+                <Label htmlFor="description" className="w-full required">
+                  Description
                 </Label>
                 <Input
-                  id="teamName"
+                  id="description"
                   placeholder="Enter Description "
                   value={client.description}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   //   required
                 />
               </div>
@@ -66,9 +70,11 @@ const EditClientType = () => {
 
           <div className="flex justify-end">
             <RButton variant="outline" onClick={goBack}>
-                                      Back
-                                    </RButton>
-            <RButton className="ml-5" onClick={handleSubmit} type="submit">Update</RButton>
+              Back
+            </RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">
+              Update
+            </RButton>
           </div>
         </form>
       </div>
