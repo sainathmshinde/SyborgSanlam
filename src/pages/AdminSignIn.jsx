@@ -1,19 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function Login() {
+export default function AdminSignIn() {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -33,7 +32,7 @@ export default function Login() {
 
     setError("");
 
-    navigate("/home");
+    navigate("/navigate");
   };
 
   return (
@@ -60,8 +59,8 @@ export default function Login() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="siphokeita@example.com"
-                  value="siphokeita@example.com"
+                  placeholder="admin@example.com"
+                  value="admin@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>

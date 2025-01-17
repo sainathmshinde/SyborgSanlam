@@ -150,7 +150,7 @@ function Navigator() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                {category.description}
+               <strong style={{ color:"black"}}> {category.description}</strong>
               </p>
             </CardContent>
           </Card>
