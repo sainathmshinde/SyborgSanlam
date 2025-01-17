@@ -17,6 +17,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { produce } from "immer";
 import PropTypes from "prop-types";
@@ -183,6 +185,13 @@ function CreateRole() {
     navigate("/roles"); 
   };
   
+  const handleInputChange = (field, value) => {
+    setRole((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   const handleChange = (name, section, entity, action) => (event) => {
     const nextState = produce(role, (draft) => {
       if (name === "permissions") {
@@ -369,7 +378,7 @@ function CreateRole() {
         <h1 className="mb-6 mt-2 text-xl font-bold ">Create New Role</h1>
       </div>
       <div className="space-y-2 overflow-auto max-h-[550px] ">
-        <Card className="bg-gray-200  ">
+        {/* <Card className="bg-gray-200  ">
           <CardContent className="p-4 gap-4">
             <div>
               <RInput
@@ -396,7 +405,34 @@ function CreateRole() {
             /></div>
            
           </CardContent>
-        </Card>
+        </Card> */}
+        <Card className="bg-gray-200 ">
+                    <CardContent className="p-4 ">
+                      <div className="space-y-2 w-full">
+                        <Label htmlFor="teamName" className="w-full required">
+                          Role Name
+                        </Label>
+                        <Input
+                          id="teamName"
+                          placeholder="Enter Name"
+                          value={role.name}
+                          onChange={(e) => handleInputChange("name", e.target.value)}
+                        />
+                      </div>
+        
+                      <div className="space-y-2 w-full mt-2">
+                        <Label htmlFor="teamName" className="w-full required">
+                        Description
+                        </Label>
+                        <Input
+                          id="teamName"
+                          placeholder="Enter Email Name"
+                          value={role.description}
+                          onChange={(e) => handleInputChange("description", e.target.value)}
+                        />
+                      </div>
+                      </CardContent>
+                      </Card>
 
         <div className="text-xl font-bold pt-7">Permissions</div>
         <div className="text-sm text-gray-500 pt-2">

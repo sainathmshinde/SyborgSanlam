@@ -83,7 +83,7 @@ const TreeNode = ({ node, level }) => {
 };
 // To do document categories based on selected client type
 const documentCategories = {
-  "Company Documents": {
+  "Certificate": {
     main: "Incorporation Document",
     subOptions: ["Registartion Certificate", "Incorportation Letter"],
   },
@@ -92,7 +92,7 @@ const documentCategories = {
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
   },
 
-  "ID Proof Director 1": {
+  "ID Proof Alice": {
     main: "ID Document",
     subOptions: ["National ID", "PAN Card", "Passport"],
   },
@@ -1580,7 +1580,7 @@ const CreateLead = () => {
                               >
                                 <SelectTrigger className="w-full">
                                   <SelectValue
-                                    placeholder={`Select ${category} Document`}
+                                    placeholder={`Select ${category}`}
                                   />
                                 </SelectTrigger>
                                 <SelectContent>
