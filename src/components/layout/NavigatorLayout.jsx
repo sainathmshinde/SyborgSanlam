@@ -19,7 +19,7 @@ export default function NavigatorLayout({ children }) {
   // useLocationHistory();
 
   const handleLogout = () => {
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="grid min-h-screen w-full ">

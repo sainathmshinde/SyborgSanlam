@@ -56,7 +56,7 @@ import EditLeadManagement from "@/pages/EditLeadManagement";
 import LeadM from "@/pages/LeadM";
 import ComplianceT from "@/pages/ComplianceT";
 import CustomerO from "@/pages/CustomerO";
-
+import AdminSignIn from "@/pages/AdminSignIn";
 const routes = [
   {
     exact: true,
@@ -70,8 +70,18 @@ const routes = [
   },
   {
     exact: true,
-    path: "/",
+    path: "/home",
     component: <HomePage />,
+  },
+  {
+    exact: true,
+    path: "/navigate",
+    component: <Navigator />,
+  },
+  {
+    exact :true,
+    path:"/",
+    component:<AdminSignIn/>
   },
   {
     exact: true,

@@ -54,7 +54,7 @@ export default function AppLayout({ children }) {
   }, []);
 
   const handleLogout = () => {
-    navigate("/login");
+    navigate("/");
   };
   const handleNavigate = (path, item) => (e) => {
     setActiveItem(item);
