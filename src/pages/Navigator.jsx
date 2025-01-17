@@ -140,7 +140,7 @@ function Navigator() {
         {categories.map((category, index) => (
           <Card
             key={index}
-            className="w-full sm:w-64 h-40 cursor-pointer hover:bg-muted shadow-lg border-0 rounded-lg m-9"
+            className="w-full sm:w-64 h-40 cursor-pointer hover:bg-muted shadow-lg border-0 rounded-lg m-7"
             onClick={() => {
               navigate(category.path);
             }}
@@ -150,7 +150,10 @@ function Navigator() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-               <strong style={{ color:"black"}}> {category.description}</strong>
+                <strong style={{ color: "black" }}>
+                  {" "}
+                  {category.description}
+                </strong>
               </p>
             </CardContent>
           </Card>
