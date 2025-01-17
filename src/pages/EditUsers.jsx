@@ -7,7 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import RInput from "@/components/ui/rInput";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const EditUsers = () => {
   //   const navigate = useNavigate();
@@ -27,13 +33,12 @@ const EditUsers = () => {
   };
   const navigate = useNavigate();
   const goBack = () => {
-    navigate("/users"); 
+    navigate("/users");
   };
   const handleSubmit = () => {
-    navigate("/users"); 
+    navigate("/users");
 
     console.log("Submitted user data:", user);
-    
   };
   // const roleOptions = [
   //   { value: "admin", label: "Admin" },
@@ -47,7 +52,6 @@ const EditUsers = () => {
   //   const selectedRoles = selectedOptions.map((option) => option.value);
   //   handleInputChange("role", selectedRoles);
   // };
-
 
   return (
     <div className="mx-auto p-4">
@@ -133,7 +137,6 @@ const EditUsers = () => {
                   value={user.role}
                   onChange={(e) => handleInputChange("role", e.target.value)}
                   className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-500"
-                  
                 >
                   <option value="" disabled>
                     Select Role
@@ -143,9 +146,7 @@ const EditUsers = () => {
                   <option value="viewer">Onboarding Team</option>
                   <option value="viewer">Compliance Approver</option>
                   <option value="viewer">Client User</option>
-                 
                 </select>
-               
               </div>
               {/* <div className="space-y-2">
           <label className="block font-medium" htmlFor="role">
@@ -167,11 +168,13 @@ const EditUsers = () => {
           </Card>
 
           <div className="flex justify-end mt-10">
-                <RButton variant="outline" onClick={goBack}>
+            <RButton variant="outline" onClick={goBack}>
               Back
             </RButton>
-                  <RButton className="ml-5" onClick={handleSubmit}>Update</RButton>
-                </div>
+            <RButton className="ml-5" onClick={handleSubmit}>
+              Update
+            </RButton>
+          </div>
         </form>
       </div>
     </div>

@@ -21,12 +21,12 @@ const EditCountry = () => {
     }));
   };
   const navigate = useNavigate();
-    const goBack = () => {
-      navigate("/country"); 
-    };
-    const handleSubmit = () => {
-      navigate("/country"); 
-    };
+  const goBack = () => {
+    navigate("/country");
+  };
+  const handleSubmit = () => {
+    navigate("/country");
+  };
   return (
     <div className="mx-auto p-4">
       <div className="w-full space-y-6">
@@ -45,7 +45,7 @@ const EditCountry = () => {
                   placeholder="Enter Country Name "
                   value={country.countryName}
                   onChange={(e) =>
-                    handleInputChange("Country Name", e.target.value)
+                    handleInputChange("countryName", e.target.value)
                   }
                   //   required
                 />
@@ -59,7 +59,7 @@ const EditCountry = () => {
                   placeholder="Enter Country Code "
                   value={country.countryCode}
                   onChange={(e) =>
-                    handleInputChange("Country Code", e.target.value)
+                    handleInputChange("countryCode", e.target.value)
                   }
                   //   required
                 />
@@ -69,9 +69,11 @@ const EditCountry = () => {
 
           <div className="flex justify-end">
             <RButton variant="outline" onClick={goBack}>
-                                      Back
-                                    </RButton>
-            <RButton className="ml-5" onClick={handleSubmit} type="submit">Update</RButton>
+              Back
+            </RButton>
+            <RButton className="ml-5" onClick={handleSubmit} type="submit">
+              Update
+            </RButton>
           </div>
         </form>
       </div>
