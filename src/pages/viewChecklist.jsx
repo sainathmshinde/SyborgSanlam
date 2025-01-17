@@ -64,7 +64,7 @@ function CreateUser() {
       documentNames: ["Registration Certificate", "Incorporate Letter"],
     },
     {
-      documentType: "ID Proof",
+      documentType: "ID Proof Director",
       documentNames: ["Passport", "Driving Licence", "National ID"],
     },
     {
@@ -239,6 +239,20 @@ const handleCancelEdit = () => {
   //     setCustomDocuments((prev) => [...prev, newDocument]);
   //   }
   // };
+
+  const handleDelete = (doc, name) => {
+    setDocumentData((prevData) => {
+      return prevData.map((item) =>
+        item.documentType === doc.documentType
+          ? {
+              ...item,
+              documentNames: item.documentNames.filter((docName) => docName !== name),
+            }
+          : item
+      );
+    });
+  };
+  
   return (
     <div className="w-full p-4">
       {next == 1 && (
@@ -254,17 +268,17 @@ const handleCancelEdit = () => {
             <h1 className="text-xl font-bold mb-4"> Edit Checklist</h1>
             {/* <div className="flex justify-end"></div> */}
           </div>
-          <div className="overflow-auto max-h-[500px]">
-            <div className="mb-4 text-md  bg-gray-200 border rounded-lg overflow-x-auto">
-              <div className="space-y-4 p-4">
-                <div className="flex flex-col">
+          {/* <div className="overflow-auto max-h-[500px]"> */}
+            {/* <div className="mb-4 text-md  bg-gray-200 border rounded-lg overflow-x-auto"> */}
+              {/* <div className="space-y-4 p-4"> */}
+                {/* <div className="flex flex-col"> */}
                   {/* <div className="space-y-2 w-1/2">
                <Label htmlFor="name" className="text-md">
                  Checklist Name
                </Label>
                <Input id="name" placeholder="Enter checklist name" />
              </div> */}
-                  <div className="grid grid-cols-2 gap-4 mt-2">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
                     <div className="space-y-2">
                       <Label htmlFor="country" className="required">
                         Country
@@ -353,10 +367,10 @@ const handleCancelEdit = () => {
                   </div>
                 </div> */}
                    {showForm && (
-        <form className="space-y-4 overflow-auto max-h-[585px] -ml-4">
-          <Card className="bg-gray-200">
+        <form className="space-y-4 overflow-auto ">
+          <Card className="bg-gray-200 border rounded-lg p-4">
             <CardContent>
-              <div className="mt-4">
+              <div className="mt-2">
                 <h2 className="text-lg font-semibold mb-2 required">Edit Document Type and Name</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
@@ -395,7 +409,7 @@ const handleCancelEdit = () => {
 
       {/* Table to display added documents */}
       {documentData.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-4 bg-gray-200 border rounded-lg p-4 overflow-auto max-h-[300px]">
           <h2 className="text-lg font-semibold mb-4">Added Documents</h2>
           <table className="w-full border-collapse table-auto shadow-md bg-white">
             <thead>
@@ -410,62 +424,79 @@ const handleCancelEdit = () => {
                 <tr key={index} className="border-b">
                   <td className="border px-4 py-2">{doc.documentType}</td>
                   <td className="border px-4 py-2">
-                    <ul>
-                      {doc.documentNames.map((name, i) => (
-                        <li key={i} className="flex justify-between items-center">
-                          {editingDoc && editingDoc.documentType === doc.documentType && editingDoc.editingName === name ? (
-                            <div className="flex">
-                              <Input
-                                value={editDocumentType}
-                                onChange={(e) => setEditDocumentType(e.target.value)}
-                                className="w-48"
-                              />
-                              <Input
-                                value={editDocumentName}
-                                onChange={(e) => setEditDocumentName(e.target.value)}
-                                className="w-48 ml-2"
-                              />
-                            </div>
-                          ) : (
-                            <span>{name}</span>
-                          )}
-                          {/* <button
-                            onClick={() => handleEdit(doc, name)}
-                            className="ml-2 text-blue-500"
-                          >
-                            Edit
-                          </button> */}
-                          <RButton
-                                              variant="ghost"
-                                              className="relative group flex items-center gap-2"
-                                              onClick={() => handleEdit(doc, name)}
-                                            >
-                                              {/* <FilePenIcon className="h-4 w-4" /> */}
-                                              <svg
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 18 18"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                              >
-                                                <path
-                                                  d="M16 0C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16ZM13.7 6.35C13.92 6.14 13.92 5.79 13.7 5.58L12.42 4.3C12.3705 4.24765 12.3108 4.20595 12.2446 4.17745C12.1784 4.14895 12.1071 4.13425 12.035 4.13425C11.9629 4.13425 11.8916 4.14895 11.8254 4.17745C11.7592 4.20595 11.6995 4.24765 11.65 4.3L10.65 5.3L12.7 7.35L13.7 6.35ZM4 11.94V14H6.06L12.12 7.94L10.06 5.88L4 11.94Z"
-                                                  fill="#4368FA"
-                                                />
-                                              </svg>
-                    
-                                              <div
-                                                className="absolute left-1/2 transform -translate-x-1/2 
-                                            bottom-full mb-2 hidden group-hover:flex items-center justify-center 
-                                            bg-white text-black text-xs px-2 py-1 rounded shadow-lg"
-                                              >
-                                                Edit
-                                              </div>
-                                            </RButton>
+                  <ul>
+  {doc.documentNames.map((name, i) => (
+    <li key={i} className="flex justify-between items-center">
+      {editingDoc && editingDoc.documentType === doc.documentType && editingDoc.editingName === name ? (
+        // Only show the two input boxes for the document being edited
+        <div className="flex">
+          <Input
+            value={editDocumentName}
+            onChange={(e) => setEditDocumentName(e.target.value)}
+            className="w-48"
+          />
+        </div>
+      ) : (
+        // Show the document name as text if it's not being edited
+        <span>{name}</span>
+      )}
 
-                        </li>
-                      ))}
-                    </ul>
+      <div className="flex space-x-2">
+        {/* Edit Button */}
+        <RButton
+          variant="ghost"
+          className="relative group flex items-center gap-2"
+          onClick={() => handleEdit(doc, name)}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 0C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16ZM13.7 6.35C13.92 6.14 13.92 5.79 13.7 5.58L12.42 4.3C12.3705 4.24765 12.3108 4.20595 12.2446 4.17745C12.1784 4.14895 12.1071 4.13425 12.035 4.13425C11.9629 4.13425 11.8916 4.14895 11.8254 4.17745C11.7592 4.20595 11.6995 4.24765 11.65 4.3L10.65 5.3L12.7 7.35L13.7 6.35ZM4 11.94V14H6.06L12.12 7.94L10.06 5.88L4 11.94Z"
+              fill="#4368FA"
+            />
+          </svg>
+          <div
+            className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex items-center justify-center bg-white text-black text-xs px-2 py-1 rounded shadow-lg"
+          >
+            Edit
+          </div>
+        </RButton>
+
+        {/* Delete Button */}
+        <RButton
+          variant="ghost"
+          className="relative group flex items-center gap-2"
+          onClick={() => handleDelete(doc, name)}
+        >
+          <svg
+            width="16"
+            height="18"
+            viewBox="0 0 16 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 18C2.45 18 1.97933 17.8043 1.588 17.413C1.19667 17.0217 1.00067 16.5507 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8043 17.021 14.413 17.413C14.0217 17.805 13.5507 18.0007 13 18H3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+              fill="#E31F21"
+            />
+          </svg>
+          <div
+            className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex items-center justify-center bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg"
+          >
+            Delete
+          </div>
+        </RButton>
+      </div>
+    </li>
+  ))}
+</ul>
+
+
                   </td>
       <td className="border px-4 py-2 text-center">
                                 {/* Optional: Button to delete the entire document type */}
@@ -525,9 +556,9 @@ const handleCancelEdit = () => {
                       </table>
                     </div>
                   )}
-                </div>
-              </div>
-            </div>
+                {/* </div> */}
+              {/* </div> */}
+            {/* </div> */}
             {/* <div className="flex justify-end">
             <RButton variant="outline" onClick={goBack}>
                     Back
@@ -537,7 +568,7 @@ const handleCancelEdit = () => {
                 Update Checklist
               </RButton>
           </div> */}
-          </div>
+          {/* </div> */}
           <div className="flex justify-end mt-3">
             <RButton variant="outline" onClick={goBack}>
               Back

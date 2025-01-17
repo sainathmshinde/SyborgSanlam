@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 const EditEntityType = () => {
   const [entity, setEntity] = useState({
     entityType: "Customer",
-    description: "Their involvement or responsibilities in a project or business relationship"
+    description: "Their involvement or responsibilities in a project or business relationship."
   });
 
   const handleInputChange = (field, value) => {
@@ -46,7 +46,7 @@ const EditEntityType = () => {
                   id="teamName"
                   placeholder="Enter Entity Type "
                   value={entity.entityType}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onChange={(e) => handleInputChange("entityType", e.target.value)}
                   //   required
                 />
               </div>
@@ -58,7 +58,7 @@ const EditEntityType = () => {
                   id="teamName"
                   placeholder="Enter Description "
                   value={entity.description}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onChange={(e) => handleInputChange("description", e.target.value)}
                   //   required
                 />
               </div>

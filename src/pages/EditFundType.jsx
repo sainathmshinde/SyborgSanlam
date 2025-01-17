@@ -46,7 +46,7 @@ const EditFundType = () => {
                   id="fundType"
                   placeholder="Enter Fund Type "
                   value={fund.fundType}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onChange={(e) => handleInputChange("fundType", e.target.value)}
                   //   required
                 />
               </div>
@@ -55,10 +55,10 @@ const EditFundType = () => {
                  Description
                 </Label>
                 <Input
-                  id="fundType"
+                  id="description"
                   placeholder="Enter Fund Type "
                   value={fund.description}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onChange={(e) => handleInputChange("description", e.target.value)}
                   //   required
                 />
               </div>
