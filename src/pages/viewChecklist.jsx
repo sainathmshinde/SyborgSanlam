@@ -384,7 +384,7 @@ const handleCancelEdit = () => {
                   />
                 </div>
 
-                <div className="flex items-center space-x-4 mt-4">
+                <div className="flex items-center space-x-4">
                   <Label htmlFor="documentName" className="text-md font-semibold">Document Name:</Label>
                   <Input
                     id="documentName"
@@ -394,7 +394,7 @@ const handleCancelEdit = () => {
                   />
                 </div>
               </div>
-              <div className="flex justify-end mt-3">
+              <div className="flex justify-end">
                 <button type="button" onClick={handleCancelEdit} className="mr-3 text-gray-500">
                   Cancel
                 </button>
@@ -409,7 +409,7 @@ const handleCancelEdit = () => {
 
       {/* Table to display added documents */}
       {documentData.length > 0 && (
-        <div className="mt-4 bg-gray-200 border rounded-lg p-4 overflow-auto max-h-[300px]">
+        <div className="mt-4 bg-gray-200 border rounded-lg p-4">
           <h2 className="text-lg font-semibold mb-4">Added Documents</h2>
           <table className="w-full border-collapse table-auto shadow-md bg-white">
             <thead>
@@ -429,7 +429,7 @@ const handleCancelEdit = () => {
     <li key={i} className="flex justify-between items-center">
       {editingDoc && editingDoc.documentType === doc.documentType && editingDoc.editingName === name ? (
         // Only show the two input boxes for the document being edited
-        <div className="flex">
+        <div className="flex font-bold">
           <Input
             value={editDocumentName}
             onChange={(e) => setEditDocumentName(e.target.value)}
