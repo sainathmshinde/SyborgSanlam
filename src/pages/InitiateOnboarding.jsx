@@ -96,7 +96,7 @@ const documentCategories = {
     main: "ID Document",
     subOptions: ["National ID", "PAN Card", "Passport"],
   },
-  "ID Proof Director 2": {
+  "ID Proof Bob": {
     main: "ID Document",
     subOptions: ["National ID", "PAN Card", "Passport"],
   },
@@ -186,6 +186,14 @@ const CreateLead = () => {
       lastName: "Johnson",
       email: "alice.johnson@example.com",
       mobile: "+1234567890",
+      type: "Individual",
+      designation: "Director",
+    },
+    {
+      firstName: "Bob",
+      lastName: "Johnson",
+      email: "bob.johnson@example.com",
+      mobile: "+1 (555) 111-3333",
       type: "Individual",
       designation: "Director",
     },
