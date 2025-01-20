@@ -340,7 +340,7 @@ function Profile() {
       ) : (
         
         <div className="mb-4 text-md p-4 ">
-        <div className="overflow-hidden sticky top-0 z-10">
+        {/* <div className="overflow-hidden sticky top-0 z-10">
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
               <div className="flex items-start gap-4">
                 <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
@@ -355,7 +355,7 @@ function Profile() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {clientType === "individual" ? (
             <Tabs defaultValue="basic">
             <div className="overflow-hidden sticky top-0 z-10">
