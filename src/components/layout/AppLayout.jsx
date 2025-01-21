@@ -597,10 +597,10 @@ export default function AppLayout({ children }) {
               </Button>
             </div>
             <div className="mt-2  font-bold text-2xl bg-gradient-to-r from-cyan-500 to-blue-500 inline-block text-transparent bg-clip-text">
-              {type === "sales" && <div>Sales</div>}
-              {type === "admin" && <div>Admin</div>}
-              {type === "compliance" && <div>Compliance</div>}
-              {type === "onboarding" && <div>Onboarding</div>}
+              {type === "sales" && <div className="text-2xl">Sales</div>}{" "}
+              {type === "admin" && <div className="text-2xl">Admin</div>}
+              {type === "compliance" && <div className="text-2xl">Compliance</div>}
+              {type === "onboarding" && <div className="text-2xl">Onboarding</div>}
             </div>
           </div>
 
