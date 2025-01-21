@@ -48,15 +48,40 @@ function Navigator() {
     },
   ];
   const userData = [
-    { name: "Lisa Anderson", pending: 10, completed: 50, sentBack: 15 },
-    { name: "David Thompson", pending: 15, completed: 30, sentBack: 10 },
-    { name: "Samantha Green", pending: 20, completed: 20, sentBack: 5 },
+    {
+      name: "Lisa Anderson",
+      pending: 12,
+      completed: 25,
+      sentBack: 12,
+      sales: 12,
+      lost: 12,
+    },
+    {
+      name: "David Thompson",
+      pending: 8,
+      completed: 12,
+      sentBack: 8,
+      sales: 15,
+      lost: 8,
+    },
+    {
+      name: "Samantha Green",
+      pending: 10,
+      completed: 13,
+      sentBack: 5,
+      sales: 18,
+      lost: 5,
+    },
   ];
 
   const completedRequests = userData.reduce(
     (sum, user) => sum + user.completed,
     0
   );
+
+  const salesRequests = userData.reduce((sum, user) => sum + user.sales, 0);
+  const lost = userData.reduce((sum, user) => sum + user.lost, 0);
+
   const pendingRequests = userData.reduce((sum, user) => sum + user.pending, 0);
 
   const sentBackRequests = userData.reduce(
@@ -66,8 +91,11 @@ function Navigator() {
 
   const pieChartData = [
     { name: "Approved", value: completedRequests },
-    { name: "Pending", value: pendingRequests },
-    { name: "Sent Back", value: sentBackRequests },
+    { name: "Onboarding", value: pendingRequests },
+    { name: "Compliance ", value: sentBackRequests },
+    { name: "Sales ", value: salesRequests },
+
+    { name: "Lost ", value: lost },
   ];
   const RADIAN = Math.PI / 180;
 
@@ -98,10 +126,10 @@ function Navigator() {
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
   const dashboardData = {
-    totalClients: 175,
+    totalClients: 75,
     pendingRequests: 30,
-    onboardedClients: 100,
-    withComplianceTeam: 45,
+    onboardedClients: 50,
+    withComplianceTeam: 25,
     clientDetails: [
       { id: 1, name: "Client A", status: "Pending", complianceTeam: "Team 1" },
       { id: 2, name: "Client B", status: "Onboarded", complianceTeam: "-" },
@@ -128,14 +156,14 @@ function Navigator() {
       color: "#3b82f6",
     },
     {
-      name: "Onboarded",
+      name: "Approved",
       value: dashboardData.onboardedClients,
       color: "#22c55e",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background ">
+    <div className=" bg-background ">
       <div className="flex flex-wrap justify-center gap-4 w-full">
         {categories.map((category, index) => (
           <Card
@@ -159,58 +187,62 @@ function Navigator() {
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-4  ">
-        <Card className="w-6/7">
+      {/* <div className="grid grid-cols-3 gap-4  "> */}
+      <div className="flex justify-center items-center  ">
+        <div className="grid grid-cols-1 gap-4  ">
+          {/* <Card className="w-6/7">
           <CardHeader className="flex flex-column  align-top  mb-2">
-            <CardTitle className=" mb-4">Month Wise Onboarding</CardTitle>
+            <CardTitle className=" mb-4">Month Wise Leads</CardTitle>
             <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
           </CardHeader>
+          <h1 className="text-lg ml-4 mb-3">Total Leads : 175</h1>
+
           <CardContent className="mt-4">
             <LineChart className=" aspect-[5/2]" />
           </CardContent>
-        </Card>
-        <Card className="w-6/7">
-          <CardHeader className="flex flex-column justify-between ">
-            <CardTitle className="mb-4">Request With Compliance</CardTitle>
-            {/* <div>Total Request</div> */}
-            <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
-          </CardHeader>
-          <h1 className="text-lg ml-4">Total Request : 175</h1>
-          <CardContent className="mt-4">
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieChartData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                    onMouseDown={(data, index, event) => {
-                      event.preventDefault();
-                    }}
-                  >
-                    {pieChartData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="w-6/7 ">
+        </Card> */}
+          <Card className=" mb-72">
+            <CardHeader className="flex flex-column justify-between ">
+              <CardTitle className="mb-4">Total request: 175</CardTitle>
+              {/* <div>Total Request</div> */}
+              <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
+            </CardHeader>
+            {/* <h1 className="text-lg ml-4">Total Request : 175</h1> */}
+            <CardContent>
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={pieChartData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={renderCustomizedLabel}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                      onMouseDown={(data, index, event) => {
+                        event.preventDefault();
+                      }}
+                    >
+                      {pieChartData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+          {/* <Card className="w-6/7 ">
           <CardHeader className="flex flex-column justify-between ">
             <CardTitle className="mb-4">Onboarding Status</CardTitle>
-            {/* <div>Total Request</div> */}
+            <div>Total Request</div>
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
           <h1 className="text-lg ml-4">Total Request : 175</h1>
@@ -244,7 +276,8 @@ function Navigator() {
               </ResponsiveContainer>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
+        </div>
       </div>
     </div>
   );
@@ -258,16 +291,16 @@ function LineChart(props) {
             id: "Mobile",
             data: [
               { x: "Jan", y: 5 },
-              { x: "Feb", y: 15 },
-              { x: "Mar", y: 5 },
-              { x: "Apr", y: 20 },
-              { x: "May", y: 10 },
+              { x: "Feb", y: 10 },
+              { x: "Mar", y: 20 },
+              { x: "Apr", y: 25 },
+              { x: "May", y: 15 },
               { x: "Jun", y: 5 },
               { x: "Jul", y: 15 },
-              { x: "Aug", y: 5 },
+              { x: "Aug", y: 10 },
               { x: "Sept", y: 20 },
-              { x: "Oct", y: 15 },
-              { x: "Nov", y: 10 },
+              { x: "Oct", y: 20 },
+              { x: "Nov", y: 30 },
             ],
           },
         ]}
