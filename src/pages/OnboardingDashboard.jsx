@@ -29,10 +29,10 @@ import { useNavigate } from "react-router";
 
 // Mock data for the dashboard
 const dashboardData = {
-  totalClients: 175,
+  totalClients: 75,
   pendingRequests: 30,
-  onboardedClients: 100,
-  withComplianceTeam: 45,
+  onboardedClients: 50,
+  withComplianceTeam: 25,
   clientDetails: [
     { id: 1, name: "Client A", status: "Pending", complianceTeam: "Team 1" },
     { id: 2, name: "Client B", status: "Onboarded", complianceTeam: "-" },
@@ -59,7 +59,7 @@ const pieChartData = [
     color: "#3b82f6",
   },
   {
-    name: "Onboarded",
+    name: "Approved",
     value: dashboardData.onboardedClients,
     color: "#22c55e",
   },
@@ -92,9 +92,9 @@ function OnboardingDashboard() {
   };
 
   const userData = [
-    { name: "John Smith", pending: 10, completed: 50, sentBack: 15 },
-    { name: "Emily Davis", pending: 15, completed: 30, sentBack: 10 },
-    { name: "Michael Brown", pending: 20, completed: 20, sentBack: 5 },
+    { name: "John Smith", pending: 12, completed: 25, sentBack: 12 },
+    { name: "Emily Davis", pending: 8, completed: 12, sentBack: 8 },
+    { name: "Michael Brown", pending: 10, completed: 13, sentBack: 5 },
   ];
   const navigate = useNavigate();
   const handleEdit = () => {
@@ -177,7 +177,8 @@ function OnboardingDashboard() {
             <CardTitle>Onboarding Status</CardTitle>
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
-          <h1 className="text-lg ml-4">Total Request : 175</h1>
+          {/* <h1 className="text-lg ml-4">Total Request : 175</h1> */}
+          <h1 className="text-lg ml-4">Total Request : 105</h1>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
@@ -217,7 +218,7 @@ function OnboardingDashboard() {
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                <YAxis domain={[0, 12]} ticks={[0, 3, 6, 9, 12]} />
                 <Tooltip content={<CustomTooltip />} />
                 {/* <Legend /> */}
                 <Bar dataKey="pending" fill="#58508d" name="Pending " />
