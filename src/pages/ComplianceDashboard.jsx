@@ -26,9 +26,9 @@ import { useNavigate } from "react-router";
 
 // Mock data
 const userData = [
-  { name: "Lisa Anderson", pending: 10, completed: 50, sentBack: 15 },
-  { name: "David Thompson", pending: 15, completed: 30, sentBack: 10 },
-  { name: "Samantha Green", pending: 20, completed: 20, sentBack: 5 },
+  { name: "Lisa Anderson", pending: 12, completed: 25, sentBack: 12 },
+  { name: "David Thompson", pending: 8, completed: 12, sentBack: 8 },
+  { name: "Samantha Green", pending: 10, completed: 13, sentBack: 5 },
 ];
 
 const totalRequests = userData.reduce(
@@ -45,8 +45,8 @@ const sentBackRequests = userData.reduce((sum, user) => sum + user.sentBack, 0);
 
 const pieChartData = [
   { name: "Approved", value: completedRequests },
-  { name: "Pending", value: pendingRequests },
-  { name: "Sent Back", value: sentBackRequests },
+  { name: "Onboarding", value: pendingRequests },
+  { name: "Compliance", value: sentBackRequests },
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -122,7 +122,7 @@ function ComplianceDashboard() {
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
              <h1 className="text-lg ml-4">
-              Total Request : 175</h1>
+              Total Request : 105</h1>
           <CardContent>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -170,7 +170,7 @@ function ComplianceDashboard() {
               <BarChart onClick={handleEdit} data={userData} className="mt-10 mb-2 px-4 py-4 ">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                <YAxis domain={[0, 12]} ticks={[0, 3, 6, 9, 12]} />
                 <Tooltip content={<CustomTooltip />} />
                 {/* <Tooltip/> */}
                 {/* <Legend /> */}

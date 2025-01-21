@@ -32,18 +32,21 @@ const JaredPalmer = [
   { name: "Sales", leadsWithSales: 10 },
   { name: "Onboarding", leadsWithOnboarding: 15 },
   { name: "Compliance", leadsWithCompliance: 10 },
-  { name: "Lost", lost: 20 },
+  { name: "Onboarded", leadsWithOnboarded: 25 },
+  { name: "Lost", lost: 15 },
 ];
 const SarahJohnson = [
-  { name: "Sales", leadsWithSales: 12 },
+  { name: "Sales", leadsWithSales: 22 },
   { name: "Onboarding", leadsWithOnboarding: 10 },
   { name: "Compliance", leadsWithCompliance: 11 },
+  { name: "Onboarded", leadsWithOnboarded: 10 },
   { name: "Lost", lost: 13 },
 ];
 const AlexDoe = [
   { name: "Sales", leadsWithSales: 9 },
   { name: "Onboarding", leadsWithOnboarding: 6 },
   { name: "Compliance", leadsWithCompliance: 5 },
+  { name: "Onboarded", leadsWithOnboarded: 10 },
   { name: "Lost", lost: 4 },
 ];
 
@@ -181,7 +184,7 @@ function SalesDashboard() {
                             Click here for the bar chart visualization.
                           </div>
                         </TableCell>
-                        <TableCell className="text-center">55</TableCell>
+                        <TableCell className="text-center">75</TableCell>
                       </TableRow>
                       <TableRow
                         onClick={() => handleClick(JaredPalmer)}
@@ -197,7 +200,7 @@ function SalesDashboard() {
                             Click here for the bar chart visualization.
                           </div>
                         </TableCell>
-                        <TableCell className="text-center">46</TableCell>
+                        <TableCell className="text-center">66</TableCell>
                       </TableRow>
 
                       <TableRow
@@ -214,7 +217,7 @@ function SalesDashboard() {
                             Click here for the bar chart visualization.
                           </div>
                         </TableCell>
-                        <TableCell className="text-center">24</TableCell>
+                        <TableCell className="text-center">34</TableCell>
                       </TableRow>
 
                       <TableRow>
@@ -223,7 +226,7 @@ function SalesDashboard() {
                         </TableCell>
 
                         <TableCell className="text-center text-black font-bold">
-                          125
+                          175
                         </TableCell>
                       </TableRow>
                     </TableBody>
@@ -236,38 +239,47 @@ function SalesDashboard() {
                       <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                           data={record}
-                          className="  px-4 py-4 cursor-pointer"
+                          className="px-4 py-4 cursor-pointer"
                           onClick={handleGraphClick}
+                          margin={{ top: 20, right: 20, bottom: 20, left: 20 }} // Added margin for better spacing
                         >
-                          <CartesianGrid strokeDasharray="4 4" />
+                          <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
-                          <YAxis domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} />
+                          <YAxis
+                            domain={[0, 30]}
+                            ticks={[0, 5, 10, 15, 20, 25, 30]}
+                          />
                           <Legend />
-
                           <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="leadsWithSales"
                             fill="#58508d"
                             name="Sales"
-                            barSize={50}
+                            barSize={30} // Adjusted size for better spacing
                           />
                           <Bar
                             dataKey="leadsWithOnboarding"
                             fill="#2563EB"
-                            name="Onboarding "
-                            barSize={50}
+                            name="Onboarding"
+                            barSize={30}
                           />
                           <Bar
                             dataKey="leadsWithCompliance"
                             fill="#60A5FA"
                             name="Compliance"
-                            barSize={50}
+                            barSize={30}
                           />
                           <Bar
                             dataKey="lost"
                             fill="#93C5FD"
-                            name="lost"
-                            barSize={50}
+                            name="Lost"
+                            barSize={30}
+                          />
+                          <Bar
+                            dataKey="leadsWithOnboarded"
+                            fill="#34D399"
+                            name="Onboarded"
+                            barSize={30}
                           />
                         </BarChart>
                       </ResponsiveContainer>
@@ -278,9 +290,11 @@ function SalesDashboard() {
             </Card>
             <Card className="w-1/2">
               <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
-                <CardTitle className=" mb-5">Month Wise Onboarding</CardTitle>
+                <CardTitle className=" mb-5">Month Wise Leads</CardTitle>
                 <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
               </CardHeader>
+              <h1 className="text-lg ml-4 mb-4">Total Leads : 175</h1>
+
               <CardContent>
                 <LineChart className=" aspect-[4/2]" />
               </CardContent>
@@ -323,16 +337,16 @@ function LineChart(props) {
             id: "Mobile",
             data: [
               { x: "Jan", y: 5 },
-              { x: "Feb", y: 15 },
-              { x: "Mar", y: 5 },
-              { x: "Apr", y: 20 },
-              { x: "May", y: 10 },
+              { x: "Feb", y: 10 },
+              { x: "Mar", y: 20 },
+              { x: "Apr", y: 25 },
+              { x: "May", y: 15 },
               { x: "Jun", y: 5 },
               { x: "Jul", y: 15 },
-              { x: "Aug", y: 5 },
+              { x: "Aug", y: 10 },
               { x: "Sept", y: 20 },
-              { x: "Oct", y: 15 },
-              { x: "Nov", y: 10 },
+              { x: "Oct", y: 20 },
+              { x: "Nov", y: 30 },
             ],
           },
         ]}
