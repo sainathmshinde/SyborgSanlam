@@ -83,23 +83,33 @@ const TreeNode = ({ node, level }) => {
 };
 // To do document categories based on selected client type
 const documentCategories = {
-  "Certificate": {
+  "Certificate of Company": {
     main: "Incorporation Document",
     subOptions: ["Registartion Certificate", "Incorportation Letter"],
   },
-  "Address Proof": {
+  "Address Proof of Company": {
     main: "Address Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
   },
 
-  "ID Proof Alice": {
+  "ID Proof of Alice Johnson": {
     main: "ID Document",
-    subOptions: ["National ID", "PAN Card", "Passport"],
+    subOptions: ["National ID", "Driving Licence", "Passport"],
   },
-  "ID Proof Bob": {
+
+  "Address Proof of Alice Johnson": {
     main: "ID Document",
-    subOptions: ["National ID", "PAN Card", "Passport"],
+    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
   },
+  "ID Proof of Bob Johnson": {
+    main: "ID Document",
+    subOptions: ["National ID", "Driving Licence", "Passport"],
+  },
+  "Address Proof of Bob Johnson": {
+    main: "ID Document",
+    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  },
+
 };
 const CreateLead = () => {
   const navigate = useNavigate();
@@ -342,7 +352,7 @@ const CreateLead = () => {
     <div className="p-4">
       <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
         <h1 className="text-2xl font-bold mb-4">
-          Teslack Organization Onboarding
+          Onboarding Of Teslack Organization
         </h1>
         {/* <div className="flex items-center space-x-2 mt-2">
           <Label htmlFor="assignTo" className="whitespace-nowrap required">
@@ -1067,7 +1077,7 @@ const CreateLead = () => {
                       }
                       className="required"
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full ">
                         <SelectValue placeholder="Select industry" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1662,8 +1672,7 @@ const CreateLead = () => {
                           )
                         ) : (
                           <p className="text-gray-500 text-center">
-                            No file selected. Please upload a document to see
-                            the preview here.
+                            You will see your document here.
                           </p>
                         )}
                       </div>
@@ -1679,15 +1688,20 @@ const CreateLead = () => {
                     </CardContent>
                   </Card>
                   <div className="flex justify-end mt-2 mb-2">
-                        <Button
-                          onClick={handleUpload}
-                          disabled={!file || !selectedSubOption}
-                          className="ml-auto flex items-center"
-                        >
-                          <Upload className="mr-2 h-4 w-4" />
-                          Upload {selectedSubOption || "Document"}
-                        </Button>
-                      </div>
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                      
+                    >
+                      <Upload className=" h-4 w-4" />
+                      Upload {selectedSubOption || "Document"}
+                    </Button>
+
+                    <Button disabled className="ml-5 ">
+                      Assign To Compliance Team
+                    </Button>
+                  </div>
+
                   {/* <div className="my-10 flex justify-end">
                   <Button
                     className="mx-5"
