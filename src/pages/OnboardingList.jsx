@@ -87,7 +87,7 @@ const OnboardingList = () => {
         <div className="flex items-center justify-between mt-4 mb-6">
           <Input
             type="search"
-            placeholder="Search Customer Onboarding..."
+            placeholder="Search Customer For Onboarding..."
             value={searchTerm}
             onChange={handleSearch}
             className="w-full bg-white shadow-none appearance-none  md:w-1/2 lg:w-1/2 dark:bg-gray-950"
