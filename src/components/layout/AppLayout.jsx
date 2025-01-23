@@ -67,7 +67,7 @@ export default function AppLayout({ children }) {
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[200px_1fr]">
       <div className="hidden   md:block ">
         <div className="hidden md:block fixed top-4 left-0 h-full w-[220px] lg:w-[200px] bg-slate-100">
-          <div className="flex h-20 items-center  px-4  lg:px-6"></div>
+          <div className="flex h-20 items-center px-4 lg:px-6"></div>
           {type === "admin" ? (
             <div className={cn("flex-1")}>
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
@@ -550,12 +550,13 @@ export default function AppLayout({ children }) {
                 className="m-0 p-0"
               >
                 <h2
-                  className="font-bold text-gray-400 mx-1"
+                  className="font-bold text-gray-400 mx-1 flex justify-between"
                   onClick={() => {
                     navigate("/navigator");
                   }}
                 >
                   <img src="src/assets/syborg-techLogo.png" className="w-28" />
+                  <h1 className="mt-2 text-2xl ml-6"> Customer Onboarding</h1>
                 </h2>
               </Button>
             </div>
