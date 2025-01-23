@@ -384,9 +384,9 @@ function CreateUser() {
           </div>
         </div>
       )} */}
-      <form className="space-y-4 overflow-auto max-h-[585px] -ml-4">
-                          <Card className="bg-gray-200">
-                            <CardContent className="">
+      <form className="space-y-4 overflow-auto -ml-6">
+                          <Card className="bg-gray-200 border rounded-lg p-4">   
+                            <CardContent>
                               <div className="mt-4 ">
                                 {/* <h1 className="text-xl font-semibold">Select Applicable Document Names</h1> */}
                                 <h2 className="text-lg font-semibold mb-2 required">
@@ -417,7 +417,7 @@ function CreateUser() {
                                     htmlFor="documentName"
                                     className="text-md font-semibold"
                                   >
-                                    Document Name:
+                                    Applicable Document:
                                   </Label>
                                   <Input
                                     id="documentName"
@@ -439,10 +439,25 @@ function CreateUser() {
                             </CardContent>
                           </Card>
                         </form>
+                      </div>
+                      </div>
+                      </div>
+                      <div className="flex justify-end mt-3">
+                  <RButton variant="outline" onClick={goBack}>
+                    Back
+                  </RButton>
       
+                  <RButton
+                    className="ml-5"
+                    onClick={() => navigate("/documentsList")}
+                    type="submit"
+                  >
+                    Submit
+                  </RButton>
+                </div>
                         {/* Table to display added documents */}
                         {documentData.length > 0 && (
-                          <div className="mt-1">
+                          <div className="mt-4 bg-gray-200 border rounded-lg p-4">
                             <h2 className="text-lg font-semibold mb-4">
                               Added Documents
                             </h2>
@@ -453,7 +468,7 @@ function CreateUser() {
                                     Document Type
                                   </th>
                                   <th className="border px-4 py-2 text-left">
-                                    Document Names
+                                    Applicable Documents
                                   </th>
                                   <th className="border px-4 py-2 text-center">
                                     Actions
@@ -576,10 +591,10 @@ function CreateUser() {
                           </div>
                         )}
                       {/* </div> */}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-end mt-3">
+                    {/* </div>
+                  </div> */}
+                {/* </div> */}
+                {/* <div className="flex justify-end mt-3">
                   <RButton variant="outline" onClick={goBack}>
                     Back
                   </RButton>
@@ -591,7 +606,7 @@ function CreateUser() {
                   >
                     Submit
                   </RButton>
-                </div>
+                </div> */}
               </div>
             )}
       {/* {next === 2 && (

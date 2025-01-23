@@ -60,15 +60,19 @@ function CreateUser() {
 
   const [documentData, setDocumentData] = useState([
     {
-      documentType: "Certificate",
+      documentType: "Certificate of Company",
       documentNames: ["Registration Certificate", "Incorporate Letter"],
     },
     {
-      documentType: "ID Proof Director",
+      documentType: "Address Proof of Company",
+      documentNames: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
+    {
+      documentType: "ID Proof of Director",
       documentNames: ["Passport", "Driving Licence", "National ID"],
     },
     {
-      documentType: "Address Proof",
+      documentType: "Address Proof of Director",
       documentNames: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
   ]);
@@ -385,7 +389,7 @@ const handleCancelEdit = () => {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <Label htmlFor="documentName" className="text-md font-semibold">Document Name:</Label>
+                  <Label htmlFor="documentName" className="text-md font-semibold">Applicable Document:</Label>
                   <Input
                     id="documentName"
                     value={editDocumentName}
@@ -410,12 +414,21 @@ const handleCancelEdit = () => {
       {/* Table to display added documents */}
       {documentData.length > 0 && (
         <div className="mt-4 bg-gray-200 border rounded-lg p-4">
+          <div className="flex justify-between">
           <h2 className="text-lg font-semibold mb-4">Added Documents</h2>
+          <button
+                                    type="button"
+                                    onClick={handleAddDocumentName}
+                                    className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-700"
+                                    aria-label="Add Document Name"
+                                  >
+                                    <Plus className="w-5 h-5" />
+                                  </button></div>
           <table className="w-full border-collapse table-auto shadow-md bg-white">
             <thead>
               <tr className="bg-custom-black text-white">
                 <th className="border px-4 py-2 text-left">Document Type</th>
-                <th className="border px-4 py-2 text-left">Document Names</th>
+                <th className="border px-4 py-2 text-left">Applicable Documents</th>
                 <th className="border px-4 py-2 text-center">Actions</th>
               </tr>
             </thead>
@@ -433,7 +446,7 @@ const handleCancelEdit = () => {
           <Input
             value={editDocumentName}
             onChange={(e) => setEditDocumentName(e.target.value)}
-            className="w-48"
+            className=""
           />
         </div>
       ) : (

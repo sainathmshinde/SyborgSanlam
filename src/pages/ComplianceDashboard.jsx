@@ -28,7 +28,7 @@ import { useNavigate } from "react-router";
 const userData = [
   { name: "Lisa Anderson", pending: 12, completed: 25, sentBack: 12 },
   { name: "David Thompson", pending: 8, completed: 12, sentBack: 8 },
-  { name: "Samantha Green", pending: 10, completed: 13, sentBack: 5 },
+  { name: "Samantha Green", pending: 5, completed: 13, sentBack: 10 },
 ];
 
 const totalRequests = userData.reduce(
@@ -117,12 +117,12 @@ function ComplianceDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row justify-between">
-            <CardTitle>Request With Compliance</CardTitle>
+            <CardTitle>Requests With Compliance</CardTitle>
             {/* <div>Total Request</div> */}
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
              <h1 className="text-lg ml-4">
-              Total Request : 105</h1>
+              Total Requests : 25</h1>
           <CardContent>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
