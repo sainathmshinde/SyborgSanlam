@@ -130,7 +130,7 @@ const EditUsers = () => {
                 </div> */}
               <div className="space-y-2 w-full mt-2">
                 <Label htmlFor="teamMembers" className="w-full required">
-                  Role
+                  Assigned Role
                 </Label>
                 <select
                   id="teamMembers"

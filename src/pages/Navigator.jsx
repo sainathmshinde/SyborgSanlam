@@ -203,7 +203,7 @@ function Navigator() {
         </Card> */}
           <Card className=" mb-72">
             <CardHeader className="flex flex-column justify-between ">
-              <CardTitle className="mb-4">Total request: 175</CardTitle>
+              <CardTitle className="mb-4">Total Requests: 175</CardTitle>
               {/* <div>Total Request</div> */}
               <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
             </CardHeader>

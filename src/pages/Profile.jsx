@@ -150,22 +150,30 @@ function Profile() {
     },
   ]);
   const documentCategories = {
-    "Company Documents": {
+    "Certificate of Company": {
       main: "Incorporation Document",
-      subOptions: ["Registartion Certificate", "Incorportation Letter"],
+      subOptions: ["Registration Certificate", "Incorporation Letter"],
     },
-    "Address Proof": {
+    "Address Proof of Company": {
       main: "Address Document",
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
 
-    "ID Proof Alice Johnson": {
+    "ID Proof of Alice Johnson": {
       main: "ID Document",
-      subOptions: ["National ID", "PAN Card", "Passport"],
+      subOptions: ["National ID", "Driving Licence", "Passport"],
     },
-    "ID Proof Bob Johnson": {
+    "Address Proof of Alice Johnson": {
+      main: "Address Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
+    "ID Proof of Bob Johnson": {
       main: "ID Document",
-      subOptions: ["National ID", "PAN Card", "Passport"],
+      subOptions: ["National ID", "Driving Licence", "Passport"],
+    },
+    "Address Proof of Bob Johnson": {
+      main: "Address Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
   };
 
@@ -338,9 +346,8 @@ function Profile() {
           <UploadDocuments />
         </div>
       ) : (
-        
         <div className="mb-4 text-md p-4 ">
-        {/* <div className="overflow-hidden sticky top-0 z-10">
+          {/* <div className="overflow-hidden sticky top-0 z-10">
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6">
               <div className="flex items-start gap-4">
                 <TriangleAlertIcon className="flex-shrink-0 text-yellow-600 h-6 w-6" />
@@ -358,7 +365,7 @@ function Profile() {
           </div> */}
           {clientType === "individual" ? (
             <Tabs defaultValue="basic">
-            <div className="overflow-hidden sticky top-0 z-10">
+              <div className="overflow-hidden sticky top-0 z-10">
                 <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
                   <TabsTrigger
                     value="basic"
@@ -387,8 +394,8 @@ function Profile() {
                 </TabsList>
               </div>
               <TabsContent value="basic">
-              <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 ">
-              <div className="space-y-2">
+                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                  <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       First Name
                     </Label>
@@ -427,7 +434,9 @@ function Profile() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="profession" className="required">Profession</Label>
+                    <Label htmlFor="profession" className="required">
+                      Profession
+                    </Label>
                     <Input
                       id="profession"
                       name="profession"
@@ -436,7 +445,9 @@ function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="employer" className="required">Employer</Label>
+                    <Label htmlFor="employer" className="required">
+                      Employer
+                    </Label>
                     <Input
                       id="employer"
                       name="employer"
@@ -486,7 +497,6 @@ function Profile() {
                       </div>
                     )}
                   </div> */}
-                  
                 </div>
 
                 <div className="my-1 flex justify-end mt-4">
@@ -593,8 +603,8 @@ function Profile() {
                   </CardContent>
                 </Card>
                 <div className="my-5 flex justify-end">
-                    <Button className="mx-5">Submit & Next</Button>
-                  </div>
+                  <Button className="mx-5">Submit & Next</Button>
+                </div>
               </TabsContent>
               <TabsContent value="beneficiaries">
                 <Card>
@@ -781,16 +791,16 @@ function Profile() {
                   </CardContent>
                 </Card>
                 <div className="my-5 flex justify-end mx-5">
-                    {/* <Button
+                  {/* <Button
                       variant="outline"
                       onClick={() => navigate("/leads")}
                     >
                       Cancel
                     </Button> */}
-                    <Button className="ml-5" onClick={handleCreateLead}>
-                      Initiate Onboarding
-                    </Button>
-                  </div>
+                  <Button className="ml-5" onClick={handleCreateLead}>
+                    Initiate Onboarding
+                  </Button>
+                </div>
               </TabsContent>
               <TabsContent value="documents">
                 <div className="flex h-screen bg-gray-100">
@@ -834,7 +844,7 @@ function Profile() {
                                 >
                                   <SelectTrigger className="w-full">
                                     <SelectValue
-                                      placeholder={`Select ${category} Document`}
+                                      placeholder={`Select ${category} `}
                                     />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -910,25 +920,22 @@ function Profile() {
                             )
                           ) : (
                             <p className="text-gray-500 text-center">
-                              No file selected. Please upload a document to see
-                              the preview here.
+                              You will see your document here.
                             </p>
                           )}
                         </div>
-
-                       
                       </CardContent>
                     </Card>
                     <div className="flex justify-end mt-2 mb-2">
-                        <Button
-                          onClick={handleUpload}
-                          disabled={!file || !selectedSubOption}
-                          className="ml-auto flex items-center"
-                        >
-                          <Upload className="mr-2 h-4 w-4" />
-                          Upload {selectedSubOption || "Document"}
-                        </Button>
-                      </div>
+                      <Button
+                        onClick={handleUpload}
+                        disabled={!file || !selectedSubOption}
+                        className="ml-auto flex items-center"
+                      >
+                        <Upload className="mr-2 h-4 w-4" />
+                        Upload {selectedSubOption || "Document"}
+                      </Button>
+                    </div>
 
                     {/* <div className="my-10 flex justify-end">
                   <Button
@@ -945,7 +952,7 @@ function Profile() {
                   </Button>
                 </div> */}
                   </div>
-                </div>             
+                </div>
               </TabsContent>
             </Tabs>
           ) : null}
@@ -954,7 +961,6 @@ function Profile() {
           clientType === "partnership" ||
           clientType === "trust" ? (
             <Tabs defaultValue="basic">
-            
               <TabsList className=" flex justify-start mb-4 ">
                 <TabsTrigger
                   value="basic"
