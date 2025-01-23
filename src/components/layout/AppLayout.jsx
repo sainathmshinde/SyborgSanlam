@@ -230,28 +230,6 @@ export default function AppLayout({ children }) {
           {type === "client" ? (
             <div className={cn("flex-1")}>
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-                {/* <div
-                  className={cn(
-                    activeItem === "" && "bg-gray-300 text-black",
-                    "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
-                  )}
-                  onClick={handleNavigate("/home", "")}
-                >
-                  <Package className="h-4 w-4" />
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 17 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.62342 2.11845V5.50099C7.62342 5.78107 7.56809 6.05839 7.46059 6.31704C7.35309 6.57569 7.19554 6.81057 6.99699 7.00821C6.79843 7.20585 6.56279 7.36236 6.30356 7.46874C6.04434 7.57513 5.76665 7.6293 5.48643 7.62815H2.11959C1.84012 7.62985 1.56319 7.57513 1.3054 7.46727C1.04761 7.35941 0.814255 7.20064 0.619336 7.00047C0.421438 6.80432 0.26472 6.57064 0.158377 6.31316C0.0520327 6.05567 -0.0017966 5.77955 4.57405e-05 5.50099V2.12717C4.10127e-05 1.56451 0.22307 1.02478 0.620313 0.626106C1.01756 0.227435 1.55665 0.00230595 2.11959 0H5.49516C5.77433 0.000268088 6.05068 0.0558839 6.3082 0.163628C6.56572 0.271371 6.7993 0.429102 6.99541 0.627688C7.19383 0.822083 7.35156 1.05401 7.45938 1.30996C7.5672 1.5659 7.62296 1.84074 7.62342 2.11845ZM17 2.12717V5.50099C16.9955 6.06225 16.771 6.59936 16.3747 6.99706C15.9784 7.39475 15.442 7.62133 14.8805 7.62815H11.4962C10.932 7.6247 10.3911 7.40284 9.98719 7.00918C9.78981 6.81084 9.63352 6.57554 9.52725 6.31674C9.42098 6.05794 9.36683 5.78073 9.3679 5.50099V2.12717C9.3672 1.84799 9.4224 1.5715 9.53025 1.31398C9.63811 1.05645 9.79644 0.82311 9.99591 0.627688C10.192 0.429102 10.4256 0.271371 10.6831 0.163628C10.9406 0.0558839 11.217 0.000268088 11.4962 0H14.8717C15.4348 0.0045569 15.9735 0.230131 16.3716 0.628069C16.7697 1.02601 16.9954 1.56442 17 2.12717ZM17 11.4989V14.8727C16.9955 15.434 16.771 15.9711 16.3747 16.3688C15.9784 16.7665 15.442 16.9931 14.8805 16.9999H11.4962C10.9284 17.0056 10.3808 16.7898 9.96975 16.3984C9.77159 16.2006 9.61478 15.9654 9.50846 15.7065C9.40214 15.4475 9.34843 15.17 9.35046 14.8902V11.5163C9.34975 11.2372 9.40495 10.9607 9.51281 10.7031C9.62067 10.4456 9.77899 10.2123 9.97847 10.0169C10.1746 9.81827 10.4082 9.66054 10.6657 9.5528C10.9232 9.44505 11.1995 9.38944 11.4787 9.38917H14.8543C15.4173 9.39373 15.956 9.6193 16.3542 10.0172C16.7523 10.4152 16.978 10.9536 16.9826 11.5163L17 11.4989ZM7.62342 11.5076V14.8814C7.61656 15.4442 7.38866 15.9817 6.98889 16.378C6.58911 16.7743 6.04949 16.9976 5.48643 16.9999H2.11959C1.84092 17.001 1.56479 16.947 1.30711 16.841C1.04944 16.7349 0.81532 16.5789 0.618273 16.382C0.421225 16.185 0.265144 15.951 0.159036 15.6935C0.0529277 15.436 -0.00110817 15.16 4.57405e-05 14.8814V11.5076C0.00229281 10.9448 0.225775 10.4055 0.622287 10.0059C1.0188 9.60637 1.55656 9.37859 2.11959 9.37173H5.49516C6.06055 9.37752 6.60158 9.60257 7.00413 9.99942C7.40195 10.4005 7.62462 10.9428 7.62342 11.5076Z"
-                      fill="black"
-                    />
-                  </svg>
-                  Dashboard
-                </div> */}
                 <div
                   className={cn(
                     activeItem === "profile" && "bg-gray-300 text-black",
@@ -276,59 +254,44 @@ export default function AppLayout({ children }) {
                   </svg>
                   Profile
                 </div>
-
-                <div className="flex flex-col">
-                  <div
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:text-primary cursor-pointer"
-                    onClick={() => setIsServicesOpen(!isServicesOpen)}
-                  >
-                    {/* <Package className="h-4 w-4" /> */}
-                    <svg
-                      width="18"
-                      height="19"
-                      viewBox="0 0 18 19"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M18 13.663C17.9999 14.9086 17.5793 16.1168 16.8079 17.0874C16.0365 18.058 14.9605 18.7328 13.7583 19L13.1841 17.2568C13.71 17.1694 14.2101 16.9649 14.6484 16.6581C15.0867 16.3513 15.4522 15.9498 15.7185 15.4827H13.5C13.0226 15.4827 12.5648 15.2908 12.2272 14.9492C11.8896 14.6076 11.7 14.1443 11.7 13.6612V10.0182C11.7 9.53512 11.8896 9.07182 12.2272 8.73022C12.5648 8.38863 13.0226 8.19672 13.5 8.19672H16.1442C15.9246 6.43615 15.0776 4.81719 13.7623 3.6436C12.4469 2.47002 10.7536 1.82247 9 1.82247C7.2464 1.82247 5.55306 2.47002 4.23772 3.6436C2.92237 4.81719 2.07543 6.43615 1.8558 8.19672H4.5C4.97739 8.19672 5.43523 8.38863 5.77279 8.73022C6.11036 9.07182 6.3 9.53512 6.3 10.0182V13.6612C6.3 14.1443 6.11036 14.6076 5.77279 14.9492C5.43523 15.2908 4.97739 15.4827 4.5 15.4827H1.8C1.32261 15.4827 0.864773 15.2908 0.527208 14.9492C0.189642 14.6076 0 14.1443 0 13.6612V9.10747C0 4.07741 4.0293 0 9 0C13.9707 0 18 4.07741 18 9.10747V13.663Z"
-                        fill="black"
-                      />
-                    </svg>
-
-                    <span>My Services</span>
-                    {isServicesOpen ? (
-                      <ChevronDown className="h-4 w-4 ml-auto" />
-                    ) : (
-                      <ChevronRight className="h-4 w-4 ml-auto" />
-                    )}
-                  </div>
-
-                  {isServicesOpen && (
-                    <div className="ml-6 mt-2 flex flex-col gap-2">
-                      <div
-                        className={cn(
-                          activeItem === "reports" &&
-                            "bg-custom-black text-white",
-                          "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
-                        )}
-                        onClick={handleNavigate("/reports", "reports")}
-                      >
-                        <FileText className="h-4 w-4" />
-                        <span>Reports</span>
-                      </div>
-
-                      {/* <div className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:text-primary cursor-pointer">
-                        <DollarSign className="h-4 w-4" />
-                        <span>Transact</span>
-                      </div> */}
-                    </div>
+                <div
+                  className={cn(
+                    activeItem === "reports" && "bg-slate-300 text-black",
+                    "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                   )}
+                  onClick={handleNavigate("/reports", "reports")}
+                >
+                  {/* <Package className="h-4 w-4" /> */}
+                  <svg
+                    width="14"
+                    height="16"
+                    viewBox="0 0 14 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.7 0C0.514348 0 0.336301 0.0707688 0.205025 0.196738C0.0737499 0.322707 0 0.493557 0 0.671704V15.3283C0 15.5064 0.0737499 15.6773 0.205025 15.8033C0.336301 15.9292 0.514348 16 0.7 16H13.3C13.4857 16 13.6637 15.9292 13.795 15.8033C13.9262 15.6773 14 15.5064 14 15.3283V5.80218C14.0002 5.71199 13.9814 5.62269 13.9449 5.53959C13.9083 5.4565 13.8547 5.38133 13.7872 5.31856L8.2754 0.192107C8.14503 0.0701386 7.97027 0.00171082 7.7882 0.00134347L0.7 0ZM11.5724 5.13048L8.4882 2.25961V5.13048H11.5724ZM5.6 5.98489H2.8V4.64148H5.6V5.98489ZM11.2 9.34341H2.8V8H11.2V9.34341ZM2.8 12.7019H11.2V11.3585H2.8V12.7019Z"
+                      fill="black"
+                    />
+                  </svg>
+                  Reports
                 </div>
+
+                {/* <div
+                  className={cn(
+                    activeItem === "leads" && "bg-custom-black text-white",
+                    "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
+                  )}
+                  onClick={handleNavigate("/leads", "leads")}
+                >
+                  <Package className="h-4 w-4" />
+                  Initiate Onboarding
+                </div> */}
               </nav>
             </div>
           ) : null}
-
           {type === "compliance" ? (
             <div className={cn("flex-1")}>
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
@@ -599,8 +562,13 @@ export default function AppLayout({ children }) {
             <div className="mt-2  font-bold text-2xl bg-gradient-to-r from-cyan-500 to-blue-500 inline-block text-transparent bg-clip-text">
               {type === "sales" && <div className="text-2xl">Sales</div>}{" "}
               {type === "admin" && <div className="text-2xl">Admin</div>}
-              {type === "compliance" && <div className="text-2xl">Compliance</div>}
-              {type === "onboarding" && <div className="text-2xl">Onboarding</div>}
+              {type === "client" && <div className="text-2xl">Customer</div>}
+              {type === "compliance" && (
+                <div className="text-2xl">Compliance</div>
+              )}
+              {type === "onboarding" && (
+                <div className="text-2xl">Onboarding</div>
+              )}
             </div>
           </div>
 
