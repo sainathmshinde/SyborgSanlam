@@ -126,7 +126,7 @@ const goBack = () => {
               <div className="flex gap-20">
                 <div className="space-y-2 mt-2">
                   <Label htmlFor="teamMembers" className="w-full required">
-                    Add Role
+                    Assign Role
                   </Label>
                   {/* <Combobox options={roles} value={selectRole} placeholder="Search for Role" /> */}
                   <Select

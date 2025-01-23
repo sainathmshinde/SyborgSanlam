@@ -153,7 +153,7 @@ const ComplianceT = () => {
     <div className="p-4">
       <div className="flex flex-col justify-between  overflow-hidden sticky top-0 z-10 ">
         <div>
-          <h1 className="text-2xl font-bold ">Compliance Request</h1>
+          <h1 className="text-2xl font-bold ">Compliance Requests</h1>
         </div>
         <div className="flex flex-row items-center mt-4 mb-4">
           <h1>
@@ -178,8 +178,9 @@ const ComplianceT = () => {
             className="mr-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-950 dark:border-gray-700 ml-2"
           >
             {/* <option value="">Stages</option> */}
-            <option value="stage2">Approved</option>
+            
             <option value="stage1">Pending</option>
+            <option value="stage2">Approved</option>
             <option value="stage1">Rejected</option>
             {/* <option value="stage3">Proposal</option>
             <option value="stage3">Lost</option> */}

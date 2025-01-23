@@ -78,13 +78,13 @@ const documents = [
   },
   {
     id: 4,
-    name: "Director Jony clark ID Proof",
+    name: "Director Alice ID Proof",
     content: "ID Proof content...",
     image: idproof,
   },
   {
     id: 5,
-    name: "Director Andrew ID Proof",
+    name: "Director Bob ID Proof",
     content: "ID Proof content...",
     image: idproof,
   },
@@ -188,7 +188,7 @@ function ComplianceChecklist() {
   return (
     <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
       <div className="overflow-hidden  sticky top-0 z-10">
-        <div className="flex justify-between items-center mb-4 ">
+        <div className="flex justify-between items-center">
           <div
             onClick={goBack}
             className="hover:cursor-pointer hover:text-blue-600  w-1/12"
@@ -388,7 +388,7 @@ function ComplianceChecklist() {
                   </Button>
                   <Button onClick={handleApprove}>
                     <CheckCircleIcon className="mr-2 h-4 w-4" />
-                    {id == 2 ? "Approved" : "Approve"}
+                    {id == 2 ? "Approved" : "Onboard the Customer"}
                   </Button>
                 </div>
               )}
