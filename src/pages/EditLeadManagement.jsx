@@ -246,8 +246,8 @@ const EditLeadManagement = () => {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
                       <div className="space-y-2  ">
-                        <Label htmlFor="onboardingManager" className="required">
-                          Assign To
+                        <Label htmlFor="onboardingManager">
+                          Select Onboarding Team Member
                         </Label>
                         <Select
                           value={contact.onboardingManager}
@@ -272,14 +272,14 @@ const EditLeadManagement = () => {
                         </Select>
                       </div>
 
-                      <div className="p-8">
+                      {/* <div className="p-8">
                         <Button
                           disabled={!isManagerSelected}
                           onClick={() => navigate("/leadManagement")}
                         >
                           Assign For Onboarding
                         </Button>
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -475,20 +475,18 @@ const EditLeadManagement = () => {
                     </div>
                   </CardContent>
                 </Card>
-
-                
               </form>
               <div className="flex justify-end space-x-4 mt-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate("/leadManagement")}
-                  >
-                    Back
-                  </Button>
-                  <Button onClick={() => navigate("/leadManagement")}>
-                    Update
-                  </Button>
-                </div>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate("/leadManagement")}
+                >
+                  Back
+                </Button>
+                <Button onClick={() => navigate("/leadManagement")}>
+                  Update
+                </Button>
+              </div>
             </TabsContent>
           </div>
         </Tabs>

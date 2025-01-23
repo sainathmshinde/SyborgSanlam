@@ -290,7 +290,7 @@ function SalesDashboard() {
             </Card>
             <Card className="w-1/2">
               <CardHeader className="flex flex-row items-center align-top justify-between pb-2">
-                <CardTitle className=" mb-5">Month Wise Leads</CardTitle>
+                <CardTitle className=" mb-5">Leads</CardTitle>
                 <DateRangePicker placeholder="Jan 01 2024 - Dec 31 2024" />
               </CardHeader>
               <h1 className="text-lg ml-4 mb-4">Total Leads : 175</h1>

@@ -232,7 +232,7 @@ const LeadManagement = () => {
         <div className="flex items-center justify-between mb-6">
           <Input
             type="search"
-            placeholder="Search by Customer Name"
+            placeholder="Search Leads..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-white shadow-none appearance-none  md:w-2/3 lg:w-1/2 dark:bg-gray-950"
