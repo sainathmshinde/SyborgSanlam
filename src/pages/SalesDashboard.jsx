@@ -236,50 +236,56 @@ function SalesDashboard() {
                       <h1 className="text-center">
                         <strong> Jared Palmer</strong>
                       </h1>
-                      <ResponsiveContainer width="100%" height={300}>
+                      <ResponsiveContainer width="100%" height={250}>
                         <BarChart
                           data={record}
                           className="px-4 py-4 cursor-pointer"
                           onClick={handleGraphClick}
                           margin={{ top: 20, right: 20, bottom: 20, left: 20 }} // Added margin for better spacing
                         >
-                          <CartesianGrid strokeDasharray="3 3" />
+                          <CartesianGrid strokeDasharray="5 5" />
                           <XAxis dataKey="name" />
                           <YAxis
-                            domain={[0, 30]}
+                            domain={[0, 'dataMax']}
                             ticks={[0, 5, 10, 15, 20, 25, 30]}
                           />
+                          
                           <Legend />
                           <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="leadsWithSales"
                             fill="#58508d"
                             name="Sales"
-                            barSize={30} // Adjusted size for better spacing
+                            barSize={40}
+                             // Adjusted size for better spacing
                           />
                           <Bar
                             dataKey="leadsWithOnboarding"
                             fill="#2563EB"
                             name="Onboarding"
-                            barSize={30}
+                            barSize={40}
+                           
                           />
                           <Bar
                             dataKey="leadsWithCompliance"
                             fill="#60A5FA"
                             name="Compliance"
-                            barSize={30}
+                            barSize={40}
+                           
                           />
                           <Bar
                             dataKey="lost"
                             fill="#93C5FD"
                             name="Lost"
-                            barSize={30}
+                            barSize={40}
+                           
                           />
                           <Bar
                             dataKey="leadsWithOnboarded"
                             fill="#34D399"
                             name="Onboarded"
-                            barSize={30}
+                            barSize={40}
+                          
                           />
                         </BarChart>
                       </ResponsiveContainer>
