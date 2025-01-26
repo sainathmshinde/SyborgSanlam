@@ -30,7 +30,7 @@ export default function NavigatorLayout({ children }) {
               <div className="flex items-center">
                 <img src="src/assets/syborg-techLogo.png" className="w-28" />
                 <h1
-                  className="text-2xl font-extrabold text-gray-400 mx-5" // Adjusted margin for closer proximity
+                  className="text-2xl font-extrabold text-blue-950 mx-5" // Adjusted margin for closer proximity
                   onClick={() => {
                     navigate("/navigator");
                   }}
