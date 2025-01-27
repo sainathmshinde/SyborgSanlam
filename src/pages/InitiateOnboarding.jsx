@@ -53,6 +53,10 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import certificateImg from "@/assets/Certificate_of_Incorporation.jpg";
+import bankStatement from "@/assets/BankStatementChequing.png";
+import addressproof from "@/assets/addressproof.png";
+import idproof from "@/assets/idproof.png";
 
 const companyHierarchy = {
   name: "Parent Company",
@@ -86,15 +90,18 @@ const documentCategories = {
   "Certificate of Company": {
     main: "Incorporation Document",
     subOptions: ["Registartion Certificate", "Incorportation Letter"],
+    image: certificateImg,
   },
   "Address Proof of Company": {
     main: "Address Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    image: bankStatement,
   },
 
   "ID Proof of Alice Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
+    image: addressproof,
   },
 
   "Address Proof of Alice Johnson": {
@@ -104,10 +111,12 @@ const documentCategories = {
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
+     image: idproof,
   },
   "Address Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+     image: idproof,
   },
 
 };
@@ -288,26 +297,46 @@ const CreateLead = () => {
       [category]: !prev[category],
     }));
   };
-
+  const [selectedDoc, setSelectedDoc] = useState(null);
   // Handle document selection
   const handleDocumentSelect = (category, subOption) => {
+   
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
+    setSelectedDoc(null);
+   
   };
 
+  // const handleFileChange = (e) => {
+  //   const selectedFile = e.target.files[0];
+  //   setFile(selectedFile);
+
+  //   if (selectedFile) {
+  //     if (selectedFile.type.startsWith("image/")) {
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         setPreview(reader.result);
+  //       };
+  //       reader.readAsDataURL(selectedFile);
+  //     } else {
+  //       setPreview(null);
+  //     }
+  //   }
+  // };
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
+    // Create a file preview if it's an image
     if (selectedFile) {
+      const previewURL = URL.createObjectURL(selectedFile);
+      setPreview(previewURL);
+
+      // **Status update logic based on file type**
       if (selectedFile.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setPreview(reader.result);
-        };
-        reader.readAsDataURL(selectedFile);
+        setStatus("Approved"); // Set status to "Approved" if it's an image
       } else {
-        setPreview(null);
+        setStatus("Rejected"); // Otherwise, set status to "Rejected"
       }
     }
   };
@@ -347,7 +376,7 @@ const CreateLead = () => {
         return <FileText className="h-5 w-5" />;
     }
   };
-
+  const [status, setStatus] = useState("Pending");
   return (
     <div className="p-4">
       <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
@@ -1617,7 +1646,31 @@ const CreateLead = () => {
                                   ))}
                                 </SelectContent>
                               </Select>
+                              {/* Documents List */}
+                {selectedSubOption && categoryData.documents && (
+                  <ul className="mt-4 space-y-2">
+                    {categoryData.documents.map((doc, index) => (
+                      <li key={doc.main} className="flex justify-between">
+                        <Button
+                          variant={selectedDoc?.main === doc.main ? 'secondary' : 'ghost'}
+                          className="w-full justify-start"
+                          onClick={() => setSelectedDoc(doc)}
+                        >
+                          {/* Display check or upload icon */}
+                          {index < categoryData.indexValue ? (
+                            <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                          ) : (
+                            <FileIcon className="mr-2 h-4 w-4" />
+                          )}
+
+                          {doc.name}
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                             </div>
+                            
                           )}
 
                           <Separator className="my-2" />
@@ -1625,82 +1678,105 @@ const CreateLead = () => {
                       )
                     )}
                   </ul>
+                  {/* Document Preview (optional if any document is selected) */}
+      {selectedDoc && (
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold">Selected Document</h3>
+          <div className="mt-2">
+            <p>{selectedDoc.name}</p>
+            {/* You can add additional logic here to display document preview */}
+          </div>
+        </div>
+      )}
                 </div>
 
                 {/* Document Upload Section */}
                 <div className="flex-1 px-4 overflow-auto">
-                  <Card className="h-full">
-                    <CardContent className="p-4">
-                      <h1 className="text-2xl font-bold mb-4">
-                        Upload {selectedSubOption || "Document"}
-                      </h1>
+                      <Card className="h-full">
+                        <CardContent className="p-4">
+                        <div className="flex justify-between items-center mb-4">
+                                <h1 className="text-2xl font-bold">
+                                  Upload {selectedSubOption || "Document"}
+                                </h1>
+                                <span className="text-lg text-yellow-500 font-semibold">
+                                  {/* **Dynamic status display** */}
+                                  Status: {status} {/* The status changes based on file type */}
+                                </span>
+                              </div>
 
-                      <div className="mb-4">
-                        <Label htmlFor="file-upload" className="required">
-                          Select file
-                        </Label>
-                        <Input
-                          id="file-upload"
-                          type="file"
-                          onChange={handleFileChange}
-                          ref={fileInputRef}
-                          accept=".pdf,.jpg,.jpeg,.png"
-                        />
-                      </div>
-
-                      <div
-                        className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
-                        style={{ minHeight: "400px" }}
-                      >
-                        {preview ? (
-                          file.type.startsWith("image/") ? (
-                            <img
-                              src={preview}
-                              alt="Preview"
-                              className="max-w-full max-h-[400px] object-contain"
+                          <div className="mb-4">
+                            <Label htmlFor="file-upload" className="required">
+                              Select file
+                            </Label>
+                            <Input
+                              id="file-upload"
+                              type="file"
+                              onChange={handleFileChange}
+                              ref={fileInputRef}
+                              accept=".pdf,.jpg,.jpeg,.png"
                             />
-                          ) : (
-                            <div className="text-center">
-                              <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
-                              <p className="text-lg font-semibold">
-                                {file.name}
+                          </div>
+
+                          <div
+                            className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                            style={{ minHeight: "400px" }}
+                          >
+                            {preview ? (
+                              file.type.startsWith("image/") ? (
+                                <img
+                                  src={preview}
+                                  alt="Preview"
+                                  className="max-w-full max-h-[400px] object-contain"
+                                />
+                              ) : (
+                                <div className="text-center">
+                                  <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
+                                  <p className="text-lg font-semibold">
+                                    {file.name}
+                                  </p>
+                                  <p className="text-sm text-gray-500">
+                                    {file.type}
+                                  </p>
+                                </div>
+                              )
+                            ) : (
+                              <p className="text-gray-500 text-center">
+                                You will see your document here.
                               </p>
-                              <p className="text-sm text-gray-500">
-                                {file.type}
-                              </p>
-                            </div>
-                          )
-                        ) : (
-                          <p className="text-gray-500 text-center">
-                            You will see your document here.
-                          </p>
-                        )}
+                            )}
+                          </div>
+
+                          
+
+                        </CardContent>
+                      </Card>
+                      {/* Comment Box Section */}
+                      <div className="">
+                            <Label htmlFor="comment" >
+                            Comment
+                            </Label>
+                            <textarea
+                              id="comment"
+                              rows="4"
+                              className="w-full p-2 border border-gray-300 rounded-lg"
+                              placeholder="Comments from Compliance..."
+                            />
+                          </div>
+                      <div className="flex justify-end mt-2 mb-2">
+                        <Button
+                          onClick={handleUpload}
+                          disabled={!file || !selectedSubOption}
+                        >
+                          <Upload className="h-4 w-4" />
+                          Upload {selectedSubOption || "Document"}
+                        </Button>
+
+                        <Button disabled className="ml-5">
+                          Assign To Compliance Team
+                        </Button>
                       </div>
 
-                      {/* <Button
-                        onClick={handleUpload}
-                        disabled={!file || !selectedSubOption}
-                      >
-                        <Upload className="mr-2 h-4 w-4" />
-                        Upload {selectedSubOption || "Document"}
-                      </Button> */}
-                      
-                    </CardContent>
-                  </Card>
-                  <div className="flex justify-end mt-2 mb-2">
-                    <Button
-                      onClick={handleUpload}
-                      disabled={!file || !selectedSubOption}
-                      
-                    >
-                      <Upload className=" h-4 w-4" />
-                      Upload {selectedSubOption || "Document"}
-                    </Button>
 
-                    <Button disabled className="ml-5 ">
-                      Assign To Compliance Team
-                    </Button>
-                  </div>
 
                   {/* <div className="my-10 flex justify-end">
                   <Button
