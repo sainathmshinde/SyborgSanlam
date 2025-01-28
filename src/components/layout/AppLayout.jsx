@@ -556,9 +556,9 @@ export default function AppLayout({ children }) {
                   }}
                 >
                   <img src="src/assets/syborg-techLogo.png" className="w-28" />
-                  <h1 className="mt-2 text-2xl ml-6 text-blue-950 font-extrabold">
+                  {/* <h1 className="mt-2 text-2xl ml-6 text-blue-950 font-extrabold">
                     Customer Onboarding
-                  </h1>
+                  </h1> */}
                 </h2>
               </Button>
             </div>

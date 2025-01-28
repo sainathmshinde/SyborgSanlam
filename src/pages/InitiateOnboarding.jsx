@@ -1,5 +1,6 @@
 import WithLayout from "@/components/layout/WithLayout";
 import { Button } from "@/components/ui/button";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -89,7 +90,7 @@ const TreeNode = ({ node, level }) => {
 const documentCategories = {
   "Certificate of Company": {
     main: "Incorporation Document",
-    subOptions: ["Registartion Certificate", "Incorportation Letter"],
+    subOptions: ["Registration Certificate", "Incorporation Letter"],
     image: certificateImg,
   },
   "Address Proof of Company": {
@@ -111,18 +112,19 @@ const documentCategories = {
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
-     image: idproof,
+    image: idproof,
   },
   "Address Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
-     image: idproof,
+    image: idproof,
   },
 };
 const CreateLead = () => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [photo, setPhoto] = useState(null);
 
   let params = new URLSearchParams(window.location.search);
   const [clientType, setClientType] = useState(
@@ -268,6 +270,39 @@ const CreateLead = () => {
     { id: 4, name: "Entity D" },
     { id: 5, name: "Entity E" },
   ];
+  const documents = [
+    {
+      id: 1,
+      name: "Certificate of Incorporation",
+      content: "Certificate of Incorporation content...",
+      image: certificateImg,
+    },
+    {
+      id: 2,
+      name: "Bank Statement",
+      content: "Bank Statement content...",
+      image: bankStatement,
+    },
+    {
+      id: 3,
+      name: "Address Proof",
+      content: "Address Proof content...",
+      image: addressproof,
+    },
+    {
+      id: 4,
+      name: "Director Alice ID Proof",
+      content: "ID Proof content...",
+      image: idproof,
+    },
+    {
+      id: 5,
+      name: "Director Bob ID Proof",
+      content: "ID Proof content...",
+      image: idproof,
+    },
+    // Add more documents as needed
+  ];
 
   const handleCheckboxChange = (checked, item) => {
     setCheckedItems({ ...checkedItems, [item]: checked });
@@ -299,14 +334,24 @@ const CreateLead = () => {
     }));
   };
   const [selectedDoc, setSelectedDoc] = useState(null);
+  console.log("de", selectedDoc);
+
   // Handle document selection
   const handleDocumentSelect = (category, subOption) => {
-   
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
-    setSelectedDoc(null);
-   
+    if (subOption === "Registration Certificate") {
+      setPhoto(documentCategories?.["Certificate of Company"]?.image);
+    } else if (subOption === "Bank Statement") {
+      setPhoto(documentCategories?.["Address Proof of Company"]?.image);
+    } else if (subOption === "Passport") {
+      setPhoto(documentCategories?.["ID Proof of Alice Johnson"]?.image);
+    } else {
+      setPhoto(null);
+    }
   };
+
+  // console.log("ph", photo);
 
   // const handleFileChange = (e) => {
   //   const selectedFile = e.target.files[0];
@@ -337,9 +382,24 @@ const CreateLead = () => {
       if (selectedFile.type.startsWith("image/")) {
         setStatus("Approved"); // Set status to "Approved" if it's an image
       } else {
-        setStatus("Rejected"); // Otherwise, set status to "Rejected"
+        setStatus("Pending"); // Otherwise, set status to "Rejected"
       }
     }
+  };
+  React.useEffect(() => {
+    if (photo) {
+      setStatus("Approved");
+    }
+  }, [photo]); // If an image is previewed, set status to "Approved" } }, [preview]);
+
+  const handleSelectDoc = (doc) => {
+    debugger;
+    console.log("dddd", doc);
+
+    // setSelectedDoc(doc);
+    // if (doc == "") {
+    //   setPhoto();
+    // }
   };
 
   // Upload handler
@@ -1575,201 +1635,203 @@ const CreateLead = () => {
               {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
                 </Button> */}
-                  <Button className="mx-5" onClick={handleCreateLead}>
-                    Initiate Onboarding
+              <Button className="mx-5" onClick={handleCreateLead}>
+                Initiate Onboarding
+              </Button>
+            </div>
+          </TabsContent>
+          <TabsContent value="documents">
+            <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
+              {/* Sidebar for document categories */}
+              <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
+                <h2 className="text-xl font-bold mb-4">Documents</h2>
+
+                <ul className="space-y-4">
+                  {Object.entries(documentCategories).map(
+                    ([category, categoryData]) => (
+                      <li key={category}>
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category}`}
+                                />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            {/* Documents List */}
+                            {selectedSubOption && categoryData.documents && (
+                              <ul className="mt-4 space-y-2">
+                                {categoryData.documents.map((doc, index) => (
+                                  <li
+                                    key={doc.main}
+                                    className="flex justify-between"
+                                  >
+                                    <Button
+                                      variant={
+                                        selectedDoc?.main === doc.main
+                                          ? "secondary"
+                                          : "ghost"
+                                      }
+                                      className="w-full justify-start"
+                                      onClick={() => setSelectedDoc(doc)}
+                                    >
+                                      {/* Display check or upload icon */}
+                                      {index < categoryData.indexValue ? (
+                                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                                      ) : (
+                                        <FileIcon className="mr-2 h-4 w-4" />
+                                      )}
+
+                                      {doc.name}
+                                    </Button>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+
+                        <Separator className="my-2" />
+                      </li>
+                    )
+                  )}
+                </ul>
+                {/* Document Preview (optional if any document is selected) */}
+                {selectedDoc && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold">Selected Document</h3>
+                    <div className="mt-2">
+                      <p>{selectedDoc.name}</p>
+                      {/* You can add additional logic here to display document preview */}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Document Upload Section */}
+              <div className="flex-1 px-4 overflow-auto">
+                <Card className="h-full">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-center mb-4">
+                      <h1 className="text-2xl font-bold">
+                        {selectedSubOption || "Document"}
+                      </h1>
+                      <span className="text-lg text-yellow-500 font-semibold">
+                        {/* **Dynamic status display** */}
+                        Status: {status}
+                        {/* The status changes based on file type */}
+                      </span>
+                    </div>
+
+                    <div className="mb-4">
+                      <Label htmlFor="file-upload" className="required">
+                        Select file
+                      </Label>
+                      <Input
+                        id="file-upload"
+                        type="file"
+                        onChange={handleFileChange}
+                        ref={fileInputRef}
+                        accept=".pdf,.jpg,.jpeg,.png"
+                      />
+                    </div>
+
+                    <div
+                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                      style={{ minHeight: "400px" }}
+                    >
+                      {preview ? (
+                        file.type.startsWith("image/") ? (
+                          <img
+                            src={preview}
+                            alt="Preview"
+                            className="max-w-full max-h-[400px] object-contain"
+                          />
+                        ) : (
+                          <div className="text-center">
+                            <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
+                            <p className="text-lg font-semibold">{file.name}</p>
+                            <p className="text-sm text-gray-500">{file.type}</p>
+                          </div>
+                        )
+                      ) : (
+                        // <p className="text-gray-500 text-center">
+                        //   You will see your document here.
+                        // </p>
+                        <img
+                          src={photo}
+                          // alt="Default Preview"
+                          className="max-w-full max-h-[400px] object-contain"
+                        />
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+                {/* Comment Box Section */}
+                <div className="">
+                  <Label htmlFor="comment">Comment</Label>
+                  <textarea
+                    id="comment"
+                    rows="4"
+                    className="w-full p-2 border border-gray-300 rounded-lg"
+                    placeholder="Comments from Compliance..."
+                  />
+                </div>
+                <div className="flex justify-end mt-2 mb-2">
+                  <Button
+                    onClick={handleUpload}
+                    disabled={!file || !selectedSubOption}
+                  >
+                    <Upload className="h-4 w-4" />
+                    Upload {selectedSubOption || "Document"}
+                  </Button>
+
+                  <Button disabled className="ml-5">
+                    Assign To Compliance Team
                   </Button>
                 </div>
-            </TabsContent>
-            <TabsContent value="documents">
-              <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
-                {/* Sidebar for document categories */}
-                <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
-                  <h2 className="text-xl font-bold mb-4">Documents</h2>
-                  <ul className="space-y-4">
-                    {Object.entries(documentCategories).map(
-                      ([category, categoryData]) => (
-                        <li key={category}>
-                          {/* Category header with expand/collapse toggle */}
-                          <Button
-                            variant={
-                              category === selectedCategory
-                                ? "secondary"
-                                : "ghost"
-                            }
-                            className={`flex items-center justify-between cursor-pointer `}
-                            onClick={() => toggleCategory(category)}
-                          >
-                            <div className="flex items-center">
-                              <FileText className="mr-2 h-5 w-5" />
-                              <span className="font-semibold">{category}</span>
-                            </div>
-                            {expandedCategories[category] ? (
-                              <ChevronDown />
-                            ) : (
-                              <ChevronRight />
-                            )}
-                          </Button>
-
-                          {/* Sub-options dropdown when category is expanded */}
-                          {expandedCategories[category] && (
-                            <div className="ml-6 mt-2 space-y-2">
-                              <Select
-                                onValueChange={(subOption) =>
-                                  handleDocumentSelect(category, subOption)
-                                }
-                              >
-                                <SelectTrigger className="w-full">
-                                  <SelectValue
-                                    placeholder={`Select ${category}`}
-                                  />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {categoryData.subOptions.map((subOption) => (
-                                    <SelectItem
-                                      key={subOption}
-                                      value={subOption}
-                                      className={`${
-                                        selectedSubOption === subOption
-                                          ? "bg-green-100"
-                                          : ""
-                                      }`}
-                                    >
-                                      {subOption}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              {/* Documents List */}
-                {selectedSubOption && categoryData.documents && (
-                  <ul className="mt-4 space-y-2">
-                    {categoryData.documents.map((doc, index) => (
-                      <li key={doc.main} className="flex justify-between">
-                        <Button
-                          variant={selectedDoc?.main === doc.main ? 'secondary' : 'ghost'}
-                          className="w-full justify-start"
-                          onClick={() => setSelectedDoc(doc)}
-                        >
-                          {/* Display check or upload icon */}
-                          {index < categoryData.indexValue ? (
-                            <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                          ) : (
-                            <FileIcon className="mr-2 h-4 w-4" />
-                          )}
-
-                          {doc.name}
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                            </div>
-                            
-                          )}
-
-                          <Separator className="my-2" />
-                        </li>
-                      )
-                    )}
-                  </ul>
-                  {/* Document Preview (optional if any document is selected) */}
-      {selectedDoc && (
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">Selected Document</h3>
-          <div className="mt-2">
-            <p>{selectedDoc.name}</p>
-            {/* You can add additional logic here to display document preview */}
-          </div>
-        </div>
-      )}
-                </div>
-
-                {/* Document Upload Section */}
-                <div className="flex-1 px-4 overflow-auto">
-                      <Card className="h-full">
-                        <CardContent className="p-4">
-                        <div className="flex justify-between items-center mb-4">
-                                <h1 className="text-2xl font-bold">
-                                  Upload {selectedSubOption || "Document"}
-                                </h1>
-                                <span className="text-lg text-yellow-500 font-semibold">
-                                  {/* **Dynamic status display** */}
-                                  Status: {status} {/* The status changes based on file type */}
-                                </span>
-                              </div>
-
-                          <div className="mb-4">
-                            <Label htmlFor="file-upload" className="required">
-                              Select file
-                            </Label>
-                            <Input
-                              id="file-upload"
-                              type="file"
-                              onChange={handleFileChange}
-                              ref={fileInputRef}
-                              accept=".pdf,.jpg,.jpeg,.png"
-                            />
-                          </div>
-
-                          <div
-                            className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
-                            style={{ minHeight: "400px" }}
-                          >
-                            {preview ? (
-                              file.type.startsWith("image/") ? (
-                                <img
-                                  src={preview}
-                                  alt="Preview"
-                                  className="max-w-full max-h-[400px] object-contain"
-                                />
-                              ) : (
-                                <div className="text-center">
-                                  <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
-                                  <p className="text-lg font-semibold">
-                                    {file.name}
-                                  </p>
-                                  <p className="text-sm text-gray-500">
-                                    {file.type}
-                                  </p>
-                                </div>
-                              )
-                            ) : (
-                              <p className="text-gray-500 text-center">
-                                You will see your document here.
-                              </p>
-                            )}
-                          </div>
-
-                          
-
-                        </CardContent>
-                      </Card>
-                      {/* Comment Box Section */}
-                      <div className="">
-                            <Label htmlFor="comment" >
-                            Comment
-                            </Label>
-                            <textarea
-                              id="comment"
-                              rows="4"
-                              className="w-full p-2 border border-gray-300 rounded-lg"
-                              placeholder="Comments from Compliance..."
-                            />
-                          </div>
-                      <div className="flex justify-end mt-2 mb-2">
-                        <Button
-                          onClick={handleUpload}
-                          disabled={!file || !selectedSubOption}
-                        >
-                          <Upload className="h-4 w-4" />
-                          Upload {selectedSubOption || "Document"}
-                        </Button>
-
-                        <Button disabled className="ml-5">
-                          Assign To Compliance Team
-                        </Button>
-                      </div>
-
-
 
                 {/* <div className="my-10 flex justify-end">
                   <Button
