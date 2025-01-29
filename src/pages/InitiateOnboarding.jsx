@@ -96,7 +96,7 @@ const documentCategories = {
   "Address Proof of Company": {
     main: "Address Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
-    image: bankStatement,
+    image: idproof,
   },
 
   "ID Proof of Alice Johnson": {
@@ -337,20 +337,39 @@ const CreateLead = () => {
   console.log("de", selectedDoc);
 
   // Handle document selection
+  // const handleDocumentSelect = (category, subOption) => {
+  //   setSelectedCategory(category);
+  //   setSelectedSubOption(subOption);
+  //   if (subOption === "Registration Certificate") {
+  //     setPhoto(documentCategories?.["Certificate of Company"]?.image);
+  //   } else if (subOption === "Bank Statement") {
+  //     setPhoto(documentCategories?.["Address Proof of Company"]?.image);
+  //   } else if (subOption === "Passport") {
+  //     setPhoto(documentCategories?.["ID Proof of Alice Johnson"]?.image);
+  //   } else {
+  //     setPhoto(null);
+  //   }
+  // };
+
   const handleDocumentSelect = (category, subOption) => {
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
-    if (subOption === "Registration Certificate") {
-      setPhoto(documentCategories?.["Certificate of Company"]?.image);
+
+    // Handle the selection of documents
+    if (subOption === "Incorporation Letter") {
+      setPhoto(documentCategories["Certificate of Company"]?.image);
+      setStatus("Approved");
     } else if (subOption === "Bank Statement") {
-      setPhoto(documentCategories?.["Address Proof of Company"]?.image);
+      setPhoto(documentCategories["Address Proof of Company"]?.image);
+      setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
     } else if (subOption === "Passport") {
-      setPhoto(documentCategories?.["ID Proof of Alice Johnson"]?.image);
+      setPhoto(documentCategories["ID Proof of Alice Johnson"]?.image);
+      setStatus("Approved");
     } else {
       setPhoto(null);
+      setStatus("Pending");
     }
   };
-
   // console.log("ph", photo);
 
   // const handleFileChange = (e) => {
@@ -386,12 +405,11 @@ const CreateLead = () => {
       }
     }
   };
-  React.useEffect(() => {
-    if (photo) {
-      setStatus("Approved");
-    }
-  }, [photo]); // If an image is previewed, set status to "Approved" } }, [preview]);
-
+  // React.useEffect(() => {
+  //   if (photo) {
+  //     setStatus("Approved");
+  //   }
+  // }, [photo]); 
   const handleSelectDoc = (doc) => {
     debugger;
     console.log("dddd", doc);
