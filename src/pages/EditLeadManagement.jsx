@@ -292,7 +292,7 @@ const EditLeadManagement = () => {
                     Back
                   </Button>
                   <Button onClick={() => navigate("/leadManagement")}>
-                    Update Customer Details
+                    Update
                   </Button>
                 </div>
 

@@ -143,7 +143,7 @@ function SalesDashboard() {
           <div className="grid grid-cols-1 gap-4  ">
             <Card className="w-full">
               <CardHeader className="flex flex-row items-center  pb-2 ">
-                <CardTitle>Process Wise Breakup</CardTitle>
+                <CardTitle>Person Wise Lead Analysis </CardTitle>
               </CardHeader>
 
               <div>
@@ -246,10 +246,10 @@ function SalesDashboard() {
                           <CartesianGrid strokeDasharray="5 5" />
                           <XAxis dataKey="name" />
                           <YAxis
-                            domain={[0, 'dataMax']}
+                            domain={[0, "dataMax"]}
                             ticks={[0, 5, 10, 15, 20, 25, 30]}
                           />
-                          
+
                           <Legend />
                           <Tooltip content={<CustomTooltip />} />
                           <Bar
@@ -257,35 +257,31 @@ function SalesDashboard() {
                             fill="#58508d"
                             name="Sales"
                             barSize={40}
-                             // Adjusted size for better spacing
+                            // Adjusted size for better spacing
                           />
                           <Bar
                             dataKey="leadsWithOnboarding"
                             fill="#2563EB"
                             name="Onboarding"
                             barSize={40}
-                           
                           />
                           <Bar
                             dataKey="leadsWithCompliance"
                             fill="#60A5FA"
                             name="Compliance"
                             barSize={40}
-                           
                           />
                           <Bar
                             dataKey="lost"
                             fill="#93C5FD"
                             name="Lost"
                             barSize={40}
-                           
                           />
                           <Bar
                             dataKey="leadsWithOnboarded"
                             fill="#34D399"
                             name="Onboarded"
                             barSize={40}
-                          
                           />
                         </BarChart>
                       </ResponsiveContainer>
