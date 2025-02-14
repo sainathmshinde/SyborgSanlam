@@ -397,12 +397,8 @@ const CreateLead = () => {
       const previewURL = URL.createObjectURL(selectedFile);
       setPreview(previewURL);
 
-      // **Status update logic based on file type**
-      if (selectedFile.type.startsWith("image/")) {
-        setStatus("Approved"); // Set status to "Approved" if it's an image
-      } else {
-        setStatus("Pending"); // Otherwise, set status to "Rejected"
-      }
+      // Set status to "Uploaded" when a file is selected
+      setStatus("Uploaded");
     }
   };
   // React.useEffect(() => {
