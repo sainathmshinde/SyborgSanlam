@@ -97,7 +97,6 @@ const renderCustomizedLabel = ({
   );
 };
 
-
 const COLORS = ["#003f5c", "#58508d", "#bc5090"];
 
 function ComplianceDashboard() {
@@ -117,12 +116,11 @@ function ComplianceDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row justify-between">
-            <CardTitle>Requests With Compliance</CardTitle>
+            <CardTitle> Compliance Status</CardTitle>
             {/* <div>Total Request</div> */}
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
-             <h1 className="text-lg ml-4">
-              Total Requests : 25</h1>
+          <h1 className="text-lg ml-4">Requests With Compliance : 25</h1>
           <CardContent>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -167,7 +165,11 @@ function ComplianceDashboard() {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart onClick={handleEdit} data={userData} className="mt-10 mb-2 px-4 py-4 ">
+              <BarChart
+                onClick={handleEdit}
+                data={userData}
+                className="mt-10 mb-2 px-4 py-4 "
+              >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 12]} ticks={[0, 3, 6, 9, 12]} />
