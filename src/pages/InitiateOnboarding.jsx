@@ -1047,7 +1047,7 @@ const CreateLead = () => {
               value="beneficiaries"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Beneficiaries
+              Key Contributors
             </TabsTrigger>
             <TabsTrigger
               value="documents"
@@ -1211,12 +1211,12 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="RAND " />
+                        <SelectValue placeholder="ZAR " />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Technology">INR</SelectItem>
                         <SelectItem value="Retail">USD</SelectItem>
-                        <SelectItem value="Healthcare">RAND</SelectItem>
+                        <SelectItem value="Healthcare">ZAR</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1477,9 +1477,9 @@ const CreateLead = () => {
           <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
-                <CardTitle>Beneficiaries</CardTitle>
+                <CardTitle>Key Contributors</CardTitle>
                 <CardDescription>
-                  Manage beneficiary information for the lead.
+                  Manage key contributors information for the lead.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -1843,7 +1843,7 @@ const CreateLead = () => {
                   </Button>
 
                   <Button disabled className="ml-5">
-                    Assign To Compliance Team
+                    Send To Compliance Team
                   </Button>
                 </div>
 
