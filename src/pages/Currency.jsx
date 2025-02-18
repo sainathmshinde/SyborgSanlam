@@ -200,6 +200,21 @@ const CurrencyPage = () => {
 
   const [currency, setCurrency] = useState(currencies);
   const [currencyIndex, setCurrencyIndex] = useState(0);
+ 
+  const [isAscending, setIsAscending] = useState(true); // State for sorting direction
+
+  // Sort the currencies by country
+  const sortByCountry = () => {
+    const sortedCurrencies = [...currency].sort((a, b) => {
+      if (isAscending) {
+        return a.country.localeCompare(b.country); // Ascending
+      } else {
+        return b.country.localeCompare(a.country); // Descending
+      }
+    });
+    setCurrency(sortedCurrencies);
+    setIsAscending(!isAscending); // Toggle sorting order
+  };
 
   const handleSearch = () => {};
   const handleDeleteCurrency = () => {};
@@ -242,7 +257,42 @@ const CurrencyPage = () => {
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
               <TableHead className="text-white p-2 pr-10">Sr No.</TableHead>
-              <TableHead className="text-white p-2 pr-10">Country</TableHead>
+              <TableHead className="text-white p-2 pr-10">
+                <button onClick={sortByCountry} className="flex items-center">
+                  Country
+                  {isAscending ? (
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 15l7-7 7 7"
+                      />
+                    </svg>
+                  )}
+                </button></TableHead>
+
               <TableHead className="text-white p-2 pr-16">
                 Currency Name
               </TableHead>

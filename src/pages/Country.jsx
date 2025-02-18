@@ -33,6 +33,22 @@ const Country = () => {
   const [country, setCountry] = useState(countries);
   const [countryIndex, setCountryIndex] = useState(0);
 
+  const [isAscending, setIsAscending] = useState(true); // State for sorting direction
+
+  // Sort the currencies by country
+  const sortByCountry = () => {
+    const sortedCountries = [...country].sort((a, b) => {
+      if (isAscending) {
+        return a.name.localeCompare(b.name); // Ascending
+      } else {
+        return b.name.localeCompare(a.name); // Descending
+      }
+    });
+    setCountry(sortedCountries);  // Update state with sorted countries
+    setIsAscending(!isAscending); // Toggle sorting order
+  };
+  
+
   const handleSearch = () => {};
   const handleDeleteCountry = () => {};
 
@@ -73,7 +89,40 @@ const Country = () => {
           <TableHeader className="bg-custom-black hover:bg-custom-black">
             <TableRow>
               <TableHead className="text-white p-2">Sr No.</TableHead>
-              <TableHead className="text-white p-2 ">Country Name</TableHead>
+              <TableHead className="text-white p-2 "><button onClick={sortByCountry} className="flex items-center">
+                  Country Name
+                  {isAscending ? (
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 15l7-7 7 7"
+                      />
+                    </svg>
+                  )}
+                </button></TableHead>
               <TableHead className="text-white p-0">Country Code</TableHead>
               <TableHead className="p-2 px-8 text-white text-end">
                 Actions

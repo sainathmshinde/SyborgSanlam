@@ -923,45 +923,48 @@ const CreateLead = () => {
                 </div> */}
                 </div>
               </div>
-            </TabsContent>
-          </Tabs>
-        ) : null}
 
-        {clientType === "company" ||
-        clientType === "partnership" ||
-        clientType === "trust" ? (
-          <Tabs defaultValue="basic">
-            <TabsList className=" flex justify-start mb-6 ">
-              <TabsTrigger
-                value="basic"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Basic Information
-              </TabsTrigger>
-              <TabsTrigger
-                value="contact"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Contact
-              </TabsTrigger>
-              <TabsTrigger
-                value="beneficiaries"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Beneficiaries
-              </TabsTrigger>
-              <TabsTrigger
-                value="documents"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Upload Documents
-              </TabsTrigger>
-            </TabsList>
+            </div>
+          </TabsContent>
+        </Tabs>
+      ) : null}
 
-            <TabsContent value="basic">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1  gap-4">
-                  {/* <div className="space-y-2">
+      {clientType === "company" ||
+      clientType === "partnership" ||
+      clientType === "trust" ? (
+        <Tabs defaultValue="basic">
+          <TabsList className=" flex justify-start mb-6 ">
+            <TabsTrigger
+              value="basic"
+              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+            >
+              Basic Information
+            </TabsTrigger>
+            <TabsTrigger
+              value="contact"
+              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+            >
+              Contact
+            </TabsTrigger>
+            <TabsTrigger
+              value="beneficiaries"
+              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+            >
+              Key Contributors
+            </TabsTrigger>
+            <TabsTrigger
+              value="documents"
+              className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+            >
+              Upload Documents
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="basic">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1  gap-4">
+                {/* <div className="space-y-2">
+
                   <Label htmlFor="source"> Parent</Label>
                   <div className="relative ">
                     <div className="flex items-center">
@@ -1108,12 +1111,13 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Currency" />
+                        <SelectValue placeholder="ZAR " />
+
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Technology">INR</SelectItem>
                         <SelectItem value="Retail">USD</SelectItem>
-                        <SelectItem value="Healthcare">RAND</SelectItem>
+                        <SelectItem value="Healthcare">ZAR</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1366,44 +1370,44 @@ const CreateLead = () => {
                 {/* <div className="my-5 flex justify-end">
                   <Button className="mx-5">Submit & Next</Button>
                 </div> */}
-              </Card>
-              <div className="my-5 flex justify-end">
-                  <Button className="mx-5">Submit & Next</Button>
-                </div>
-            </TabsContent>
-            <TabsContent value="beneficiaries">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Beneficiaries</CardTitle>
-                  <CardDescription>
-                    Manage beneficiary information for the lead.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <Dialog
-                      open={isBeneficiaryDialogOpen}
-                      onOpenChange={setIsBeneficiaryDialogOpen}
-                    >
-                      <DialogTrigger asChild>
-                        <Button>
-                          <PlusCircle className="mr-2 h-4 w-4" /> Add
-                          Beneficiary
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Add New Beneficiary</DialogTitle>
-                        </DialogHeader>
-                        <form
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            const formData = new FormData(e.target);
-                            addBeneficiary(Object.fromEntries(formData));
-                          }}
-                          className="space-y-4"
-                        >
-                          {/* <div className="space-y-2">
+            </Card>
+            <div className="my-5 flex justify-end">
+              <Button className="mx-5">Submit & Next</Button>
+            </div>
+          </TabsContent>
+          <TabsContent value="beneficiaries">
+            <Card>
+              <CardHeader>
+                <CardTitle>Key Contributors</CardTitle>
+                <CardDescription>
+                  Manage key contributors information for the lead.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mb-4">
+                  <Dialog
+                    open={isBeneficiaryDialogOpen}
+                    onOpenChange={setIsBeneficiaryDialogOpen}
+                  >
+                    <DialogTrigger asChild>
+                      <Button>
+                        <PlusCircle className="mr-2 h-4 w-4" /> Add Beneficiary
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add New Beneficiary</DialogTitle>
+                      </DialogHeader>
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          const formData = new FormData(e.target);
+                          addBeneficiary(Object.fromEntries(formData));
+                        }}
+                        className="space-y-4"
+                      >
+                        {/* <div className="space-y-2">
+
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -1673,30 +1677,10 @@ const CreateLead = () => {
                         )}
                       </div>
 
-                      {/* <Button
-                        onClick={handleUpload}
-                        disabled={!file || !selectedSubOption}
-                      >
-                        <Upload className="mr-2 h-4 w-4" />
-                        Upload {selectedSubOption || "Document"}
-                      </Button> */}
-                      
-                    </CardContent>
-                  </Card>
-                  <div className="flex justify-end mt-2 mb-2">
-                    <Button
-                      onClick={handleUpload}
-                      disabled={!file || !selectedSubOption}
-                      
-                    >
-                      <Upload className=" h-4 w-4" />
-                      Upload {selectedSubOption || "Document"}
-                    </Button>
-
-                    <Button disabled className="ml-5 ">
-                      Assign To Compliance Team
-                    </Button>
-                  </div>
+                  <Button disabled className="ml-5">
+                    Send To Compliance Team
+                  </Button>
+                </div>
 
                   {/* <div className="my-10 flex justify-end">
                   <Button

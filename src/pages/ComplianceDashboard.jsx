@@ -120,7 +120,7 @@ function ComplianceDashboard() {
             {/* <div>Total Request</div> */}
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
-          <h1 className="text-lg ml-4">Requests With Compliance : 25</h1>
+          <h1 className="text-lg ml-4">Total Requests : 105</h1>
           <CardContent>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
