@@ -178,7 +178,7 @@ function OnboardingDashboard() {
             <DateRangePicker placeholder="Jan 01 2024 - DEC 31 2024" />
           </CardHeader>
           {/* <h1 className="text-lg ml-4">Total Request : 175</h1> */}
-          <h1 className="text-lg ml-4">Requests with Onboarding : 30</h1>
+          <h1 className="text-lg ml-4">Total Requests : 105</h1>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
