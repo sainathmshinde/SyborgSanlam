@@ -1,5 +1,7 @@
 import WithLayout from "@/components/layout/WithLayout";
 import { Button } from "@/components/ui/button";
+
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Card,
   CardContent,
@@ -67,9 +69,19 @@ const TreeNode = ({ node, level }) => {
 // To do document categories based on selected client type
 
 const EditLeadManagement = () => {
+  const [recipientType, setRecipientType] = useState("onboardingTeam");
   const navigate = useNavigate();
+  const [isBeneficiaryDialogOpen, setIsBeneficiaryDialogOpen] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const [selectedSubOption, setSelectedSubOption] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const [bType, setbType] = useState("");
+  const fileInputRef = useRef(null);
+  const [file, setFile] = useState(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Company");
 
   let params = new URLSearchParams(window.location.search);
   const [clientType, setClientType] = useState(
@@ -87,10 +99,13 @@ const EditLeadManagement = () => {
     description: "Prospective investment of $20 million ",
     // Assignment Details
     relationshipManager: "john_doe",
-    stage: "proposal",
+    // stage: "proposal",
+    stage: "Initiate Onboarding",
     onboardingManager: "John_smith",
     // Address Information
-    address: "742 Maple Avenue, Suite 200",
+    address: "742 Maple Avenue",
+    address1: "Oakwood Drive, Building 5",
+
     city: "San Francisco",
     state: "California",
     country: "USA",
@@ -102,7 +117,101 @@ const EditLeadManagement = () => {
       [field]: value,
     }));
   };
+  const handleUpload = () => {
+    if (file) {
+      console.log(
+        `Uploading ${file.name} as ${selectedDocument} for ${selectedCategory}`
+      );
+      setUploadedDocuments((prev) => ({
+        ...prev,
+        [selectedCategory]: [...prev[selectedCategory], selectedDocument],
+      }));
+      setFile(null);
+      setPreview(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
 
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const [beneficiaries, setBeneficiaries] = useState([
+    {
+      firstName: "Alice",
+      lastName: "Johnson",
+      email: "alice.johnson@example.com",
+      mobile: "+1 (555) 111-2222",
+      type: "Individual",
+      designation: "Director",
+    },
+    {
+      firstName: "Bob",
+      lastName: "Johnson",
+      email: "bob.johnson@example.com",
+      mobile: "+1 (555) 111-3333",
+      type: "Individual",
+      designation: "Director",
+    },
+  ]);
+
+  const documentCategories = {
+    "Certificate of Company": {
+      main: "Incorporation Document",
+      subOptions: ["Registration Certificate", "Incorporation Letter"],
+    },
+    "Address Proof of Company": {
+      main: "Address Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
+
+    "ID Proof of Alice Johnson": {
+      main: "ID Document",
+      subOptions: ["National ID", "Driving Licence", "Passport"],
+    },
+    "Address Proof of Alice Johnson": {
+      main: "Address Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
+    "ID Proof of Bob Johnson": {
+      main: "ID Document",
+      subOptions: ["National ID", "Driving Licence", "Passport"],
+    },
+    "Address Proof of Bob Johnson": {
+      main: "Address Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    },
+  };
+
+  const handleCreateLead = () => {
+    setNewLead({
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobile: "",
+      address: "",
+      address1: "",
+
+      city: "",
+      state: "",
+      country: "",
+      status: "New",
+      description: "",
+      industry: "",
+      source: "",
+      assignedUser: "",
+    });
+  };
   // console.log("Initial customerType value:", contact.customerType);
 
   const relationshipManagers = [
@@ -124,7 +233,7 @@ const EditLeadManagement = () => {
     { value: " newLead", label: " New Lead" },
     { value: "prospect", label: "Prospect" },
     { value: "proposal", label: "Proposal" },
-    { value: "onboarding", label: "Onboarding" },
+    { value: "Initiate Onboarding", label: " Initiate Onboarding " },
     { value: "lost", label: " Lost" },
   ];
 
@@ -152,25 +261,37 @@ const EditLeadManagement = () => {
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic">
+        <Tabs defaultValue="about">
           <div className="overflow-hidden sticky z-10 mb-2">
             <TabsList className=" flex justify-start mb-4 mt-4 ">
+              <TabsTrigger
+                value="about"
+                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+              >
+                Manage and Assign Lead
+              </TabsTrigger>
               <TabsTrigger
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                About Lead
+                Basic Information
               </TabsTrigger>
               <TabsTrigger
                 value="contact"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                Customer Details
+                Key Contributors
+              </TabsTrigger>
+              <TabsTrigger
+                value="documents"
+                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+              >
+                Upload Documents
               </TabsTrigger>
             </TabsList>
           </div>
           <div className="overflow-auto max-h-[500px]">
-            <TabsContent value="basic">
+            <TabsContent value="about">
               <form className="space-y-4">
                 {/* Personal Information Card */}
                 <Card className="bg-gray-200">
@@ -223,7 +344,8 @@ const EditLeadManagement = () => {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="stage">
-                          Stage<span className="text-red-600 ml-1">*</span>
+                          Stage
+                          <span className="text-red-600 ml-1">*</span>
                         </Label>
                         <Select
                           value={contact.stage}
@@ -244,7 +366,7 @@ const EditLeadManagement = () => {
                         </Select>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
+                    {/* <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
                       <div className="space-y-2  ">
                         <Label htmlFor="onboardingManager">
                           Select Onboarding Team Member
@@ -253,7 +375,7 @@ const EditLeadManagement = () => {
                           value={contact.onboardingManager}
                           onValueChange={(value) => {
                             handleInputChange("onboardingManager", value);
-                            setIsManagerSelected(true); // Set to true when a selection is made
+                            setIsManagerSelected(true);
                           }}
                         >
                           <SelectTrigger className="w-full">
@@ -272,15 +394,15 @@ const EditLeadManagement = () => {
                         </Select>
                       </div>
 
-                      {/* <div className="p-8">
+                      <div className="p-8">
                         <Button
                           disabled={!isManagerSelected}
                           onClick={() => navigate("/leadManagement")}
                         >
                           Assign For Onboarding
                         </Button>
-                      </div> */}
-                    </div>
+                      </div>
+                    </div> */}
                   </CardContent>
                 </Card>
 
@@ -292,7 +414,7 @@ const EditLeadManagement = () => {
                     Back
                   </Button>
                   <Button onClick={() => navigate("/leadManagement")}>
-                    Update
+                    Update and Next
                   </Button>
                 </div>
 
@@ -300,7 +422,7 @@ const EditLeadManagement = () => {
               </form>
             </TabsContent>
 
-            <TabsContent value="contact">
+            <TabsContent value="basic">
               <form className="space-y-4">
                 {/* Personal Information Card */}
                 <Card className="bg-gray-200">
@@ -352,11 +474,27 @@ const EditLeadManagement = () => {
                     <div className="space-y-4 mt-4">
                       <div className="space-y-2">
                         <Label htmlFor="address">
-                          Address<span className="text-red-600 ml-1">*</span>
+                          Address Line 1
+                          <span className="text-red-600 ml-1">*</span>
                         </Label>
                         <Textarea
                           id="address"
                           value={contact.address}
+                          onChange={(e) =>
+                            handleInputChange("address", e.target.value)
+                          }
+                          placeholder="Enter Complete Address"
+                          className="min-h-[50px]"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="address">
+                          Address Line 2
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Textarea
+                          id="address"
+                          value={contact.address1}
                           onChange={(e) =>
                             handleInputChange("address", e.target.value)
                           }
@@ -475,6 +613,77 @@ const EditLeadManagement = () => {
                     </div>
                   </CardContent>
                 </Card>
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
+                      <div className="space-y-2">
+                        <Label htmlFor="sendTo">Send To -</Label>
+
+                        {/* Radio Group for Selection */}
+                        <RadioGroup
+                          value={recipientType}
+                          onValueChange={setRecipientType}
+                          className="flex space-x-4"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem
+                              value="onboardingTeam"
+                              id="onboardingTeam"
+                            />
+                            <Label htmlFor="onboardingTeam">
+                              Onboarding Team Member
+                            </Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="customer" id="customer" />
+                            <Label htmlFor="customer">Customer</Label>
+                          </div>
+                        </RadioGroup>
+
+                        {/* Conditional Fields */}
+                        {recipientType === "onboardingTeam" && (
+                          <div className="space-y-2">
+                            {/* <Label htmlFor="onboardingManager">
+                              Select Onboarding Manager
+                            </Label> */}
+                            <Select
+                              value={contact.onboardingManager}
+                              onValueChange={(value) => {
+                                handleInputChange("onboardingManager", value);
+                                setIsManagerSelected(true);
+                              }}
+                            >
+                              <SelectTrigger className="w-full mt-3">
+                                <SelectValue placeholder="Select onboarding manager" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {onboardingManagers.map((manager) => (
+                                  <SelectItem
+                                    key={manager.value}
+                                    value={manager.value}
+                                  >
+                                    {manager.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+
+                        {recipientType === "customer" && (
+                          <div className="space-y-2">
+                            <input
+                              type="text"
+                              id="customerName"
+                              placeholder="Enter customer Name"
+                              className="w-full border p-2 rounded-md mt-1"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </form>
               <div className="flex justify-end space-x-4 mt-3">
                 <Button
@@ -484,8 +693,348 @@ const EditLeadManagement = () => {
                   Back
                 </Button>
                 <Button onClick={() => navigate("/leadManagement")}>
-                  Update
+                  Update and Next
                 </Button>
+              </div>
+            </TabsContent>
+            <TabsContent value="contact">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Key Contributors</CardTitle>
+                  <CardDescription>
+                    Manage key contributors information for the lead.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4">
+                    <Dialog
+                      open={isBeneficiaryDialogOpen}
+                      onOpenChange={(e) => {
+                        setIsBeneficiaryDialogOpen(e);
+                        if (!e) {
+                          setbType("");
+                        }
+                      }}
+                    >
+                      <DialogTrigger asChild>
+                        <Button>
+                          <PlusCircle className="mr-2 h-4 w-4" /> Add Key
+                          Contributors
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Add New Beneficiary</DialogTitle>
+                        </DialogHeader>
+                        <form
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            addBeneficiary(Object.fromEntries(formData));
+                          }}
+                          className="space-y-4"
+                        >
+                          {/* <div className="space-y-2">
+                              <Label htmlFor="type" className="required">
+                                Type
+                              </Label>
+                              <Select name="type" required>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Individual">
+                                    Individual
+                                  </SelectItem>
+                                  <SelectItem value="Trust">Trust</SelectItem>
+                                  <SelectItem value="Company">
+                                    Company
+                                  </SelectItem>
+                                  <SelectItem value="Partnership">
+                                    Partnership
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div> */}
+                          <div className="space-y-2">
+                            <Label htmlFor="designation" className="required">
+                              Designation
+                            </Label>
+                            <Select
+                              name="designation"
+                              required
+                              onValueChange={(e) => {
+                                setbType(e);
+                              }}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select type" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Individual">
+                                  Director
+                                </SelectItem>
+                                <SelectItem value="Trust">Partner</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="firstName" className="required">
+                                First Name
+                              </Label>
+                              <Input id="firstName" name="firstName" required />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="lastName" className="required">
+                                Last Name
+                              </Label>
+                              <Input id="lastName" name="lastName" required />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="email" className="required">
+                              Email
+                            </Label>
+                            <Input
+                              id="email"
+                              name="email"
+                              type="email"
+                              required
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="mobile" className="required">
+                              Mobile Number
+                            </Label>
+                            <Input
+                              id="mobile"
+                              name="mobile"
+                              type="tel"
+                              required
+                            />
+                          </div>
+                          {bType?.length ? (
+                            <div className="space-y-2">
+                              <h3 className="text-lg font-semibold my-5">
+                                Compliance Checklist
+                              </h3>
+
+                              <div>
+                                {Object.keys(individualDocuments).map(
+                                  (item) => (
+                                    <div
+                                      key={item}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <Dot />
+                                      <Label className="text-sm leading-tight">
+                                        {convertToLabel(item)}
+                                      </Label>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          ) : null}
+
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              setbType("");
+                              setIsBeneficiaryDialogOpen(false);
+                            }}
+                          >
+                            Add Beneficiary
+                          </Button>
+                        </form>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>First Name</TableHead>
+                        <TableHead>Last Name</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead>Mobile Number</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Designation</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {beneficiaries.map((beneficiary, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{beneficiary.firstName}</TableCell>
+                          <TableCell>{beneficiary.lastName}</TableCell>
+                          <TableCell>{beneficiary.email}</TableCell>
+                          <TableCell>{beneficiary.mobile}</TableCell>
+                          <TableCell>{beneficiary.type}</TableCell>
+                          <TableCell>{beneficiary.designation}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+              <div className="my-5 flex justify-end mx-5">
+                {/* <Button
+                      variant="outline"
+                      onClick={() => navigate("/leads")}
+                    >
+                      Cancel
+                    </Button> */}
+                <Button className="ml-5" onClick={handleCreateLead}>
+                  Initiate Onboarding
+                </Button>
+              </div>
+            </TabsContent>
+            <TabsContent value="documents">
+              <div className="flex h-screen bg-gray-100">
+                {/* Sidebar for document categories */}
+                <div className="w-90 bg-white p-4 shadow-md overflow-auto">
+                  <h2 className="text-xl font-bold mb-4">Documents</h2>
+                  <ul className="space-y-4">
+                    {Object.entries(documentCategories).map(
+                      ([category, categoryData]) => (
+                        <li key={category}>
+                          {/* Category header with expand/collapse toggle */}
+                          <Button
+                            variant={
+                              category === selectedCategory
+                                ? "secondary"
+                                : "ghost"
+                            }
+                            className={`flex items-center justify-between cursor-pointer `}
+                            onClick={() => toggleCategory(category)}
+                          >
+                            <div className="flex items-center">
+                              <FileText className="mr-2 h-5 w-5" />
+                              <span className="font-semibold">{category}</span>
+                            </div>
+                            {expandedCategories[category] ? (
+                              <ChevronDown />
+                            ) : (
+                              <ChevronRight />
+                            )}
+                          </Button>
+
+                          {/* Sub-options dropdown when category is expanded */}
+                          {expandedCategories[category] && (
+                            <div className="ml-6 mt-2 space-y-2">
+                              <Select
+                                onValueChange={(subOption) =>
+                                  handleDocumentSelect(category, subOption)
+                                }
+                              >
+                                <SelectTrigger className="w-full">
+                                  <SelectValue
+                                    placeholder={`Select ${category} `}
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {categoryData.subOptions.map((subOption) => (
+                                    <SelectItem
+                                      key={subOption}
+                                      value={subOption}
+                                      className={`${
+                                        selectedSubOption === subOption
+                                          ? "bg-green-100"
+                                          : ""
+                                      }`}
+                                    >
+                                      {subOption}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          )}
+
+                          <Separator className="my-2" />
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+
+                {/* Document Upload Section */}
+                <div className="flex-1 px-4 overflow-auto max-h-[700px]">
+                  <Card className="h-full">
+                    <CardContent className="p-4">
+                      <h1 className="text-2xl font-bold mb-4">
+                        Upload {selectedSubOption || "Document"}
+                      </h1>
+
+                      <div className="mb-4">
+                        <Label htmlFor="file-upload" className="required">
+                          Select file
+                        </Label>
+                        <Input
+                          id="file-upload"
+                          type="file"
+                          onChange={handleFileChange}
+                          ref={fileInputRef}
+                          accept=".pdf,.jpg,.jpeg,.png"
+                        />
+                      </div>
+
+                      <div
+                        className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                        style={{ minHeight: "520px" }}
+                      >
+                        {preview ? (
+                          file.type.startsWith("image/") ? (
+                            <img
+                              src={preview}
+                              alt="Preview"
+                              className="max-w-full max-h-[400px] object-contain"
+                            />
+                          ) : (
+                            <div className="text-center">
+                              <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
+                              <p className="text-lg font-semibold">
+                                {file.name}
+                              </p>
+                              <p className="text-sm text-gray-500">
+                                {file.type}
+                              </p>
+                            </div>
+                          )
+                        ) : (
+                          <p className="text-gray-500 text-center">
+                            You will see your document here.
+                          </p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <div className="flex justify-end mt-2 mb-2">
+                    <Button
+                      onClick={handleUpload}
+                      disabled={!file || !selectedSubOption}
+                      className="ml-auto flex items-center"
+                    >
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload {selectedSubOption || "Document"}
+                    </Button>
+                  </div>
+
+                  {/* <div className="my-10 flex justify-end">
+                              <Button
+                                className="mx-5"
+                                onClick={() =>
+                                  toast({
+                                    title: "Success",
+                                    description: "Onboarding initiated successfully.",
+                                    variant: "success",
+                                  })
+                                }
+                              >
+                                Submit
+                              </Button>
+                            </div> */}
+                </div>
               </div>
             </TabsContent>
           </div>
