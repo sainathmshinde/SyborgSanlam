@@ -383,7 +383,7 @@ function Profile() {
                     value="beneficiaries"
                     className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                    Beneficiaries
+                   Key Contributors
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -609,9 +609,9 @@ function Profile() {
               <TabsContent value="beneficiaries">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Beneficiaries</CardTitle>
+                    <CardTitle>Key Contributors</CardTitle>
                     <CardDescription>
-                      Manage beneficiary information for the lead.
+                      Manage key contributors information for the lead.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -627,13 +627,12 @@ function Profile() {
                       >
                         <DialogTrigger asChild>
                           <Button>
-                            <PlusCircle className="mr-2 h-4 w-4" /> Add
-                            Beneficiary
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Key Contributors
                           </Button>
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>Add New Beneficiary</DialogTitle>
+                            <DialogTitle>Add New Key Contributors</DialogTitle>
                           </DialogHeader>
                           <form
                             onSubmit={(e) => {
@@ -758,7 +757,7 @@ function Profile() {
                                 setIsBeneficiaryDialogOpen(false);
                               }}
                             >
-                              Add Beneficiary
+                              Add Key Contributors
                             </Button>
                           </form>
                         </DialogContent>
