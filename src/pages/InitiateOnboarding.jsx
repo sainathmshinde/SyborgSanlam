@@ -300,15 +300,11 @@ const CreateLead = () => {
     setFile(selectedFile);
 
     if (selectedFile) {
-      if (selectedFile.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setPreview(reader.result);
-        };
-        reader.readAsDataURL(selectedFile);
-      } else {
-        setPreview(null);
-      }
+      const previewURL = URL.createObjectURL(selectedFile);
+      setPreview(previewURL);
+
+      // Set status to "Uploaded" when a file is selected
+      setStatus("Uploaded");
     }
   };
 
