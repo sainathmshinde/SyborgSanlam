@@ -81,9 +81,7 @@ function Profile() {
   });
 
   const [newLead, setNewLead] = useState({
-    firstName: "Teslack Organization",
-    regNumber: "12345/28/14",
-    finance: "31/12/2024",
+    firstName: "",
     lastName: "",
     email: "",
     mobile: "",
@@ -396,7 +394,7 @@ function Profile() {
                 </TabsList>
               </div>
               <TabsContent value="basic">
-                {/* <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 ">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       First Name
@@ -479,7 +477,7 @@ function Profile() {
                       style={{ width: "600px", height: "50px" }}
                     />
                   </div>
-                  <div className="space-y-4">
+                  {/* <div className="space-y-4">
                     {clientType && (
                       <div className="space-y-2">
                         <h3 className="text-lg font-semibold my-5">
@@ -498,189 +496,7 @@ function Profile() {
                         </div>
                       </div>
                     )}
-                  </div>
-                </div> */}
-                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[325px]">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="required">
-                      Customer Name
-                    </Label>
-                    <Input
-                      id="firstName"
-                      value={newLead.firstName}
-                      onChange={(e) =>
-                        setNewLead({ ...newLead, firstName: e.target.value })
-                      }
-                      placeholder="Teslack Organization"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="country" className="required">
-                      Country of Origin
-                    </Label>
-                    <Select
-                      id="source"
-                      value={newLead.source}
-                      className="required"
-                      onValueChange={(value) =>
-                        setNewLead({ ...newLead, source: value })
-                      }
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="South Africa" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Website">India</SelectItem>
-                        <SelectItem value="Trade Show">South Africa</SelectItem>
-                        <SelectItem value="Referral">China</SelectItem>
-                        <SelectItem value="Cold Call">Australia</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industry" className="required">
-                      Industry
-                    </Label>
-                    <Select
-                      id="industry"
-                      value={newLead.industry}
-                      onValueChange={(value) =>
-                        setNewLead({ ...newLead, industry: value })
-                      }
-                      className="required"
-                    >
-                      <SelectTrigger className="w-full ">
-                        <SelectValue placeholder="Technology" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Technology">Technology</SelectItem>
-                        <SelectItem value="Retail">Retail</SelectItem>
-                        <SelectItem value="Healthcare">Healthcare</SelectItem>
-                        <SelectItem value="Finance">Finance</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industry" className="required">
-                      Company Registration Number
-                    </Label>
-                    <Input
-                      id="comreg"
-                      value={newLead.regNumber}
-                      placeholder="Enter Company Registration Number"
-                      onChange={(e) =>
-                        setNewLead({ ...newLead, regNumber: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industry" className="required">
-                      Currency
-                    </Label>
-                    <Select
-                      id="industry"
-                      value={newLead.industry}
-                      onValueChange={(value) =>
-                        setNewLead({ ...newLead, industry: value })
-                      }
-                      className="required"
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="RAND " />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Technology">INR</SelectItem>
-                        <SelectItem value="Retail">USD</SelectItem>
-                        <SelectItem value="Healthcare">RAND</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industry" className="required">
-                      Legal Jurisdiction
-                    </Label>
-                    <Select
-                      id="industry"
-                      value={newLead.industry}
-                      onValueChange={(value) =>
-                        setNewLead({ ...newLead, industry: value })
-                      }
-                      className="required"
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="South AFrica" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="In">India</SelectItem>
-
-                        <SelectItem value="Technology">USA</SelectItem>
-                        <SelectItem value="Retail">South AFrica</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industry" className="required">
-                      Operational Jurisdiction
-                    </Label>
-                    <Select
-                      id="industry"
-                      value={newLead.industry}
-                      onValueChange={(value) =>
-                        setNewLead({ ...newLead, industry: value })
-                      }
-                      className="required"
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="South AFrica" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="In">India</SelectItem>
-
-                        <SelectItem value="Technology">USA</SelectItem>
-                        <SelectItem value="Retail">South AFrica</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* <div className="space-y-2">
-                  <Label htmlFor="industry">Regulatory Authority</Label>
-                  <Select
-                    id="industry"
-                    value={newLead.industry}
-                    onValueChange={(value) =>
-                      setNewLead({ ...newLead, industry: value })
-                    }
-                    className="required"
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select Authority" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Technology">Auth 1</SelectItem>
-                      <SelectItem value="Retail">Auth 2</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div> */}
-
-                  <div className="space-y-2">
-                    <Label htmlFor="finance" className="required">
-                      Financial Year End
-                    </Label>
-                    <Input
-                      id="finance"
-                      value={newLead.finance}
-                      onChange={(e) =>
-                        setNewLead({ ...newLead, finance: e.target.value })
-                      }
-                      placeholder="DD/MM/YYYY"
-                    />
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="my-1 flex justify-end mt-4">
