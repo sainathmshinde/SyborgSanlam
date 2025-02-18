@@ -29,7 +29,7 @@ function Navigator() {
     {
       title: "Customer",
       description: "Handle customer-related activities",
-      path: "/profile",
+      path: "/login",
     },
     {
       title: "Sales",
