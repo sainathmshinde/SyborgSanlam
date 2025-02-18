@@ -236,14 +236,14 @@ function SalesDashboard() {
                       <h1 className="text-center">
                         <strong> Jared Palmer</strong>
                       </h1>
-                      <ResponsiveContainer width="100%" height={250}>
+                      <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                           data={record}
                           className="px-4 py-4 cursor-pointer"
                           onClick={handleGraphClick}
                           margin={{ top: 20, right: 20, bottom: 20, left: 20 }} // Added margin for better spacing
                         >
-                          <CartesianGrid strokeDasharray="5 5" />
+                          <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
                           <YAxis
                             domain={[0, "dataMax"]}

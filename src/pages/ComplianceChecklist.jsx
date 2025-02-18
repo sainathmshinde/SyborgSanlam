@@ -172,7 +172,7 @@ function ComplianceChecklist() {
   };
   const documentCategories = {
     Company: [
-      "Certificate of Incorporation ",
+      "Certificate of Incorporation",
       "Bank Statement",
       "Address Proof",
       "Director 1 ID Proof",
@@ -290,6 +290,14 @@ function ComplianceChecklist() {
                       {index < indexValue ? (
                         <FileIcon className="mr-2 h-4 w-4 text-green-500" />
                       ) : (
+                        // <CheckCircle2
+                        //   className="h-5 w-5 text-green-500 ml-2"
+                        //   aria-label={`${doc.name} uploaded`}
+                        // />
+                        // <XCircle
+                        //   className="h-5 w-5 text-red-500 ml-2"
+                        //   aria-label={`${doc.name} not uploaded`}
+                        // />
                         <FileIcon className="mr-2 h-4 w-4" />
                       )}
 
@@ -344,7 +352,11 @@ function ComplianceChecklist() {
           <CardContent>
             <div className="bg-muted p-4 rounded-md h-[calc(50vh-50px)] overflow-auto">
               {selectedDoc.image ? (
-                <img src={selectedDoc.image} alt={selectedDoc.name} />
+                <img
+                  src={selectedDoc.image}
+                  alt={selectedDoc.name}
+                  // className="h-110 w-110 object-contain"
+                />
               ) : (
                 <p>{selectedDoc.content}</p>
               )}
