@@ -1,5 +1,6 @@
 import WithLayout from "@/components/layout/WithLayout";
 import { Button } from "@/components/ui/button";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -53,6 +54,10 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import certificateImg from "@/assets/Certificate_of_Incorporation.jpg";
+import bankStatement from "@/assets/BankStatementChequing.png";
+import addressproof from "@/assets/addressproof.png";
+import idproof from "@/assets/idproof.png";
 
 const companyHierarchy = {
   name: "Parent Company",
@@ -85,16 +90,19 @@ const TreeNode = ({ node, level }) => {
 const documentCategories = {
   "Certificate of Company": {
     main: "Incorporation Document",
-    subOptions: ["Registartion Certificate", "Incorportation Letter"],
+    subOptions: ["Registration Certificate", "Incorporation Letter"],
+    image: certificateImg,
   },
   "Address Proof of Company": {
     main: "Address Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    image: idproof,
   },
 
   "ID Proof of Alice Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
+    image: addressproof,
   },
 
   "Address Proof of Alice Johnson": {
@@ -104,16 +112,19 @@ const documentCategories = {
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
+    image: idproof,
   },
   "Address Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+    image: idproof,
   },
 };
 const CreateLead = () => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [photo, setPhoto] = useState(null);
 
   let params = new URLSearchParams(window.location.search);
   const [clientType, setClientType] = useState(
@@ -129,7 +140,9 @@ const CreateLead = () => {
   };
 
   const [newLead, setNewLead] = useState({
-    firstName: "",
+    firstName: "Teslack Organization",
+    regNumber: "12345/28/14",
+    finance: "31/12/2024",
     lastName: "",
     email: "",
     mobile: "",
@@ -257,6 +270,39 @@ const CreateLead = () => {
     { id: 4, name: "Entity D" },
     { id: 5, name: "Entity E" },
   ];
+  const documents = [
+    {
+      id: 1,
+      name: "Certificate of Incorporation",
+      content: "Certificate of Incorporation content...",
+      image: certificateImg,
+    },
+    {
+      id: 2,
+      name: "Bank Statement",
+      content: "Bank Statement content...",
+      image: bankStatement,
+    },
+    {
+      id: 3,
+      name: "Address Proof",
+      content: "Address Proof content...",
+      image: addressproof,
+    },
+    {
+      id: 4,
+      name: "Director Alice ID Proof",
+      content: "ID Proof content...",
+      image: idproof,
+    },
+    {
+      id: 5,
+      name: "Director Bob ID Proof",
+      content: "ID Proof content...",
+      image: idproof,
+    },
+    // Add more documents as needed
+  ];
 
   const handleCheckboxChange = (checked, item) => {
     setCheckedItems({ ...checkedItems, [item]: checked });
@@ -287,17 +333,66 @@ const CreateLead = () => {
       [category]: !prev[category],
     }));
   };
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  console.log("de", selectedDoc);
 
   // Handle document selection
+  // const handleDocumentSelect = (category, subOption) => {
+  //   setSelectedCategory(category);
+  //   setSelectedSubOption(subOption);
+  //   if (subOption === "Registration Certificate") {
+  //     setPhoto(documentCategories?.["Certificate of Company"]?.image);
+  //   } else if (subOption === "Bank Statement") {
+  //     setPhoto(documentCategories?.["Address Proof of Company"]?.image);
+  //   } else if (subOption === "Passport") {
+  //     setPhoto(documentCategories?.["ID Proof of Alice Johnson"]?.image);
+  //   } else {
+  //     setPhoto(null);
+  //   }
+  // };
+
   const handleDocumentSelect = (category, subOption) => {
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
-  };
 
+    // Handle the selection of documents
+    if (subOption === "Incorporation Letter") {
+      setPhoto(documentCategories["Certificate of Company"]?.image);
+      setStatus("Approved");
+    } else if (subOption === "Bank Statement") {
+      setPhoto(documentCategories["Address Proof of Company"]?.image);
+      setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
+    } else if (subOption === "Passport") {
+      setPhoto(documentCategories["ID Proof of Alice Johnson"]?.image);
+      setStatus("Approved");
+    } else {
+      setPhoto(null);
+      setStatus("Pending");
+    }
+  };
+  // console.log("ph", photo);
+
+  // const handleFileChange = (e) => {
+  //   const selectedFile = e.target.files[0];
+  //   setFile(selectedFile);
+
+  //   if (selectedFile) {
+  //     if (selectedFile.type.startsWith("image/")) {
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         setPreview(reader.result);
+  //       };
+  //       reader.readAsDataURL(selectedFile);
+  //     } else {
+  //       setPreview(null);
+  //     }
+  //   }
+  // };
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
+    // Create a file preview if it's an image
     if (selectedFile) {
       const previewURL = URL.createObjectURL(selectedFile);
       setPreview(previewURL);
@@ -305,6 +400,20 @@ const CreateLead = () => {
       // Set status to "Uploaded" when a file is selected
       setStatus("Uploaded");
     }
+  };
+  // React.useEffect(() => {
+  //   if (photo) {
+  //     setStatus("Approved");
+  //   }
+  // }, [photo]); 
+  const handleSelectDoc = (doc) => {
+    debugger;
+    console.log("dddd", doc);
+
+    // setSelectedDoc(doc);
+    // if (doc == "") {
+    //   setPhoto();
+    // }
   };
 
   // Upload handler
@@ -342,7 +451,7 @@ const CreateLead = () => {
         return <FileText className="h-5 w-5" />;
     }
   };
-
+  const [status, setStatus] = useState("Pending");
   return (
     <div className="p-4">
       <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
@@ -952,7 +1061,6 @@ const CreateLead = () => {
             <form className="space-y-6">
               <div className="grid grid-cols-1  gap-4">
                 {/* <div className="space-y-2">
-
                   <Label htmlFor="source"> Parent</Label>
                   <div className="relative ">
                     <div className="flex items-center">
@@ -1041,7 +1149,7 @@ const CreateLead = () => {
                       }
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Country of Origin" />
+                        <SelectValue placeholder="South Africa" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Website">India</SelectItem>
@@ -1065,7 +1173,7 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full ">
-                        <SelectValue placeholder="Select industry" />
+                        <SelectValue placeholder="Technology " />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Technology">Technology</SelectItem>
@@ -1082,7 +1190,11 @@ const CreateLead = () => {
                     </Label>
                     <Input
                       id="comreg"
+                      value={newLead.regNumber}
                       placeholder="Enter Company Registration Number"
+                      onChange={(e) =>
+                        setNewLead({ ...newLead, regNumber: e.target.value })
+                      }
                     />
                   </div>
 
@@ -1122,7 +1234,7 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Jurisdiction" />
+                        <SelectValue placeholder="South AFrica " />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="In">India</SelectItem>
@@ -1146,13 +1258,13 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Jurisdiction" />
+                        <SelectValue placeholder="South Africa" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="In">India</SelectItem>
 
                         <SelectItem value="Technology">USA</SelectItem>
-                        <SelectItem value="Retail">South AFrica</SelectItem>
+                        <SelectItem value="Retail">South Africa</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1378,12 +1490,12 @@ const CreateLead = () => {
                   >
                     <DialogTrigger asChild>
                       <Button>
-                        <PlusCircle className="mr-2 h-4 w-4" /> Add Beneficiary
+                        <PlusCircle className="mr-2 h-4 w-4" /> Add Key Contributors
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Add New Beneficiary</DialogTitle>
+                        <DialogTitle>Add New Key Contributors</DialogTitle>
                       </DialogHeader>
                       <form
                         onSubmit={(e) => {
@@ -1394,7 +1506,6 @@ const CreateLead = () => {
                         className="space-y-4"
                       >
                         {/* <div className="space-y-2">
-
                           <Label htmlFor="type" className="required">
                             Type
                           </Label>
@@ -1495,7 +1606,7 @@ const CreateLead = () => {
                           </div>
                         ) : null}
 
-                        <Button type="submit">Add Beneficiary</Button>
+                        <Button type="submit">Add Key Contributors</Button>
                       </form>
                     </DialogContent>
                   </Dialog>
@@ -1548,6 +1659,7 @@ const CreateLead = () => {
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
+
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
                     ([category, categoryData]) => (
@@ -1602,6 +1714,36 @@ const CreateLead = () => {
                                 ))}
                               </SelectContent>
                             </Select>
+                            {/* Documents List */}
+                            {selectedSubOption && categoryData.documents && (
+                              <ul className="mt-4 space-y-2">
+                                {categoryData.documents.map((doc, index) => (
+                                  <li
+                                    key={doc.main}
+                                    className="flex justify-between"
+                                  >
+                                    <Button
+                                      variant={
+                                        selectedDoc?.main === doc.main
+                                          ? "secondary"
+                                          : "ghost"
+                                      }
+                                      className="w-full justify-start"
+                                      onClick={() => setSelectedDoc(doc)}
+                                    >
+                                      {/* Display check or upload icon */}
+                                      {index < categoryData.indexValue ? (
+                                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                                      ) : (
+                                        <FileIcon className="mr-2 h-4 w-4" />
+                                      )}
+
+                                      {doc.name}
+                                    </Button>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                           </div>
                         )}
 
@@ -1610,15 +1752,32 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
+                {/* Document Preview (optional if any document is selected) */}
+                {selectedDoc && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold">Selected Document</h3>
+                    <div className="mt-2">
+                      <p>{selectedDoc.name}</p>
+                      {/* You can add additional logic here to display document preview */}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Document Upload Section */}
               <div className="flex-1 px-4 overflow-auto">
                 <Card className="h-full">
                   <CardContent className="p-4">
-                    <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedSubOption || "Document"}
-                    </h1>
+                    <div className="flex justify-between items-center mb-4">
+                      <h1 className="text-2xl font-bold">
+                        {selectedSubOption || "Document"}
+                      </h1>
+                      <span className="text-lg text-yellow-500 font-semibold">
+                        {/* **Dynamic status display** */}
+                        Status: {status}
+                        {/* The status changes based on file type */}
+                      </span>
+                    </div>
 
                     <div className="mb-4">
                       <Label htmlFor="file-upload" className="required">
@@ -1652,20 +1811,43 @@ const CreateLead = () => {
                           </div>
                         )
                       ) : (
-                        <p className="text-gray-500 text-center">
-                          You will see your document here.
-                        </p>
+                        // <p className="text-gray-500 text-center">
+                        //   You will see your document here.
+                        // </p>
+                        <img
+                          src={photo}
+                          // alt="Default Preview"
+                          className="max-w-full max-h-[400px] object-contain"
+                        />
                       )}
                     </div>
                   </CardContent>
                 </Card>
+                {/* Comment Box Section */}
+                <div className="">
+                  <Label htmlFor="comment">Comment</Label>
+                  <textarea
+                    id="comment"
+                    rows="4"
+                    className="w-full p-2 border border-gray-300 rounded-lg"
+                    placeholder="Comments from Compliance..."
+                  />
+                </div>
+                <div className="flex justify-end mt-2 mb-2">
+                  <Button
+                    onClick={handleUpload}
+                    disabled={!file || !selectedSubOption}
+                  >
+                    <Upload className="h-4 w-4" />
+                    Upload {selectedSubOption || "Document"}
+                  </Button>
 
-                <Button disabled className="ml-5">
-                  Send To Compliance Team
-                </Button>
-              </div>
+                  <Button disabled className="ml-5">
+                    Send To Compliance Team
+                  </Button>
+                </div>
 
-              {/* <div className="my-10 flex justify-end">
+                {/* <div className="my-10 flex justify-end">
                   <Button
                     className="mx-5"
                     onClick={() =>
@@ -1679,6 +1861,7 @@ const CreateLead = () => {
                     Submit
                   </Button>
                 </div> */}
+              </div>
             </div>
           </TabsContent>
         </Tabs>
