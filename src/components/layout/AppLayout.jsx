@@ -232,7 +232,7 @@ export default function AppLayout({ children }) {
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <div
                   className={cn(
-                    activeItem === "" && "bg-custom-black text-white",
+                    activeItem === "" && "bg-gray-300 text-black",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                   )}
                   onClick={handleNavigate("/home", "")}
