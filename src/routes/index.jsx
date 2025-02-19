@@ -57,6 +57,7 @@ import LeadM from "@/pages/LeadM";
 import ComplianceT from "@/pages/ComplianceT";
 import CustomerO from "@/pages/CustomerO";
 import AdminSignIn from "@/pages/AdminSignIn";
+import AdminSignUp from "@/pages/AdminSignUp";
 const routes = [
   {
     exact: true,
@@ -82,6 +83,12 @@ const routes = [
     exact :true,
     path:"/",
     component:<AdminSignIn/>
+  },
+  ,
+  {
+    exact: true,
+    path: "/adminSignUp",
+    component: <AdminSignUp />,
   },
   {
     exact: true,
