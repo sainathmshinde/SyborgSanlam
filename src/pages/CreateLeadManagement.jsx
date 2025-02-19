@@ -346,13 +346,13 @@ const CreateLeadManagement = () => {
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                About Lead
+                Manage Lead
               </TabsTrigger>
               <TabsTrigger
                 value="contact"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                Customer Details
+                Basic Information{" "}
               </TabsTrigger>
             </TabsList>
           </div>
