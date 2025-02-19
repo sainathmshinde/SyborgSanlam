@@ -33,7 +33,7 @@ export default function Login() {
 
     setError("");
 
-    navigate("/home");
+    navigate("/profile");
   };
 
   return (
@@ -58,7 +58,8 @@ export default function Login() {
                   id="email"
                   type="email"
                   placeholder="sarahjohnson@example.com"
-                  value={email}
+                  // value={email}
+                    value="sara.john@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -69,7 +70,8 @@ export default function Login() {
                 <Input
                   id="password"
                   type="password"
-                  value={password}
+                  // value={password}
+                  value="password"
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="********"
                 />
@@ -89,7 +91,8 @@ export default function Login() {
                   id="otp"
                   type="text"
                   placeholder="1234"
-                  value={otp}
+                  // value={otp}
+                  value="1234"
                   onChange={(e) => setOtp(e.target.value)}
                 />
               </div>
