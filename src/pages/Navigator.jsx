@@ -27,15 +27,16 @@ function Navigator() {
       path: "/roles",
     },
     {
-      title: "Customer",
-      description: "Handle customer related activities",
-      path: "/login",
-    },
-    {
       title: "Sales",
       description: "Manage sales processes and data",
       path: "/salesdashboard",
     },
+    {
+      title: "Customer",
+      description: "Handle customer related activities",
+      path: "/login",
+    },
+
     {
       title: "Onboarding",
       description: "Guide new users through the system",
