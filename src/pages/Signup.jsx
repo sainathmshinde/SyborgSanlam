@@ -87,7 +87,7 @@ export default function SignUp() {
                   <Input
                     id="firstName"
                     placeholder="Enter Primary Contact First Name"
-                    value="Sipho"
+                    value="Sarah"
                   />
                 </div>
                 <div className="space-y-2">
@@ -97,7 +97,7 @@ export default function SignUp() {
                   <Input
                     id="lastName"
                     placeholder="Enter Primary Contact Last Name"
-                    value="Keita"
+                    value="Johnson"
                   />
                 </div>
                 <div className="space-y-2">
@@ -108,7 +108,7 @@ export default function SignUp() {
                     id="mobile"
                     type="tel"
                     placeholder="Enter Primary Contact Mobile Number"
-                    value="0824555555"
+                    value="+1 (555) 123-4567"
                   />
                 </div>
                 <div className="space-y-2">
@@ -119,7 +119,7 @@ export default function SignUp() {
                     id="email"
                     type="email"
                     placeholder="Enter Primary Contact Email"
-                    value="siphokeita@example.com"
+                    value="sara.john@example.com"
                   />
                 </div>
                 {/* <div className="space-y-2">
@@ -150,7 +150,7 @@ export default function SignUp() {
                   <Input
                     id="username"
                     placeholder="Enter your username"
-                    value="siphokeita"
+                    value="sara.john@example.com"
                   />
                 </div>
                 <div className="space-y-2">
