@@ -145,6 +145,18 @@ const EditLeadManagement = () => {
       reader.readAsDataURL(selectedFile);
     }
   };
+  const toggleCategory = (category) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
+  const handleDocumentSelect = (category, subOption) => {
+    setSelectedCategory(category);
+    setSelectedSubOption(subOption);
+    setFile(null);
+    setPreview(null);
+  };
 
   const [beneficiaries, setBeneficiaries] = useState([
     {
@@ -174,7 +186,9 @@ const EditLeadManagement = () => {
       main: "Address Document",
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
+  };
 
+  const documentCategories1 = {
     "ID Proof of Alice Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -192,7 +206,6 @@ const EditLeadManagement = () => {
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
   };
-
   const handleCreateLead = () => {
     setNewLead({
       firstName: "",
@@ -268,13 +281,13 @@ const EditLeadManagement = () => {
                 value="about"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                Manage and Assign Lead
+                Manage Lead
               </TabsTrigger>
               <TabsTrigger
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                Basic Information
+                Basic Information and Assign Lead
               </TabsTrigger>
               <TabsTrigger
                 value="contact"
@@ -892,9 +905,87 @@ const EditLeadManagement = () => {
                 <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                   <h2 className="text-xl font-bold mb-4">Documents</h2>
                   <ul className="space-y-4">
+                    <h3>
+                      <strong> Company Documents - </strong>
+                    </h3>
                     {Object.entries(documentCategories).map(
-                      ([category, categoryData]) => (
-                        <li key={category}>
+                      ([category, categoryData], index, arr) => (
+                        <li
+                          key={category}
+                          className="border-b border-gray-300 pb-2" // Adds a visible border at the bottom
+                        >
+                          {/* Category header with expand/collapse toggle */}
+                          <Button
+                            variant={
+                              category === selectedCategory
+                                ? "secondary"
+                                : "ghost"
+                            }
+                            className="flex items-center justify-between cursor-pointer w-full"
+                            onClick={() => toggleCategory(category)}
+                          >
+                            <div className="flex items-center">
+                              <FileText className="mr-2 h-5 w-5" />
+                              <span className="font-semibold">{category}</span>
+                            </div>
+                            {expandedCategories[category] ? (
+                              <ChevronDown />
+                            ) : (
+                              <ChevronRight />
+                            )}
+                          </Button>
+
+                          {/* Sub-options dropdown when category is expanded */}
+                          {expandedCategories[category] && (
+                            <div className="ml-6 mt-2 space-y-2">
+                              <Select
+                                onValueChange={(subOption) =>
+                                  handleDocumentSelect(category, subOption)
+                                }
+                              >
+                                <SelectTrigger className="w-full">
+                                  <SelectValue
+                                    placeholder={`Select ${category} `}
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {categoryData.subOptions.map((subOption) => (
+                                    <SelectItem
+                                      key={subOption}
+                                      value={subOption}
+                                      className={`${
+                                        selectedSubOption === subOption
+                                          ? "bg-green-100"
+                                          : ""
+                                      }`}
+                                    >
+                                      {subOption}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          )}
+
+                          {/* Separator but not on last item */}
+                          {index !== arr.length - 1 && (
+                            <Separator className="my-2 border-gray-500" />
+                          )}
+                        </li>
+                      )
+                    )}
+                  </ul>
+
+                  <ul className="space-y-4">
+                    <h3 className="mt-4">
+                      <strong> KYC of Key Contributors - </strong>
+                    </h3>
+                    {Object.entries(documentCategories1).map(
+                      ([category, categoryData], index, arr) => (
+                        <li
+                          key={category}
+                          className="border-b border-gray-300 pb-2"
+                        >
                           {/* Category header with expand/collapse toggle */}
                           <Button
                             variant={
@@ -948,7 +1039,9 @@ const EditLeadManagement = () => {
                             </div>
                           )}
 
-                          <Separator className="my-2" />
+                          {index !== arr.length - 1 && (
+                            <Separator className="my-2 border-gray-500" />
+                          )}
                         </li>
                       )
                     )}

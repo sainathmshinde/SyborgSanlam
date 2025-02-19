@@ -34,8 +34,8 @@ const maintenance = [
   // },
   { name: "Country", path: "/country", id: "country" },
   { name: "Currency", path: "/currency", id: "currency" },
-  { name: "Entity Type", path: "/entityType", id: "entityType" },
-  { name: "Fund Type", path: "/fundType", id: "fundType" },
+  // { name: "Entity Type", path: "/entityType", id: "entityType" },
+  // { name: "Fund Type", path: "/fundType", id: "fundType" },
 ];
 
 export default function AppLayout({ children }) {
@@ -212,8 +212,7 @@ export default function AppLayout({ children }) {
                       <div
                         key={item.id}
                         className={cn(
-                          activeItem === item.id &&
-                            "bg-custom-black text-white",
+                          activeItem === item.id && "bg-gray-300 text-black",
                           "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                         )}
                         onClick={handleNavigate(item.path, item.id)}
@@ -230,7 +229,7 @@ export default function AppLayout({ children }) {
           {type === "client" ? (
             <div className={cn("flex-1")}>
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              <div
+                <div
                   className={cn(
                     activeItem === "" && "bg-gray-300 text-black",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
@@ -252,14 +251,14 @@ export default function AppLayout({ children }) {
                   </svg>
                   Dashboard
                 </div>
-                
+
                 <div
                   className={cn(
                     activeItem === "profile" && "bg-gray-300 text-black",
                     "flex items-center gap-3 rounded-lg px-3 py-2 transition-all cursor-pointer"
                   )}
                   onClick={handleNavigate("/profile", "profile")}
-                > 
+                >
                   {/* <Package className="h-4 w-4" /> */}
                   <svg
                     width="18"

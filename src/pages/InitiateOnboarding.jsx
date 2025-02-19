@@ -98,7 +98,8 @@ const documentCategories = {
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     image: idproof,
   },
-
+}
+const documentCategories1 ={
   "ID Proof of Alice Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -350,7 +351,20 @@ const CreateLead = () => {
   //     setPhoto(null);
   //   }
   // };
+  //const [status, setStatus] = useState("Pending"); // Your state for the status
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Approved":
+        return "text-green-500"; // Green for approved
+      case "Rejected":
+        return "text-red-500"; // Red for rejected
+      case "Pending":
+        return "text-yellow-500"; // Yellow for pending
+      default:
+        return "text-gray-500"; // Default gray color
+    }
+  };
   const handleDocumentSelect = (category, subOption) => {
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
@@ -884,7 +898,10 @@ const CreateLead = () => {
             <div className="flex h-screen bg-gray-100">
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
-                <h2 className="text-xl font-bold mb-4">Documents</h2>
+                <h2 className="text-xl font-bold mb-4">Documents
+
+              
+                </h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
                     ([category, categoryData]) => (
@@ -1659,9 +1676,104 @@ const CreateLead = () => {
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
-
+                
                 <ul className="space-y-4">
+                <h3><strong>Company Documents -</strong></h3>
                   {Object.entries(documentCategories).map(
+                    ([category, categoryData]) => (
+                      <li key={category}>
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5" />
+                            <span className="font-semibold">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category}`}
+                                />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            {/* Documents List */}
+                            {selectedSubOption && categoryData.documents && (
+                              <ul className="mt-4 space-y-2">
+                                {categoryData.documents.map((doc, index) => (
+                                  <li
+                                    key={doc.main}
+                                    className="flex justify-between"
+                                  >
+                                    <Button
+                                      variant={
+                                        selectedDoc?.main === doc.main
+                                          ? "secondary"
+                                          : "ghost"
+                                      }
+                                      className="w-full justify-start"
+                                      onClick={() => setSelectedDoc(doc)}
+                                    >
+                                      {/* Display check or upload icon */}
+                                      {index < categoryData.indexValue ? (
+                                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                                      ) : (
+                                        <FileIcon className="mr-2 h-4 w-4" />
+                                      )}
+
+                                      {doc.name}
+                                    </Button>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+
+                        <Separator className="my-2" />
+                      </li>
+                    )
+                  )}
+                </ul>
+                
+                <ul className="space-y-4">
+                <h3><strong>Key Contributors -</strong></h3>
+                  {Object.entries(documentCategories1).map(
                     ([category, categoryData]) => (
                       <li key={category}>
                         {/* Category header with expand/collapse toggle */}
@@ -1772,11 +1884,11 @@ const CreateLead = () => {
                       <h1 className="text-2xl font-bold">
                         {selectedSubOption || "Document"}
                       </h1>
-                      <span className="text-lg text-yellow-500 font-semibold">
-                        {/* **Dynamic status display** */}
-                        Status: {status}
-                        {/* The status changes based on file type */}
-                      </span>
+                      <span
+          className={`text-lg font-semibold ${getStatusColor(status)}`} // Apply status color
+        >
+          Status: {status}
+        </span>
                     </div>
 
                     <div className="mb-4">

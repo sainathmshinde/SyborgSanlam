@@ -158,7 +158,8 @@ function Profile() {
       main: "Address Document",
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
-
+  };
+  const documentCategories1 = {
     "ID Proof of Alice Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -383,7 +384,7 @@ function Profile() {
                     value="beneficiaries"
                     className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                   Key Contributors
+                    Key Contributors
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -627,7 +628,8 @@ function Profile() {
                       >
                         <DialogTrigger asChild>
                           <Button>
-                            <PlusCircle className="mr-2 h-4 w-4" /> Add Key Contributors
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Key
+                            Contributors
                           </Button>
                         </DialogTrigger>
                         <DialogContent>
@@ -807,7 +809,79 @@ function Profile() {
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                     <h2 className="text-xl font-bold mb-4">Documents</h2>
                     <ul className="space-y-4">
+                      <h3>
+                        <strong> Company Documents - </strong>
+                      </h3>
                       {Object.entries(documentCategories).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5" />
+                                <span className="font-semibold">
+                                  {category}
+                                </span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
+
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    <ul className="space-y-4">
+                      <h3 className="mt-4">
+                        <strong> KYC of Key Contributors - </strong>
+                      </h3>
+                      {Object.entries(documentCategories1).map(
                         ([category, categoryData]) => (
                           <li key={category}>
                             {/* Category header with expand/collapse toggle */}
