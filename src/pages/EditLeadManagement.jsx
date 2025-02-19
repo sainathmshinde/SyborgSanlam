@@ -643,9 +643,6 @@ const EditLeadManagement = () => {
                         {/* Conditional Fields */}
                         {recipientType === "onboardingTeam" && (
                           <div className="space-y-2">
-                            {/* <Label htmlFor="onboardingManager">
-                              Select Onboarding Manager
-                            </Label> */}
                             <Select
                               value={contact.onboardingManager}
                               onValueChange={(value) => {
@@ -724,7 +721,7 @@ const EditLeadManagement = () => {
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
-                          <DialogTitle>Add New Beneficiary</DialogTitle>
+                          <DialogTitle>Add New Key Contributors</DialogTitle>
                         </DialogHeader>
                         <form
                           onSubmit={(e) => {
@@ -845,7 +842,7 @@ const EditLeadManagement = () => {
                               setIsBeneficiaryDialogOpen(false);
                             }}
                           >
-                            Add Beneficiary
+                            Add Key Contributors
                           </Button>
                         </form>
                       </DialogContent>
