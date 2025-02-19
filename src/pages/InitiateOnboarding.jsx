@@ -1676,8 +1676,9 @@ const CreateLead = () => {
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                 <h2 className="text-xl font-bold mb-4">Documents</h2>
-                <h3><strong>Company Documents -</strong></h3>
+                
                 <ul className="space-y-4">
+                <h3><strong>Company Documents -</strong></h3>
                   {Object.entries(documentCategories).map(
                     ([category, categoryData]) => (
                       <li key={category}>
@@ -1769,8 +1770,9 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
-                <h3><strong>Key Contributors -</strong></h3>
+                
                 <ul className="space-y-4">
+                <h3><strong>Key Contributors -</strong></h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData]) => (
                       <li key={category}>
