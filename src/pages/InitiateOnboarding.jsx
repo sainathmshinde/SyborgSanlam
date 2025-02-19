@@ -1680,8 +1680,8 @@ const CreateLead = () => {
                 <ul className="space-y-4">
                 <h3><strong>Company Documents -</strong></h3>
                   {Object.entries(documentCategories).map(
-                    ([category, categoryData]) => (
-                      <li key={category}>
+                    ([category, categoryData],index,arr) => (
+                      <li key={category} className="border-b border-gray-300 pb-2">
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
@@ -1771,11 +1771,11 @@ const CreateLead = () => {
                   )}
                 </ul>
                 
-                <ul className="space-y-4">
-                <h3><strong>Key Contributors -</strong></h3>
+                <ul className="space-y-4 mt-4">
+                <h3><strong>KYC of Key Contributors Documents -</strong></h3>
                   {Object.entries(documentCategories1).map(
-                    ([category, categoryData]) => (
-                      <li key={category}>
+                    ([category, categoryData],index,arr) => (
+                      <li key={category} className="border-b border-gray-300 pb-2">
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
