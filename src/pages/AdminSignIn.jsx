@@ -109,7 +109,7 @@ export default function AdminSignIn() {
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
             <a
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("adminSignUp")}
               className="underline cursor-pointer"
             >
               Sign up
