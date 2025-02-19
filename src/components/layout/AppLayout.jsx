@@ -274,7 +274,7 @@ export default function AppLayout({ children }) {
                       fill="black"
                     />
                   </svg>
-                  Profiles
+                  Profile
                 </div>
                 <div
                   className={cn(
