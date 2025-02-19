@@ -502,12 +502,12 @@ const CreateLead = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="sa">South Africa</SelectItem>
-              <SelectItem value="in">India</SelectItem>
+              {/* <SelectItem value="in">India</SelectItem>
               <SelectItem value="us">United States</SelectItem>
               <SelectItem value="ca">Canada</SelectItem>
               <SelectItem value="uk">United Kingdom</SelectItem>
               <SelectItem value="au">Australia</SelectItem>
-              <SelectItem value="de">Germany</SelectItem>
+              <SelectItem value="de">Germany</SelectItem> */}
             </SelectContent>
           </Select>
         </div>
@@ -520,15 +520,15 @@ const CreateLead = () => {
             onValueChange={(e) => {
               setClientType(e);
             }}
-            value={clientType === "company" ? "company" : "individual"}
+            value={clientType === "company" ? "company" : "individual" }
           >
             <SelectTrigger>
               <SelectValue placeholder="Select client type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="individual">Individual</SelectItem>
+              {/* <SelectItem value="individual">Individual</SelectItem>
               <SelectItem value="partnership">Partnership</SelectItem>
-              <SelectItem value="trust">Trust</SelectItem>
+              <SelectItem value="trust">Trust</SelectItem> */}
               <SelectItem value="company">Company</SelectItem>
             </SelectContent>
           </Select>
