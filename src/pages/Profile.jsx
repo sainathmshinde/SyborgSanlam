@@ -878,8 +878,8 @@ function Profile() {
                       )}
                     </ul>
                     <ul className="space-y-4">
-                      <h3>
-                        <strong> Key Contributors Documents - </strong>
+                      <h3 className="mt-4">
+                        <strong> KYC of Key Contributors - </strong>
                       </h3>
                       {Object.entries(documentCategories1).map(
                         ([category, categoryData]) => (
