@@ -106,9 +106,9 @@ const EditLeadManagement = () => {
     address: "742 Maple Avenue",
     address1: "Oakwood Drive, Building 5",
 
-    city: "San Francisco",
-    state: "California",
-    country: "USA",
+    city: "Cape Town",
+    state: "Western Cape",
+    country: "ZAF",
   });
 
   const handleInputChange = (field, value) => {
@@ -503,7 +503,7 @@ const EditLeadManagement = () => {
                       <div className="space-y-2">
                         <Label htmlFor="address">
                           Address Line 2
-                          <span className="text-red-600 ml-1">*</span>
+                          <span className="text-red-600 ml-1"></span>
                         </Label>
                         <Textarea
                           id="address"
@@ -685,8 +685,9 @@ const EditLeadManagement = () => {
                             <input
                               type="text"
                               id="customerName"
-                              placeholder="Enter customer Name"
                               className="w-full border p-2 rounded-md mt-1"
+                              value="Sarah Johnson" // Set default value
+                              readOnly // Prevents editing, remove if user should edit
                             />
                           </div>
                         )}
