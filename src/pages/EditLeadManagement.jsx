@@ -909,8 +909,11 @@ const EditLeadManagement = () => {
                       <strong> Company Documents - </strong>
                     </h3>
                     {Object.entries(documentCategories).map(
-                      ([category, categoryData]) => (
-                        <li key={category}>
+                      ([category, categoryData], index, arr) => (
+                        <li
+                          key={category}
+                          className="border-b border-gray-300 pb-2" // Adds a visible border at the bottom
+                        >
                           {/* Category header with expand/collapse toggle */}
                           <Button
                             variant={
@@ -918,7 +921,7 @@ const EditLeadManagement = () => {
                                 ? "secondary"
                                 : "ghost"
                             }
-                            className={`flex items-center justify-between cursor-pointer `}
+                            className="flex items-center justify-between cursor-pointer w-full"
                             onClick={() => toggleCategory(category)}
                           >
                             <div className="flex items-center">
@@ -964,18 +967,25 @@ const EditLeadManagement = () => {
                             </div>
                           )}
 
-                          <Separator className="my-2" />
+                          {/* Separator but not on last item */}
+                          {index !== arr.length - 1 && (
+                            <Separator className="my-2 border-gray-500" />
+                          )}
                         </li>
                       )
                     )}
                   </ul>
+
                   <ul className="space-y-4">
-                    <h3>
-                      <strong> Key Contributors Documents - </strong>
+                    <h3 className="mt-4">
+                      <strong> KYC of Key Contributors - </strong>
                     </h3>
                     {Object.entries(documentCategories1).map(
-                      ([category, categoryData]) => (
-                        <li key={category}>
+                      ([category, categoryData], index, arr) => (
+                        <li
+                          key={category}
+                          className="border-b border-gray-300 pb-2"
+                        >
                           {/* Category header with expand/collapse toggle */}
                           <Button
                             variant={
@@ -1029,7 +1039,9 @@ const EditLeadManagement = () => {
                             </div>
                           )}
 
-                          <Separator className="my-2" />
+                          {index !== arr.length - 1 && (
+                            <Separator className="my-2 border-gray-500" />
+                          )}
                         </li>
                       )
                     )}
