@@ -1724,10 +1724,10 @@ const CreateLead = () => {
             <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
-                <h2 className="text-xl font-bold mb-4">Documents</h2>
+                <h2 className="text-2xl font-bold mb-4">Documents</h2>
                 
                 <ul className="space-y-4">
-                <h3><strong>Company Documents -</strong></h3>
+                <h3 className="text-xl font-bold underline">Company Documents</h3>
                   {Object.entries(documentCategories).map(
                     ([category, categoryData],index,arr) => (
                       <li key={category} className="border-b border-gray-300 pb-2">
@@ -1743,7 +1743,7 @@ const CreateLead = () => {
                         >
                           <div className="flex items-center">
                             <FileText className="mr-2 h-5 w-5" />
-                            <span className="font-semibold">{category}</span>
+                            <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
                             <ChevronDown />
@@ -1820,8 +1820,8 @@ const CreateLead = () => {
                   )}
                 </ul>
                 
-                <ul className="space-y-4 mt-4">
-                <h3><strong>KYC of Key Contributors Documents -</strong></h3>
+                <ul className="space-y-4 mt-6">
+                <h3 className="text-xl font-bold underline">KYC of Key Individuals Documents</h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData],index,arr) => (
                       <li key={category} className="border-b border-gray-300 pb-2">
@@ -1837,7 +1837,7 @@ const CreateLead = () => {
                         >
                           <div className="flex items-center">
                             <FileText className="mr-2 h-5 w-5" />
-                            <span className="font-semibold">{category}</span>
+                            <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
                             <ChevronDown />
