@@ -209,6 +209,7 @@ const CreateLead = () => {
       lastName: "Johnson",
       email: "alice.johnson@example.com",
       mobile: "+1234567890",
+      country: "South Africa",
       type: "Individual",
       designation: "Director",
     },
@@ -217,6 +218,7 @@ const CreateLead = () => {
       lastName: "Johnson",
       email: "bob.johnson@example.com",
       mobile: "+1 (555) 111-3333",
+      country: "South Africa",
       type: "Individual",
       designation: "Director",
     },
@@ -491,7 +493,7 @@ const CreateLead = () => {
         </div> */}
       </div>
       {/* <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10"> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-md p-4 bg-gray-200 border rounded-lg sticky top-0 z-10 ">
         <div className="space-y-2">
           <Label htmlFor="country" className="required">
             Country
@@ -502,12 +504,12 @@ const CreateLead = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="sa">South Africa</SelectItem>
-              {/* <SelectItem value="in">India</SelectItem>
+              <SelectItem value="in">India</SelectItem>
               <SelectItem value="us">United States</SelectItem>
               <SelectItem value="ca">Canada</SelectItem>
               <SelectItem value="uk">United Kingdom</SelectItem>
               <SelectItem value="au">Australia</SelectItem>
-              <SelectItem value="de">Germany</SelectItem> */}
+              <SelectItem value="de">Germany</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -526,14 +528,14 @@ const CreateLead = () => {
               <SelectValue placeholder="Select client type" />
             </SelectTrigger>
             <SelectContent>
-              {/* <SelectItem value="individual">Individual</SelectItem>
+              <SelectItem value="individual">Individual</SelectItem>
               <SelectItem value="partnership">Partnership</SelectItem>
-              <SelectItem value="trust">Trust</SelectItem> */}
+              <SelectItem value="trust">Trust</SelectItem>
               <SelectItem value="company">Company</SelectItem>
             </SelectContent>
           </Select>
         </div>
-      </div>
+      </div> */}
 
       {clientType === "individual" ? (
         <Tabs defaultValue="basic">
@@ -1064,7 +1066,7 @@ const CreateLead = () => {
               value="beneficiaries"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Key Contributors
+              Key Individuals
             </TabsTrigger>
             <TabsTrigger
               value="documents"
@@ -1138,7 +1140,7 @@ const CreateLead = () => {
                     </Dialog>
                   </div>
                 </div> */}
-                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[325px]">
+                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[395px]">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="required">
                       Customer Name
@@ -1155,7 +1157,8 @@ const CreateLead = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="country" className="required">
-                      Country of Origin
+                      {/* Country of Origin */}
+                      Country
                     </Label>
                     <Select
                       id="source"
@@ -1200,6 +1203,29 @@ const CreateLead = () => {
                       </SelectContent>
                     </Select>
                   </div>
+
+                  <div className="space-y-2">
+          <Label htmlFor="client-type" className="required">
+            Customer Type
+          </Label>
+          <Select
+            id="client-type"
+            onValueChange={(e) => {
+              setClientType(e);
+            }}
+            value={clientType === "company" ? "company" : "individual" }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select client type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="individual">Individual</SelectItem>
+              <SelectItem value="partnership">Partnership</SelectItem>
+              <SelectItem value="trust">Trust</SelectItem>
+              <SelectItem value="company">Company</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="industry" className="required">
@@ -1251,13 +1277,13 @@ const CreateLead = () => {
                       className="required"
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="South AFrica " />
+                        <SelectValue placeholder="South Africa " />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="In">India</SelectItem>
 
                         <SelectItem value="Technology">USA</SelectItem>
-                        <SelectItem value="Retail">South AFrica</SelectItem>
+                        <SelectItem value="Retail">South Africa</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1494,9 +1520,9 @@ const CreateLead = () => {
           <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
-                <CardTitle>Key Contributors</CardTitle>
+                <CardTitle>Key Individuals</CardTitle>
                 <CardDescription>
-                  Manage key contributors information for the lead.
+                  Manage key individuals information for the lead.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -1507,12 +1533,12 @@ const CreateLead = () => {
                   >
                     <DialogTrigger asChild>
                       <Button>
-                        <PlusCircle className="mr-2 h-4 w-4" /> Add Key Contributors
+                        <PlusCircle className="mr-2 h-4 w-4" /> Add Key Individuals
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Add New Key Contributors</DialogTitle>
+                        <DialogTitle>Add New Key Individuals</DialogTitle>
                       </DialogHeader>
                       <form
                         onSubmit={(e) => {
@@ -1544,7 +1570,7 @@ const CreateLead = () => {
                         </div> */}
                         <div className="space-y-2">
                           <Label htmlFor="designation" className="required">
-                            Designation
+                            Role
                           </Label>
                           <Select
                             name="designation"
@@ -1561,6 +1587,9 @@ const CreateLead = () => {
                                 Director
                               </SelectItem>
                               <SelectItem value="Trust">Partner</SelectItem>
+                              <SelectItem value="Trust">Beneficiary</SelectItem>
+                              <SelectItem value="Trust">Spouse</SelectItem>
+                              <SelectItem value="Trust">Co-owner</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -1623,7 +1652,7 @@ const CreateLead = () => {
                           </div>
                         ) : null}
 
-                        <Button type="submit">Add Key Contributors</Button>
+                        <Button type="submit">Add Key Individuals</Button>
                       </form>
                     </DialogContent>
                   </Dialog>
@@ -1635,8 +1664,9 @@ const CreateLead = () => {
                       <TableHead>Last Name</TableHead>
                       <TableHead>Email</TableHead>
                       <TableHead>Mobile Number</TableHead>
+                      <TableHead>Country</TableHead>
                       <TableHead>Type</TableHead>
-                      <TableHead>Designation</TableHead>
+                      <TableHead>Role</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -1646,8 +1676,27 @@ const CreateLead = () => {
                         <TableCell>{beneficiary.lastName}</TableCell>
                         <TableCell>{beneficiary.email}</TableCell>
                         <TableCell>{beneficiary.mobile}</TableCell>
+                        <TableCell>{beneficiary.country}</TableCell>
                         <TableCell>{beneficiary.type}</TableCell>
-                        <TableCell>{beneficiary.designation}</TableCell>
+                        {/* <TableCell>{beneficiary.designation}</TableCell> */}
+                        <TableCell>
+                        <label htmlFor={`designation-${index}`}></label>
+          <Select 
+            value={beneficiary.designation}
+            onValueChange={(value) => handleDesignationChange(index, value)}
+          >
+            <SelectTrigger id={`designation-${index}`}>
+              <SelectValue placeholder="Select designation" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Director">Director</SelectItem>
+              <SelectItem value="Manager">Partner</SelectItem>
+              <SelectItem value="Manager">Beneficiary</SelectItem>
+              <SelectItem value="Supervisor">Spouse</SelectItem>
+              <SelectItem value="Engineer">Co-owner</SelectItem>
+            </SelectContent>
+          </Select>
+          </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
