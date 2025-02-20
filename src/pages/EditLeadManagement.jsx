@@ -69,7 +69,7 @@ const TreeNode = ({ node, level }) => {
 // To do document categories based on selected client type
 
 const EditLeadManagement = () => {
-  const [recipientType, setRecipientType] = useState("onboardingTeam");
+  const [recipientType, setRecipientType] = useState("customer");
   const navigate = useNavigate();
   const [isBeneficiaryDialogOpen, setIsBeneficiaryDialogOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
@@ -281,15 +281,15 @@ const EditLeadManagement = () => {
                 value="about"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
-                Manage Lead
+                Manage and Assign Lead
               </TabsTrigger>
-              <TabsTrigger
+              {/* <TabsTrigger
                 value="basic"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
                 Basic Information and Assign Lead
-              </TabsTrigger>
-              <TabsTrigger
+              </TabsTrigger> */}
+              {/* <TabsTrigger
                 value="contact"
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
@@ -300,7 +300,7 @@ const EditLeadManagement = () => {
                 className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
               >
                 Upload Documents
-              </TabsTrigger>
+              </TabsTrigger> */}
             </TabsList>
           </div>
           <div className="overflow-auto max-h-[500px]">
@@ -327,7 +327,7 @@ const EditLeadManagement = () => {
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <Label
                           htmlFor="relationshipManager"
                           className="required"
@@ -354,7 +354,7 @@ const EditLeadManagement = () => {
                             ))}
                           </SelectContent>
                         </Select>
-                      </div>
+                      </div> */}
                       <div className="space-y-2">
                         <Label htmlFor="stage">
                           Stage
@@ -418,6 +418,166 @@ const EditLeadManagement = () => {
                     </div> */}
                   </CardContent>
                 </Card>
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    {/* <h2 className="text-lg font-semibold mb-4">Personal Information</h2> */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">
+                          Customer Name
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="name"
+                          value={contact.name}
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
+                          placeholder="Enter Full Name"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="name">
+                          Contact Person
+                          <span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="contactName"
+                          value={contact.contactName}
+                          onChange={(e) =>
+                            setContact({
+                              ...newContact,
+                              contactName: e.target.value,
+                            })
+                          }
+                          placeholder="Enter Name"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="mobile">
+                          Mobile<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="mobile"
+                          value={contact.mobile}
+                          onChange={(e) =>
+                            handleInputChange("mobile", e.target.value)
+                          }
+                          placeholder="Enter Mobile Number"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">
+                          Email<span className="text-red-600 ml-1">*</span>
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={contact.email}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
+                          placeholder="Enter Email Address"
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gray-200">
+                  <CardContent className="p-4">
+                    <div className="grid grid-cols-2 md:grid-cols-2 gap-16 mt-3">
+                      <div className="space-y-2">
+                        <Label htmlFor="sendTo">Send To -</Label>
+
+                        {/* Radio Group for Selection */}
+                        <RadioGroup
+                          value={recipientType}
+                          onValueChange={setRecipientType}
+                          className="flex space-x-4"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="customer" id="customer" />
+                            <Label htmlFor="customer">Customer</Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem
+                              value="onboardingTeam"
+                              id="onboardingTeam"
+                            />
+                            <Label htmlFor="onboardingTeam">
+                              Onboarding Team Member
+                            </Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="self" id="self" />
+                            <Label htmlFor="self">Self</Label>
+                          </div>
+                        </RadioGroup>
+
+                        {/* Conditional Fields */}
+                        {recipientType === "customer" && (
+                          <div className="space-y-2">
+                            <input
+                              type="text"
+                              id="customerName"
+                              className="w-full border p-2 rounded-md mt-1"
+                              value="saraj.johnson@example.com"
+                              readOnly
+                            />
+                            <p>
+                              <strong> Note :</strong> This details will be sent
+                              directly to the customer's registered email
+                              address.
+                            </p>
+                          </div>
+                        )}
+
+                        {recipientType === "onboardingTeam" && (
+                          <div className="space-y-2">
+                            <Select
+                              value={contact.onboardingManager}
+                              onValueChange={(value) => {
+                                handleInputChange("onboardingManager", value);
+                                setIsManagerSelected(true);
+                              }}
+                            >
+                              <SelectTrigger className="w-full mt-3">
+                                <SelectValue placeholder="Select onboarding manager" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {onboardingManagers.map((manager) => (
+                                  <SelectItem
+                                    key={manager.value}
+                                    value={manager.value}
+                                  >
+                                    {manager.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+
+                        {recipientType === "self" && (
+                          <div className="space-y-2">
+                            <input
+                              type="text"
+                              id="selfEmail"
+                              className="w-full border p-2 rounded-md mt-1"
+                              // value={userEmail}
+                              readOnly // Prevents editing, remove if user should edit
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
                 <div className="flex justify-end space-x-4 mr-2">
                   <Button
@@ -427,7 +587,7 @@ const EditLeadManagement = () => {
                     Back
                   </Button>
                   <Button onClick={() => navigate("/leadManagement")}>
-                    Update and Next
+                    Update
                   </Button>
                 </div>
 
@@ -686,7 +846,7 @@ const EditLeadManagement = () => {
                               type="text"
                               id="customerName"
                               className="w-full border p-2 rounded-md mt-1"
-                              value="Sarah Johnson" // Set default value
+                              value="sarah.johnson@example.com" // Set default value
                               readOnly // Prevents editing, remove if user should edit
                             />
                           </div>
