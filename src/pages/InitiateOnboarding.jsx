@@ -375,6 +375,7 @@ const CreateLead = () => {
     if (subOption === "Incorporation Letter") {
       setPhoto(documentCategories["Certificate of Company"]?.image);
       setStatus("Approved");
+      //getStatusColor("text-green-500");
     } else if (subOption === "Bank Statement") {
       setPhoto(documentCategories["Address Proof of Company"]?.image);
       setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
@@ -468,6 +469,7 @@ const CreateLead = () => {
     }
   };
   const [status, setStatus] = useState("Pending");
+  const [icon, setIcon] = useState("");
   return (
     <div className="p-4">
       <div className="flex justify-between items-center overflow-hidden sticky top-0 z-10">
