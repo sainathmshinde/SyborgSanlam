@@ -151,26 +151,26 @@ function Profile() {
   //     designation: "Director",
   //   },
   // ]);
-   const [beneficiaries, setBeneficiaries] = useState([
-      {
-        firstName: "Alice",
-        lastName: "Johnson",
-        email: "alice.johnson@example.com",
-        mobile: "+1234567890",
-        country: "South Africa",
-        type: "Individual",
-        designation: "Director",
-      },
-      {
-        firstName: "Bob",
-        lastName: "Johnson",
-        email: "bob.johnson@example.com",
-        mobile: "+1 (555) 111-3333",
-        country: "South Africa",
-        type: "Individual",
-        designation: "Director",
-      },
-    ]);
+  const [beneficiaries, setBeneficiaries] = useState([
+    {
+      firstName: "Alice",
+      lastName: "Johnson",
+      email: "alice.johnson@example.com",
+      mobile: "+1234567890",
+      country: "South Africa",
+      type: "Individual",
+      designation: "Director",
+    },
+    {
+      firstName: "Bob",
+      lastName: "Johnson",
+      email: "bob.johnson@example.com",
+      mobile: "+1 (555) 111-3333",
+      country: "South Africa",
+      type: "Individual",
+      designation: "Director",
+    },
+  ]);
   const documentCategories = {
     "Certificate of Company": {
       main: "Incorporation Document",
@@ -417,9 +417,9 @@ function Profile() {
                 </TabsList>
               </div>
               <TabsContent value="basic">
-                            <form className="space-y-6">
-                              <div className="grid grid-cols-1  gap-4">
-                                {/* <div className="space-y-2">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1  gap-4">
+                    {/* <div className="space-y-2">
                                   <Label htmlFor="source"> Parent</Label>
                                   <div className="relative ">
                                     <div className="flex items-center">
@@ -480,179 +480,197 @@ function Profile() {
                                     </Dialog>
                                   </div>
                                 </div> */}
-                                <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[395px]">
-                                  <div className="space-y-2">
-                                    <Label htmlFor="firstName" className="required">
-                                      Customer Name
-                                    </Label>
-                                    <Input
-                                      id="firstName"
-                                      value={newLead.firstName}
-                                      onChange={(e) =>
-                                        setNewLead({ ...newLead, firstName: e.target.value })
-                                      }
-                                      placeholder="Enter Customer Name"
-                                    />
-                                  </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="country" className="required">
-                                      {/* Country of Origin */}
-                                      Country
-                                    </Label>
-                                    <Select
-                                      id="source"
-                                      value={newLead.source}
-                                      className="required"
-                                      onValueChange={(value) =>
-                                        setNewLead({ ...newLead, source: value })
-                                      }
-                                    >
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="South Africa" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="Website">India</SelectItem>
-                                        <SelectItem value="Trade Show">South Africa</SelectItem>
-                                        <SelectItem value="Referral">China</SelectItem>
-                                        <SelectItem value="Cold Call">Australia</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="industry" className="required">
-                                      Industry
-                                    </Label>
-                                    <Select
-                                      id="industry"
-                                      value={newLead.industry}
-                                      onValueChange={(value) =>
-                                        setNewLead({ ...newLead, industry: value })
-                                      }
-                                      className="required"
-                                    >
-                                      <SelectTrigger className="w-full ">
-                                        <SelectValue placeholder="Technology " />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="Technology">Technology</SelectItem>
-                                        <SelectItem value="Retail">Retail</SelectItem>
-                                        <SelectItem value="Healthcare">Healthcare</SelectItem>
-                                        <SelectItem value="Finance">Finance</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                
-                                  <div className="space-y-2">
-                          <Label htmlFor="client-type" className="required">
-                            Customer Type
-                          </Label>
-                          <Select
-                            id="client-type"
-                            onValueChange={(e) => {
-                              setClientType(e);
-                            }}
-                            value={clientType === "company" ? "company" : "individual" }
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select client type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="individual">Individual</SelectItem>
-                              <SelectItem value="partnership">Partnership</SelectItem>
-                              <SelectItem value="trust">Trust</SelectItem>
-                              <SelectItem value="company">Company</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="industry" className="required">
-                                      Company Registration Number
-                                    </Label>
-                                    <Input
-                                      id="comreg"
-                                      value={newLead.regNumber}
-                                      placeholder="Enter Company Registration Number"
-                                      onChange={(e) =>
-                                        setNewLead({ ...newLead, regNumber: e.target.value })
-                                      }
-                                    />
-                                  </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="industry" className="required">
-                                      Currency
-                                    </Label>
-                                    <Select
-                                      id="industry"
-                                      value={newLead.industry}
-                                      onValueChange={(value) =>
-                                        setNewLead({ ...newLead, industry: value })
-                                      }
-                                      className="required"
-                                    >
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="ZAR " />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="Technology">INR</SelectItem>
-                                        <SelectItem value="Retail">USD</SelectItem>
-                                        <SelectItem value="Healthcare">ZAR</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="industry" className="required">
-                                      Legal Jurisdiction
-                                    </Label>
-                                    <Select
-                                      id="industry"
-                                      value={newLead.industry}
-                                      onValueChange={(value) =>
-                                        setNewLead({ ...newLead, industry: value })
-                                      }
-                                      className="required"
-                                    >
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="South Africa " />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="In">India</SelectItem>
-                
-                                        <SelectItem value="Technology">USA</SelectItem>
-                                        <SelectItem value="Retail">South Africa</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="industry" className="required">
-                                      Operational Jurisdiction
-                                    </Label>
-                                    <Select
-                                      id="industry"
-                                      value={newLead.industry}
-                                      onValueChange={(value) =>
-                                        setNewLead({ ...newLead, industry: value })
-                                      }
-                                      className="required"
-                                    >
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="South Africa" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="In">India</SelectItem>
-                
-                                        <SelectItem value="Technology">USA</SelectItem>
-                                        <SelectItem value="Retail">South Africa</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                
-                                  {/* <div className="space-y-2">
+                    <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[395px]">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName" className="required">
+                          Customer Name
+                        </Label>
+                        <Input
+                          id="firstName"
+                          value={newLead.firstName}
+                          onChange={(e) =>
+                            setNewLead({
+                              ...newLead,
+                              firstName: e.target.value,
+                            })
+                          }
+                          placeholder="Enter Customer Name"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="country" className="required">
+                          {/* Country of Origin */}
+                          Country
+                        </Label>
+                        <Select
+                          id="source"
+                          value={newLead.source}
+                          className="required"
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, source: value })
+                          }
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Website">India</SelectItem>
+                            <SelectItem value="Trade Show">
+                              South Africa
+                            </SelectItem>
+                            <SelectItem value="Referral">China</SelectItem>
+                            <SelectItem value="Cold Call">Australia</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Industry
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full ">
+                            <SelectValue placeholder="Technology " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Technology">
+                              Technology
+                            </SelectItem>
+                            <SelectItem value="Retail">Retail</SelectItem>
+                            <SelectItem value="Healthcare">
+                              Healthcare
+                            </SelectItem>
+                            <SelectItem value="Finance">Finance</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="client-type" className="required">
+                          Customer Type
+                        </Label>
+                        <Select
+                          id="client-type"
+                          onValueChange={(e) => {
+                            setClientType(e);
+                          }}
+                          value={
+                            clientType === "company" ? "company" : "individual"
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select client type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="individual">
+                              Individual
+                            </SelectItem>
+                            <SelectItem value="partnership">
+                              Partnership
+                            </SelectItem>
+                            <SelectItem value="trust">Trust</SelectItem>
+                            <SelectItem value="company">Company</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Company Registration Number
+                        </Label>
+                        <Input
+                          id="comreg"
+                          value={newLead.regNumber}
+                          placeholder="Enter Company Registration Number"
+                          onChange={(e) =>
+                            setNewLead({
+                              ...newLead,
+                              regNumber: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Currency
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="ZAR " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Technology">INR</SelectItem>
+                            <SelectItem value="Retail">USD</SelectItem>
+                            <SelectItem value="Healthcare">ZAR</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Legal Jurisdiction
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="In">India</SelectItem>
+
+                            <SelectItem value="Technology">USA</SelectItem>
+                            <SelectItem value="Retail">South Africa</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Operational Jurisdiction
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="In">India</SelectItem>
+
+                            <SelectItem value="Technology">USA</SelectItem>
+                            <SelectItem value="Retail">South Africa</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* <div className="space-y-2">
                                   <Label htmlFor="industry">Regulatory Authority</Label>
                                   <Select
                                     id="industry"
@@ -671,23 +689,23 @@ function Profile() {
                                     </SelectContent>
                                   </Select>
                                 </div> */}
-                
-                                  <div className="space-y-2">
-                                    <Label htmlFor="finance" className="required">
-                                      Financial Year End
-                                    </Label>
-                                    <Input
-                                      id="finance"
-                                      value={newLead.finance}
-                                      onChange={(e) =>
-                                        setNewLead({ ...newLead, finance: e.target.value })
-                                      }
-                                      placeholder="DD/MM/YYYY"
-                                    />
-                                  </div>
-                                </div>
-                
-                                {/* {clientType && (
+
+                      <div className="space-y-2">
+                        <Label htmlFor="finance" className="required">
+                          Financial Year End
+                        </Label>
+                        <Input
+                          id="finance"
+                          value={newLead.finance}
+                          onChange={(e) =>
+                            setNewLead({ ...newLead, finance: e.target.value })
+                          }
+                          placeholder="DD/MM/YYYY"
+                        />
+                      </div>
+                    </div>
+
+                    {/* {clientType && (
                                   <div className="space-y-5 my-5">
                                     <h3 className="text-lg font-semibold mb-5">
                                       Compliance Checklist
@@ -706,12 +724,12 @@ function Profile() {
                                     </div>
                                   </div>
                                 )} */}
-                              </div>
-                
-                              <div className="flex justify-end">
-                                <Button className="mx-5">Submit & Next</Button>
-                              </div>
-                            </form>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <Button className="mx-5">Submit & Next</Button>
+                  </div>
+                </form>
               </TabsContent>
               {/* <TabsContent value="contact">
                 <Card>
@@ -816,150 +834,154 @@ function Profile() {
                   <Button className="mx-5">Submit & Next</Button>
                 </div>
               </TabsContent> */}
-                        <TabsContent value="contact">
-                          <Card className="overflow-auto max-h-[325px]">
-                            <CardHeader>
-                              <CardTitle>Contact</CardTitle>
-                              <CardDescription>
-                                Manage contact details for the lead.
-                              </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                              <div className="mb-4">
-                                <Dialog
-                                  open={isContactDialogOpen}
-                                  onOpenChange={setIsContactDialogOpen}
-                                >
-                                  <DialogTrigger asChild>
-                                    <Button>
-                                      <PlusCircle className="mr-2 h-4 w-4" /> Add Contact
-                                    </Button>
-                                  </DialogTrigger>
-                                  <DialogContent>
-                                    <DialogHeader>
-                                      <DialogTitle>Add New Contact</DialogTitle>
-                                    </DialogHeader>
-                                    <form
-                                      onSubmit={(e) => {
-                                        e.preventDefault();
-                                        const formData = new FormData(e.target);
-                                        addContact(Object.fromEntries(formData));
-                                      }}
-                                      className="space-y-4"
-                                    >
-                                      <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                          <Label htmlFor="firstName" className="required">
-                                            First Name
-                                          </Label>
-                                          <Input id="firstName" name="firstName" required />
-                                        </div>
-                                        <div className="space-y-2">
-                                          <Label htmlFor="lastName" className="required">
-                                            Last Name
-                                          </Label>
-                                          <Input id="lastName" name="lastName" required />
-                                        </div>
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="email" className="required">
-                                          Email
-                                        </Label>
-                                        <Input
-                                          id="email"
-                                          name="email"
-                                          type="email"
-                                          required
-                                        />
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="mobile" className="required">
-                                          Mobile Number
-                                        </Label>
-                                        <Input
-                                          id="mobile"
-                                          name="mobile"
-                                          type="tel"
-                                          required
-                                        />
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="designation" className="required">
-                                          Designation
-                                        </Label>
-                                        <Select className="required">
-                                          <SelectTrigger className="w-full">
-                                            <SelectValue placeholder="Select designation" />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                            <SelectItem value="John Doe">
-                                              Administrative Assistant
-                                            </SelectItem>
-                                            <SelectItem value="Jane Smith">
-                                              Customer Service Representative
-                                            </SelectItem>
-                                          </SelectContent>
-                                        </Select>
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="company" className="required">
-                                          Company
-                                        </Label>
-                                        <Select>
-                                          <SelectTrigger className="w-full">
-                                            <SelectValue placeholder="Select company" />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                            <SelectItem value="John Doe">
-                                              Teslack Organization
-                                            </SelectItem>
-                                            <SelectItem value="Jane Smith">
-                                              XYZ Inc
-                                            </SelectItem>
-                                            <SelectItem value="Bob Johnson">
-                                              ABC Inc
-                                            </SelectItem>
-                                          </SelectContent>
-                                        </Select>
-                                      </div>
-                                      <Button type="submit">Add Contact</Button>
-                                    </form>
-                                  </DialogContent>
-                                </Dialog>
+              <TabsContent value="contact">
+                <Card className="overflow-auto max-h-[325px]">
+                  <CardHeader>
+                    <CardTitle>Contact</CardTitle>
+                    <CardDescription>
+                      Manage contact details for the lead.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <Dialog
+                        open={isContactDialogOpen}
+                        onOpenChange={setIsContactDialogOpen}
+                      >
+                        <DialogTrigger asChild>
+                          <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Contact
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Contact</DialogTitle>
+                          </DialogHeader>
+                          <form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              const formData = new FormData(e.target);
+                              addContact(Object.fromEntries(formData));
+                            }}
+                            className="space-y-4"
+                          >
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="firstName" className="required">
+                                  First Name
+                                </Label>
+                                <Input
+                                  id="firstName"
+                                  name="firstName"
+                                  required
+                                />
                               </div>
-                              <Table>
-                                <TableHeader>
-                                  <TableRow>
-                                    <TableHead>First Name</TableHead>
-                                    <TableHead>Last Name</TableHead>
-                                    <TableHead>Email</TableHead>
-                                    <TableHead>Mobile Number</TableHead>
-                                    <TableHead>Designation</TableHead>
-                                    <TableHead>Company</TableHead>
-                                  </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                  {contacts.map((contact, index) => (
-                                    <TableRow key={index}>
-                                      <TableCell>{contact.firstName}</TableCell>
-                                      <TableCell>{contact.lastName}</TableCell>
-                                      <TableCell>{contact.email}</TableCell>
-                                      <TableCell>{contact.mobile}</TableCell>
-                                      <TableCell>{contact.designation}</TableCell>
-                                      <TableCell>{contact.company}</TableCell>
-                                    </TableRow>
-                                  ))}
-                                </TableBody>
-                              </Table>
-                            </CardContent>
-                            {/* <div className="my-5 flex justify-end">
+                              <div className="space-y-2">
+                                <Label htmlFor="lastName" className="required">
+                                  Last Name
+                                </Label>
+                                <Input id="lastName" name="lastName" required />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email" className="required">
+                                Email
+                              </Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="mobile" className="required">
+                                Mobile Number
+                              </Label>
+                              <Input
+                                id="mobile"
+                                name="mobile"
+                                type="tel"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="designation" className="required">
+                                Designation
+                              </Label>
+                              <Select className="required">
+                                <SelectTrigger className="w-full">
+                                  <SelectValue placeholder="Select designation" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="John Doe">
+                                    Administrative Assistant
+                                  </SelectItem>
+                                  <SelectItem value="Jane Smith">
+                                    Customer Service Representative
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="company" className="required">
+                                Company
+                              </Label>
+                              <Select>
+                                <SelectTrigger className="w-full">
+                                  <SelectValue placeholder="Select company" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="John Doe">
+                                    Teslack Organization
+                                  </SelectItem>
+                                  <SelectItem value="Jane Smith">
+                                    XYZ Inc
+                                  </SelectItem>
+                                  <SelectItem value="Bob Johnson">
+                                    ABC Inc
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <Button type="submit">Add Contact</Button>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>First Name</TableHead>
+                          <TableHead>Last Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Mobile Number</TableHead>
+                          <TableHead>Designation</TableHead>
+                          <TableHead>Company</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {contacts.map((contact, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{contact.firstName}</TableCell>
+                            <TableCell>{contact.lastName}</TableCell>
+                            <TableCell>{contact.email}</TableCell>
+                            <TableCell>{contact.mobile}</TableCell>
+                            <TableCell>{contact.designation}</TableCell>
+                            <TableCell>{contact.company}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                  {/* <div className="my-5 flex justify-end">
                                 <Button className="mx-5">Submit & Next</Button>
                               </div> */}
-                          </Card>
-                          <div className="my-5 flex justify-end">
-                            <Button className="mx-5">Submit & Next</Button>
-                          </div>
-                        </TabsContent>
+                </Card>
+                <div className="my-5 flex justify-end">
+                  <Button className="mx-5">Submit & Next</Button>
+                </div>
+              </TabsContent>
               {/* <TabsContent value="beneficiaries">
                 <Card>
                   <CardHeader>
@@ -1130,38 +1152,39 @@ function Profile() {
                   </Button>
                 </div>
               </TabsContent> */}
-                        <TabsContent value="beneficiaries">
-                          <Card>
-                            <CardHeader>
-                              <CardTitle>Key Individuals</CardTitle>
-                              <CardDescription>
-                                Manage key individuals information for the lead.
-                              </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                              <div className="mb-4">
-                                <Dialog
-                                  open={isBeneficiaryDialogOpen}
-                                  onOpenChange={setIsBeneficiaryDialogOpen}
-                                >
-                                  <DialogTrigger asChild>
-                                    <Button>
-                                      <PlusCircle className="mr-2 h-4 w-4" /> Add Key Individuals
-                                    </Button>
-                                  </DialogTrigger>
-                                  <DialogContent>
-                                    <DialogHeader>
-                                      <DialogTitle>Add New Key Individuals</DialogTitle>
-                                    </DialogHeader>
-                                    <form
-                                      onSubmit={(e) => {
-                                        e.preventDefault();
-                                        const formData = new FormData(e.target);
-                                        addBeneficiary(Object.fromEntries(formData));
-                                      }}
-                                      className="space-y-4"
-                                    >
-                                      {/* <div className="space-y-2">
+              <TabsContent value="beneficiaries">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Key Individuals</CardTitle>
+                    <CardDescription>
+                      Manage key individuals information for the lead.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <Dialog
+                        open={isBeneficiaryDialogOpen}
+                        onOpenChange={setIsBeneficiaryDialogOpen}
+                      >
+                        <DialogTrigger asChild>
+                          <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Key
+                            Individuals
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Key Individuals</DialogTitle>
+                          </DialogHeader>
+                          <form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              const formData = new FormData(e.target);
+                              addBeneficiary(Object.fromEntries(formData));
+                            }}
+                            className="space-y-4"
+                          >
+                            {/* <div className="space-y-2">
                                         <Label htmlFor="type" className="required">
                                           Type
                                         </Label>
@@ -1181,158 +1204,180 @@ function Profile() {
                                           </SelectContent>
                                         </Select>
                                       </div> */}
-                                      <div className="space-y-2">
-                                        <Label htmlFor="designation" className="required">
-                                          Role
-                                        </Label>
-                                        <Select
-                                          name="designation"
-                                          required
-                                          onValueChange={(e) => {
-                                            setbType(e);
-                                          }}
-                                        >
-                                          <SelectTrigger>
-                                            <SelectValue placeholder="Select type" />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                            <SelectItem value="Individual">
-                                              Director
-                                            </SelectItem>
-                                            <SelectItem value="Trust">Partner</SelectItem>
-                                            <SelectItem value="Trust">Beneficiary</SelectItem>
-                                            <SelectItem value="Trust">Spouse</SelectItem>
-                                            <SelectItem value="Trust">Co-owner</SelectItem>
-                                          </SelectContent>
-                                        </Select>
-                                      </div>
-                                      <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                          <Label htmlFor="firstName" className="required">
-                                            First Name
-                                          </Label>
-                                          <Input id="firstName" name="firstName" required />
-                                        </div>
-                                        <div className="space-y-2">
-                                          <Label htmlFor="lastName" className="required">
-                                            Last Name
-                                          </Label>
-                                          <Input id="lastName" name="lastName" required />
-                                        </div>
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="email" className="required">
-                                          Email
-                                        </Label>
-                                        <Input
-                                          id="email"
-                                          name="email"
-                                          type="email"
-                                          required
-                                        />
-                                      </div>
-                                      <div className="space-y-2">
-                                        <Label htmlFor="mobile" className="required">
-                                          Mobile Number
-                                        </Label>
-                                        <Input
-                                          id="mobile"
-                                          name="mobile"
-                                          type="tel"
-                                          required
-                                        />
-                                      </div>
-              
-                                      {bType?.length ? (
-                                        <div className="space-y-2">
-                                          <h3 className="text-lg font-semibold my-5">
-                                            Compliance Checklist
-                                          </h3>
-              
-                                          <div>
-                                            {Object.keys(individualDocuments).map((item) => (
-                                              <div
-                                                key={item}
-                                                className="flex items-center gap-2"
-                                              >
-                                                <Dot />
-                                                <Label className="text-sm leading-tight">
-                                                  {convertToLabel(item)}
-                                                </Label>
-                                              </div>
-                                            ))}
-                                          </div>
-                                        </div>
-                                      ) : null}
-              
-                                      <Button type="submit">Add Key Individuals</Button>
-                                    </form>
-                                  </DialogContent>
-                                </Dialog>
+                            <div className="space-y-2">
+                              <Label htmlFor="designation" className="required">
+                                Role
+                              </Label>
+                              <Select
+                                name="designation"
+                                required
+                                onValueChange={(e) => {
+                                  setbType(e);
+                                }}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Individual">
+                                    Director
+                                  </SelectItem>
+                                  <SelectItem value="Trust">Partner</SelectItem>
+                                  <SelectItem value="Trust">
+                                    Beneficiary
+                                  </SelectItem>
+                                  <SelectItem value="Trust">Spouse</SelectItem>
+                                  <SelectItem value="Trust">
+                                    Co-owner
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="firstName" className="required">
+                                  First Name
+                                </Label>
+                                <Input
+                                  id="firstName"
+                                  name="firstName"
+                                  required
+                                />
                               </div>
-                              <Table>
-                                <TableHeader>
-                                  <TableRow>
-                                    <TableHead>First Name</TableHead>
-                                    <TableHead>Last Name</TableHead>
-                                    <TableHead>Email</TableHead>
-                                    <TableHead>Mobile Number</TableHead>
-                                    <TableHead>Country</TableHead>
-                                    <TableHead>Type</TableHead>
-                                    <TableHead>Role</TableHead>
-                                  </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                  {beneficiaries.map((beneficiary, index) => (
-                                    <TableRow key={index}>
-                                      <TableCell>{beneficiary.firstName}</TableCell>
-                                      <TableCell>{beneficiary.lastName}</TableCell>
-                                      <TableCell>{beneficiary.email}</TableCell>
-                                      <TableCell>{beneficiary.mobile}</TableCell>
-                                      <TableCell>{beneficiary.country}</TableCell>
-                                      <TableCell>{beneficiary.type}</TableCell>
-                                      {/* <TableCell>{beneficiary.designation}</TableCell> */}
-                                      <TableCell>
-                                      <label htmlFor={`designation-${index}`}></label>
-                        <Select 
-                          value={beneficiary.designation}
-                          onValueChange={(value) => handleDesignationChange(index, value)}
-                        >
-                          <SelectTrigger id={`designation-${index}`}>
-                            <SelectValue placeholder="Select designation" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Director">Director</SelectItem>
-                            <SelectItem value="Manager">Partner</SelectItem>
-                            <SelectItem value="Manager">Beneficiary</SelectItem>
-                            <SelectItem value="Supervisor">Spouse</SelectItem>
-                            <SelectItem value="Engineer">Co-owner</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        </TableCell>
-                                    </TableRow>
-                                  ))}
-                                </TableBody>
-                              </Table>
-                            </CardContent>
-                            {/* <div className="my-5 flex justify-end mx-5"> */}
-                            {/* <Button variant="outline" onClick={() => navigate("/leads")}>
+                              <div className="space-y-2">
+                                <Label htmlFor="lastName" className="required">
+                                  Last Name
+                                </Label>
+                                <Input id="lastName" name="lastName" required />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email" className="required">
+                                Email
+                              </Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="mobile" className="required">
+                                Mobile Number
+                              </Label>
+                              <Input
+                                id="mobile"
+                                name="mobile"
+                                type="tel"
+                                required
+                              />
+                            </div>
+
+                            {bType?.length ? (
+                              <div className="space-y-2">
+                                <h3 className="text-lg font-semibold my-5">
+                                  Compliance Checklist
+                                </h3>
+
+                                <div>
+                                  {Object.keys(individualDocuments).map(
+                                    (item) => (
+                                      <div
+                                        key={item}
+                                        className="flex items-center gap-2"
+                                      >
+                                        <Dot />
+                                        <Label className="text-sm leading-tight">
+                                          {convertToLabel(item)}
+                                        </Label>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            <Button type="submit">Add Key Individuals</Button>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>First Name</TableHead>
+                          <TableHead>Last Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Mobile Number</TableHead>
+                          <TableHead>Country</TableHead>
+                          <TableHead>Type</TableHead>
+                          <TableHead>Role</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {beneficiaries.map((beneficiary, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{beneficiary.firstName}</TableCell>
+                            <TableCell>{beneficiary.lastName}</TableCell>
+                            <TableCell>{beneficiary.email}</TableCell>
+                            <TableCell>{beneficiary.mobile}</TableCell>
+                            <TableCell>{beneficiary.country}</TableCell>
+                            <TableCell>{beneficiary.type}</TableCell>
+                            {/* <TableCell>{beneficiary.designation}</TableCell> */}
+                            <TableCell>
+                              <label htmlFor={`designation-${index}`}></label>
+                              <Select
+                                value={beneficiary.designation}
+                                onValueChange={(value) =>
+                                  handleDesignationChange(index, value)
+                                }
+                              >
+                                <SelectTrigger id={`designation-${index}`}>
+                                  <SelectValue placeholder="Select designation" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Director">
+                                    Director
+                                  </SelectItem>
+                                  <SelectItem value="Manager">
+                                    Partner
+                                  </SelectItem>
+                                  <SelectItem value="Manager">
+                                    Beneficiary
+                                  </SelectItem>
+                                  <SelectItem value="Supervisor">
+                                    Spouse
+                                  </SelectItem>
+                                  <SelectItem value="Engineer">
+                                    Co-owner
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                  {/* <div className="my-5 flex justify-end mx-5"> */}
+                  {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                                 Cancel
                               </Button> */}
-                            {/* <Button className="mx-5" onClick={handleCreateLead}>
+                  {/* <Button className="mx-5" onClick={handleCreateLead}>
                                   Initiate Onboarding
                                 </Button>
                               </div> */}
-                          </Card>
-                          <div className="my-5 flex justify-end ">
-                            {/* <Button variant="outline" onClick={() => navigate("/leads")}>
+                </Card>
+                <div className="my-5 flex justify-end ">
+                  {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                                 Cancel
                               </Button> */}
-                            <Button className="mx-5" onClick={handleCreateLead}>
-                              Initiate Onboarding
-                            </Button>
-                          </div>
-                        </TabsContent>
+                  <Button className="mx-5" onClick={handleCreateLead}>
+                    Initiate Onboarding
+                  </Button>
+                </div>
+              </TabsContent>
               <TabsContent value="documents">
                 <div className="flex h-screen bg-gray-100">
                   {/* Sidebar for document categories */}
@@ -1357,9 +1402,7 @@ function Profile() {
                             >
                               <div className="flex items-center">
                                 <FileText className="mr-2 h-5 w-5" />
-                                <span className="">
-                                  {category}
-                                </span>
+                                <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
                                 <ChevronDown />
@@ -1409,7 +1452,7 @@ function Profile() {
                     </ul>
                     <ul className="space-y-4">
                       <h3 className="mt-4 text-lg font-bold underline">
-                      KYC of Key Individuals Documents
+                        KYC of Key Individuals Documents
                       </h3>
                       {Object.entries(documentCategories1).map(
                         ([category, categoryData]) => (
@@ -1426,9 +1469,7 @@ function Profile() {
                             >
                               <div className="flex items-center">
                                 <FileText className="mr-2 h-5 w-5" />
-                                <span className="">
-                                  {category}
-                                </span>
+                                <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
                                 <ChevronDown />
@@ -1558,39 +1599,41 @@ function Profile() {
                 </div>
               </TabsContent>
             </Tabs>
-          ) : <Tabs defaultValue="basic">
-          <div className="overflow-hidden sticky top-0 z-10">
-            <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
-              <TabsTrigger
-                value="basic"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Basic Information
-              </TabsTrigger>
-              <TabsTrigger
-                value="contact"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Contact
-              </TabsTrigger>
-              <TabsTrigger
-                value="beneficiaries"
-                cla ssName="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Key Individuals
-              </TabsTrigger>
-              <TabsTrigger
-                value="documents"
-                className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
-              >
-                Upload Documents
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <TabsContent value="basic">
-                        <form className="space-y-6">
-                          <div className="grid grid-cols-1  gap-4">
-                            {/* <div className="space-y-2">
+          ) : (
+            <Tabs defaultValue="basic">
+              <div className="overflow-hidden sticky top-0 z-10">
+                <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
+                  <TabsTrigger
+                    value="basic"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Basic Information
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="contact"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Contact
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="beneficiaries"
+                    cla
+                    ssName="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Key Individuals
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="documents"
+                    className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+                  >
+                    Upload Documents
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+              <TabsContent value="basic">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1  gap-4">
+                    {/* <div className="space-y-2">
                               <Label htmlFor="source"> Parent</Label>
                               <div className="relative ">
                                 <div className="flex items-center">
@@ -1651,179 +1694,197 @@ function Profile() {
                                 </Dialog>
                               </div>
                             </div> */}
-                            <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[395px]">
-                              <div className="space-y-2">
-                                <Label htmlFor="firstName" className="required">
-                                  Customer Name
-                                </Label>
-                                <Input
-                                  id="firstName"
-                                  value={newLead.firstName}
-                                  onChange={(e) =>
-                                    setNewLead({ ...newLead, firstName: e.target.value })
-                                  }
-                                  placeholder="Enter Customer Name"
-                                />
-                              </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="country" className="required">
-                                  {/* Country of Origin */}
-                                  Country
-                                </Label>
-                                <Select
-                                  id="source"
-                                  value={newLead.source}
-                                  className="required"
-                                  onValueChange={(value) =>
-                                    setNewLead({ ...newLead, source: value })
-                                  }
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="South Africa" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="Website">India</SelectItem>
-                                    <SelectItem value="Trade Show">South Africa</SelectItem>
-                                    <SelectItem value="Referral">China</SelectItem>
-                                    <SelectItem value="Cold Call">Australia</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="industry" className="required">
-                                  Industry
-                                </Label>
-                                <Select
-                                  id="industry"
-                                  value={newLead.industry}
-                                  onValueChange={(value) =>
-                                    setNewLead({ ...newLead, industry: value })
-                                  }
-                                  className="required"
-                                >
-                                  <SelectTrigger className="w-full ">
-                                    <SelectValue placeholder="Technology " />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="Technology">Technology</SelectItem>
-                                    <SelectItem value="Retail">Retail</SelectItem>
-                                    <SelectItem value="Healthcare">Healthcare</SelectItem>
-                                    <SelectItem value="Finance">Finance</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-            
-                              <div className="space-y-2">
-                      <Label htmlFor="client-type" className="required">
-                        Customer Type
-                      </Label>
-                      <Select
-                        id="client-type"
-                        onValueChange={(e) => {
-                          setClientType(e);
-                        }}
-                        value={clientType === "company" ? "company" : "individual" }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select client type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="individual">Individual</SelectItem>
-                          <SelectItem value="partnership">Partnership</SelectItem>
-                          <SelectItem value="trust">Trust</SelectItem>
-                          <SelectItem value="company">Company</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="industry" className="required">
-                                  Company Registration Number
-                                </Label>
-                                <Input
-                                  id="comreg"
-                                  value={newLead.regNumber}
-                                  placeholder="Enter Company Registration Number"
-                                  onChange={(e) =>
-                                    setNewLead({ ...newLead, regNumber: e.target.value })
-                                  }
-                                />
-                              </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="industry" className="required">
-                                  Currency
-                                </Label>
-                                <Select
-                                  id="industry"
-                                  value={newLead.industry}
-                                  onValueChange={(value) =>
-                                    setNewLead({ ...newLead, industry: value })
-                                  }
-                                  className="required"
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="ZAR " />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="Technology">INR</SelectItem>
-                                    <SelectItem value="Retail">USD</SelectItem>
-                                    <SelectItem value="Healthcare">ZAR</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="industry" className="required">
-                                  Legal Jurisdiction
-                                </Label>
-                                <Select
-                                  id="industry"
-                                  value={newLead.industry}
-                                  onValueChange={(value) =>
-                                    setNewLead({ ...newLead, industry: value })
-                                  }
-                                  className="required"
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="South Africa " />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="In">India</SelectItem>
-            
-                                    <SelectItem value="Technology">USA</SelectItem>
-                                    <SelectItem value="Retail">South Africa</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="industry" className="required">
-                                  Operational Jurisdiction
-                                </Label>
-                                <Select
-                                  id="industry"
-                                  value={newLead.industry}
-                                  onValueChange={(value) =>
-                                    setNewLead({ ...newLead, industry: value })
-                                  }
-                                  className="required"
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="South Africa" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="In">India</SelectItem>
-            
-                                    <SelectItem value="Technology">USA</SelectItem>
-                                    <SelectItem value="Retail">South Africa</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-            
-                              {/* <div className="space-y-2">
+                    <div className="mb-4 text-md p-4 bg-gray-200 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto max-h-[395px]">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName" className="required">
+                          Customer Name
+                        </Label>
+                        <Input
+                          id="firstName"
+                          value={newLead.firstName}
+                          onChange={(e) =>
+                            setNewLead({
+                              ...newLead,
+                              firstName: e.target.value,
+                            })
+                          }
+                          placeholder="Enter Customer Name"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="country" className="required">
+                          {/* Country of Origin */}
+                          Country
+                        </Label>
+                        <Select
+                          id="source"
+                          value={newLead.source}
+                          className="required"
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, source: value })
+                          }
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Website">India</SelectItem>
+                            <SelectItem value="Trade Show">
+                              South Africa
+                            </SelectItem>
+                            <SelectItem value="Referral">China</SelectItem>
+                            <SelectItem value="Cold Call">Australia</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Industry
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full ">
+                            <SelectValue placeholder="Technology " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Technology">
+                              Technology
+                            </SelectItem>
+                            <SelectItem value="Retail">Retail</SelectItem>
+                            <SelectItem value="Healthcare">
+                              Healthcare
+                            </SelectItem>
+                            <SelectItem value="Finance">Finance</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="client-type" className="required">
+                          Customer Type
+                        </Label>
+                        <Select
+                          id="client-type"
+                          onValueChange={(e) => {
+                            setClientType(e);
+                          }}
+                          value={
+                            clientType === "company" ? "company" : "individual"
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select client type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="individual">
+                              Individual
+                            </SelectItem>
+                            <SelectItem value="partnership">
+                              Partnership
+                            </SelectItem>
+                            <SelectItem value="trust">Trust</SelectItem>
+                            <SelectItem value="company">Company</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Company Registration Number
+                        </Label>
+                        <Input
+                          id="comreg"
+                          value={newLead.regNumber}
+                          placeholder="Enter Company Registration Number"
+                          onChange={(e) =>
+                            setNewLead({
+                              ...newLead,
+                              regNumber: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Currency
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="ZAR " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Technology">INR</SelectItem>
+                            <SelectItem value="Retail">USD</SelectItem>
+                            <SelectItem value="Healthcare">ZAR</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Legal Jurisdiction
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa " />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="In">India</SelectItem>
+
+                            <SelectItem value="Technology">USA</SelectItem>
+                            <SelectItem value="Retail">South Africa</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry" className="required">
+                          Operational Jurisdiction
+                        </Label>
+                        <Select
+                          id="industry"
+                          value={newLead.industry}
+                          onValueChange={(value) =>
+                            setNewLead({ ...newLead, industry: value })
+                          }
+                          className="required"
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="South Africa" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="In">India</SelectItem>
+
+                            <SelectItem value="Technology">USA</SelectItem>
+                            <SelectItem value="Retail">South Africa</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* <div className="space-y-2">
                               <Label htmlFor="industry">Regulatory Authority</Label>
                               <Select
                                 id="industry"
@@ -1842,23 +1903,23 @@ function Profile() {
                                 </SelectContent>
                               </Select>
                             </div> */}
-            
-                              <div className="space-y-2">
-                                <Label htmlFor="finance" className="required">
-                                  Financial Year End
-                                </Label>
-                                <Input
-                                  id="finance"
-                                  value={newLead.finance}
-                                  onChange={(e) =>
-                                    setNewLead({ ...newLead, finance: e.target.value })
-                                  }
-                                  placeholder="DD/MM/YYYY"
-                                />
-                              </div>
-                            </div>
-            
-                            {/* {clientType && (
+
+                      <div className="space-y-2">
+                        <Label htmlFor="finance" className="required">
+                          Financial Year End
+                        </Label>
+                        <Input
+                          id="finance"
+                          value={newLead.finance}
+                          onChange={(e) =>
+                            setNewLead({ ...newLead, finance: e.target.value })
+                          }
+                          placeholder="DD/MM/YYYY"
+                        />
+                      </div>
+                    </div>
+
+                    {/* {clientType && (
                               <div className="space-y-5 my-5">
                                 <h3 className="text-lg font-semibold mb-5">
                                   Compliance Checklist
@@ -1877,14 +1938,14 @@ function Profile() {
                                 </div>
                               </div>
                             )} */}
-                          </div>
-            
-                          <div className="flex justify-end">
-                            <Button className="mx-5">Submit & Next</Button>
-                          </div>
-                        </form>
-          </TabsContent>
-          {/* <TabsContent value="contact">
+                  </div>
+
+                  <div className="flex justify-end">
+                    <Button className="mx-5">Submit & Next</Button>
+                  </div>
+                </form>
+              </TabsContent>
+              {/* <TabsContent value="contact">
             <Card>
               <CardHeader>
                 <CardTitle>Contact</CardTitle>
@@ -1987,151 +2048,155 @@ function Profile() {
               <Button className="mx-5">Submit & Next</Button>
             </div>
           </TabsContent> */}
-                    <TabsContent value="contact">
-                      <Card className="overflow-auto max-h-[325px]">
-                        <CardHeader>
-                          <CardTitle>Contact</CardTitle>
-                          <CardDescription>
-                            Manage contact details for the lead.
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="mb-4">
-                            <Dialog
-                              open={isContactDialogOpen}
-                              onOpenChange={setIsContactDialogOpen}
-                            >
-                              <DialogTrigger asChild>
-                                <Button>
-                                  <PlusCircle className="mr-2 h-4 w-4" /> Add Contact
-                                </Button>
-                              </DialogTrigger>
-                              <DialogContent>
-                                <DialogHeader>
-                                  <DialogTitle>Add New Contact</DialogTitle>
-                                </DialogHeader>
-                                <form
-                                  onSubmit={(e) => {
-                                    e.preventDefault();
-                                    const formData = new FormData(e.target);
-                                    addContact(Object.fromEntries(formData));
-                                  }}
-                                  className="space-y-4"
-                                >
-                                  <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                      <Label htmlFor="firstName" className="required">
-                                        First Name
-                                      </Label>
-                                      <Input id="firstName" name="firstName" required />
-                                    </div>
-                                    <div className="space-y-2">
-                                      <Label htmlFor="lastName" className="required">
-                                        Last Name
-                                      </Label>
-                                      <Input id="lastName" name="lastName" required />
-                                    </div>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="email" className="required">
-                                      Email
-                                    </Label>
-                                    <Input
-                                      id="email"
-                                      name="email"
-                                      type="email"
-                                      required
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="mobile" className="required">
-                                      Mobile Number
-                                    </Label>
-                                    <Input
-                                      id="mobile"
-                                      name="mobile"
-                                      type="tel"
-                                      required
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="designation" className="required">
-                                      Designation
-                                    </Label>
-                                    <Select className="required">
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select designation" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="John Doe">
-                                          Administrative Assistant
-                                        </SelectItem>
-                                        <SelectItem value="Jane Smith">
-                                          Customer Service Representative
-                                        </SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="company" className="required">
-                                      Company
-                                    </Label>
-                                    <Select>
-                                      <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select company" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="John Doe">
-                                          Teslack Organization
-                                        </SelectItem>
-                                        <SelectItem value="Jane Smith">
-                                          XYZ Inc
-                                        </SelectItem>
-                                        <SelectItem value="Bob Johnson">
-                                          ABC Inc
-                                        </SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                                  <Button type="submit">Add Contact</Button>
-                                </form>
-                              </DialogContent>
-                            </Dialog>
-                          </div>
-                          <Table>
-                            <TableHeader>
-                              <TableRow>
-                                <TableHead>First Name</TableHead>
-                                <TableHead>Last Name</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Mobile Number</TableHead>
-                                <TableHead>Designation</TableHead>
-                                <TableHead>Company</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                              {contacts.map((contact, index) => (
-                                <TableRow key={index}>
-                                  <TableCell>{contact.firstName}</TableCell>
-                                  <TableCell>{contact.lastName}</TableCell>
-                                  <TableCell>{contact.email}</TableCell>
-                                  <TableCell>{contact.mobile}</TableCell>
-                                  <TableCell>{contact.designation}</TableCell>
-                                  <TableCell>{contact.company}</TableCell>
-                                </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
-                        </CardContent>
-                        {/* <div className="my-5 flex justify-end">
+              <TabsContent value="contact">
+                <Card className="overflow-auto max-h-[325px]">
+                  <CardHeader>
+                    <CardTitle>Contact</CardTitle>
+                    <CardDescription>
+                      Manage contact details for the lead.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <Dialog
+                        open={isContactDialogOpen}
+                        onOpenChange={setIsContactDialogOpen}
+                      >
+                        <DialogTrigger asChild>
+                          <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Contact
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Contact</DialogTitle>
+                          </DialogHeader>
+                          <form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              const formData = new FormData(e.target);
+                              addContact(Object.fromEntries(formData));
+                            }}
+                            className="space-y-4"
+                          >
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="firstName" className="required">
+                                  First Name
+                                </Label>
+                                <Input
+                                  id="firstName"
+                                  name="firstName"
+                                  required
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="lastName" className="required">
+                                  Last Name
+                                </Label>
+                                <Input id="lastName" name="lastName" required />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email" className="required">
+                                Email
+                              </Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="mobile" className="required">
+                                Mobile Number
+                              </Label>
+                              <Input
+                                id="mobile"
+                                name="mobile"
+                                type="tel"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="designation" className="required">
+                                Designation
+                              </Label>
+                              <Select className="required">
+                                <SelectTrigger className="w-full">
+                                  <SelectValue placeholder="Select designation" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="John Doe">
+                                    Administrative Assistant
+                                  </SelectItem>
+                                  <SelectItem value="Jane Smith">
+                                    Customer Service Representative
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="company" className="required">
+                                Company
+                              </Label>
+                              <Select>
+                                <SelectTrigger className="w-full">
+                                  <SelectValue placeholder="Select company" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="John Doe">
+                                    Teslack Organization
+                                  </SelectItem>
+                                  <SelectItem value="Jane Smith">
+                                    XYZ Inc
+                                  </SelectItem>
+                                  <SelectItem value="Bob Johnson">
+                                    ABC Inc
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <Button type="submit">Add Contact</Button>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>First Name</TableHead>
+                          <TableHead>Last Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Mobile Number</TableHead>
+                          <TableHead>Designation</TableHead>
+                          <TableHead>Company</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {contacts.map((contact, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{contact.firstName}</TableCell>
+                            <TableCell>{contact.lastName}</TableCell>
+                            <TableCell>{contact.email}</TableCell>
+                            <TableCell>{contact.mobile}</TableCell>
+                            <TableCell>{contact.designation}</TableCell>
+                            <TableCell>{contact.company}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                  {/* <div className="my-5 flex justify-end">
                             <Button className="mx-5">Submit & Next</Button>
                           </div> */}
-                      </Card>
-                      <div className="my-5 flex justify-end">
-                        <Button className="mx-5">Submit & Next</Button>
-                      </div>
-                    </TabsContent>
-          {/* <TabsContent value="beneficiaries">
+                </Card>
+                <div className="my-5 flex justify-end">
+                  <Button className="mx-5">Submit & Next</Button>
+                </div>
+              </TabsContent>
+              {/* <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
                 <CardTitle>Key Contributors</CardTitle>
@@ -2301,38 +2366,39 @@ function Profile() {
               </Button>
             </div>
           </TabsContent> */}
-                    <TabsContent value="beneficiaries">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>Key Individuals</CardTitle>
-                          <CardDescription>
-                            Manage key individuals information for the lead.
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="mb-4">
-                            <Dialog
-                              open={isBeneficiaryDialogOpen}
-                              onOpenChange={setIsBeneficiaryDialogOpen}
-                            >
-                              <DialogTrigger asChild>
-                                <Button>
-                                  <PlusCircle className="mr-2 h-4 w-4" /> Add Key Individuals
-                                </Button>
-                              </DialogTrigger>
-                              <DialogContent>
-                                <DialogHeader>
-                                  <DialogTitle>Add New Key Individuals</DialogTitle>
-                                </DialogHeader>
-                                <form
-                                  onSubmit={(e) => {
-                                    e.preventDefault();
-                                    const formData = new FormData(e.target);
-                                    addBeneficiary(Object.fromEntries(formData));
-                                  }}
-                                  className="space-y-4"
-                                >
-                                  {/* <div className="space-y-2">
+              <TabsContent value="beneficiaries">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Key Individuals</CardTitle>
+                    <CardDescription>
+                      Manage key individuals information for the lead.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <Dialog
+                        open={isBeneficiaryDialogOpen}
+                        onOpenChange={setIsBeneficiaryDialogOpen}
+                      >
+                        <DialogTrigger asChild>
+                          <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" /> Add Key
+                            Individuals
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Key Individuals</DialogTitle>
+                          </DialogHeader>
+                          <form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              const formData = new FormData(e.target);
+                              addBeneficiary(Object.fromEntries(formData));
+                            }}
+                            className="space-y-4"
+                          >
+                            {/* <div className="space-y-2">
                                     <Label htmlFor="type" className="required">
                                       Type
                                     </Label>
@@ -2352,366 +2418,384 @@ function Profile() {
                                       </SelectContent>
                                     </Select>
                                   </div> */}
-                                  <div className="space-y-2">
-                                    <Label htmlFor="designation" className="required">
-                                      Role
-                                    </Label>
-                                    <Select
-                                      name="designation"
-                                      required
-                                      onValueChange={(e) => {
-                                        setbType(e);
-                                      }}
-                                    >
-                                      <SelectTrigger>
-                                        <SelectValue placeholder="Select type" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="Individual">
-                                          Director
-                                        </SelectItem>
-                                        <SelectItem value="Trust">Partner</SelectItem>
-                                        <SelectItem value="Trust">Beneficiary</SelectItem>
-                                        <SelectItem value="Trust">Spouse</SelectItem>
-                                        <SelectItem value="Trust">Co-owner</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </div>
-                                  <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                      <Label htmlFor="firstName" className="required">
-                                        First Name
-                                      </Label>
-                                      <Input id="firstName" name="firstName" required />
-                                    </div>
-                                    <div className="space-y-2">
-                                      <Label htmlFor="lastName" className="required">
-                                        Last Name
-                                      </Label>
-                                      <Input id="lastName" name="lastName" required />
-                                    </div>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="email" className="required">
-                                      Email
-                                    </Label>
-                                    <Input
-                                      id="email"
-                                      name="email"
-                                      type="email"
-                                      required
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="mobile" className="required">
-                                      Mobile Number
-                                    </Label>
-                                    <Input
-                                      id="mobile"
-                                      name="mobile"
-                                      type="tel"
-                                      required
-                                    />
-                                  </div>
-          
-                                  {bType?.length ? (
-                                    <div className="space-y-2">
-                                      <h3 className="text-lg font-semibold my-5">
-                                        Compliance Checklist
-                                      </h3>
-          
-                                      <div>
-                                        {Object.keys(individualDocuments).map((item) => (
-                                          <div
-                                            key={item}
-                                            className="flex items-center gap-2"
-                                          >
-                                            <Dot />
-                                            <Label className="text-sm leading-tight">
-                                              {convertToLabel(item)}
-                                            </Label>
-                                          </div>
-                                        ))}
+                            <div className="space-y-2">
+                              <Label htmlFor="designation" className="required">
+                                Role
+                              </Label>
+                              <Select
+                                name="designation"
+                                required
+                                onValueChange={(e) => {
+                                  setbType(e);
+                                }}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Individual">
+                                    Director
+                                  </SelectItem>
+                                  <SelectItem value="Trust">Partner</SelectItem>
+                                  <SelectItem value="Trust">
+                                    Beneficiary
+                                  </SelectItem>
+                                  <SelectItem value="Trust">Spouse</SelectItem>
+                                  <SelectItem value="Trust">
+                                    Co-owner
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="firstName" className="required">
+                                  First Name
+                                </Label>
+                                <Input
+                                  id="firstName"
+                                  name="firstName"
+                                  required
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="lastName" className="required">
+                                  Last Name
+                                </Label>
+                                <Input id="lastName" name="lastName" required />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email" className="required">
+                                Email
+                              </Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="mobile" className="required">
+                                Mobile Number
+                              </Label>
+                              <Input
+                                id="mobile"
+                                name="mobile"
+                                type="tel"
+                                required
+                              />
+                            </div>
+
+                            {bType?.length ? (
+                              <div className="space-y-2">
+                                <h3 className="text-lg font-semibold my-5">
+                                  Compliance Checklist
+                                </h3>
+
+                                <div>
+                                  {Object.keys(individualDocuments).map(
+                                    (item) => (
+                                      <div
+                                        key={item}
+                                        className="flex items-center gap-2"
+                                      >
+                                        <Dot />
+                                        <Label className="text-sm leading-tight">
+                                          {convertToLabel(item)}
+                                        </Label>
                                       </div>
-                                    </div>
-                                  ) : null}
-          
-                                  <Button type="submit">Add Key Individuals</Button>
-                                </form>
-                              </DialogContent>
-                            </Dialog>
-                          </div>
-                          <Table>
-                            <TableHeader>
-                              <TableRow>
-                                <TableHead>First Name</TableHead>
-                                <TableHead>Last Name</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Mobile Number</TableHead>
-                                <TableHead>Country</TableHead>
-                                <TableHead>Type</TableHead>
-                                <TableHead>Role</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                              {beneficiaries.map((beneficiary, index) => (
-                                <TableRow key={index}>
-                                  <TableCell>{beneficiary.firstName}</TableCell>
-                                  <TableCell>{beneficiary.lastName}</TableCell>
-                                  <TableCell>{beneficiary.email}</TableCell>
-                                  <TableCell>{beneficiary.mobile}</TableCell>
-                                  <TableCell>{beneficiary.country}</TableCell>
-                                  <TableCell>{beneficiary.type}</TableCell>
-                                  {/* <TableCell>{beneficiary.designation}</TableCell> */}
-                                  <TableCell>
-                                  <label htmlFor={`designation-${index}`}></label>
-                    <Select 
-                      value={beneficiary.designation}
-                      onValueChange={(value) => handleDesignationChange(index, value)}
-                    >
-                      <SelectTrigger id={`designation-${index}`}>
-                        <SelectValue placeholder="Select designation" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Director">Director</SelectItem>
-                        <SelectItem value="Manager">Partner</SelectItem>
-                        <SelectItem value="Manager">Beneficiary</SelectItem>
-                        <SelectItem value="Supervisor">Spouse</SelectItem>
-                        <SelectItem value="Engineer">Co-owner</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    </TableCell>
-                                </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
-                        </CardContent>
-                        {/* <div className="my-5 flex justify-end mx-5"> */}
-                        {/* <Button variant="outline" onClick={() => navigate("/leads")}>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            <Button type="submit">Add Key Individuals</Button>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>First Name</TableHead>
+                          <TableHead>Last Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Mobile Number</TableHead>
+                          <TableHead>Country</TableHead>
+                          <TableHead>Type</TableHead>
+                          <TableHead>Role</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {beneficiaries.map((beneficiary, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{beneficiary.firstName}</TableCell>
+                            <TableCell>{beneficiary.lastName}</TableCell>
+                            <TableCell>{beneficiary.email}</TableCell>
+                            <TableCell>{beneficiary.mobile}</TableCell>
+                            <TableCell>{beneficiary.country}</TableCell>
+                            <TableCell>{beneficiary.type}</TableCell>
+                            {/* <TableCell>{beneficiary.designation}</TableCell> */}
+                            <TableCell>
+                              <label htmlFor={`designation-${index}`}></label>
+                              <Select
+                                value={beneficiary.designation}
+                                onValueChange={(value) =>
+                                  handleDesignationChange(index, value)
+                                }
+                              >
+                                <SelectTrigger id={`designation-${index}`}>
+                                  <SelectValue placeholder="Select designation" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Director">
+                                    Director
+                                  </SelectItem>
+                                  <SelectItem value="Manager">
+                                    Partner
+                                  </SelectItem>
+                                  <SelectItem value="Manager">
+                                    Beneficiary
+                                  </SelectItem>
+                                  <SelectItem value="Supervisor">
+                                    Spouse
+                                  </SelectItem>
+                                  <SelectItem value="Engineer">
+                                    Co-owner
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                  {/* <div className="my-5 flex justify-end mx-5"> */}
+                  {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                             Cancel
                           </Button> */}
-                        {/* <Button className="mx-5" onClick={handleCreateLead}>
+                  {/* <Button className="mx-5" onClick={handleCreateLead}>
                               Initiate Onboarding
                             </Button>
                           </div> */}
-                      </Card>
-                      <div className="my-5 flex justify-end ">
-                        {/* <Button variant="outline" onClick={() => navigate("/leads")}>
+                </Card>
+                <div className="my-5 flex justify-end ">
+                  {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                             Cancel
                           </Button> */}
-                        <Button className="mx-5" onClick={handleCreateLead}>
-                          Initiate Onboarding
-                        </Button>
-                      </div>
-                    </TabsContent>
-          <TabsContent value="documents">
-            <div className="flex h-screen bg-gray-100">
-              {/* Sidebar for document categories */}
-              <div className="w-90 bg-white p-4 shadow-md overflow-auto">
-                <h2 className="text-2xl font-bold mb-4">Documents</h2>
-                <ul className="space-y-4">
-                  <h3 className="text-lg font-bold underline">
-                    Company Documents
-                  </h3>
-                  {Object.entries(documentCategories).map(
-                    ([category, categoryData]) => (
-                      <li key={category}>
-                        {/* Category header with expand/collapse toggle */}
-                        <Button
-                          variant={
-                            category === selectedCategory
-                              ? "secondary"
-                              : "ghost"
-                          }
-                          className={`flex items-center justify-between cursor-pointer `}
-                          onClick={() => toggleCategory(category)}
-                        >
-                          <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5" />
-                            <span className="">
-                              {category}
-                            </span>
-                          </div>
-                          {expandedCategories[category] ? (
-                            <ChevronDown />
-                          ) : (
-                            <ChevronRight />
-                          )}
-                        </Button>
-
-                        {/* Sub-options dropdown when category is expanded */}
-                        {expandedCategories[category] && (
-                          <div className="ml-6 mt-2 space-y-2">
-                            <Select
-                              onValueChange={(subOption) =>
-                                handleDocumentSelect(category, subOption)
-                              }
-                            >
-                              <SelectTrigger className="w-full">
-                                <SelectValue
-                                  placeholder={`Select ${category} `}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {categoryData.subOptions.map(
-                                  (subOption) => (
-                                    <SelectItem
-                                      key={subOption}
-                                      value={subOption}
-                                      className={`${
-                                        selectedSubOption === subOption
-                                          ? "bg-green-100"
-                                          : ""
-                                      }`}
-                                    >
-                                      {subOption}
-                                    </SelectItem>
-                                  )
-                                )}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        )}
-
-                        <Separator className="my-2" />
-                      </li>
-                    )
-                  )}
-                </ul>
-                <ul className="space-y-4">
-                  <h3 className="mt-4 text-lg font-bold underline">
-                  KYC of Key Individuals Documents
-                  </h3>
-                  {Object.entries(documentCategories1).map(
-                    ([category, categoryData]) => (
-                      <li key={category}>
-                        {/* Category header with expand/collapse toggle */}
-                        <Button
-                          variant={
-                            category === selectedCategory
-                              ? "secondary"
-                              : "ghost"
-                          }
-                          className={`flex items-center justify-between cursor-pointer `}
-                          onClick={() => toggleCategory(category)}
-                        >
-                          <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5" />
-                            <span className="">
-                              {category}
-                            </span>
-                          </div>
-                          {expandedCategories[category] ? (
-                            <ChevronDown />
-                          ) : (
-                            <ChevronRight />
-                          )}
-                        </Button>
-
-                        {/* Sub-options dropdown when category is expanded */}
-                        {expandedCategories[category] && (
-                          <div className="ml-6 mt-2 space-y-2">
-                            <Select
-                              onValueChange={(subOption) =>
-                                handleDocumentSelect(category, subOption)
-                              }
-                            >
-                              <SelectTrigger className="w-full">
-                                <SelectValue
-                                  placeholder={`Select ${category} `}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {categoryData.subOptions.map(
-                                  (subOption) => (
-                                    <SelectItem
-                                      key={subOption}
-                                      value={subOption}
-                                      className={`${
-                                        selectedSubOption === subOption
-                                          ? "bg-green-100"
-                                          : ""
-                                      }`}
-                                    >
-                                      {subOption}
-                                    </SelectItem>
-                                  )
-                                )}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        )}
-
-                        <Separator className="my-2" />
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-
-              {/* Document Upload Section */}
-              <div className="flex-1 px-4 overflow-auto max-h-[700px]">
-                <Card className="h-full">
-                  <CardContent className="p-4">
-                    <h1 className="text-2xl font-bold mb-4">
-                      Upload {selectedSubOption || "Document"}
-                    </h1>
-
-                    <div className="mb-4">
-                      <Label htmlFor="file-upload" className="required">
-                        Select file
-                      </Label>
-                      <Input
-                        id="file-upload"
-                        type="file"
-                        onChange={handleFileChange}
-                        ref={fileInputRef}
-                        accept=".pdf,.jpg,.jpeg,.png"
-                      />
-                    </div>
-
-                    <div
-                      className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
-                      style={{ minHeight: "520px" }}
-                    >
-                      {preview ? (
-                        file.type.startsWith("image/") ? (
-                          <img
-                            src={preview}
-                            alt="Preview"
-                            className="max-w-full max-h-[400px] object-contain"
-                          />
-                        ) : (
-                          <div className="text-center">
-                            <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
-                            <p className="text-lg font-semibold">
-                              {file.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {file.type}
-                            </p>
-                          </div>
-                        )
-                      ) : (
-                        <p className="text-gray-500 text-center">
-                          You will see your document here.
-                        </p>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-                <div className="flex justify-end mt-2 mb-2">
-                  <Button
-                    onClick={handleUpload}
-                    disabled={!file || !selectedSubOption}
-                    className="ml-auto flex items-center"
-                  >
-                    <Upload className="mr-2 h-4 w-4" />
-                    Upload {selectedSubOption || "Document"}
+                  <Button className="mx-5" onClick={handleCreateLead}>
+                    Initiate Onboarding
                   </Button>
                 </div>
+              </TabsContent>
+              <TabsContent value="documents">
+                <div className="flex h-screen bg-gray-100">
+                  {/* Sidebar for document categories */}
+                  <div className="w-90 bg-white p-4 shadow-md overflow-auto">
+                    <h2 className="text-2xl font-bold mb-4">Documents</h2>
+                    <ul className="space-y-4">
+                      <h3 className="text-lg font-bold underline">
+                        Company Documents
+                      </h3>
+                      {Object.entries(documentCategories).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5" />
+                                <span className="">{category}</span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
 
-                {/* <div className="my-10 flex justify-end">
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    <ul className="space-y-4">
+                      <h3 className="mt-4 text-lg font-bold underline">
+                        KYC of Key Individuals Documents
+                      </h3>
+                      {Object.entries(documentCategories1).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5" />
+                                <span className="">{category}</span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
+
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+
+                  {/* Document Upload Section */}
+                  <div className="flex-1 px-4 overflow-auto max-h-[700px]">
+                    <Card className="h-full">
+                      <CardContent className="p-4">
+                        <h1 className="text-2xl font-bold mb-4">
+                          Upload {selectedSubOption || "Document"}
+                        </h1>
+
+                        <div className="mb-4">
+                          <Label htmlFor="file-upload" className="required">
+                            Select file
+                          </Label>
+                          <Input
+                            id="file-upload"
+                            type="file"
+                            onChange={handleFileChange}
+                            ref={fileInputRef}
+                            accept=".pdf,.jpg,.jpeg,.png"
+                          />
+                        </div>
+
+                        <div
+                          className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
+                          style={{ minHeight: "520px" }}
+                        >
+                          {preview ? (
+                            file.type.startsWith("image/") ? (
+                              <img
+                                src={preview}
+                                alt="Preview"
+                                className="max-w-full max-h-[400px] object-contain"
+                              />
+                            ) : (
+                              <div className="text-center">
+                                <FileIcon className="h-16 w-16 text-gray-400 mx-auto mb-2" />
+                                <p className="text-lg font-semibold">
+                                  {file.name}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  {file.type}
+                                </p>
+                              </div>
+                            )
+                          ) : (
+                            <p className="text-gray-500 text-center">
+                              You will see your document here.
+                            </p>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <div className="flex justify-end mt-2 mb-2">
+                      <Button
+                        onClick={handleUpload}
+                        disabled={!file || !selectedSubOption}
+                        className="ml-auto flex items-center"
+                      >
+                        <Upload className="mr-2 h-4 w-4" />
+                        Upload {selectedSubOption || "Document"}
+                      </Button>
+                    </div>
+
+                    {/* <div className="my-10 flex justify-end">
               <Button
                 className="mx-5"
                 onClick={() =>
@@ -2725,16 +2809,17 @@ function Profile() {
                 Submit
               </Button>
             </div> */}
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>}
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          )}
 
           {clientType === "company" ||
           clientType === "partnership" ||
           clientType === "trust" ? (
             <Tabs defaultValue="basic">
-              <TabsList className=" flex justify-start mb-4 ">
+              {/* <TabsList className=" flex justify-start mb-4 ">
                 <TabsTrigger
                   value="basic"
                   className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
@@ -2753,12 +2838,12 @@ function Profile() {
                 >
                   Beneficiaries
                 </TabsTrigger>
-              </TabsList>
+              </TabsList> */}
 
-              <TabsContent value="basic">
+              {/* <TabsContent value="basic">
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* <div className="space-y-2">
+                    <div className="space-y-2">
                       <Label htmlFor="source"> Parent</Label>
                       <div className="relative ">
                         <div className="flex items-center">
@@ -2805,7 +2890,7 @@ function Profile() {
                           </DialogContent>
                         </Dialog>
                       </div>
-                    </div> */}
+                    </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="firstName">Customer Name</Label>
@@ -2931,7 +3016,7 @@ function Profile() {
                       </Select>
                     </div>
 
-                    {/* <div className="space-y-2">
+                    <div className="space-y-2">
                       <Label htmlFor="industry">Regulatory Authority</Label>
                       <Select
                         id="industry"
@@ -2948,7 +3033,7 @@ function Profile() {
                           <SelectItem value="Retail">Auth 2</SelectItem>
                         </SelectContent>
                       </Select>
-                    </div> */}
+                    </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="finance">Financial Year End</Label>
@@ -2987,7 +3072,7 @@ function Profile() {
                     <Button className="mx-5">Submit & Next</Button>
                   </div>
                 </form>
-              </TabsContent>
+              </TabsContent> */}
               <TabsContent value="contact">
                 <Card>
                   <CardHeader>
