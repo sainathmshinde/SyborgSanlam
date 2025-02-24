@@ -108,14 +108,7 @@ const documentCategories1 ={
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
     image: addressproof,
-  }}
-  const documentCategories3 ={
-
-  "Address Proof of Alice Johnson": {
-    main: "ID Document",
-    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
-  }}
-  const documentCategories4 ={
+  },
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -126,7 +119,15 @@ const documentCategories1 ={
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     image: idproof,
   },
+}
+  const documentCategories3 ={
+
+  "Address Proof of Alice Johnson": {
+    main: "ID Document",
+    subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  }
 };
+  
 const CreateLead = () => {
   const navigate = useNavigate();
 
@@ -2109,99 +2110,7 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
-                <ul className="space-y-4 mt-6">
-
-                  {Object.entries(documentCategories4).map(
-                    ([category, categoryData],index,arr) => (
-                      <li key={category} className="border-b border-gray-300 pb-2">
-                        {/* Category header with expand/collapse toggle */}
-                        <Button
-                          variant={
-                            category === selectedCategory
-                              ? "secondary"
-                              : "ghost"
-                          }
-                          className={`flex items-center justify-between cursor-pointer `}
-                          onClick={() => toggleCategory(category)}
-                        >
-                          <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 " />
-                            <span className="">{category}</span>
-                          </div>
-                          {expandedCategories[category] ? (
-                            <ChevronDown />
-                          ) : (
-                            <ChevronRight />
-                          )}
-                        </Button>
-
-                        {/* Sub-options dropdown when category is expanded */}
-                        {expandedCategories[category] && (
-                          <div className="ml-6 mt-2 space-y-2">
-                            <Select
-                              onValueChange={(subOption) =>
-                                handleDocumentSelect(category, subOption)
-                              }
-                            >
-                              <SelectTrigger className="w-full">
-                                <SelectValue
-                                  placeholder={`Select ${category}`}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {categoryData.subOptions.map((subOption) => (
-                                  <SelectItem
-                                    key={subOption}
-                                    value={subOption}
-                                    className={`${
-                                      selectedSubOption === subOption
-                                        ? "bg-green-100"
-                                        : ""
-                                    }`}
-                                  >
-                                    {subOption}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            {/* Documents List */}
-                            {selectedSubOption && categoryData.documents && (
-                              <ul className="mt-4 space-y-2">
-                                {categoryData.documents.map((doc, index) => (
-                                  <li
-                                    key={doc.main}
-                                    className="flex justify-between"
-                                  >
-                                    <Button
-                                      variant={
-                                        selectedDoc?.main === doc.main
-                                          ? "secondary"
-                                          : "ghost"
-                                      }
-                                      className="w-full justify-start"
-                                      onClick={() => setSelectedDoc(doc)}
-                                    >
-                                      {/* Display check or upload icon */}
-                                      {index < categoryData.indexValue ? (
-                                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                                      ) : (
-                                        <FileIcon className="mr-2 h-4 w-4" />
-                                      )}
-
-                                      {doc.name}
-                                    </Button>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        )}
-
-                        <Separator className="my-2" />
-                      </li>
-                    )
-                  )}
-                </ul>
+               
                
                 {/* Document Preview (optional if any document is selected) */}
                 {selectedDoc && (
