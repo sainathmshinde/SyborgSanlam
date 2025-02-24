@@ -93,17 +93,15 @@ const documentCategories = {
     subOptions: ["Registration Certificate", "Incorporation Letter"],
     image: certificateImg,
   },
- 
-}
+};
 const documentCategories2 = {
- 
   "Address Proof of Company": {
     main: "Address Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     image: idproof,
   },
-}
-const documentCategories1 ={
+};
+const documentCategories1 = {
   "ID Proof of Alice Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -386,11 +384,11 @@ const CreateLead = () => {
     } else if (subOption === "Bank Statement") {
       setPhoto(documentCategories2["Address Proof of Company"]?.image);
       setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
-    } 
+    }
     // else if (subOption === "Passport") {
     //   setPhoto(documentCategories3["ID Proof of Alice Johnson"]?.image);
     //   setStatus("Approved");
-    // } 
+    // }
     else {
       setPhoto(null);
       setStatus("Pending");
@@ -431,7 +429,7 @@ const CreateLead = () => {
   //   if (photo) {
   //     setStatus("Approved");
   //   }
-  // }, [photo]); 
+  // }, [photo]);
   const handleSelectDoc = (doc) => {
     debugger;
     console.log("dddd", doc);
@@ -911,10 +909,7 @@ const CreateLead = () => {
             <div className="flex h-screen bg-gray-100">
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto">
-                <h2 className="text-xl font-bold mb-4">Documents
-
-              
-                </h2>
+                <h2 className="text-xl font-bold mb-4">Documents</h2>
                 <ul className="space-y-4">
                   {Object.entries(documentCategories).map(
                     ([category, categoryData]) => (
@@ -1216,27 +1211,29 @@ const CreateLead = () => {
                   </div>
 
                   <div className="space-y-2">
-          <Label htmlFor="client-type" className="required">
-            Customer Type
-          </Label>
-          <Select
-            id="client-type"
-            onValueChange={(e) => {
-              setClientType(e);
-            }}
-            value={clientType === "company" ? "company" : "individual" }
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select client type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="individual">Individual</SelectItem>
-              <SelectItem value="partnership">Partnership</SelectItem>
-              <SelectItem value="trust">Trust</SelectItem>
-              <SelectItem value="company">Company</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+                    <Label htmlFor="client-type" className="required">
+                      Customer Type
+                    </Label>
+                    <Select
+                      id="client-type"
+                      onValueChange={(e) => {
+                        setClientType(e);
+                      }}
+                      value={
+                        clientType === "company" ? "company" : "individual"
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select client type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="individual">Individual</SelectItem>
+                        <SelectItem value="partnership">Partnership</SelectItem>
+                        <SelectItem value="trust">Trust</SelectItem>
+                        <SelectItem value="company">Company</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="industry" className="required">
@@ -1544,7 +1541,8 @@ const CreateLead = () => {
                   >
                     <DialogTrigger asChild>
                       <Button>
-                        <PlusCircle className="mr-2 h-4 w-4" /> Add Key Individuals
+                        <PlusCircle className="mr-2 h-4 w-4" /> Add Key
+                        Individuals
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
@@ -1691,23 +1689,27 @@ const CreateLead = () => {
                         <TableCell>{beneficiary.type}</TableCell>
                         {/* <TableCell>{beneficiary.designation}</TableCell> */}
                         <TableCell>
-                        <label htmlFor={`designation-${index}`}></label>
-          <Select 
-            value={beneficiary.designation}
-            onValueChange={(value) => handleDesignationChange(index, value)}
-          >
-            <SelectTrigger id={`designation-${index}`}>
-              <SelectValue placeholder="Select designation" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Director">Director</SelectItem>
-              <SelectItem value="Manager">Partner</SelectItem>
-              <SelectItem value="Manager">Beneficiary</SelectItem>
-              <SelectItem value="Supervisor">Spouse</SelectItem>
-              <SelectItem value="Engineer">Co-owner</SelectItem>
-            </SelectContent>
-          </Select>
-          </TableCell>
+                          <label htmlFor={`designation-${index}`}></label>
+                          <Select
+                            value={beneficiary.designation}
+                            onValueChange={(value) =>
+                              handleDesignationChange(index, value)
+                            }
+                          >
+                            <SelectTrigger id={`designation-${index}`}>
+                              <SelectValue placeholder="Select designation" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Director">Director</SelectItem>
+                              <SelectItem value="Manager">Partner</SelectItem>
+                              <SelectItem value="Manager">
+                                Beneficiary
+                              </SelectItem>
+                              <SelectItem value="Supervisor">Spouse</SelectItem>
+                              <SelectItem value="Engineer">Co-owner</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -1736,12 +1738,17 @@ const CreateLead = () => {
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
                 <h2 className="text-2xl font-bold mb-4">Documents</h2>
-                
+
                 <ul className="space-y-4">
-                <h3 className="text-lg font-bold underline">Company Documents</h3>
+                  <h3 className="text-lg font-bold underline">
+                    Company Documents
+                  </h3>
                   {Object.entries(documentCategories).map(
-                    ([category, categoryData],index,arr) => (
-                      <li key={category} className="border-b border-gray-300 pb-2">
+                    ([category, categoryData], index, arr) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-300 pb-2"
+                      >
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
@@ -1831,10 +1838,12 @@ const CreateLead = () => {
                   )}
                 </ul>
                 <ul className="space-y-4">
-                
                   {Object.entries(documentCategories2).map(
-                    ([category, categoryData],index,arr) => (
-                      <li key={category} className="border-b border-gray-300 pb-2">
+                    ([category, categoryData], index, arr) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-300 pb-2"
+                      >
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
@@ -1923,12 +1932,17 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
-                
+
                 <ul className="space-y-4 mt-6">
-                <h3 className="text-lg font-bold underline">KYC of Key Individuals Documents</h3>
+                  <h3 className="text-lg font-bold underline">
+                    KYC of Key Individuals Documents
+                  </h3>
                   {Object.entries(documentCategories1).map(
-                    ([category, categoryData],index,arr) => (
-                      <li key={category} className="border-b border-gray-300 pb-2">
+                    ([category, categoryData], index, arr) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-300 pb-2"
+                      >
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
@@ -2018,10 +2032,12 @@ const CreateLead = () => {
                   )}
                 </ul>
                 <ul className="space-y-4 mt-6">
-
                   {Object.entries(documentCategories3).map(
-                    ([category, categoryData],index,arr) => (
-                      <li key={category} className="border-b border-gray-300 pb-2">
+                    ([category, categoryData], index, arr) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-300 pb-2"
+                      >
                         {/* Category header with expand/collapse toggle */}
                         <Button
                           variant={
@@ -2133,10 +2149,12 @@ const CreateLead = () => {
                         {selectedSubOption || "Document"}
                       </h1>
                       <span
-          className={`text-lg font-semibold ${getStatusColor(status)}`} // Apply status color
-        >
-          Status: {status}
-        </span>
+                        className={`text-lg font-semibold ${getStatusColor(
+                          status
+                        )}`} // Apply status color
+                      >
+                        Status: {status}
+                      </span>
                     </div>
 
                     <div className="mb-4">
