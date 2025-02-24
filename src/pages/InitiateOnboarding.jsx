@@ -271,6 +271,7 @@ const CreateLead = () => {
     setIsModalOpen(false);
   };
 
+  const [activeTab, setActiveTab] = useState("basic");
   const entities = [
     { id: 1, name: "Entity A" },
     { id: 2, name: "Entity B" },
@@ -1054,7 +1055,7 @@ const CreateLead = () => {
       {clientType === "company" ||
       clientType === "partnership" ||
       clientType === "trust" ? (
-        <Tabs defaultValue="basic">
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className=" flex justify-start mb-6 ">
             <TabsTrigger
               value="basic"
@@ -1377,7 +1378,7 @@ const CreateLead = () => {
               </div>
 
               <div className="flex justify-end">
-                <Button className="mx-5">Submit & Next</Button>
+                <Button className="mx-5" onClick={() => setActiveTab("contact")}>Submit & Next</Button>
               </div>
             </form>
           </TabsContent>
@@ -1522,7 +1523,7 @@ const CreateLead = () => {
                 </div> */}
             </Card>
             <div className="my-5 flex justify-end">
-              <Button className="mx-5">Submit & Next</Button>
+              <Button className="mx-5" onClick={() => setActiveTab("beneficiaries")}>Submit & Next</Button>
             </div>
           </TabsContent>
           <TabsContent value="beneficiaries">
