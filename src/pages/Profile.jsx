@@ -205,6 +205,7 @@ function Profile() {
   const [selectedCategory, setSelectedCategory] = useState("Company");
   const [expandedCategories, setExpandedCategories] = useState({});
   const [selectedSubOption, setSelectedSubOption] = useState(null);
+  const [activeTab, setActiveTab] = useState("basic");
 
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -1600,7 +1601,7 @@ function Profile() {
               </TabsContent>
             </Tabs>
           ) : (
-            <Tabs defaultValue="basic">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
               <div className="overflow-hidden sticky top-0 z-10">
                 <TabsList className=" flex justify-start mb-4  overflow-hidden sticky z-10">
                   <TabsTrigger
@@ -1941,7 +1942,12 @@ function Profile() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button className="mx-5">Submit & Next</Button>
+                    <Button
+                      className="mx-5"
+                      onClick={() => setActiveTab("contact")}
+                    >
+                      Submit & Next
+                    </Button>
                   </div>
                 </form>
               </TabsContent>
@@ -2193,7 +2199,12 @@ function Profile() {
                           </div> */}
                 </Card>
                 <div className="my-5 flex justify-end">
-                  <Button className="mx-5">Submit & Next</Button>
+                  <Button
+                    className="mx-5"
+                    onClick={() => setActiveTab("beneficiaries")}
+                  >
+                    Submit & Next
+                  </Button>
                 </div>
               </TabsContent>
               {/* <TabsContent value="beneficiaries">
