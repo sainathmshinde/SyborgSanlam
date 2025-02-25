@@ -97,7 +97,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-const COLORS = ["#003f5c", "#bc5090", "#58508d"];
+const COLORS = ["#0088FE", "#00C49F", "#8884D8"];
 
 function ComplianceDashboard() {
   const navigate = useNavigate();
@@ -176,7 +176,7 @@ function ComplianceDashboard() {
                 <Tooltip content={<CustomTooltip />} />
                 {/* <Tooltip/> */}
                 {/* <Legend /> */}
-                <Bar dataKey="pending" fill="#58508d" name="Pending " />
+                <Bar dataKey="pending" fill="#8884D8" name="Pending " />
                 {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
                 {/* <Bar
                   dataKey="withSalesTeam"
