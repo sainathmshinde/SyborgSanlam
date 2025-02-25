@@ -106,7 +106,8 @@ const documentCategories1 = {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
     image: addressproof,
-  },
+  }};
+  const documentCategories4 = {
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -367,9 +368,9 @@ const CreateLead = () => {
       case "Rejected":
         return "text-red-500"; // Red for rejected
       case "Pending":
-        return "text-yellow-500"; // Yellow for pending
+        return "text-gray-500"; // Yellow for pending
       default:
-        return "text-gray-500"; // Default gray color
+        return "text-yellow-500"; // Default gray color
     }
   };
   const handleDocumentSelect = (category, subOption) => {
@@ -385,10 +386,10 @@ const CreateLead = () => {
       setPhoto(documentCategories2["Address Proof of Company"]?.image);
       setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
     }
-    // else if (subOption === "Passport") {
-    //   setPhoto(documentCategories3["ID Proof of Alice Johnson"]?.image);
-    //   setStatus("Approved");
-    // }
+    else if (subOption === "Passport") {
+      setPhoto(documentCategories1["ID Proof of Alice Johnson"]?.image);
+      setStatus("Pending for Approval");
+    }
     else {
       setPhoto(null);
       setStatus("Pending");
@@ -1072,7 +1073,7 @@ const CreateLead = () => {
               value="beneficiaries"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Key Individuals
+              Key Individuals's
             </TabsTrigger>
             <TabsTrigger
               value="documents"
@@ -1163,8 +1164,7 @@ const CreateLead = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="country" className="required">
-                      {/* Country of Origin */}
-                      Country
+                       Country of Registration
                     </Label>
                     <Select
                       id="source"
@@ -1389,10 +1389,10 @@ const CreateLead = () => {
           <TabsContent value="contact">
             <Card className="overflow-auto max-h-[325px]">
               <CardHeader>
-                <CardTitle>Contact</CardTitle>
-                <CardDescription>
+                <CardTitle>Primary Contact of the Customer</CardTitle>
+                {/* <CardDescription>
                   Manage contact details for the lead.
-                </CardDescription>
+                </CardDescription> */}
               </CardHeader>
               <CardContent>
                 <div className="mb-4">
@@ -1538,10 +1538,10 @@ const CreateLead = () => {
           <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
-                <CardTitle>Key Individuals</CardTitle>
-                <CardDescription>
+                <CardTitle>Key Individuals's</CardTitle>
+                {/* <CardDescription>
                   Manage key individuals information for the lead.
-                </CardDescription>
+                </CardDescription> */}
               </CardHeader>
               <CardContent>
                 <div className="mb-4">
@@ -1606,7 +1606,7 @@ const CreateLead = () => {
                                 Director
                               </SelectItem>
                               <SelectItem value="Trust">Partner</SelectItem>
-                              <SelectItem value="Trust">Beneficiary</SelectItem>
+                              {/* <SelectItem value="Trust">Beneficiary</SelectItem> */}
                               <SelectItem value="Trust">Spouse</SelectItem>
                               <SelectItem value="Trust">Co-owner</SelectItem>
                             </SelectContent>
@@ -1697,8 +1697,8 @@ const CreateLead = () => {
                         <TableCell>{beneficiary.mobile}</TableCell>
                         <TableCell>{beneficiary.country}</TableCell>
                         <TableCell>{beneficiary.type}</TableCell>
-                        {/* <TableCell>{beneficiary.designation}</TableCell> */}
-                        <TableCell>
+                        <TableCell>{beneficiary.designation}</TableCell>
+                        {/* <TableCell>
                           <label htmlFor={`designation-${index}`}></label>
                           <Select
                             value={beneficiary.designation}
@@ -1712,14 +1712,11 @@ const CreateLead = () => {
                             <SelectContent>
                               <SelectItem value="Director">Director</SelectItem>
                               <SelectItem value="Manager">Partner</SelectItem>
-                              <SelectItem value="Manager">
-                                Beneficiary
-                              </SelectItem>
                               <SelectItem value="Supervisor">Spouse</SelectItem>
                               <SelectItem value="Engineer">Co-owner</SelectItem>
                             </SelectContent>
                           </Select>
-                        </TableCell>
+                        </TableCell> */}
                       </TableRow>
                     ))}
                   </TableBody>
@@ -1747,7 +1744,7 @@ const CreateLead = () => {
             <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
               {/* Sidebar for document categories */}
               <div className="w-90 bg-white p-4 shadow-md overflow-auto ">
-                <h2 className="text-2xl font-bold mb-4">Documents</h2>
+                {/* <h2 className="text-2xl font-bold mb-4">Documents</h2> */}
 
                 <ul className="space-y-4">
                   <h3 className="text-lg font-bold underline">
@@ -1945,7 +1942,7 @@ const CreateLead = () => {
 
                 <ul className="space-y-4 mt-6">
                   <h3 className="text-lg font-bold underline">
-                    KYC of Key Individuals Documents
+                  Key Individuals's Documents
                   </h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData], index, arr) => (
@@ -2060,6 +2057,101 @@ const CreateLead = () => {
                         >
                           <div className="flex items-center">
                             <FileText className="mr-2 h-5 w-5 text-red-600" />
+                            <span className="">{category}</span>
+                          </div>
+                          {expandedCategories[category] ? (
+                            <ChevronDown />
+                          ) : (
+                            <ChevronRight />
+                          )}
+                        </Button>
+
+                        {/* Sub-options dropdown when category is expanded */}
+                        {expandedCategories[category] && (
+                          <div className="ml-6 mt-2 space-y-2">
+                            <Select
+                              onValueChange={(subOption) =>
+                                handleDocumentSelect(category, subOption)
+                              }
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue
+                                  placeholder={`Select ${category}`}
+                                />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categoryData.subOptions.map((subOption) => (
+                                  <SelectItem
+                                    key={subOption}
+                                    value={subOption}
+                                    className={`${
+                                      selectedSubOption === subOption
+                                        ? "bg-green-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {subOption}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            {/* Documents List */}
+                            {selectedSubOption && categoryData.documents && (
+                              <ul className="mt-4 space-y-2">
+                                {categoryData.documents.map((doc, index) => (
+                                  <li
+                                    key={doc.main}
+                                    className="flex justify-between"
+                                  >
+                                    <Button
+                                      variant={
+                                        selectedDoc?.main === doc.main
+                                          ? "secondary"
+                                          : "ghost"
+                                      }
+                                      className="w-full justify-start"
+                                      onClick={() => setSelectedDoc(doc)}
+                                    >
+                                      {/* Display check or upload icon */}
+                                      {index < categoryData.indexValue ? (
+                                        <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                                      ) : (
+                                        <FileIcon className="mr-2 h-4 w-4" />
+                                      )}
+
+                                      {doc.name}
+                                    </Button>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+
+                        <Separator className="my-2" />
+                      </li>
+                    )
+                  )}
+                </ul>
+                <ul className="space-y-4 mt-6">
+                  {Object.entries(documentCategories4).map(
+                    ([category, categoryData], index, arr) => (
+                      <li
+                        key={category}
+                        className="border-b border-gray-300 pb-2"
+                      >
+                        {/* Category header with expand/collapse toggle */}
+                        <Button
+                          variant={
+                            category === selectedCategory
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          className={`flex items-center justify-between cursor-pointer `}
+                          onClick={() => toggleCategory(category)}
+                        >
+                          <div className="flex items-center">
+                            <FileText className="mr-2 h-5 w-5 text-gray-500" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
