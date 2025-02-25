@@ -444,7 +444,7 @@ function ComplianceChecklist() {
               </ul>
               <ul className="space-y-2 mt-4">
                 <h2 className="text-xl font-bold underline mb-4 mt-4">
-                  Key Individuals Documents
+                  Key Individuals' Documents
                 </h2>
                 {documents4.map((doc, index) => (
                   <li
