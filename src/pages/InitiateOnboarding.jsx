@@ -902,6 +902,7 @@ const CreateLead = () => {
                 </Button>
                 <Button className="ml-5" onClick={handleCreateLead}>
                   Initiate Onboarding
+              
                 </Button>
               </div>
             </Card>
@@ -1073,7 +1074,7 @@ const CreateLead = () => {
               value="beneficiaries"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Key Individuals's
+              Key Individual's
             </TabsTrigger>
             <TabsTrigger
               value="documents"
@@ -1538,7 +1539,7 @@ const CreateLead = () => {
           <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
-                <CardTitle>Key Individuals's</CardTitle>
+                <CardTitle>Key Individual's</CardTitle>
                 {/* <CardDescription>
                   Manage key individuals information for the lead.
                 </CardDescription> */}
@@ -1735,8 +1736,13 @@ const CreateLead = () => {
               {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                   Cancel
                 </Button> */}
-              <Button className="mx-5" onClick={handleCreateLead}>
-                Initiate Onboarding
+              {/* <Button className="mx-5" onClick={handleCreateLead}> */}
+              <Button
+                  className="mx-5"
+                  onClick={() => setActiveTab("documents")}
+                >
+                {/* Initiate Onboarding */}
+                Submit & Next
               </Button>
             </div>
           </TabsContent>
@@ -1942,7 +1948,7 @@ const CreateLead = () => {
 
                 <ul className="space-y-4 mt-6">
                   <h3 className="text-lg font-bold underline">
-                  Key Individuals's Documents
+                  Key Individual's Documents
                   </h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData], index, arr) => (
