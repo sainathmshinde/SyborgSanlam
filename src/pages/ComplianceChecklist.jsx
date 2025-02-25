@@ -309,45 +309,43 @@ function ComplianceChecklist() {
             <CardTitle>Documents Checklist</CardTitle>
           </CardHeader> */}
           <CardContent>
-            <ScrollArea className="h-[calc(100vh-300px)]">
-              <ul className="space-y-2 mt-4">
-                <h2 className="text-xl font-bold underline mb-4 mt-4">
-                  Company Documents
-                </h2>
-                {documents.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-4"
+            {/* <ScrollArea className="h-[calc(100vh-300px)]"> */}
+            <ul className="space-y-2 mt-4">
+              <h2 className="text-xl font-bold underline mb-4 mt-4">
+                Company Documents
+              </h2>
+              {documents.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-4"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
                   >
-                    <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
-                    >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5 text-green-600" />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4 " />
-                      )}
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5 text-green-600" />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4 " />
+                    )}
 
-                      {doc.name}
-                    </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
-                    >
-                      {/* <Button
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
+                  >
+                    {/* <Button
                         variant={"secondary"}
                         value="approve"
                         id="r2"
@@ -359,20 +357,20 @@ function ComplianceChecklist() {
                       >
                         {id == 2 ? "Approved" : "Approve"}
                       </Button> */}
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
+                    <Button
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
+                    >
+                      Reject
+                    </Button>
 
-                      {/* <Button
+                    {/* <Button
                         variant={"secondary"}
                         value="reject"
                         id="r2"
@@ -386,271 +384,261 @@ function ComplianceChecklist() {
                       >
                         {id == 3 && index == 3 ? "Rejected" : "Reject"}
                       </Button> */}
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-2 mt-4">
-                {documents3.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-2"
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-2 mt-4">
+              {documents3.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-2"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
+                  >
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5 text-red-600 " />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4 " />
+                    )}
+
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
                     >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5 text-red-600 " />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4 " />
-                      )}
-
-                      {doc.name}
+                      Approve
                     </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
                     >
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-2 mt-4">
-                <h2 className="text-xl font-bold underline mb-4 mt-4">
-                  Key Individuals' Documents
-                </h2>
-                {documents4.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-2"
+                      Reject
+                    </Button>
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-2 mt-4">
+              <h2 className="text-xl font-bold underline mb-4 mt-4">
+                Key Individuals' Documents
+              </h2>
+              {documents4.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-2"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
+                  >
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5 text-yellow-500" />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4" />
+                    )}
+
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
                     >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5 text-yellow-500" />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4" />
-                      )}
-
-                      {doc.name}
+                      Approve
                     </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
                     >
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-2 mt-4">
-                {documents5.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-2"
+                      Reject
+                    </Button>
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-2 mt-4">
+              {documents5.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-2"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
+                  >
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5 text-red-600 " />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4" />
+                    )}
+
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
                     >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5 text-red-600 " />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4" />
-                      )}
-
-                      {doc.name}
+                      Approve
                     </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
                     >
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
+                      Reject
+                    </Button>
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
 
-              <ul className="space-y-2 mt-4">
-                {documents1.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-2"
+            <ul className="space-y-2 mt-4">
+              {documents1.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-2"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
+                  >
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5  " />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4" />
+                    )}
+
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
                     >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5  " />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4" />
-                      )}
-
-                      {doc.name}
+                      Approve
                     </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
                     >
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-2 mt-4">
-                {documents2.map((doc, index) => (
-                  <li
-                    key={doc.id}
-                    className="flex justify-between border-b border-gray-300 pb-2"
+                      Reject
+                    </Button>
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-2 mt-4">
+              {documents2.map((doc, index) => (
+                <li
+                  key={doc.id}
+                  className="flex justify-between border-b border-gray-300 pb-2"
+                >
+                  <Button
+                    variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setSelectedDoc(doc)}
+                  >
+                    {index < indexValue ? (
+                      // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
+                      <FileText className="mr-2 h-5 w-5  " />
+                    ) : (
+                      // <CheckCircle2
+                      //   className="h-5 w-5 text-green-500 ml-2"
+                      //   aria-label={`${doc.name} uploaded`}
+                      // />
+                      // <XCircle
+                      //   className="h-5 w-5 text-red-500 ml-2"
+                      //   aria-label={`${doc.name} not uploaded`}
+                      // />
+                      <FileIcon className="mr-2 h-4 w-4" />
+                    )}
+
+                    {doc.name}
+                  </Button>
+                  <div
+                    defaultValue="comfortable"
+                    className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      variant={
-                        selectedDoc.id === doc.id ? "secondary" : "ghost"
-                      }
-                      className="w-full justify-start"
-                      onClick={() => setSelectedDoc(doc)}
+                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      variant="ghost"
                     >
-                      {index < indexValue ? (
-                        // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                        <FileText className="mr-2 h-5 w-5  " />
-                      ) : (
-                        // <CheckCircle2
-                        //   className="h-5 w-5 text-green-500 ml-2"
-                        //   aria-label={`${doc.name} uploaded`}
-                        // />
-                        // <XCircle
-                        //   className="h-5 w-5 text-red-500 ml-2"
-                        //   aria-label={`${doc.name} not uploaded`}
-                        // />
-                        <FileIcon className="mr-2 h-4 w-4" />
-                      )}
-
-                      {doc.name}
+                      Approve
                     </Button>
-                    <div
-                      defaultValue="comfortable"
-                      className="flex flex-row justify-end ml-2 gap-1"
+                    <Button
+                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      variant="ghost"
                     >
-                      <Button
-                        className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                        variant="ghost"
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                        variant="ghost"
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                    <Separator className="my-2" />
-                  </li>
-                ))}
-              </ul>
-            </ScrollArea>
+                      Reject
+                    </Button>
+                  </div>
+                  <Separator className="my-2" />
+                </li>
+              ))}
+            </ul>
+            {/* </ScrollArea> */}
           </CardContent>
         </Card>
 
