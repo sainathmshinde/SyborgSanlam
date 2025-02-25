@@ -54,6 +54,11 @@ import { useNavigate } from "react-router";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import certificateImg from "@/assets/Certificate_of_Incorporation.jpg";
+import bankStatement from "@/assets/BankStatementChequing.png";
+import addressproof from "@/assets/addressproof.png";
+import idproof from "@/assets/idproof.png";
+
 
 function Profile() {
   let params = new URLSearchParams(window.location.search);
@@ -171,31 +176,70 @@ function Profile() {
       designation: "Director",
     },
   ]);
+  // const documentCategories = {
+  //   "Certificate of Company": {
+  //     main: "Incorporation Document",
+  //     subOptions: ["Registration Certificate", "Incorporation Letter"],
+  //   },
+  //   "Address Proof of Company": {
+  //     main: "Address Document",
+  //     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  //   },
+  // };
+  // const documentCategories1 = {
+  //   "ID Proof of Alice Johnson": {
+  //     main: "ID Document",
+  //     subOptions: ["National ID", "Driving Licence", "Passport"],
+  //   },
+  //   "Address Proof of Alice Johnson": {
+  //     main: "Address Document",
+  //     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  //   },
+  //   "ID Proof of Bob Johnson": {
+  //     main: "ID Document",
+  //     subOptions: ["National ID", "Driving Licence", "Passport"],
+  //   },
+  //   "Address Proof of Bob Johnson": {
+  //     main: "Address Document",
+  //     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+  //   },
+  // };
+
   const documentCategories = {
     "Certificate of Company": {
       main: "Incorporation Document",
       subOptions: ["Registration Certificate", "Incorporation Letter"],
+      image: certificateImg,
     },
+  };
+  const documentCategories2 = {
     "Address Proof of Company": {
       main: "Address Document",
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+      image: idproof,
     },
   };
   const documentCategories1 = {
     "ID Proof of Alice Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "Driving Licence", "Passport"],
-    },
-    "Address Proof of Alice Johnson": {
-      main: "Address Document",
-      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
-    },
+      image: addressproof,
+    }};
+    const documentCategories4 = {
     "ID Proof of Bob Johnson": {
       main: "ID Document",
       subOptions: ["National ID", "Driving Licence", "Passport"],
+      image: idproof,
     },
     "Address Proof of Bob Johnson": {
-      main: "Address Document",
+      main: "ID Document",
+      subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
+      image: idproof,
+    },
+  };
+  const documentCategories3 = {
+    "Address Proof of Alice Johnson": {
+      main: "ID Document",
       subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     },
   };
@@ -256,22 +300,71 @@ function Profile() {
   };
 
   // };
+  // const handleDocumentSelect = (category, subOption) => {
+  //   setSelectedCategory(category);
+  //   setSelectedSubOption(subOption);
+  //   setFile(null);
+  //   setPreview(null);
+  // };
+   const [photo, setPhoto] = useState(null);
   const handleDocumentSelect = (category, subOption) => {
     setSelectedCategory(category);
     setSelectedSubOption(subOption);
-    setFile(null);
-    setPreview(null);
+
+    // Handle the selection of documents
+    if (subOption === "Incorporation Letter") {
+      setPhoto(documentCategories["Certificate of Company"]?.image);
+      setStatus("Approved");
+      //getStatusColor("text-green-500");
+    } else if (subOption === "Bank Statement") {
+      setPhoto(documentCategories2["Address Proof of Company"]?.image);
+      setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
+    }
+    else if (subOption === "Passport") {
+      setPhoto(documentCategories1["ID Proof of Alice Johnson"]?.image);
+      setStatus("Pending for Approval");
+    }
+    else {
+      setPhoto(null);
+      setStatus("Pending");
+    }
   };
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Approved":
+        return "text-green-500"; // Green for approved
+      case "Rejected":
+        return "text-red-500"; // Red for rejected
+      case "Pending":
+        return "text-gray-500"; // Yellow for pending
+      default:
+        return "text-yellow-500"; // Default gray color
+    }
+  };
+
+  // const handleFileChange = (event) => {
+  //   const selectedFile = event.target.files[0];
+  //   if (selectedFile) {
+  //     setFile(selectedFile);
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setPreview(reader.result);
+  //     };
+  //     reader.readAsDataURL(selectedFile);
+  //   }
+  // };
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+
+    // Create a file preview if it's an image
     if (selectedFile) {
-      setFile(selectedFile);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
+      const previewURL = URL.createObjectURL(selectedFile);
+      setPreview(previewURL);
+
+      // Set status to "Uploaded" when a file is selected
+      setStatus("Uploaded");
     }
   };
 
@@ -303,9 +396,12 @@ function Profile() {
         return <FileText className="h-5 w-5" />;
     }
   };
+    const [status, setStatus] = useState("Pending");
+    const [icon, setIcon] = useState("");
+    
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold ml-4">Profile</h1>
+      <h1 className="text-2xl font-bold ml-4">Teslack Organization</h1>
 
       {mode === "doc" ? (
         <div>
@@ -407,7 +503,7 @@ function Profile() {
                     value="beneficiaries"
                     className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                    Key Individuals
+                    Key Individual's  
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -1299,7 +1395,7 @@ function Profile() {
                               </div>
                             ) : null}
 
-                            <Button type="submit">Add Key Individuals</Button>
+                            <Button type="submit">Add Key Individual</Button>
                           </form>
                         </DialogContent>
                       </Dialog>
@@ -1567,6 +1663,7 @@ function Profile() {
                             <p className="text-gray-500 text-center">
                               You will see your document here.
                             </p>
+                            
                           )}
                         </div>
                       </CardContent>
@@ -1621,7 +1718,7 @@ function Profile() {
                     cla
                     ssName="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                    Key Individuals
+                  Key Individual's
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -1716,7 +1813,8 @@ function Profile() {
                       <div className="space-y-2">
                         <Label htmlFor="country" className="required">
                           {/* Country of Origin */}
-                          Country
+                          {/* Country */}
+                          Country of Registration
                         </Label>
                         <Select
                           id="source"
@@ -2057,10 +2155,11 @@ function Profile() {
               <TabsContent value="contact">
                 <Card className="overflow-auto max-h-[325px]">
                   <CardHeader>
-                    <CardTitle>Contact</CardTitle>
+                    {/* <CardTitle>Contact</CardTitle>
                     <CardDescription>
-                      Manage contact details for the lead.
-                    </CardDescription>
+                      Manage contact details for the leadsss.
+                    </CardDescription> */}
+                    <CardTitle>Primary Contact of the Customer</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4">
@@ -2380,10 +2479,10 @@ function Profile() {
               <TabsContent value="beneficiaries">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Key Individuals</CardTitle>
-                    <CardDescription>
+                    <CardTitle>Key Individual's</CardTitle>
+                    {/* <CardDescription>
                       Manage key individuals information for the lead.
-                    </CardDescription>
+                    </CardDescription> */}
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4">
@@ -2394,7 +2493,7 @@ function Profile() {
                         <DialogTrigger asChild>
                           <Button>
                             <PlusCircle className="mr-2 h-4 w-4" /> Add Key
-                            Individuals
+                            Individual
                           </Button>
                         </DialogTrigger>
                         <DialogContent>
@@ -2523,7 +2622,7 @@ function Profile() {
                               </div>
                             ) : null}
 
-                            <Button type="submit">Add Key Individuals</Button>
+                            <Button type="submit">Add Key Individual</Button>
                           </form>
                         </DialogContent>
                       </Dialog>
@@ -2549,10 +2648,10 @@ function Profile() {
                             <TableCell>{beneficiary.mobile}</TableCell>
                             <TableCell>{beneficiary.country}</TableCell>
                             <TableCell>{beneficiary.type}</TableCell>
-                            {/* <TableCell>{beneficiary.designation}</TableCell> */}
+                            <TableCell>{beneficiary.designation}</TableCell>
                             <TableCell>
                               <label htmlFor={`designation-${index}`}></label>
-                              <Select
+                              {/* <Select
                                 value={beneficiary.designation}
                                 onValueChange={(value) =>
                                   handleDesignationChange(index, value)
@@ -2578,7 +2677,7 @@ function Profile() {
                                     Co-owner
                                   </SelectItem>
                                 </SelectContent>
-                              </Select>
+                              </Select> */}
                             </TableCell>
                           </TableRow>
                         ))}
@@ -2598,8 +2697,11 @@ function Profile() {
                   {/* <Button variant="outline" onClick={() => navigate("/leads")}>
                             Cancel
                           </Button> */}
-                  <Button className="mx-5" onClick={handleCreateLead}>
-                    Initiate Onboarding
+                  <Button className="mx-5" 
+                  onClick={() => setActiveTab("documents")}
+                  >
+                    {/* Initiate Onboarding */}
+                    Submit & Next
                   </Button>
                 </div>
               </TabsContent>
@@ -2607,7 +2709,7 @@ function Profile() {
                 <div className="flex h-screen bg-gray-100">
                   {/* Sidebar for document categories */}
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
-                    <h2 className="text-2xl font-bold mb-4">Documents</h2>
+                    {/* <h2 className="text-2xl font-bold mb-4">Documents</h2> */}
                     <ul className="space-y-4">
                       <h3 className="text-lg font-bold underline">
                         Company Documents
@@ -2626,7 +2728,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5" />
+                                <FileText className="mr-2 h-5 w-5 text-green-500" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
@@ -2676,10 +2778,206 @@ function Profile() {
                       )}
                     </ul>
                     <ul className="space-y-4">
-                      <h3 className="mt-4 text-lg font-bold underline">
-                        KYC of Key Individuals Documents
+                      
+                      {Object.entries(documentCategories2).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5 text-red-500" />
+                                <span className="">{category}</span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
+
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    <ul className="space-y-4">
+                    <h3 className="mt-4 text-lg font-bold underline">
+                      Key Individual's Documents
                       </h3>
                       {Object.entries(documentCategories1).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5 text-yellow-600" />
+                                <span className="">{category}</span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
+
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    <ul className="space-y-4">
+
+                      {Object.entries(documentCategories3).map(
+                        ([category, categoryData]) => (
+                          <li key={category}>
+                            {/* Category header with expand/collapse toggle */}
+                            <Button
+                              variant={
+                                category === selectedCategory
+                                  ? "secondary"
+                                  : "ghost"
+                              }
+                              className={`flex items-center justify-between cursor-pointer `}
+                              onClick={() => toggleCategory(category)}
+                            >
+                              <div className="flex items-center">
+                                <FileText className="mr-2 h-5 w-5 text-red-600" />
+                                <span className="">{category}</span>
+                              </div>
+                              {expandedCategories[category] ? (
+                                <ChevronDown />
+                              ) : (
+                                <ChevronRight />
+                              )}
+                            </Button>
+
+                            {/* Sub-options dropdown when category is expanded */}
+                            {expandedCategories[category] && (
+                              <div className="ml-6 mt-2 space-y-2">
+                                <Select
+                                  onValueChange={(subOption) =>
+                                    handleDocumentSelect(category, subOption)
+                                  }
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue
+                                      placeholder={`Select ${category} `}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {categoryData.subOptions.map(
+                                      (subOption) => (
+                                        <SelectItem
+                                          key={subOption}
+                                          value={subOption}
+                                          className={`${
+                                            selectedSubOption === subOption
+                                              ? "bg-green-100"
+                                              : ""
+                                          }`}
+                                        >
+                                          {subOption}
+                                        </SelectItem>
+                                      )
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            )}
+
+                            <Separator className="my-2" />
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    
+                    <ul className="space-y-4">
+
+                      {Object.entries(documentCategories4).map(
                         ([category, categoryData]) => (
                           <li key={category}>
                             {/* Category header with expand/collapse toggle */}
@@ -2745,13 +3043,22 @@ function Profile() {
                   </div>
 
                   {/* Document Upload Section */}
-                  <div className="flex-1 px-4 overflow-auto max-h-[700px]">
+                  <div className="flex-1 px-4 overflow-auto ">
                     <Card className="h-full">
                       <CardContent className="p-4">
-                        <h1 className="text-2xl font-bold mb-4">
-                          Upload {selectedSubOption || "Document"}
+                      <div className="flex justify-between items-center mb-4">
+                        <h1 className="text-2xl font-bold">
+                          {selectedSubOption || "Document"}
                         </h1>
 
+                        <span
+                        className={`text-lg font-semibold ${getStatusColor(
+                          status
+                        )}`} // Apply status color
+                      >
+                        Status: {status}
+                      </span>
+                      </div>
                         <div className="mb-4">
                           <Label htmlFor="file-upload" className="required">
                             Select file
@@ -2788,9 +3095,14 @@ function Profile() {
                               </div>
                             )
                           ) : (
-                            <p className="text-gray-500 text-center">
-                              You will see your document here.
-                            </p>
+                            // <p className="text-gray-500 text-center">
+                            //   You will see your document here.
+                            // </p>
+                            <img
+                            src={photo}
+                            // alt="Default Preview"
+                            className="max-w-full max-h-[400px] object-contain"
+                          />
                           )}
                         </div>
                       </CardContent>
@@ -3469,9 +3781,8 @@ function Profile() {
                     <Card className="mb-6">
                       <CardContent className="p-4">
                         <h1 className="text-2xl font-bold mb-4">
-                          Upload {selectedSubOption || "Document"}
+                           {selectedSubOption || "Document"}
                         </h1>
-
                         <div className="mb-4">
                           <Label htmlFor="file-upload" className="required">
                             Select file
