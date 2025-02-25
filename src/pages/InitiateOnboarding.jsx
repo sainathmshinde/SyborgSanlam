@@ -1074,7 +1074,7 @@ const CreateLead = () => {
               value="beneficiaries"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Key Individual's
+              Key Individuals
             </TabsTrigger>
             <TabsTrigger
               value="documents"
@@ -1539,7 +1539,7 @@ const CreateLead = () => {
           <TabsContent value="beneficiaries">
             <Card>
               <CardHeader>
-                <CardTitle>Key Individual's</CardTitle>
+                <CardTitle>Key Individuals</CardTitle>
                 {/* <CardDescription>
                   Manage key individuals information for the lead.
                 </CardDescription> */}
@@ -1553,12 +1553,12 @@ const CreateLead = () => {
                     <DialogTrigger asChild>
                       <Button>
                         <PlusCircle className="mr-2 h-4 w-4" /> Add Key
-                        Individuals
+                        Individual
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Add New Key Individuals</DialogTitle>
+                        <DialogTitle>Add New Key Individual</DialogTitle>
                       </DialogHeader>
                       <form
                         onSubmit={(e) => {
@@ -1672,7 +1672,7 @@ const CreateLead = () => {
                           </div>
                         ) : null}
 
-                        <Button type="submit">Add Key Individuals</Button>
+                        <Button type="submit">Add Key Individual</Button>
                       </form>
                     </DialogContent>
                   </Dialog>
@@ -1850,7 +1850,7 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
-                <ul className="space-y-4">
+                <ul className="space-y-4 mt-4">
                   {Object.entries(documentCategories2).map(
                     ([category, categoryData], index, arr) => (
                       <li
@@ -1948,7 +1948,7 @@ const CreateLead = () => {
 
                 <ul className="space-y-4 mt-6">
                   <h3 className="text-lg font-bold underline">
-                  Key Individual's Documents
+                  Key Individuals' Documents
                   </h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData], index, arr) => (
