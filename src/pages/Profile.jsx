@@ -503,7 +503,7 @@ function Profile() {
                     value="beneficiaries"
                     className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                    Key Individual's  
+                    Key Individuals  
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -1718,7 +1718,7 @@ function Profile() {
                     cla
                     ssName="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                  Key Individual's
+                  Key Individuals
                   </TabsTrigger>
                   <TabsTrigger
                     value="documents"
@@ -2479,7 +2479,7 @@ function Profile() {
               <TabsContent value="beneficiaries">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Key Individual's</CardTitle>
+                    <CardTitle>Key Individuals</CardTitle>
                     {/* <CardDescription>
                       Manage key individuals information for the lead.
                     </CardDescription> */}
@@ -2498,7 +2498,7 @@ function Profile() {
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>Add New Key Individuals</DialogTitle>
+                            <DialogTitle>Add New Key Individual</DialogTitle>
                           </DialogHeader>
                           <form
                             onSubmit={(e) => {
@@ -2844,7 +2844,7 @@ function Profile() {
                     </ul>
                     <ul className="space-y-4">
                     <h3 className="mt-4 text-lg font-bold underline">
-                      Key Individual's Documents
+                      Key Individuals' Documents
                       </h3>
                       {Object.entries(documentCategories1).map(
                         ([category, categoryData]) => (
