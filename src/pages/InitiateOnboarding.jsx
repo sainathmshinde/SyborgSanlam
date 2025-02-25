@@ -2300,7 +2300,7 @@ const CreateLead = () => {
                         <img
                           src={photo}
                           // alt="Default Preview"
-                          className="max-w-full max-h-[400px] object-contain"
+                          className="max-w-full max-h-[350px] object-contain"
                         />
                       )}
                     </div>
@@ -2308,7 +2308,7 @@ const CreateLead = () => {
                 </Card>
                 {/* Comment Box Section */}
                 <div>
-                  <Label htmlFor="comment" className="p-2 text-2xl font-semibold">Comment</Label>
+                  <Label htmlFor="comment" className="p-2 font-semibold">Comment</Label>
                   <textarea
                     id="comment"
                     rows="4"
