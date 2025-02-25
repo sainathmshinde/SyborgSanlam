@@ -1080,7 +1080,7 @@ const CreateLead = () => {
               value="documents"
               className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
             >
-              Upload Documents
+            Documents
             </TabsTrigger>
           </TabsList>
 
@@ -2309,8 +2309,8 @@ const CreateLead = () => {
                   </CardContent>
                 </Card>
                 {/* Comment Box Section */}
-                <div className="">
-                  <Label htmlFor="comment">Comment</Label>
+                <div>
+                  <Label htmlFor="comment" className="p-2 text-2xl font-semibold">Comment</Label>
                   <textarea
                     id="comment"
                     rows="4"
