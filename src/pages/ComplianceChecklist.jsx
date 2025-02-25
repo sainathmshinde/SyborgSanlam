@@ -93,9 +93,9 @@ const documents1 = [
   {
     id: 4,
     name: "ID Proof of Bob Johnson",
-    type: "Passport",
+    // type: "Passport",
     content: "Address Proof content...",
-    image: addressproof,
+    // image: addressproof,
   },
 
   // Add more documents as needed
@@ -104,9 +104,9 @@ const documents2 = [
   {
     id: 6,
     name: "Address Proof of Bob Johnson",
-    type: "Bank Statement",
+    // type: "Bank Statement",
     content: "ID Proof content...",
-    image: idproof,
+    // image: idproof,
   },
 
   // Add more documents as needed
