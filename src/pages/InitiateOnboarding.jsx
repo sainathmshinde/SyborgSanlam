@@ -117,15 +117,14 @@ const documentCategories1 = {
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
     image: idproof,
   },
-}
-  const documentCategories3 ={
-
+};
+const documentCategories3 = {
   "Address Proof of Alice Johnson": {
     main: "ID Document",
     subOptions: ["Utility Bill", "Rental Agreement", "Bank Statement"],
-  }
+  },
 };
-  
+
 const CreateLead = () => {
   const navigate = useNavigate();
 
@@ -1378,7 +1377,12 @@ const CreateLead = () => {
               </div>
 
               <div className="flex justify-end">
-                <Button className="mx-5" onClick={() => setActiveTab("contact")}>Submit & Next</Button>
+                <Button
+                  className="mx-5"
+                  onClick={() => setActiveTab("contact")}
+                >
+                  Submit & Next
+                </Button>
               </div>
             </form>
           </TabsContent>
@@ -1523,7 +1527,12 @@ const CreateLead = () => {
                 </div> */}
             </Card>
             <div className="my-5 flex justify-end">
-              <Button className="mx-5" onClick={() => setActiveTab("beneficiaries")}>Submit & Next</Button>
+              <Button
+                className="mx-5"
+                onClick={() => setActiveTab("beneficiaries")}
+              >
+                Submit & Next
+              </Button>
             </div>
           </TabsContent>
           <TabsContent value="beneficiaries">
@@ -2127,8 +2136,7 @@ const CreateLead = () => {
                     )
                   )}
                 </ul>
-               
-               
+
                 {/* Document Preview (optional if any document is selected) */}
                 {selectedDoc && (
                   <div className="mt-4">
