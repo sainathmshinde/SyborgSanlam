@@ -47,21 +47,23 @@ const dashboardData = {
   ],
 };
 
+
+
 const pieChartData = [
   {
     name: "Onboarding",
     value: dashboardData.pendingRequests,
-    color: "#f97316",
+    color: "#bc5090",
   },
   {
     name: "Compliance",
     value: dashboardData.withComplianceTeam,
-    color: "#3b82f6",
+   color: "#58508d",
   },
   {
     name: "Approved",
     value: dashboardData.onboardedClients,
-    color: "#22c55e",
+    color: "#003f5c",
   },
 ];
 function OnboardingDashboard() {
@@ -221,7 +223,7 @@ function OnboardingDashboard() {
                 <YAxis domain={[0, 12]} ticks={[0, 3, 6, 9, 12]} />
                 <Tooltip content={<CustomTooltip />} />
                 {/* <Legend /> */}
-                <Bar dataKey="pending" fill="#58508d" name="Pending " />
+                <Bar dataKey="pending" fill= "#bc5090" name="Pending " />
                 {/* <Bar dataKey="completed" fill="#58508d" name="Completed " /> */}
                 {/* <Bar
                           dataKey="withSalesTeam"
