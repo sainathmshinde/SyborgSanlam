@@ -1476,7 +1476,7 @@ function Profile() {
                 </div>
               </TabsContent>
               <TabsContent value="documents">
-                <div className="flex h-screen bg-gray-100">
+                <div className="flex h-screen bg-gray-100 overflow-auto max-h-[550]">
                   {/* Sidebar for document categories */}
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                     <h2 className="text-2xl font-bold mb-4">Documents</h2>
@@ -3074,7 +3074,7 @@ function Profile() {
 
                         <div
                           className="my-5 border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center"
-                          style={{ minHeight: "520px" }}
+                          style={{ minHeight: "400px" }}
                         >
                           {preview ? (
                             file.type.startsWith("image/") ? (
@@ -3101,7 +3101,7 @@ function Profile() {
                             <img
                             src={photo}
                             // alt="Default Preview"
-                            className="max-w-full max-h-[400px] object-contain"
+                            className="max-w-full max-h-[350px] object-contain"
                           />
                           )}
                         </div>
@@ -3787,7 +3787,7 @@ function Profile() {
 
                   {/* Document Upload Section */}
                   <div className="flex-1 p-4 overflow-auto">
-                    <Card className="mb-6">
+                    <Card className="h-full">
                       <CardContent className="p-4">
                         <h1 className="text-2xl font-bold mb-4">
                            {selectedSubOption || "Document"}
