@@ -22,9 +22,9 @@ export default function SignUp() {
         <Card className="w-full ">
           <CardHeader>
             <CardTitle>Sign Up</CardTitle>
-            <CardDescription>
+            {/* <CardDescription>
               Create your account to get started.
-            </CardDescription>
+            </CardDescription> */}
           </CardHeader>
           <CardContent className="space-y-6">
             {/* <section className="space-y-4">
