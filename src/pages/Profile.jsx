@@ -2710,7 +2710,7 @@ function Profile() {
                   {/* Sidebar for document categories */}
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                     {/* <h2 className="text-2xl font-bold mb-4">Documents</h2> */}
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
                       <h3 className="text-lg font-bold underline">
                         Company Documents
                       </h3>
