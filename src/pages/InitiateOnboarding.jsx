@@ -2151,7 +2151,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-gray-500" />
+                            <FileText className="mr-2 h-5 w-5" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
