@@ -106,8 +106,9 @@ const documentCategories1 = {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
     image: addressproof,
-  }};
-  const documentCategories4 = {
+  },
+};
+const documentCategories4 = {
   "ID Proof of Bob Johnson": {
     main: "ID Document",
     subOptions: ["National ID", "Driving Licence", "Passport"],
@@ -385,12 +386,10 @@ const CreateLead = () => {
     } else if (subOption === "Bank Statement") {
       setPhoto(documentCategories2["Address Proof of Company"]?.image);
       setStatus("Rejected"); // Set status to "Rejected" for Bank Statement
-    }
-    else if (subOption === "Passport") {
+    } else if (subOption === "Passport") {
       setPhoto(documentCategories1["ID Proof of Alice Johnson"]?.image);
       setStatus("Pending for Approval");
-    }
-    else {
+    } else {
       setPhoto(null);
       setStatus("Pending");
     }
@@ -902,7 +901,6 @@ const CreateLead = () => {
                 </Button>
                 <Button className="ml-5" onClick={handleCreateLead}>
                   Initiate Onboarding
-              
                 </Button>
               </div>
             </Card>
@@ -1165,7 +1163,7 @@ const CreateLead = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="country" className="required">
-                       Country of Registration
+                      Country of Registration
                     </Label>
                     <Select
                       id="source"
@@ -1738,9 +1736,9 @@ const CreateLead = () => {
                 </Button> */}
               {/* <Button className="mx-5" onClick={handleCreateLead}> */}
               <Button
-                  className="mx-5"
-                  onClick={() => setActiveTab("documents")}
-                >
+                className="mx-5"
+                onClick={() => setActiveTab("documents")}
+              >
                 {/* Initiate Onboarding */}
                 Submit & Next
               </Button>
@@ -1948,7 +1946,7 @@ const CreateLead = () => {
 
                 <ul className="space-y-4 mt-6">
                   <h3 className="text-lg font-bold underline">
-                  Key Individuals' Documents
+                    Key Individuals' Documents
                   </h3>
                   {Object.entries(documentCategories1).map(
                     ([category, categoryData], index, arr) => (
