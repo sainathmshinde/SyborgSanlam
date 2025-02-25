@@ -529,11 +529,11 @@ const EditLeadManagement = () => {
                               value="saraj.johnson@example.com"
                               readOnly
                             />
-                            <p>
+                            {/* <p>
                               <strong> Note :</strong> This details will be sent
                               directly to the customer's registered email
                               address.
-                            </p>
+                            </p> */}
                           </div>
                         )}
 

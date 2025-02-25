@@ -97,7 +97,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-const COLORS = ["#003f5c", "#58508d", "#bc5090"];
+const COLORS = ["#003f5c", "#bc5090", "#58508d"];
 
 function ComplianceDashboard() {
   const navigate = useNavigate();
