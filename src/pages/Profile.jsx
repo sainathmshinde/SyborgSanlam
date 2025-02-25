@@ -1724,7 +1724,7 @@ function Profile() {
                     value="documents"
                     className="px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300"
                   >
-                    Upload Documents
+                    Documents
                   </TabsTrigger>
                 </TabsList>
               </div>
@@ -2710,7 +2710,7 @@ function Profile() {
                   {/* Sidebar for document categories */}
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                     {/* <h2 className="text-2xl font-bold mb-4">Documents</h2> */}
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
                       <h3 className="text-lg font-bold underline">
                         Company Documents
                       </h3>
@@ -2777,7 +2777,7 @@ function Profile() {
                         )
                       )}
                     </ul>
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
                       
                       {Object.entries(documentCategories2).map(
                         ([category, categoryData]) => (
@@ -2842,7 +2842,7 @@ function Profile() {
                         )
                       )}
                     </ul>
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
                     <h3 className="mt-4 text-lg font-bold underline">
                       Key Individuals' Documents
                       </h3>
@@ -2909,7 +2909,7 @@ function Profile() {
                         )
                       )}
                     </ul>
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
 
                       {Object.entries(documentCategories3).map(
                         ([category, categoryData]) => (
@@ -2975,7 +2975,7 @@ function Profile() {
                       )}
                     </ul>
                     
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 mt-6">
 
                       {Object.entries(documentCategories4).map(
                         ([category, categoryData]) => (
@@ -3107,6 +3107,15 @@ function Profile() {
                         </div>
                       </CardContent>
                     </Card>
+                    <div className="">
+                      <Label htmlFor="comment" className="p-2 text-2xl font-semibold">Comment</Label>
+                        <textarea
+                          id="comment"
+                          rows="4"
+                          className="w-full p-2 border border-gray-300 rounded-lg"
+                          placeholder="Comments from Compliance..."
+                        />
+                    </div>
                     <div className="flex justify-end mt-2 mb-2">
                       <Button
                         onClick={handleUpload}
