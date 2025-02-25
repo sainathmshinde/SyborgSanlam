@@ -125,7 +125,7 @@ function Navigator() {
     );
   };
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
+  const COLORS = ["#0088FE", "#00C49F", "#8884D8", "#FF8042", "#FFBB28"];
   const dashboardData = {
     totalClients: 75,
     pendingRequests: 30,

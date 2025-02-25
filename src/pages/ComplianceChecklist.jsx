@@ -222,13 +222,13 @@ function ComplianceChecklist() {
     <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
       <div className="overflow-hidden  sticky top-0 z-10">
         <div className="flex justify-between items-center">
-          <div
+          {/* <div
             onClick={goBack}
             className="hover:cursor-pointer hover:text-blue-600  w-1/12"
           >
             {" "}
             <CircleArrowLeft className="w-8 h-8" />
-          </div>
+          </div> */}
           {/* <div className="relative flex-grow">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -310,7 +310,7 @@ function ComplianceChecklist() {
           </CardHeader> */}
           <CardContent>
             {/* <ScrollArea className="h-[calc(100vh-300px)]"> */}
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6">
               <h2 className="text-xl font-bold underline mb-4 mt-4">
                 Company Documents
               </h2>
@@ -358,7 +358,7 @@ function ComplianceChecklist() {
                         {id == 2 ? "Approved" : "Approve"}
                       </Button> */}
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className=" border-green-500 bg-green-500 text-white hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
@@ -389,11 +389,11 @@ function ComplianceChecklist() {
                 </li>
               ))}
             </ul>
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6 ">
               {documents3.map((doc, index) => (
                 <li
                   key={doc.id}
-                  className="flex justify-between border-b border-gray-300 pb-2"
+                  className="flex justify-between border-b border-gray-300 pb-4"
                 >
                   <Button
                     variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
@@ -428,7 +428,7 @@ function ComplianceChecklist() {
                       Approve
                     </Button>
                     <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className=" border-red-500 bg-red-500 text-white hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
                       variant="ghost"
                     >
                       Reject
@@ -438,14 +438,14 @@ function ComplianceChecklist() {
                 </li>
               ))}
             </ul>
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6">
               <h2 className="text-xl font-bold underline mb-4 mt-4">
                 Key Individuals' Documents
               </h2>
               {documents4.map((doc, index) => (
                 <li
                   key={doc.id}
-                  className="flex justify-between border-b border-gray-300 pb-2"
+                  className="flex justify-between border-b border-gray-300 pb-4"
                 >
                   <Button
                     variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
@@ -490,11 +490,11 @@ function ComplianceChecklist() {
                 </li>
               ))}
             </ul>
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6">
               {documents5.map((doc, index) => (
                 <li
                   key={doc.id}
-                  className="flex justify-between border-b border-gray-300 pb-2"
+                  className="flex justify-between border-b border-gray-300 pb-4"
                 >
                   <Button
                     variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
@@ -529,7 +529,7 @@ function ComplianceChecklist() {
                       Approve
                     </Button>
                     <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className=" border-red-500 text-white bg-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
                       variant="ghost"
                     >
                       Reject
@@ -540,11 +540,11 @@ function ComplianceChecklist() {
               ))}
             </ul>
 
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6">
               {documents1.map((doc, index) => (
                 <li
                   key={doc.id}
-                  className="flex justify-between border-b border-gray-300 pb-2"
+                  className="flex justify-between border-b border-gray-300 pb-4"
                 >
                   <Button
                     variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
@@ -589,11 +589,11 @@ function ComplianceChecklist() {
                 </li>
               ))}
             </ul>
-            <ul className="space-y-2 mt-4">
+            <ul className="space-y-2 mt-6">
               {documents2.map((doc, index) => (
                 <li
                   key={doc.id}
-                  className="flex justify-between border-b border-gray-300 pb-2"
+                  className="flex justify-between border-b border-gray-300 pb-4"
                 >
                   <Button
                     variant={selectedDoc.id === doc.id ? "secondary" : "ghost"}
@@ -647,12 +647,16 @@ function ComplianceChecklist() {
             <CardTitle>Document Preview: {selectedDoc.type}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="bg-muted p-4 rounded-md h-[calc(50vh-50px)] overflow-auto">
+            <div
+              className="bg-muted p-4 rounded-md  overflow-auto flex items-center justify-center"
+              style={{ minHeight: "400px" }}
+            >
               {selectedDoc.image ? (
                 <img
                   src={selectedDoc.image}
                   alt={selectedDoc.name}
                   // className="h-110 w-110 object-contain"
+                  className="max-w-full max-h-[400px] object-contain "
                 />
               ) : (
                 <p>{selectedDoc.content}</p>
