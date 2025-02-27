@@ -219,7 +219,7 @@ function ComplianceChecklist() {
     navigate("/compliance");
   };
   return (
-    <div className="container mx-auto p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto">
+    <div className="container mx-auto mt-0 p-4 space-y-4 bg-gray-200 border rounded-lg overflow-x-auto ">
       <div className="overflow-hidden  sticky top-0 z-10">
         <div className="flex justify-between items-center">
           {/* <div

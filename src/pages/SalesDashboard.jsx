@@ -254,33 +254,33 @@ function SalesDashboard() {
                           <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="leadsWithSales"
-                            fill="#58508d"
+                            fill="#FF8042"
                             name="Sales"
                             barSize={40}
                             // Adjusted size for better spacing
                           />
                           <Bar
                             dataKey="leadsWithOnboarding"
-                            fill="#2563EB"
+                            fill="#00C49F"
                             name="Onboarding"
                             barSize={40}
                           />
                           <Bar
                             dataKey="leadsWithCompliance"
-                            fill="#60A5FA"
+                            fill="#8884D8"
                             name="Compliance"
                             barSize={40}
                           />
                           <Bar
-                            dataKey="lost"
-                            fill="#93C5FD"
-                            name="Lost"
+                            dataKey="leadsWithOnboarded"
+                            fill="#0088FE"
+                            name="Onboarded"
                             barSize={40}
                           />
                           <Bar
-                            dataKey="leadsWithOnboarded"
-                            fill="#34D399"
-                            name="Onboarded"
+                            dataKey="lost"
+                            fill="#FFBB28"
+                            name="Lost"
                             barSize={40}
                           />
                         </BarChart>
