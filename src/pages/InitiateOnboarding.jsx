@@ -1648,7 +1648,7 @@ const CreateLead = () => {
                           />
                         </div>
 
-                        {bType?.length ? (
+                        {/* {bType?.length ? (
                           <div className="space-y-2">
                             <h3 className="text-lg font-semibold my-5">
                               Compliance Checklist
@@ -1668,7 +1668,7 @@ const CreateLead = () => {
                               ))}
                             </div>
                           </div>
-                        ) : null}
+                        ) : null} */}
 
                         <Button type="submit">Add Key Individual</Button>
                       </form>
@@ -1771,7 +1771,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-green-500" />
+                            <FileText className="mr-2 h-7 w-7 text-green-500" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
@@ -1866,7 +1866,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-red-600" />
+                            <FileText className="mr-2 h-7 w-7 text-red-600" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
@@ -1965,7 +1965,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-yellow-500" />
+                            <FileText className="mr-2 h-7 w-7 text-yellow-500" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
@@ -2060,7 +2060,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-red-600" />
+                            <FileText className="mr-2 h-7 w-7 text-red-600" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
@@ -2155,7 +2155,7 @@ const CreateLead = () => {
                           onClick={() => toggleCategory(category)}
                         >
                           <div className="flex items-center">
-                            <FileText className="mr-2 h-5 w-5" />
+                            <FileText className="mr-2 h-7 w-7" />
                             <span className="">{category}</span>
                           </div>
                           {expandedCategories[category] ? (
