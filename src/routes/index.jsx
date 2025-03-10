@@ -80,9 +80,9 @@ const routes = [
     component: <Navigator />,
   },
   {
-    exact :true,
-    path:"/",
-    component:<AdminSignIn/>
+    exact: true,
+    path: "/",
+    component: <AdminSignIn />,
   },
   ,
   {
