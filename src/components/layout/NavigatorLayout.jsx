@@ -25,7 +25,7 @@ export default function NavigatorLayout({ children }) {
     <div className="w-full">
       <div className="flex h-full  flex-col gap-2 overflow-hidden sticky top-0 z-10 ">
         <div className="flex h-16 items-center  px-2 justify-between bg-slate-100  ">
-        <div className="flex items-center font-semibold">
+          <div className="flex items-center font-semibold">
             <Button variant="link" className="m-0 p-0">
               <div className="flex items-center">
                 <img src="src/assets/syborg-techLogo.png" className="w-28" />
@@ -35,7 +35,7 @@ export default function NavigatorLayout({ children }) {
                     navigate("/navigator");
                   }}
                 >
-                Customer Onboarding
+                  Customer Onboarding
                 </h1>
               </div>
             </Button>
