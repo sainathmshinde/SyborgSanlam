@@ -2598,7 +2598,7 @@ function Profile() {
                               />
                             </div>
 
-                            {bType?.length ? (
+                            {/* {bType?.length ? (
                               <div className="space-y-2">
                                 <h3 className="text-lg font-semibold my-5">
                                   Compliance Checklist
@@ -2620,7 +2620,7 @@ function Profile() {
                                   )}
                                 </div>
                               </div>
-                            ) : null}
+                            ) : null} */}
 
                             <Button type="submit">Add Key Individual</Button>
                           </form>
@@ -2706,7 +2706,7 @@ function Profile() {
                 </div>
               </TabsContent>
               <TabsContent value="documents">
-                <div className="flex h-screen bg-gray-100">
+                <div className="flex h-screen mt-2 bg-gray-100 overflow-auto max-h-[550px]">
                   {/* Sidebar for document categories */}
                   <div className="w-90 bg-white p-4 shadow-md overflow-auto">
                     {/* <h2 className="text-2xl font-bold mb-4">Documents</h2> */}
@@ -2728,7 +2728,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5 text-green-500" />
+                                <FileText className="mr-2 h-7 w-7 text-green-500" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
@@ -2793,7 +2793,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5 text-red-500" />
+                                <FileText className="mr-2 h-7 w-7 text-red-500" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
@@ -2860,7 +2860,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5 text-yellow-600" />
+                                <FileText className="mr-2 h-7 w-7 text-yellow-600" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
@@ -2925,7 +2925,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5 text-red-600" />
+                                <FileText className="mr-2 h-7 w-7 text-red-600" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
@@ -2991,7 +2991,7 @@ function Profile() {
                               onClick={() => toggleCategory(category)}
                             >
                               <div className="flex items-center">
-                                <FileText className="mr-2 h-5 w-5" />
+                                <FileText className="mr-2 h-7 w-7" />
                                 <span className="">{category}</span>
                               </div>
                               {expandedCategories[category] ? (
