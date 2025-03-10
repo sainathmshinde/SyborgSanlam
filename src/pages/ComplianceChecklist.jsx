@@ -326,7 +326,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5 text-green-600" />
+                      <FileText className="mr-2 h-7 w-7 text-green-600" />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -357,14 +357,9 @@ function ComplianceChecklist() {
                       >
                         {id == 2 ? "Approved" : "Approve"}
                       </Button> */}
+                    <Button className="bg-blue-500 text-white ">Approve</Button>
                     <Button
-                      className=" border-green-500 bg-green-500 text-white hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
-                      variant="ghost"
-                    >
-                      Approve
-                    </Button>
-                    <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className="bg-gray-500 text-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Reject
@@ -402,7 +397,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5 text-red-600 " />
+                      <FileText className="mr-2 h-7 w-7 text-red-600 " />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -422,17 +417,12 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className="bg-gray-500 text-white  hover:bg-grey-500 hover:text-white focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
                     </Button>
-                    <Button
-                      className=" border-red-500 bg-red-500 text-white hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                      variant="ghost"
-                    >
-                      Reject
-                    </Button>
+                    <Button className="bg-blue-500 text-white ">Reject</Button>
                   </div>
                   <Separator className="my-2" />
                 </li>
@@ -454,7 +444,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5 text-yellow-500" />
+                      <FileText className="mr-2 h-7 w-7 text-yellow-500" />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -474,13 +464,13 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
                     </Button>
                     <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
                       variant="ghost"
                     >
                       Reject
@@ -503,7 +493,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5 text-red-600 " />
+                      <FileText className="mr-2 h-7 w-7 text-red-600 " />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -523,17 +513,12 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className="bg-gray-500 text-white  hover:bg-grey-500 hover:text-white focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
                     </Button>
-                    <Button
-                      className=" border-red-500 text-white bg-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
-                      variant="ghost"
-                    >
-                      Reject
-                    </Button>
+                    <Button className="bg-blue-500 text-white ">Reject</Button>
                   </div>
                   <Separator className="my-2" />
                 </li>
@@ -553,7 +538,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5  " />
+                      <FileText className="mr-2 h-7 w-7  " />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -573,13 +558,13 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
                     </Button>
                     <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
                       variant="ghost"
                     >
                       Reject
@@ -602,7 +587,7 @@ function ComplianceChecklist() {
                   >
                     {index < indexValue ? (
                       // <FileIcon className="mr-2 h-4 w-4 text-green-500" />
-                      <FileText className="mr-2 h-5 w-5  " />
+                      <FileText className="mr-2 h-7 w-7  " />
                     ) : (
                       // <CheckCircle2
                       //   className="h-5 w-5 text-green-500 ml-2"
@@ -622,13 +607,13 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-white text-black border border-green-500 hover:bg-green-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
                       variant="ghost"
                     >
                       Approve
                     </Button>
                     <Button
-                      className="bg-white text-black border border-red-500 hover:bg-red-500 hover:text-white focus:ring-0 focus:outline-none "
+                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
                       variant="ghost"
                     >
                       Reject
