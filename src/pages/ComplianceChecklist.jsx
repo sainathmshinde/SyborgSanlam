@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { Separator } from "@radix-ui/react-select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,12 +44,6 @@ import idproof from "@/assets/idproof.png";
 import { Navigate, useNavigate, useParams } from "react-router";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 // Mock data for demonstration
 const customerData = {
@@ -134,6 +134,7 @@ function ComplianceChecklist() {
   const [selectedDoc, setSelectedDoc] = useState(documents[0]);
   const [comment, setComment] = useState("");
   const [indexValue, setIndexValue] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
 
   const [customerData, setCustomerData] = useState({
     status: "Pending",
@@ -359,12 +360,29 @@ function ComplianceChecklist() {
                       </Button> */}
                     <Button className="bg-blue-500 text-white ">Approve</Button>
                     <Button
-                      className="bg-gray-500 text-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className={`bg-gray-300 text-black border border-gray-300 
+  hover:bg-gray-300 hover:text-black focus:ring-0 focus:outline-none 
+  ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+  h-2 px-2 text-xs !important
+  `}
                       variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      Approve
+                    </Button>
+
+                    <Button
+                      className={`bg-white text-black border border-black 
+                      hover:bg-white hover:text-black focus:ring-0 focus:outline-none 
+                      ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+                      `}
+                      variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
                     >
                       Reject
                     </Button>
-
                     {/* <Button
                         variant={"secondary"}
                         value="reject"
@@ -417,12 +435,27 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-gray-500 text-white  hover:bg-grey-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className={`bg-white text-black border border-black 
+                    hover:bg-white hover:text-black focus:ring-0 focus:outline-none 
+                    ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+                    `}
                       variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
                     >
                       Approve
                     </Button>
-                    <Button className="bg-blue-500 text-white ">Reject</Button>
+                    <Button
+                      className={`bg-gray-300 text-black border border-gray-300 
+                      hover:bg-gray-300 hover:text-black focus:ring-0 focus:outline-none 
+                       ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+                       `}
+                      variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      Reject
+                    </Button>
                   </div>
                   <Separator className="my-2" />
                 </li>
@@ -459,23 +492,35 @@ function ComplianceChecklist() {
 
                     {doc.name}
                   </Button>
-                  <div
-                    defaultValue="comfortable"
-                    className="flex flex-row justify-end ml-2 gap-1"
-                  >
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
-                      variant="ghost"
-                    >
-                      Approve
-                    </Button>
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
-                      variant="ghost"
-                    >
-                      Reject
-                    </Button>
-                  </div>
+                  <TooltipProvider>
+                    <div className="flex flex-row justify-end ml-2 gap-1">
+                      {/* Approve Button with Tooltip */}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border hover:bg-gray-300 border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Approve
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Pending review.</TooltipContent>
+                      </Tooltip>
+
+                      {/* Reject Button with Tooltip */}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border hover:bg-gray-300 border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Reject
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Pending review. </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </TooltipProvider>
                   <Separator className="my-2" />
                 </li>
               ))}
@@ -513,12 +558,27 @@ function ComplianceChecklist() {
                     className="flex flex-row justify-end ml-2 gap-1"
                   >
                     <Button
-                      className="bg-gray-500 text-white  hover:bg-grey-500 hover:text-white focus:ring-0 focus:outline-none"
+                      className={`bg-white text-black border border-black 
+                    hover:bg-white hover:text-black focus:ring-0 focus:outline-none 
+                    ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+                    `}
                       variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
                     >
                       Approve
                     </Button>
-                    <Button className="bg-blue-500 text-white ">Reject</Button>
+                    <Button
+                      className={`bg-gray-300 text-black border border-gray-300 
+                      hover:bg-gray-300 hover:text-black focus:ring-0 focus:outline-none 
+                       ${isHovered ? "cursor-not-allowed opacity-100" : ""}
+                       `}
+                      variant="ghost"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      Reject
+                    </Button>
                   </div>
                   <Separator className="my-2" />
                 </li>
@@ -553,23 +613,37 @@ function ComplianceChecklist() {
 
                     {doc.name}
                   </Button>
-                  <div
-                    defaultValue="comfortable"
-                    className="flex flex-row justify-end ml-2 gap-1"
-                  >
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
-                      variant="ghost"
-                    >
-                      Approve
-                    </Button>
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
-                      variant="ghost"
-                    >
-                      Reject
-                    </Button>
-                  </div>
+                  <TooltipProvider>
+                    <div className="flex flex-row justify-end ml-2 gap-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Approve
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          No documents found for review.
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Reject
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          No documents found for review.
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </TooltipProvider>
                   <Separator className="my-2" />
                 </li>
               ))}
@@ -602,23 +676,37 @@ function ComplianceChecklist() {
 
                     {doc.name}
                   </Button>
-                  <div
-                    defaultValue="comfortable"
-                    className="flex flex-row justify-end ml-2 gap-1"
-                  >
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none"
-                      variant="ghost"
-                    >
-                      Approve
-                    </Button>
-                    <Button
-                      className="bg-white text-black border border-black  focus:ring-0 focus:outline-none "
-                      variant="ghost"
-                    >
-                      Reject
-                    </Button>
-                  </div>
+                  <TooltipProvider>
+                    <div className="flex flex-row justify-end ml-2 gap-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Approve
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          No documents found for review.
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="bg-white text-black border border-black focus:ring-0 focus:outline-none"
+                            variant="ghost"
+                          >
+                            Reject
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          No documents found for review.
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </TooltipProvider>
                   <Separator className="my-2" />
                 </li>
               ))}
