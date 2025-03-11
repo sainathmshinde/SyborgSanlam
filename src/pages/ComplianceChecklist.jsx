@@ -358,6 +358,7 @@ function ComplianceChecklist() {
                       >
                         {id == 2 ? "Approved" : "Approve"}
                       </Button> */}
+                    <Button className="bg-blue-500 text-white ">Approve</Button>
                     <Button
                       className={`bg-gray-300 text-black border border-gray-300 
   hover:bg-gray-300 hover:text-black focus:ring-0 focus:outline-none 
